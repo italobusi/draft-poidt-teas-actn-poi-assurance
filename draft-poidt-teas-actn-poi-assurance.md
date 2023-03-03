@@ -1,33 +1,34 @@
 ---
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
+coding: utf-8
+
+title: >
+  Applicability of Abstraction and Control of Traffic Engineered Networks
+  (ACTN) for Packet Optical Integration (POI) service assurance
+abbrev: "ACTN POI Assurance"
 category: info
 
 docname: draft-poidt-teas-actn-poi-assurance-latest
-submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
-number:
-date:
-consensus: true
+submissiontype: IETF
 v: 3
-area: "Routing"
-workgroup: "Traffic Engineering Architecture and Signaling"
-keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
-venue:
-  group: "Traffic Engineering Architecture and Signaling"
-  type: "Working Group"
-  mail: "teas@ietf.org"
-  arch: "https://mailarchive.ietf.org/arch/browse/teas/"
-  github: "italobusi/draft-poidt-teas-actn-poi-assurance"
-  latest: "https://italobusi.github.io/draft-poidt-teas-actn-poi-assurance/draft-poidt-teas-actn-poi-assurance.html"
+workgroup: TEAS WG
+
+stand_alone: yes
+pi: [toc, sortrefs, symrefs, comments]
 
 author:
- -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: "italo.busi@huawei.com"
+  -
+    name: Italo Busi
+    org: Huawei Technologies
+    email: italo.busi@huawei.com
+  -
+    ins: J-F. Bouquier
+    name: Jean-Francois Bouquier
+    org: Vodafone
+    email: jeff.bouquier@vodafone.com
+  -
+    name: Fabio Peruzzini
+    org: TIM
+    email: fabio.peruzzini@telecomitalia.it
 
 normative:
 
