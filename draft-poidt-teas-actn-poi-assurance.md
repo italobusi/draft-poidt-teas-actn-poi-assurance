@@ -39,7 +39,7 @@ informative:
 
 This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover service assurance scenarios.
 
-[EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published.]
+\[EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published.]
 
    Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a specific focus on
@@ -89,9 +89,10 @@ This document analyses several scenarios for service assurance in Packet and
 ~~~~ ascii-art
 {::include figures/reference-architecture.txt}
 ~~~~
-{: #fig-ref-architecture
-title="Reference Network (copy of Figure 1 of {{!I-D.draft-ietf-teas-actn-poi-applicability}})"
+{: #fig-ref-architecture title="Reference Network (copy of Figure 1 of RFC YYYY"
 artwork-name="reference-architecture.txt"}
+
+\[EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published.]
 
 {: #yang}
 
