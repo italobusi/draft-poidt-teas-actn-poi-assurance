@@ -1,0 +1,281 @@
+
+
+
+
+TEAS WG                                                          I. Busi
+Internet-Draft                                       Huawei Technologies
+Intended status: Informational                            J.-F. Bouquier
+Expires: 9 September 2023                                       Vodafone
+                                                            F. Peruzzini
+                                                                     TIM
+                                                            8 March 2023
+
+
+Applicability of Abstraction and Control of Traffic Engineered Networks
+     (ACTN) for Packet Optical Integration (POI) service assurance
+               draft-poidt-teas-actn-poi-assurance-latest
+
+Abstract
+
+   This document extends the analysis of the applicability of
+   Abstraction and Control of TE Networks (ACTN) architecture to Packet
+   Optical Integration (POI), provided in RFC YYYY, to cover service
+   assurance scenarios.
+
+   EDITORS NOTE: Replace RFC YYYY with the RFC number of [I-D.ietf-teas-
+   actn-poi-applicability] once it has been published.
+
+   Existing IETF protocols and data models are identified for each
+   multi-layer (packet over optical) service assurance scenario with a
+   specific focus on the MPI (Multi-Domain Service Coordinator to
+   Provisioning Network Controllers Interface)in the ACTN architecture.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 9 September 2023.
+
+Copyright Notice
+
+   Copyright (c) 2023 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+     2.1.  Terminology
+   3.  Reference Network Architecture
+   4.  YANG Data Models for the MPIs
+   5.  Optical Network Failure and Performance Degradation
+     5.1.  Fault Detection
+     5.2.  Performance Monitoring
+     5.3.  Protection Switching
+     5.4.  Maintenance
+   6.  Failures between the IP and Optical edges
+     6.1.  Fault Detection
+     6.2.  Protection Switching
+   7.  Conclusions
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. Normative References
+   Acknowledgments
+   Authors' Addresses
+
+1.  Introduction
+
+   TODO Introduction
+
+   Multi-layer and multi-domain service scenarios, based on the
+   reference network described in section 2 of
+   [I-D.draft-ietf-teas-actn-poi-applicability] and very relevant for
+   Service Providers, are described in sections Section 5 and Section 6.
+
+   For each scenario, existing IETF YANG data models, identified in
+   section Section 4, are analyzed with a particular focus on the MPI in
+   the ACTN architecture.
+
+   For each multi-layer scenario, the document analyzes how to use the
+   interfaces and data models of the ACTN architecture.
+
+   A summary of the gaps identified in this analysis is provided in
+   Section 7.
+
+   Understanding the level of standardization and the possible gaps will
+   help assess the feasibility of integration between packet and optical
+   DWDM domains (and optionally OTN layer) in an end-to-end multi-vendor
+   service assurance perspective.
+
+2.  Conventions and Definitions
+
+2.1.  Terminology
+
+   TODO Terminology
+
+3.  Reference Network Architecture
+
+   This document analyses several scenarios for service assurance in
+   Packet and Optical Integration (POI) in which ACTN hierarchy is
+   deployed to control a multi-layer and multi-domain network with two
+   optical domains and two packet domains, as shown in Figure 1 of
+   [I-D.draft-ietf-teas-actn-poi-applicability], which is copied in
+   Figure 1 below.
+
+                               +----------+
+                               |   MDSC   |
+                               +-----+----+
+                                     |
+                   +-----------+-----+------+-----------+
+                   |           |            |           |
+              +----+----+ +----+----+  +----+----+ +----+----+
+              | P-PNC 1 | | O-PNC 1 |  | O-PNC 2 | | P-PNC 2 |
+              +----+----+ +----+----+  +----+----+ +----+----+
+                   |           |            |           |
+                   |           \            /           |
+         +-------------------+  \          /  +-------------------+
+    CE1 / PE1             BR1 \  |        /  / BR2             PE2 \ CE2
+    o--/---o               o---\-|-------|--/---o               o---\--o
+       \   :               :   / |       |  \   :               :   /
+        \  : PKT domain 1  :  /  |       |   \  : PKT domain 2  :  /
+         +-:---------------:-+   |       |    +-:---------------:--+
+           :               :     |       |      :               :
+           :               :     |       |      :               :
+         +-:---------------:------+     +-------:---------------:--+
+        /  :               :       \   /        :               :   \
+       /   o...............o        \ /         o...............o    \
+       \     optical domain 1       / \       optical domain 2       /
+        \                          /   \                            /
+         +------------------------+     +--------------------------+
+
+       Figure 1: Reference Network (copy of Figure 1 of RFC YYYY)
+
+   EDITORS NOTE: Replace RFC YYYY with the RFC number of
+   [I-D.ietf-teas-actn-poi-applicability] once it has been published.
+
+4.  YANG Data Models for the MPIs
+
+   TODO YANG Data Models
+
+   Initial set of YANG models that are potentially in the scope of this
+   analysis: - ietf-alarms defined in [RFC8632] - ietf-performance-
+   monitoring defined in [I-D.yu-performance-monitoring-yang]
+
+5.  Optical Network Failure and Performance Degradation
+
+5.1.  Fault Detection
+
+   TODO Describe fault detection performed by the O-PNC and how this
+   information is reported to the MDSC: see for example the failure
+   scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-
+   assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx
+   (slide 3)
+
+5.2.  Performance Monitoring
+
+   TODO Describe performance monitoring and performance degradation
+   detection performed by the O-PNC and how this information is reported
+   to the MDSC: see for example the degradation scenario in
+   https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/
+   files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 7)
+
+5.3.  Protection Switching
+
+   TODO Describe how the MDSC coordinates the protection switching
+   mechanisms at the IP layer (e.g., FRR) and at optical layer,
+   including the reversion when the failure is repaired: see for example
+   the protection switching scenario in https://github.com/italobusi/
+   draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-
+   poidt-teas-poi-assurance.pptx (slide 3)
+
+5.4.  Maintenance
+
+   TODO Describe how the MDSC initiates protection switching at the IP
+   layer (e.g., FRR) and at optical layer at the beginning of a
+   maintenance window, including the reversion after the maintenance
+   operations are completed: see for example the maintenance scenario in
+   https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/
+   files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 4)
+
+6.  Failures between the IP and Optical edges
+
+6.1.  Fault Detection
+
+   TODO Describe the mechanisms to detect when the failure occurs on a
+   router port or on the router node connected with the optical domain:
+   see for example the fault scenarios in https://github.com/italobusi/
+   draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-
+   poidt-teas-poi-assurance.pptx (slide 5 and slide 6)
+
+6.2.  Protection Switching
+
+   TODO Describe the mechanisms to protect the traffic when the failure
+   occurs on a router port or on the router node connected with the
+   optical domain: see for example the protection scenarios in
+   https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/
+   files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5
+   and slide 6)
+
+7.  Conclusions
+
+   This section will provide a summary of the analysis and of the gaps
+   identified in this draft once the analysis is mature.
+
+8.  Security Considerations
+
+   TODO Security
+
+9.  IANA Considerations
+
+   This document has no IANA actions.
+
+10.  Normative References
+
+   [I-D.draft-ietf-teas-actn-poi-applicability]
+              Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
+              Ceccarelli, "Applicability of Abstraction and Control of
+              Traffic Engineered Networks (ACTN) to Packet Optical
+              Integration (POI)", Work in Progress, Internet-Draft,
+              draft-ietf-teas-actn-poi-applicability-08, 11 January
+              2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              teas-actn-poi-applicability-08>.
+
+   [I-D.ietf-teas-actn-poi-applicability]
+              Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
+              Ceccarelli, "Applicability of Abstraction and Control of
+              Traffic Engineered Networks (ACTN) to Packet Optical
+              Integration (POI)", Work in Progress, Internet-Draft,
+              draft-ietf-teas-actn-poi-applicability-08, 11 January
+              2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              teas-actn-poi-applicability-08>.
+
+   [I-D.yu-performance-monitoring-yang]
+              Yu, C., "A YANG Data Model for Optical Performance
+              Monitoring", Work in Progress, Internet-Draft, draft-yu-
+              performance-monitoring-yang-00, 24 October 2022,
+              <https://datatracker.ietf.org/doc/html/draft-yu-
+              performance-monitoring-yang-00>.
+
+   [RFC8632]  Vallin, S. and M. Bjorklund, "A YANG Data Model for Alarm
+              Management", RFC 8632, DOI 10.17487/RFC8632, September
+              2019, <https://www.rfc-editor.org/rfc/rfc8632>.
+
+Acknowledgments
+
+   TODO acknowledge.
+
+Authors' Addresses
+
+   Italo Busi
+   Huawei Technologies
+   Email: italo.busi@huawei.com
+
+
+   Jean-Francois Bouquier
+   Vodafone
+   Email: jeff.bouquier@vodafone.com
+
+
+   Fabio Peruzzini
+   TIM
+   Email: fabio.peruzzini@telecomitalia.it
