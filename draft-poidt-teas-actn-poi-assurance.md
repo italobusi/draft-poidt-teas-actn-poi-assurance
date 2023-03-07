@@ -39,7 +39,7 @@ informative:
 
 This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover service assurance scenarios.
 
-\[EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published.]
+EDITORS NOTE: Replace RFC YYYY with the RFC number of \[I-D.ietf-teas-actn-poi-applicability] once it has been published.
 
    Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a specific focus on
@@ -54,7 +54,7 @@ TODO Introduction
 
    Multi-layer and multi-domain service scenarios, based on the reference
    network described in section 2 of {{!I-D.draft-ietf-teas-actn-poi-applicability}} and very relevant for Service
-   Providers, are described in sections {{optical-network}}, {{router-port}} and {{router-node}}.
+   Providers, are described in sections {{optical-network}} and {{edge}}.
 
    For each scenario, existing IETF YANG data models,
    identified in section {{yang}}, are analyzed with a particular
@@ -89,16 +89,20 @@ This document analyses several scenarios for service assurance in Packet and
 ~~~~ ascii-art
 {::include figures/reference-architecture.txt}
 ~~~~
-{: #fig-ref-architecture title="Reference Network (copy of Figure 1 of RFC YYYY"
+{: #fig-ref-architecture title="Reference Network (copy of Figure 1 of RFC YYYY)"
 artwork-name="reference-architecture.txt"}
 
-\[EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published.]
+EDITORS NOTE: Replace RFC YYYY with the RFC number of {{I-D.ietf-teas-actn-poi-applicability}} once it has been published.
 
 {: #yang}
 
 # YANG Data Models for the MPIs
 
 TODO YANG Data Models
+
+Initial set of YANG models that are potentially in the scope of this analysis:
+- ietf-alarms defined in {{!RFC8632}}
+- ietf-performance-monitoring defined in {{!I-D.yu-performance-monitoring-yang}}
 
 {: #optical-network}
 
@@ -108,25 +112,41 @@ TODO YANG Data Models
 
 ## Fault Detection
 
+TODO Describe fault detection performed by the O-PNC and how this information is reported to the MDSC: see for example the failure scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 3)
+
 {: #optical-degradation}
 
 ## Performance Monitoring
+
+TODO Describe performance monitoring and performance degradation detection performed by the O-PNC and how this information is reported to the MDSC: see for example the degradation scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 7)
 
 {: #optical-protection}
 
 ## Protection Switching
 
+TODO Describe how the MDSC coordinates the protection switching mechanisms at the IP layer (e.g., FRR) and at optical layer, including the reversion when the failure is repaired: see for example the protection switching scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 3)
+
 {: #optical-maintenance}
 
 ## Maintenance
 
-{: #router-port}
+TODO Describe how the MDSC initiates protection switching at the IP layer (e.g., FRR) and at optical layer at the beginning of a maintenance window, including the reversion after the maintenance operations are completed: see for example the maintenance scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 4)
 
-# Failure of a router port
+{: #edge}
 
-{: #router-node}
+# Failures between the IP and Optical edges
 
-# Failure of a router node
+{: #edge-fault}
+
+## Fault Detection
+
+TODO Describe the mechanisms to detect when the failure occurs on a router port or on the router node connected with the optical domain: see for example the fault scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5 and slide 6)
+
+{: #edge-protection}
+
+## Protection Switching
+
+TODO Describe the mechanisms to protect the traffic  when the failure occurs on a router port or on the router node connected with the optical domain: see for example the protection scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5 and slide 6)
 
 {: #conclusions}
 
@@ -137,7 +157,6 @@ This section will provide a summary of the analysis and of the gaps identified i
 # Security Considerations
 
 TODO Security
-
 
 # IANA Considerations
 
