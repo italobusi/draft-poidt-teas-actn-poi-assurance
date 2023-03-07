@@ -92,7 +92,7 @@ This document analyses several scenarios for service assurance in Packet and
 {: #fig-ref-architecture title="Reference Network (copy of Figure 1 of RFC YYYY)"
 artwork-name="reference-architecture.txt"}
 
-EDITORS NOTE: Replace RFC YYYY with the RFC number of {{I-D.ietf-teas-actn-poi-applicability}} once it has been published.
+EDITORS NOTE: Replace RFC YYYY with the RFC number of {{!I-D.ietf-teas-actn-poi-applicability}} once it has been published.
 
 {: #yang}
 
