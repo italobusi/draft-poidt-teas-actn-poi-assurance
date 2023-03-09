@@ -1,0 +1,98 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-03-09T00:50:16.594652+00:00",
+  "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOJAsmzM5f6q2Q",
+      "title": "Scenarios from TIM",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/1",
+      "state": "OPEN",
+      "author": "FabioPeruzzini",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "[2023 03 draft-poidt-teas-poi-assurance .pptx](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx)\r\n",
+      "createdAt": "2023-03-03T20:36:24Z",
+      "updatedAt": "2023-03-03T20:36:24Z",
+      "closedAt": null,
+      "comments": []
+    }
+  ],
+  "pulls": [
+    {
+      "number": 2,
+      "id": "PR_kwDOJAsmzM5LQmgq",
+      "title": "First draft outline",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/2",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Prepare a first draft to submit to IETF 116",
+      "createdAt": "2023-03-03T21:32:19Z",
+      "updatedAt": "2023-03-07T23:07:33Z",
+      "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
+      "baseRefName": "main",
+      "baseRefOid": "70f679c1a3a6d335bf8908f2e5608ea1e046ab5f",
+      "headRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
+      "headRefName": "first-draft",
+      "headRefOid": "f7db71be51bcab42fe5fa5d05bc4b3928bc617d8",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
