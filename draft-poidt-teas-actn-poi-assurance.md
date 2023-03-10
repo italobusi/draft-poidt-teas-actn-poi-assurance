@@ -29,11 +29,14 @@ author:
     name: Fabio Peruzzini
     org: TIM
     email: fabio.peruzzini@telecomitalia.it
-
-normative:
-
-informative:
-
+  -
+    name: Paolo Volpato
+    org: Huawei Technologies
+    email: paolo.volpato@huawei.com
+  -
+    name: Prasenjit Manna
+    org: Cisco
+    email: prmanna@cisco.com
 
 --- abstract
 
@@ -93,6 +96,14 @@ This document analyses several scenarios for service assurance in Packet and
 artwork-name="reference-architecture.txt"}
 
 EDITORS NOTE: Replace RFC YYYY with the RFC number of {{!I-D.ietf-teas-actn-poi-applicability}} once it has been published.
+
+In general, assurance involves detection and localization of link failures and performance degradation as well as re-routing (protection).
+
+Two cases will be considered:
+1. using grey interfaces on routers' ports, as outlined in {{!I-D.ietf-teas-actn-poi-applicability}}
+2. using colored optical interfaces on routers' ports, as outlined in {{?I-D.mix-teas-actn-poi-extension}}
+
+NOTE: It is not fully clear how much commonalities there are in service assurance for these two cases. This draft will start addressing both cases and assess at a later stage whether it is worthwhile keeping everything in a single draft or to split into two drafts.
 
 The MDSC is responsible for coordinating the whole multi-domain, multi-layer (packet and optical) network. MDSC interacts with different Provisioning Network Controllers (O/P-PNCs) through the MPI interface.
 The MPI interface presents an abstracted topology to MDSC, hiding the technology-specific aspects of the network and the topology details (depending on the policy chosen regarding the level of abstraction supported).
