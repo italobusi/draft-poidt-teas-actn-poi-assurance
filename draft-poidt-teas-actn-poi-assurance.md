@@ -40,7 +40,7 @@ author:
 
 --- abstract
 
-This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover service assurance scenarios.
+This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover multi-layer service assurance scenarios, for end-to-end customer L2VPN or L3VPN connectivity services setup over underlying transport optical paths.
 
 EDITORS NOTE: Replace RFC YYYY with the RFC number of \[I-D.ietf-teas-actn-poi-applicability] once it has been published.
 
@@ -55,9 +55,11 @@ EDITORS NOTE: Replace RFC YYYY with the RFC number of \[I-D.ietf-teas-actn-poi-a
 
 TODO Introduction
 
-   Multi-layer and multi-domain service scenarios, based on the reference
+   Multi-layer and multi-domain service assurance scenarios, based on the reference
    network described in section 2 of {{!I-D.draft-ietf-teas-actn-poi-applicability}} and very relevant for Service
    Providers, are described in sections {{optical-network}} and {{edge}}.
+
+This document is focusing on service assurance for end-to-end L2VPN or L3VPN connectivity services setup over underlying transport optical paths.
 
    For each scenario, existing IETF YANG data models,
    identified in section {{yang}}, are analyzed with a particular
@@ -71,7 +73,7 @@ TODO Introduction
 
    Understanding the level of standardization and the possible gaps will
    help assess the feasibility of integration between packet and optical
-   DWDM domains (and optionally OTN layer) in an end-to-end multi-vendor
+   DWDM domains (and optionally OTN layer) from an end-to-end multi-vendor
    service assurance perspective.
 
 # Conventions and Definitions
@@ -97,7 +99,7 @@ artwork-name="reference-architecture.txt"}
 
 EDITORS NOTE: Replace RFC YYYY with the RFC number of {{!I-D.ietf-teas-actn-poi-applicability}} once it has been published.
 
-In general, assurance involves detection and localization of link failures and performance degradation as well as re-routing (protection).
+In general, service assurance involves fault detection and localization; performance monitoring as well as re-routing (protection).
 
 Two cases will be considered:
 1. using grey interfaces on routers' ports, as outlined in {{!I-D.ietf-teas-actn-poi-applicability}}
@@ -124,7 +126,7 @@ They perform single-domain local path computation, when requested by the MDSC. T
 
 No GMPLS-UNI interaction between IP and Optical equipment is considered.
 This is also the assumption followed in this document: the MDSC performs the function of multi-layer/multi-domain path computation
-through the same mechanisms described in (I-D.ietf-teas-actn-poi-applicability) even if that is applied to the maintenance and protection cases described in the next sections.
+through the same mechanisms described in {{!I-D.ietf-teas-actn-poi-applicability}}.
 
 {: #yang}
 
