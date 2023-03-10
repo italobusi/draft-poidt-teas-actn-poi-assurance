@@ -11,7 +11,7 @@
 <meta content="Paolo Volpato" name="author">
 <meta content="Prasenjit Manna" name="author">
 <meta content="
-       This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover service assurance scenarios. 
+       This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover multi-layer service assurance scenarios, for end-to-end customer L2VPN or L3VPN connectivity services setup over underlying transport optical paths. 
        EDITORS NOTE: Replace RFC YYYY with the RFC number of [I-D.ietf-teas-actn-poi-applicability] once it has been published. 
        Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a specific focus on
@@ -1106,7 +1106,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) for Packet Optical Integration (POI) service assurance</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover service assurance scenarios.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover multi-layer service assurance scenarios, for end-to-end customer L2VPN or L3VPN connectivity services setup over underlying transport optical paths.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <p id="section-abstract-2">EDITORS NOTE: Replace RFC YYYY with the RFC number of [I-D.ietf-teas-actn-poi-applicability] once it has been published.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 <p id="section-abstract-3">Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a specific focus on
@@ -1242,20 +1242,21 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">TODO Introduction<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">Multi-layer and multi-domain service scenarios, based on the reference
+<p id="section-1-2">Multi-layer and multi-domain service assurance scenarios, based on the reference
    network described in section 2 of <span>[<a href="#I-D.draft-ietf-teas-actn-poi-applicability" class="cite xref">I-D.draft-ietf-teas-actn-poi-applicability</a>]</span> and very relevant for Service
    Providers, are described in sections <a href="#optical-network" class="auto internal xref">Section 5</a> and <a href="#edge" class="auto internal xref">Section 6</a>.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">For each scenario, existing IETF YANG data models,
+<p id="section-1-3">This document is focusing on service assurance for end-to-end L2VPN or L3VPN connectivity services setup over underlying transport optical paths.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">For each scenario, existing IETF YANG data models,
    identified in section <a href="#yang" class="auto internal xref">Section 4</a>, are analyzed with a particular
-   focus on the MPI in the ACTN architecture.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">For each multi-layer scenario, the document analyzes how to use the
-   interfaces and data models of the ACTN architecture.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">A summary of the gaps identified in this analysis is provided in
-   <a href="#conclusions" class="auto internal xref">Section 7</a>.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">Understanding the level of standardization and the possible gaps will
+   focus on the MPI in the ACTN architecture.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">For each multi-layer scenario, the document analyzes how to use the
+   interfaces and data models of the ACTN architecture.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">A summary of the gaps identified in this analysis is provided in
+   <a href="#conclusions" class="auto internal xref">Section 7</a>.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">Understanding the level of standardization and the possible gaps will
    help assess the feasibility of integration between packet and optical
-   DWDM domains (and optionally OTN layer) in an end-to-end multi-vendor
-   service assurance perspective.<a href="#section-1-6" class="pilcrow">¶</a></p>
+   DWDM domains (and optionally OTN layer) from an end-to-end multi-vendor
+   service assurance perspective.<a href="#section-1-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1318,7 +1319,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         </figcaption></figure>
 </div>
 <p id="section-3-3">EDITORS NOTE: Replace RFC YYYY with the RFC number of <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> once it has been published.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">In general, assurance involves detection and localization of link failures and performance degradation as well as re-routing (protection).<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-4">In general, service assurance involves fault detection and localization; performance monitoring as well as re-routing (protection).<a href="#section-3-4" class="pilcrow">¶</a></p>
 <p id="section-3-5">Two cases will be considered:
 1. using grey interfaces on routers' ports, as outlined in <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span>
 2. using colored optical interfaces on routers' ports, as outlined in <span>[<a href="#I-D.mix-teas-actn-poi-extension" class="cite xref">I-D.mix-teas-actn-poi-extension</a>]</span><a href="#section-3-5" class="pilcrow">¶</a></p>
@@ -1337,7 +1338,7 @@ as requested by MDSC, and providing topology information to the MDSC.<a href="#s
 They perform single-domain local path computation, when requested by the MDSC. They also perform optical tunnel setup, when requested by the MDSC.<a href="#section-3-11" class="pilcrow">¶</a></p>
 <p id="section-3-12">No GMPLS-UNI interaction between IP and Optical equipment is considered.
 This is also the assumption followed in this document: the MDSC performs the function of multi-layer/multi-domain path computation
-through the same mechanisms described in (I-D.ietf-teas-actn-poi-applicability) even if that is applied to the maintenance and protection cases described in the next sections.<a href="#section-3-12" class="pilcrow">¶</a></p>
+through the same mechanisms described in <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span>.<a href="#section-3-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="yang">
