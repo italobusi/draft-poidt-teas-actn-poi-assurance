@@ -8,6 +8,10 @@ Intended status: Informational                            J.-F. Bouquier
 Expires: 11 September 2023                                      Vodafone
                                                             F. Peruzzini
                                                                      TIM
+                                                              P. Volpato
+                                                     Huawei Technologies
+                                                                P. Manna
+                                                                   Cisco
                                                            10 March 2023
 
 
@@ -79,7 +83,9 @@ Table of Contents
    7.  Conclusions
    8.  Security Considerations
    9.  IANA Considerations
-   10. Normative References
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -152,6 +158,21 @@ Table of Contents
 
    EDITORS NOTE: Replace RFC YYYY with the RFC number of
    [I-D.ietf-teas-actn-poi-applicability] once it has been published.
+
+   In general, assurance involves detection and localization of link
+   failures and performance degradation as well as re-routing
+   (protection).
+
+   Two cases will be considered: 1. using grey interfaces on routers'
+   ports, as outlined in [I-D.ietf-teas-actn-poi-applicability] 2. using
+   colored optical interfaces on routers' ports, as outlined in
+   [I-D.mix-teas-actn-poi-extension]
+
+   NOTE: It is not fully clear how much commonalities there are in
+   service assurance for these two cases.  This draft will start
+   addressing both cases and assess at a later stage whether it is
+   worthwhile keeping everything in a single draft or to split into two
+   drafts.
 
    The MDSC is responsible for coordinating the whole multi-domain,
    multi-layer (packet and optical) network.  MDSC interacts with
@@ -268,7 +289,9 @@ Table of Contents
 
    This document has no IANA actions.
 
-10.  Normative References
+10.  References
+
+10.1.  Normative References
 
    [I-D.draft-ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
@@ -299,6 +322,18 @@ Table of Contents
               Management", RFC 8632, DOI 10.17487/RFC8632, September
               2019, <https://www.rfc-editor.org/rfc/rfc8632>.
 
+10.2.  Informative References
+
+   [I-D.mix-teas-actn-poi-extension]
+              Galimberti, G., Bouquier, J., Gerstel, O., Foster, B., and
+              D. Ceccarelli, "Applicability of Abstraction and Control
+              of Traffic Engineered Networks (ACTN) to Packet Optical
+              Integration (POI) extensions to support Router Optical
+              interfaces.", Work in Progress, Internet-Draft, draft-mix-
+              teas-actn-poi-extension-00, 24 October 2022,
+              <https://datatracker.ietf.org/doc/html/draft-mix-teas-
+              actn-poi-extension-00>.
+
 Acknowledgments
 
    TODO acknowledge.
@@ -318,3 +353,13 @@ Authors' Addresses
    Fabio Peruzzini
    TIM
    Email: fabio.peruzzini@telecomitalia.it
+
+
+   Paolo Volpato
+   Huawei Technologies
+   Email: paolo.volpato@huawei.com
+
+
+   Prasenjit Manna
+   Cisco
+   Email: prmanna@cisco.com

@@ -8,6 +8,8 @@
 <meta content="Italo Busi" name="author">
 <meta content="Jean-Francois Bouquier" name="author">
 <meta content="Fabio Peruzzini" name="author">
+<meta content="Paolo Volpato" name="author">
+<meta content="Prasenjit Manna" name="author">
 <meta content="
        This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover service assurance scenarios. 
        EDITORS NOTE: Replace RFC YYYY with the RFC number of [I-D.ietf-teas-actn-poi-applicability] once it has been published. 
@@ -1090,6 +1092,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <div class="author-name">F. Peruzzini</div>
 <div class="org">TIM</div>
 </div>
+<div class="author">
+      <div class="author-name">P. Volpato</div>
+<div class="org">Huawei Technologies</div>
+</div>
+<div class="author">
+      <div class="author-name">P. Manna</div>
+<div class="org">Cisco</div>
+</div>
 </dd>
 </dl>
 </div>
@@ -1206,7 +1216,15 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="auto internal xref">10</a>. <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="auto internal xref">10.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="auto internal xref">10.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
@@ -1300,21 +1318,26 @@ svg :is([fill="white"], [fill^="#fff"]) {
         </figcaption></figure>
 </div>
 <p id="section-3-3">EDITORS NOTE: Replace RFC YYYY with the RFC number of <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> once it has been published.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">The MDSC is responsible for coordinating the whole multi-domain, multi-layer (packet and optical) network. MDSC interacts with different Provisioning Network Controllers (O/P-PNCs) through the MPI interface.
-The MPI interface presents an abstracted topology to MDSC, hiding the technology-specific aspects of the network and the topology details (depending on the policy chosen regarding the level of abstraction supported).<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5">Following the assumptions of section 2.1.2 of <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span>, this document analyses scenarios where
-the MDSC uses the partial summarization approach to coordinate multi-domain/multi-layer path computation.<a href="#section-3-5" class="pilcrow">¶</a></p>
-<p id="section-3-6">In this approach, the MDSC has complete visibility of the TE topology of the packet network domains and an abstracted
+<p id="section-3-4">In general, assurance involves detection and localization of link failures and performance degradation as well as re-routing (protection).<a href="#section-3-4" class="pilcrow">¶</a></p>
+<p id="section-3-5">Two cases will be considered:
+1. using grey interfaces on routers' ports, as outlined in <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span>
+2. using colored optical interfaces on routers' ports, as outlined in <span>[<a href="#I-D.mix-teas-actn-poi-extension" class="cite xref">I-D.mix-teas-actn-poi-extension</a>]</span><a href="#section-3-5" class="pilcrow">¶</a></p>
+<p id="section-3-6">NOTE: It is not fully clear how much commonalities there are in service assurance for these two cases. This draft will start addressing both cases and assess at a later stage whether it is worthwhile keeping everything in a single draft or to split into two drafts.<a href="#section-3-6" class="pilcrow">¶</a></p>
+<p id="section-3-7">The MDSC is responsible for coordinating the whole multi-domain, multi-layer (packet and optical) network. MDSC interacts with different Provisioning Network Controllers (O/P-PNCs) through the MPI interface.
+The MPI interface presents an abstracted topology to MDSC, hiding the technology-specific aspects of the network and the topology details (depending on the policy chosen regarding the level of abstraction supported).<a href="#section-3-7" class="pilcrow">¶</a></p>
+<p id="section-3-8">Following the assumptions of section 2.1.2 of <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span>, this document analyses scenarios where
+the MDSC uses the partial summarization approach to coordinate multi-domain/multi-layer path computation.<a href="#section-3-8" class="pilcrow">¶</a></p>
+<p id="section-3-9">In this approach, the MDSC has complete visibility of the TE topology of the packet network domains and an abstracted
 view of the TE topology of the optical network domains.
 That means the MDSC has the capability of performing multi-domain/single-layer path computation for the packet layer. The MDSC needs to delegate the O-PNCs to perform local path computation within their respective domains.
-It uses the information received by the O-PNCs and its TE topology view of the multi-domain packet layer to perform multi-layer/multi-domain path computation.<a href="#section-3-6" class="pilcrow">¶</a></p>
-<p id="section-3-7">P-PNCs are responsible for setting up the TE paths between any two PEs or BRs in their respective controlled domains,
-as requested by MDSC, and providing topology information to the MDSC.<a href="#section-3-7" class="pilcrow">¶</a></p>
-<p id="section-3-8">O-PNCs are responsible to provide to the MDSC an abstract TE topology view of their underlying optical network resources.
-They perform single-domain local path computation, when requested by the MDSC. They also perform optical tunnel setup, when requested by the MDSC.<a href="#section-3-8" class="pilcrow">¶</a></p>
-<p id="section-3-9">No GMPLS-UNI interaction between IP and Optical equipment is considered.
+It uses the information received by the O-PNCs and its TE topology view of the multi-domain packet layer to perform multi-layer/multi-domain path computation.<a href="#section-3-9" class="pilcrow">¶</a></p>
+<p id="section-3-10">P-PNCs are responsible for setting up the TE paths between any two PEs or BRs in their respective controlled domains,
+as requested by MDSC, and providing topology information to the MDSC.<a href="#section-3-10" class="pilcrow">¶</a></p>
+<p id="section-3-11">O-PNCs are responsible to provide to the MDSC an abstract TE topology view of their underlying optical network resources.
+They perform single-domain local path computation, when requested by the MDSC. They also perform optical tunnel setup, when requested by the MDSC.<a href="#section-3-11" class="pilcrow">¶</a></p>
+<p id="section-3-12">No GMPLS-UNI interaction between IP and Optical equipment is considered.
 This is also the assumption followed in this document: the MDSC performs the function of multi-layer/multi-domain path computation
-through the same mechanisms described in (I-D.ietf-teas-actn-poi-applicability) even if that is applied to the maintenance and protection cases described in the next sections.<a href="#section-3-9" class="pilcrow">¶</a></p>
+through the same mechanisms described in (I-D.ietf-teas-actn-poi-applicability) even if that is applied to the maintenance and protection cases described in the next sections.<a href="#section-3-12" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="yang">
@@ -1415,27 +1438,43 @@ through the same mechanisms described in (I-D.ietf-teas-actn-poi-applicability) 
 </section>
 </div>
 <section id="section-10">
-      <h2 id="name-normative-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+      <h2 id="name-references">
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<section id="section-10.1">
+        <h3 id="name-normative-references">
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
 <dl class="references">
 <dt id="I-D.draft-ietf-teas-actn-poi-applicability">[I-D.draft-ietf-teas-actn-poi-applicability]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Peruzzini, F.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">King, D.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-actn-poi-applicability-08</span>, <time datetime="2023-01-11" class="refDate">11 January 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-08">https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-actn-poi-applicability">[I-D.ietf-teas-actn-poi-applicability]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Peruzzini, F.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">King, D.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-actn-poi-applicability-08</span>, <time datetime="2023-01-11" class="refDate">11 January 2023</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-08">https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.yu-performance-monitoring-yang">[I-D.yu-performance-monitoring-yang]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Yu, C.</span>, <span class="refTitle">"A YANG Data Model for Optical Performance Monitoring"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-yu-performance-monitoring-yang-00</span>, <time datetime="2022-10-24" class="refDate">24 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-yu-performance-monitoring-yang-00">https://datatracker.ietf.org/doc/html/draft-yu-performance-monitoring-yang-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8632">[RFC8632]</dt>
-    <dd>
+      <dd>
 <span class="refAuthor">Vallin, S.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"A YANG Data Model for Alarm Management"</span>, <span class="seriesInfo">RFC 8632</span>, <span class="seriesInfo">DOI 10.17487/RFC8632</span>, <time datetime="2019-09" class="refDate">September 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8632">https://www.rfc-editor.org/rfc/rfc8632</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
+</section>
+<section id="section-10.2">
+        <h3 id="name-informative-references">
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.mix-teas-actn-poi-extension">[I-D.mix-teas-actn-poi-extension]</dt>
+      <dd>
+<span class="refAuthor">Galimberti, G.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Gerstel, O.</span>, <span class="refAuthor">Foster, B.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI) extensions to support Router Optical interfaces."</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-mix-teas-actn-poi-extension-00</span>, <time datetime="2022-10-24" class="refDate">24 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-mix-teas-actn-poi-extension-00">https://datatracker.ietf.org/doc/html/draft-mix-teas-actn-poi-extension-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
 </section>
 <div id="acknowledgments">
 <section id="appendix-A">
@@ -1472,6 +1511,22 @@ through the same mechanisms described in (I-D.ietf-teas-actn-poi-applicability) 
 <div class="email">
 <span>Email:</span>
 <a href="mailto:fabio.peruzzini@telecomitalia.it" class="email">fabio.peruzzini@telecomitalia.it</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Paolo Volpato</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:paolo.volpato@huawei.com" class="email">paolo.volpato@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Prasenjit Manna</span></div>
+<div dir="auto" class="left"><span class="org">Cisco</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:prmanna@cisco.com" class="email">prmanna@cisco.com</a>
 </div>
 </address>
 </section>
