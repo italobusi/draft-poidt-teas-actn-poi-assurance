@@ -94,30 +94,26 @@ artwork-name="reference-architecture.txt"}
 
 EDITORS NOTE: Replace RFC YYYY with the RFC number of {{!I-D.ietf-teas-actn-poi-applicability}} once it has been published.
 
-The MDSC is responsible for coordinating the whole multi-domain, multi-layer (packet and optical) network. MDSC interacts 
-with the different Provisioning Network Controller (O/P-PNCs) through the MPI interface.
-The MPI interface presents an abstracted topology to MDSC, hiding the technology-specific aspects of the network and the topology
-details (depending on the policy chosen regarding the level of abstraction supported).
+The MDSC is responsible for coordinating the whole multi-domain, multi-layer (packet and optical) network. MDSC interacts with different Provisioning Network Controllers (O/P-PNCs) through the MPI interface.
+The MPI interface presents an abstracted topology to MDSC, hiding the technology-specific aspects of the network and the topology details (depending on the policy chosen regarding the level of abstraction supported).
 
-Following the assumptions of section 2.1.2 of (I-D.ietf-teas-actn-poi-applicability), this document analyses scenarios where
+Following the assumptions of section 2.1.2 of {{I-D.ietf-teas-actn-poi-applicability}}, this document analyses scenarios where
 the MDSC uses the partial summarization approach to coordinate multi-domain/multi-layer path computation.
 
 In this approach, the MDSC has complete visibility of the TE topology of the packet network domains and an abstracted
 view of the TE topology of the optical network domains.
-That means the MDSC has the capability of performing multi-domain/single-layer path computation for the packet layer.
-The MDSC needs to delegate the O-PNCs to perform local path computation within their respective domains. It uses the 
-information received by the O-PNCs and its TE topology view of the multi-domain packet layer to perform multi-layer/multi-domain path computation.
+That means the MDSC has the capability of performing multi-domain/single-layer path computation for the packet layer. The MDSC needs to delegate the O-PNCs to perform local path computation within their respective domains.
+It uses the information received by the O-PNCs and its TE topology view of the multi-domain packet layer to perform multi-layer/multi-domain path computation.
 
-P-PNCs are responsible for setting up the TE paths between any two PEs or BRs in their respective controlled domains, 
+P-PNCs are responsible for setting up the TE paths between any two PEs or BRs in their respective controlled domains,
 as requested by MDSC, and providing topology information to the MDSC.
 
-O-PNCs are responsible to provide to the MDSC an abstract TE topology view of their underlying optical network resources. 
+O-PNCs are responsible to provide to the MDSC an abstract TE topology view of their underlying optical network resources.
 They perform single-domain local path computation, when requested by the MDSC. They also perform optical tunnel setup, when requested by the MDSC.
 
-No GMPLS-UNI interaction between IP and Optical equipment is considered. 
-This is also the assumption followed in this document: the MDSC performs the function of multi-layer/multi-domain path computation 
-through the same mechanisms described in (I-D.ietf-teas-actn-poi-applicability) even if that is applied to the maintenance and 
-protection cases described in the next sections.
+No GMPLS-UNI interaction between IP and Optical equipment is considered.
+This is also the assumption followed in this document: the MDSC performs the function of multi-layer/multi-domain path computation
+through the same mechanisms described in (I-D.ietf-teas-actn-poi-applicability) even if that is applied to the maintenance and protection cases described in the next sections.
 
 {: #yang}
 
