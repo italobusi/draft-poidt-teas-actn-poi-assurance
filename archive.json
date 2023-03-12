@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-09T00:50:16.594652+00:00",
+  "timestamp": "2023-03-12T00:48:35.576267+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -62,7 +62,54 @@
       "labels": [],
       "body": "[2023 03 draft-poidt-teas-poi-assurance .pptx](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx)\r\n",
       "createdAt": "2023-03-03T20:36:24Z",
-      "updatedAt": "2023-03-03T20:36:24Z",
+      "updatedAt": "2023-03-10T10:35:50Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "ggalimba56",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I like the use cases in the presentation and I think we can add more UC.\r\nA general comment is about the SDN controller definition, in y opinion should be more clear if it is clearly reported what SDN controller take a specific action. e.g. IP SDN Controller, DWDM SDN controller or Hierarchical SDN controller.",
+          "createdAt": "2023-03-09T17:11:23Z",
+          "updatedAt": "2023-03-09T17:11:23Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "See comment from @prmanna : https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/2#issuecomment-1462165159\r\n\r\n> In general, assurance involves link failure, detect and re-route. Fabio\u2019s slides depicts most those uses-cases in optical domain. There are PSM(protection switching module) modules can provide 50ms switchover in case of LOS. In rest of the cases, Optical PCE will come into picture. It will take more time to decide alternate path and configure the alternate path. Again there will be two flavours, (1) with router port + ZR and (2) others (ie. draft-ietf-teas-actn-poi-applicability) let's deep dive into the Fabio's slide in the next call. Also, I would like to join the discussions going forward and contribute to this standardization.\r\n",
+          "createdAt": "2023-03-10T10:35:50Z",
+          "updatedAt": "2023-03-10T10:35:50Z"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "I_kwDOJAsmzM5gia9f",
+      "title": "Performance monitoring for IP domains",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/3",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "I think the scope of the draft will be both performance monitoring for IP and OP domains. In my opinion we shouldn't restrict to Optical only.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/2#discussion_r1132439486_\r\n            ",
+      "createdAt": "2023-03-10T21:17:56Z",
+      "updatedAt": "2023-03-10T21:18:07Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 4,
+      "id": "I_kwDOJAsmzM5gibfT",
+      "title": "RCA for optical and IP/MPLS domains",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/4",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "here I think for fault/event detection in optical and IP/MPLS domain we need to have a wider scope. O/P-PNC start to implement alarm filtering capabilities joint with Root Cause Analysis and there the use of RFC8632 for exposing only the results of the RCA at P-PNC and O-PNC North Bound interfaces is not clear. In fact RFC8632 may not be the right data models for that purpose and this should be investigated. There is no real value to flood the MDSC with all Optical and IP/MPLS domains' alarms through the use of RFC8632\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/2#discussion_r1132448007_\r\n            ",
+      "createdAt": "2023-03-10T21:20:33Z",
+      "updatedAt": "2023-03-10T21:20:33Z",
       "closedAt": null,
       "comments": []
     }
@@ -80,19 +127,143 @@
       "labels": [],
       "body": "Prepare a first draft to submit to IETF 116",
       "createdAt": "2023-03-03T21:32:19Z",
-      "updatedAt": "2023-03-07T23:07:33Z",
+      "updatedAt": "2023-03-10T21:22:42Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "70f679c1a3a6d335bf8908f2e5608ea1e046ab5f",
       "headRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "headRefName": "first-draft",
-      "headRefOid": "f7db71be51bcab42fe5fa5d05bc4b3928bc617d8",
+      "headRefOid": "ffde95159160cf9b013d78382e9bfd694623a080",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
-      "reviews": []
+      "comments": [
+        {
+          "author": "prmanna",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In general, assurance involves link failure, detect and re-route. Fabio\u2019s slides depicts most those uses-cases in optical domain. There are PSM(protection switching module) modules can provide 50ms switchover in case of LOS. In rest of the cases, Optical PCE will come into picture. It will take more time to decide alternate path and configure the alternate path. \r\nAgain there will be two flavours, (1) with router port + ZR and (2) others (ie. draft-ietf-teas-actn-poi-applicability) \r\nlet's deep dive into the Fabio's slide in the next call.\r\nAlso, I would like to join the discussions going forward and contribute to this standardization. ",
+          "createdAt": "2023-03-09T14:33:12Z",
+          "updatedAt": "2023-03-09T14:33:12Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "> In general, assurance involves link failure, detect and re-route. Fabio\u2019s slides depicts most those uses-cases in optical domain. There are PSM(protection switching module) modules can provide 50ms switchover in case of LOS. In rest of the cases, Optical PCE will come into picture. It will take more time to decide alternate path and configure the alternate path. Again there will be two flavours, (1) with router port + ZR and (2) others (ie. draft-ietf-teas-actn-poi-applicability) let's deep dive into the Fabio's slide in the next call. Also, I would like to join the discussions going forward and contribute to this standardization.\r\n\r\nI have added some text to the draft based on your comment and referenced it in issue #1 so we can address it when reviewing the slides from Fabio",
+          "createdAt": "2023-03-10T10:34:52Z",
+          "updatedAt": "2023-03-10T10:34:52Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOJAsmzM5Pi9Ln",
+          "commit": {
+            "abbreviatedOid": "8ab1886"
+          },
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2023-03-10T10:42:02Z",
+          "updatedAt": "2023-03-10T14:28:59Z",
+          "comments": [
+            {
+              "originalPosition": 103,
+              "body": "from an end-to-end multi-vendor",
+              "createdAt": "2023-03-10T10:42:03Z",
+              "updatedAt": "2023-03-10T14:28:59Z"
+            },
+            {
+              "originalPosition": 130,
+              "body": "perhaps \"performance monitoring\" instead of \"performance degradation\"",
+              "createdAt": "2023-03-10T10:44:06Z",
+              "updatedAt": "2023-03-10T14:28:59Z"
+            },
+            {
+              "originalPosition": 72,
+              "body": "Perhaps we should make clear what a service is for us in the scope of POI: in the IP domain it is a L3VPN/L2VPN transport connectivity service from PE UNI to PE UNI (CPE is outside the scope). While E2E customer L3VPN/L2VPN service is from CPE to CPE. Then will be interesting in the draft that network assurance (IP link level, LSP level etc.) is managed by IP PNCs while in the draft we are focussing on the E2E L3VPN/L2VPN transport connectivity service with the underlying transport optical paths",
+              "createdAt": "2023-03-10T10:57:47Z",
+              "updatedAt": "2023-03-10T14:29:00Z"
+            },
+            {
+              "originalPosition": 73,
+              "body": "A transport connectivity service can be requested either from MSC NBI (from OSS/orchestration layer) either directly from MDSC GUI",
+              "createdAt": "2023-03-10T10:58:46Z",
+              "updatedAt": "2023-03-10T14:29:00Z"
+            },
+            {
+              "originalPosition": 73,
+              "body": "With a specific SLA and diversity constraints",
+              "createdAt": "2023-03-10T10:59:45Z",
+              "updatedAt": "2023-03-10T14:29:00Z"
+            },
+            {
+              "originalPosition": 157,
+              "body": "not sure I understand the sentence \"even if that is applied to the maintenance and protection cases\"",
+              "createdAt": "2023-03-10T14:16:51Z",
+              "updatedAt": "2023-03-10T14:29:00Z"
+            },
+            {
+              "originalPosition": 183,
+              "body": "I think the scope of the draft will be both performance monitoring for IP and OP domains. In my opinion we shouldn't restrict to Optical only. ",
+              "createdAt": "2023-03-10T14:19:35Z",
+              "updatedAt": "2023-03-10T14:29:00Z"
+            },
+            {
+              "originalPosition": 189,
+              "body": "There will be different cases here as operator may consider to implement protection only at IP/MPLS level and not at optical level for example",
+              "createdAt": "2023-03-10T14:22:20Z",
+              "updatedAt": "2023-03-10T14:29:00Z"
+            },
+            {
+              "originalPosition": 205,
+              "body": "here I think for fault/event detection in optical and IP/MPLS domain we need to have a wider scope. O/P-PNC start to implement alarm filtering capabilities joint with Root Cause Analysis and there the use of RFC8632 for exposing only the results of the RCA at P-PNC and O-PNC North Bound interfaces is not clear. In fact RFC8632 may not be the right data models for that purpose and this should be investigated. There is no real value to flood the MDSC with all Optical and IP/MPLS domains' alarms through the use of RFC8632",
+              "createdAt": "2023-03-10T14:27:21Z",
+              "updatedAt": "2023-03-10T14:29:00Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJAsmzM5Pkndo",
+          "commit": {
+            "abbreviatedOid": "8ab1886"
+          },
+          "author": "Paolo-Volpato",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-10T14:47:25Z",
+          "updatedAt": "2023-03-10T14:47:25Z",
+          "comments": [
+            {
+              "originalPosition": 157,
+              "body": "Right, that sentence does add any informative value. I just wanted to say that we are \"extending\" the analysis to the cases described by Fabio. I will remove it from the main text.",
+              "createdAt": "2023-03-10T14:47:25Z",
+              "updatedAt": "2023-03-10T14:47:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJAsmzM5PkofJ",
+          "commit": {
+            "abbreviatedOid": "8ab1886"
+          },
+          "author": "Paolo-Volpato",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2023-03-10T14:49:44Z",
+          "updatedAt": "2023-03-10T14:49:44Z",
+          "comments": [
+            {
+              "originalPosition": 189,
+              "body": "I am having the same doubt. Shall we list all the possible options? This may extend the choices described in POI applicability, though.",
+              "createdAt": "2023-03-10T14:49:44Z",
+              "updatedAt": "2023-03-10T14:49:44Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
