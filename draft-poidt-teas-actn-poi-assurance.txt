@@ -28,8 +28,8 @@ Abstract
    connectivity services setup over underlying transport optical paths,
    with specific Service Level Agreement (SLA) requirements.
 
-   EDITORS NOTE: Replace RFC YYYY with the RFC number of [I-D.ietf-teas-
-   actn-poi-applicability] once it has been published.
+   EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-
+   teas-actn-poi-applicability once it has been published.
 
    Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a
@@ -97,8 +97,8 @@ Table of Contents
 
    Multi-layer and multi-domain service assurance scenarios, based on
    the reference network described in section 2 of
-   [I-D.draft-ietf-teas-actn-poi-applicability] and very relevant for
-   Service Providers, are described in sections Section 5 and Section 6.
+   [I-D.ietf-teas-actn-poi-applicability] and very relevant for Service
+   Providers, are described in sections Section 5 and Section 6.
 
    This document is focusing on service assurance for end-to-end L2VPN
    or L3VPN connectivity services setup over underlying transport
@@ -131,8 +131,8 @@ Table of Contents
    Packet and Optical Integration (POI) in which ACTN hierarchy is
    deployed to control a multi-layer and multi-domain network with two
    optical domains and two packet domains, as shown in Figure 1 of
-   [I-D.draft-ietf-teas-actn-poi-applicability], which is copied in
-   Figure 1 below.
+   [I-D.ietf-teas-actn-poi-applicability], which is copied in Figure 1
+   below.
 
                                +----------+
                                |   MDSC   |
@@ -299,7 +299,7 @@ Table of Contents
 
    Failures in the optical domain can be recovered by packet-based
    protection mechanisms as described in
-   [I-D.draft-ietf-teas-actn-poi-applicability].
+   [I-D.ietf-teas-actn-poi-applicability].
 
    TODO Describe how the MDSC coordinates the protection switching
    mechanisms at the IP layer (e.g., FRR) and at optical layer,
@@ -352,15 +352,6 @@ Table of Contents
 10.  References
 
 10.1.  Normative References
-
-   [I-D.draft-ietf-teas-actn-poi-applicability]
-              Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
-              Ceccarelli, "Applicability of Abstraction and Control of
-              Traffic Engineered Networks (ACTN) to Packet Optical
-              Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-08, 11 January
-              2023, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              teas-actn-poi-applicability-08>.
 
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
