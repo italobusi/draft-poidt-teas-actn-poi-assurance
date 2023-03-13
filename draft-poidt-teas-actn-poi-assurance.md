@@ -7,7 +7,7 @@ title: >
 abbrev: "ACTN POI Assurance"
 category: info
 
-docname: draft-poidt-teas-actn-poi-assurance-latest
+docname: draft-poidt-teas-actn-poi-assurance-00
 submissiontype: IETF
 v: 3
 workgroup: TEAS WG
