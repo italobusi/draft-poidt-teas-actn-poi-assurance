@@ -42,7 +42,7 @@ author:
 
 This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover multi-layer service assurance scenarios, for end-to-end customer L2VPN or L3VPN connectivity services setup over underlying transport optical paths, with specific Service Level Agreement (SLA) requirements.
 
-EDITORS NOTE: Replace RFC YYYY with the RFC number of \[I-D.ietf-teas-actn-poi-applicability] once it has been published.
+EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published.
 
    Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a specific focus on
@@ -56,7 +56,7 @@ EDITORS NOTE: Replace RFC YYYY with the RFC number of \[I-D.ietf-teas-actn-poi-a
 TODO Complete the Introduction
 
    Multi-layer and multi-domain service assurance scenarios, based on the reference
-   network described in section 2 of {{!I-D.draft-ietf-teas-actn-poi-applicability}} and very relevant for Service
+   network described in section 2 of {{!I-D.ietf-teas-actn-poi-applicability}} and very relevant for Service
    Providers, are described in sections {{optical-network}} and {{edge}}.
 
 This document is focusing on service assurance for end-to-end L2VPN or L3VPN connectivity services setup over underlying transport optical paths that requires multi-layer coordination
@@ -89,7 +89,7 @@ TODO Terminology
 This document analyses several scenarios for service assurance in Packet and
    Optical Integration (POI) in which ACTN hierarchy is deployed to
    control a multi-layer and multi-domain network with two optical
-   domains and two packet domains, as shown in Figure 1 of {{!I-D.draft-ietf-teas-actn-poi-applicability}}, which is copied in {{fig-ref-architecture}} below.
+   domains and two packet domains, as shown in Figure 1 of {{!I-D.ietf-teas-actn-poi-applicability}}, which is copied in {{fig-ref-architecture}} below.
 
 ~~~~ ascii-art
 {::include figures/reference-architecture.txt}
@@ -184,7 +184,7 @@ TODO Describe performance monitoring and performance degradation detection perfo
 
 ## Protection Switching
 
-Failures in the optical domain can be recovered by packet-based protection mechanisms as described in {{!I-D.draft-ietf-teas-actn-poi-applicability}}.
+Failures in the optical domain can be recovered by packet-based protection mechanisms as described in {{!I-D.ietf-teas-actn-poi-applicability}}.
 
 TODO Describe how the MDSC coordinates the protection switching mechanisms at the IP layer (e.g., FRR) and at optical layer, including the reversion when the failure is repaired: see for example the protection switching scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 3)
 
