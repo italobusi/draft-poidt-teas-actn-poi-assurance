@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-03-12T00:48:35.576267+00:00",
+  "timestamp": "2023-03-14T00:40:41.868141+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -120,24 +120,26 @@
       "id": "PR_kwDOJAsmzM5LQmgq",
       "title": "First draft outline",
       "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/2",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "italobusi",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "Prepare a first draft to submit to IETF 116",
       "createdAt": "2023-03-03T21:32:19Z",
-      "updatedAt": "2023-03-10T21:22:42Z",
+      "updatedAt": "2023-03-13T14:47:46Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "70f679c1a3a6d335bf8908f2e5608ea1e046ab5f",
       "headRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "headRefName": "first-draft",
-      "headRefOid": "ffde95159160cf9b013d78382e9bfd694623a080",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "0cef389c77fca6a2fb5e81b00ff64a0ea185d421",
+      "closedAt": "2023-03-13T14:47:38Z",
+      "mergedAt": "2023-03-13T14:47:38Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "d316be8fa8dbb754e4e015bc4080fea43442bcf1"
+      },
       "comments": [
         {
           "author": "prmanna",
@@ -152,6 +154,13 @@
           "body": "> In general, assurance involves link failure, detect and re-route. Fabio\u2019s slides depicts most those uses-cases in optical domain. There are PSM(protection switching module) modules can provide 50ms switchover in case of LOS. In rest of the cases, Optical PCE will come into picture. It will take more time to decide alternate path and configure the alternate path. Again there will be two flavours, (1) with router port + ZR and (2) others (ie. draft-ietf-teas-actn-poi-applicability) let's deep dive into the Fabio's slide in the next call. Also, I would like to join the discussions going forward and contribute to this standardization.\r\n\r\nI have added some text to the draft based on your comment and referenced it in issue #1 so we can address it when reviewing the slides from Fabio",
           "createdAt": "2023-03-10T10:34:52Z",
           "updatedAt": "2023-03-10T10:34:52Z"
+        },
+        {
+          "author": "Paolo-Volpato",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As a proposal, I would introduce a new section between \"YANG Data Models for the MPIs\" and \"Optical Network Failure and Performance Degradation\".\r\nThe scope of this section could be to discuss the pre-requisites of the MDSC (and, in general, of the architecture) as listed by Fabio in his slides.\r\nWe can easily extend the pre-requisites and refer to them when discussing the specific cases.\r\nAn example of the section (title + text) follows.\r\n\r\nPre-requisites of MDSC in the cases discussed.\r\nThe following list summarizes the main pre-requisites of MDSC to handle the assurance cases described in the next sections.\r\nMost of them have been already addressed in {{!I-D.ietf-teas-actn-poi-applicability}}\r\n\r\n1. MDSC has acquired all the topology and status information of both the IP and optical layers.\r\n2. MDSC is fully aware of any multi-layer connections between the IP and the optical layers. It is also\r\naware of the multi-domain interconnection links between different IP domains.\r\n3. MDSC is aware of any topology or resource utilization change obtained in real time through coordination with the O/P-PNCs. This applies in the case of a fault or a maintenance activity involving either the IP or the DWDM layer.\r\n4. MDSC coordinates the IP and DWDM protections and, as a result, the re-routing of traffic at both the IP\r\nand DWDM layer. \r\n5. Before planned maintenance operation at the DWDM layer, MDSC instructs the P-PNC to move the affected IP traffic\r\nhitlessly to another link. This is done before the event takes place. MDSC also coordinates with P-PNC to revert\r\nback the traffic on the original path when the maintenance event is concluded.\r\n6. When the O-PNC detects a degradation of optical performance (e.g. BER PRE-FEC values threshold crossing over\r\na certain period of time), it alerts the MDSC so that the MDSC relates the warning to an IP link. \r\n7. MDSC distinguishes between IP and Optical failures. For example, in the case of the failure of an IP port of a router, \r\nthe IP traffic may be switched to a stand-by port, reusing the same ROADM optical resources (lambda, optical path) and keeping the end-to-end IP connection. If a remote IP node fails, then a re-route of optical resources takes place together with a switch of the local IP port in order to eatablish a new connection with a different IP node used for protection.",
+          "createdAt": "2023-03-13T10:19:58Z",
+          "updatedAt": "2023-03-13T10:19:58Z"
         }
       ],
       "reviews": [
@@ -262,6 +271,19 @@
               "updatedAt": "2023-03-10T14:49:44Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOJAsmzM5PrWaJ",
+          "commit": {
+            "abbreviatedOid": "ffde951"
+          },
+          "author": "FabioPeruzzini",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Please clarify that failures within the IP network which do not require an interaction the optical network are out of scope of this document",
+          "createdAt": "2023-03-13T11:05:43Z",
+          "updatedAt": "2023-03-13T11:05:43Z",
+          "comments": []
         }
       ]
     }
