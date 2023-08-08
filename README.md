@@ -25,7 +25,7 @@ The contributors on this draft has weekly informal conference calls every two we
 - [Join Meeting](https://cisco.webex.com/cisco/j.php?MTID=mbe29c97ecb4bcd3d4dbb28c44f310ff7)
 - Draft minutes taken during the call: https://demo.hedgedoc.org/sRDV7vcNSSeSS11g5-TuAw
 
-The official minutes of these calls are available in this repository: https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/tree/main/minutes
+The official minutes of these calls are available in this repository: [Minutes](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/tree/main/minutes)
 
 ## Command Line Usage
 
