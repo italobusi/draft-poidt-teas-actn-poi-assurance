@@ -17,6 +17,15 @@ See the
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
 
+### Weekly Calls
+
+The contributors on this draft has weekly informal conference calls every two weeks at 4:30am NA EDT, from August 29, 2023 till October 24, 2023:
+- [TEAS WG Announcement](https://mailarchive.ietf.org/arch/msg/teas/SbUwL4w0aIZus6zUJ_DYbm4flQw/)
+- [Add to Calendar](https://cisco.webex.com/cisco/j.php?MTID=m2d2415a22dba69ad957aa8ea83228e28)
+- [Join Meeting](https://cisco.webex.com/cisco/j.php?MTID=mbe29c97ecb4bcd3d4dbb28c44f310ff7)
+- Draft minutes taken during the call: https://demo.hedgedoc.org/sRDV7vcNSSeSS11g5-TuAw
+
+The official minutes of these calls are available in this repository: https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/tree/main/minutes
 
 ## Command Line Usage
 
