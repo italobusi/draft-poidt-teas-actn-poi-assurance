@@ -1,4 +1,3 @@
-.PRECIOUS:%.xml
 LIBDIR := lib
 include $(LIBDIR)/main.mk
 
