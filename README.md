@@ -19,11 +19,11 @@ The GitHub interface supports creating pull requests using the Edit (✏) button
 
 ### Weekly Calls
 
-The contributors on this draft has weekly informal conference calls every two weeks at 4:30am NA EDT, from August 29, 2023 till October 24, 2023:
-- [TEAS WG Announcement](https://mailarchive.ietf.org/arch/msg/teas/SbUwL4w0aIZus6zUJ_DYbm4flQw/)
-- [Add to Calendar](https://cisco.webex.com/cisco/j.php?MTID=m2d2415a22dba69ad957aa8ea83228e28)
-- [Join Meeting](https://cisco.webex.com/cisco/j.php?MTID=mbe29c97ecb4bcd3d4dbb28c44f310ff7)
-- Draft minutes taken during the call: [Draft Minutes](https://demo.hedgedoc.org/sRDV7vcNSSeSS11g5-TuAw)
+The contributors on this draft has weekly informal conference calls every two weeks at 4:30am NA EDT, from December 5, 2023 till March 12, 2023:
+- [TEAS WG Announcement](https://mailarchive.ietf.org/arch/msg/teas/fLmQq0LDI49pkhffDxVGLMvlDvA/)
+- [Add to Calendar](https://cisco.webex.com/cisco/j.php?MTID=m69e84fb53dfc212dde873693433888aa)
+- [Join Meeting](https://cisco.webex.com/cisco/j.php?MTID=m55b25ae6f8109ffc70f454a8e7500e12)
+- Draft minutes taken during the call: [Draft Minutes (TEAS)](https://demo.hedgedoc.org/sRDV7vcNSSeSS11g5-TuAw)
 
 The official minutes of these calls are available in this repository: [Archived Minutes](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/tree/main/minutes)
 
