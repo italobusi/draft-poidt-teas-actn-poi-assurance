@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-09T00:41:15.384107+00:00",
+  "timestamp": "2024-01-11T00:41:17.228049+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -62,7 +62,7 @@
       "labels": [],
       "body": "[2023 03 draft-poidt-teas-poi-assurance .pptx](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx)\r\n",
       "createdAt": "2023-03-03T20:36:24Z",
-      "updatedAt": "2023-10-13T18:00:18Z",
+      "updatedAt": "2024-01-09T19:30:31Z",
       "closedAt": null,
       "comments": [
         {
@@ -106,6 +106,13 @@
           "body": "**[ACTN POI Assurance bi-weekly call (October 10, 2023)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/blob/main/minutes/minutes-2023-10-10.md)**\r\n\r\nThe contribution updated by Paolo [2023.09.draft-poi-assurance-fp-ib-pv_v4.pptx](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/12859252/2023.09.draft-poi-assurance-fp-ib-pv_v4.pptx) has been reviewed\r\n\r\nThere has been some discussion on the validity of the scenario with optical protection with an hold-off timer for IP FRR. In this case, a failure on the lin between the router and the edge optical switch will take longer (e.g., 150ms) to be recovered.\r\n\r\nIt ahs been noted that there are some deployments in the network using optical protection with FRR and hold-off time and that the draft is intended to describe a set of tools/options without being prescriptive. It is up to the operator to choose which tool to deploy in his network bases on its policy and resilience requirements.\r\n",
           "createdAt": "2023-10-10T16:00:13Z",
           "updatedAt": "2023-10-13T18:00:18Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (December 19, 2023)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/blob/main/minutes/minutes-2023-12-19.md)**\r\n\r\nReviewed the latest update to the slides from Fabio/Italo/Paolo:\r\n\r\n[2023.10.draft-poi-assurance-fp-ib-pv_v4.pptx](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/13878118/2023.10.draft-poi-assurance-fp-ib-pv_v4.pptx)\r\n\r\n#### Dual-homing and node failure scenario\r\n\r\nThe suggestion is to setup the green back-up path as disjoint from the yellow working path\r\n\r\nThis is a generic issue to be considered for all the multi-layer recovery scenarios in order to avoid that a single failure is going to affect both primary and reverse IP FRR paths\r\n\r\nA gap has been identified in this issue since there is a need to request the setup of disjoint paths that belong to different tunnels\r\n\r\nSteps 11 and 12 are optional since they depend on the IP FRR configuration: if IP FRR is revertive, R1 can switch the traffic to the dashed green path automatically as soon as the dashed green path becomes available\r\n\r\nIn the description we can mention that the dashed green path can go to R3, in case of dual-homing, or to another router (e.g., R4), in case of multi-homing.\r\n\r\n#### Alert in case of degrade of DWDM link performance\r\n\r\nThe scenario for degraded WDM link requires further discussion with Fabio. As written in the original slides, the scenario is not a recovery scenario nor a multi-layer coordination scenario since it requires the ROADM to report whether the pre-FEC BER is above a given configured threshold.\r\n\r\nOne possibility is that this alert is used to trigger IP FRR protection for preventive traffic recovery.\r\n\r\nHowever, with the new FEC algorithms, it seems hard to predict when the FEC will stop correcting errors in time to perform preventive traffic recovery. This is an issue to discuss with FEC experts to see if there other parameters to monitor for preventive traffic recovery.\r\n",
+          "createdAt": "2024-01-09T19:30:30Z",
+          "updatedAt": "2024-01-09T19:30:30Z"
         }
       ]
     },
