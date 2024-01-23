@@ -168,8 +168,7 @@ Initial set of YANG models that are potentially in the scope of this analysis:
 
 - ietf-performance-monitoring defined in {{!I-D.yu-performance-monitoring-yang}}
 
-{: #fault}
-[]: # (Comment by Paolo - The following is a new section)
+<!-- (Comment by Paolo - The following is a new section) -->
 
 {: #pre-reqs}
 
@@ -250,7 +249,7 @@ The mimics of the steps requested is shown in the next figure.
 ~~~~ ascii-art
 {::include figures/hitless-multi-layer-reversion.txt}
 ~~~~
-{: #fig-ref-architecture title="hitless multi-layer reversion"
+{: #fig-hitless-reversion title="hitless multi-layer reversion"
 artwork-name="hitless-multi-layer-reversion.txt"}
 
 Figure 5.2 Diagram for hitless multi-layer reversion
@@ -328,7 +327,7 @@ Often, the IP equipment is configured to operate the reversion automatically, bu
 operator may prefer differently.
 
 At the end of the process, multi-layer hitless reversion may take place, again based on the configuration adopted by the 
-network operator. If multi-layer hitless reversion is adopted, then the process described in {{: #ref-hitless-reversion}}
+network operator. If multi-layer hitless reversion is adopted, then the process described in {{ref-hitless-reversion}}
 takes place.
 
 {: #protection}
@@ -350,7 +349,7 @@ The detailed process includes the following steps:
 1a. The fault on the optical path (e.g. fiber cut, loss of signal, etc.) is detected by ROADM1 and notified to O-PNC
 2a. O-PNC notifies the fault to MDSC
 1b. R1 detects loss of end-to-end connectivity (e.g. 3 missed BFD messages) and notifies P-PNC. This step takes place almost simultaneously to 1a.
-2b. P-PNC notifies the issue to MDSC [Editor's note: is this step necessary?]
+2b. P-PNC notifies the issue to MDSC \[Editor's note: is this step necessary?]
 3.  R1 is configured to hold the FRR process, thus it waits for the corresponding value set by the hold-off time parameter
 4.  Optical protection is started by ROADM1, potentially involving an exchange of messages with O-PNC and ROADM2
 5.  Both ROADM1 and ROADM2 notify O-PNC of the availability of an optical backup path
@@ -359,7 +358,7 @@ The detailed process includes the following steps:
 
 As in the previous use case, when the failure is fixed the network operator may desire to bring the service back
 to the original configuration. If this is the case, multi-layer hitless reversion, as described
-in {{: #ref-hitless-reversion}}, takes place to move the service back to the initial network setup.
+in {{ref-hitless-reversion}}, takes place to move the service back to the initial network setup.
 
 {: #edge-fault}
 
