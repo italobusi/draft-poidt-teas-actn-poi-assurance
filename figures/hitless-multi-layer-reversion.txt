@@ -1,0 +1,29 @@
+  R1    ROADM1   P-PNC   O-PNC   MDSC   ROADM2    R2    ROADM3    R3
+  |       |1.Fiber back online notification       |       |       |
+  |       |-------------->|       |       |       |       |       |
+  |       |       |       |2.Fiber back online notification       |
+  |       |       |       |------>|       |       |       |       |
+  |       |       |3.Switch to backup path|       |       |       |
+  |       |       |<--------------|       |       |       |       |
+  |4.Switch to backup path|       |       |       |       |       |
+  |<--------------|       |       |       |       |       |       |
+  |5.Service switch notification  |       |       |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |6.Service switch notification  |       |       |
+  |       |       |-------------->|       |       |       |       |
+  |       |       |       |7.Revert to primary    |       |       |
+  |       |       |       |<------|       |       |       |       |
+  |       |8.Revert to primary    |       |       |       |       |
+  |       |<--------------|-------------->|       |       |       |
+  |       |9.Acknowledge  |       |       |       |       |       |
+  |       |-------------->|<--------------|       |       |       |
+  |       |       |       |10.Acknowledge |       |       |       |
+  |       |       |       |------>|       |       |       |       |
+  |       |       |11.Revert to initial path      |       |       |
+  |       |       |<--------------|       |       |       |       |
+  |12.Revert to initial path      |       |       |       |       |
+  |<--------------|       |       |       |       |       |       |
+  |13.IP service reverted |       |       |       |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |14.IP service reverted |       |       |       |
+  |       |       |-------------->|       |       |       |       |

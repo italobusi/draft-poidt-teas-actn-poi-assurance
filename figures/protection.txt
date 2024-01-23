@@ -1,0 +1,22 @@
+  R1    ROADM1   P-PNC   O-PNC   MDSC   ROADM2    R2    ROADM3    R3
+  |       |1a.Fault notification  |       |       |       |       |
+  |       |-------------->|       |       |       |       |       |
+  |       |       |       |2a.Fault notification  |       |       |
+  |       |       |       |------>|       |       |       |       |
+  |1b.Fault notification  |       |       |       |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |2b.Fault notification  |       |       |       |
+  |       |       |-------------->|       |       |       |       |
+┌――――――┐
+│3.Hold│
+└――――――┘
+   ┌―――――――――――――┐                 
+   │4.Protection │------->|-------------->|
+   └―――――――――――――┘                 
+  |       |5.Path ready   |   5.Path ready|       |       |       |
+  |       |-------------->|<--------------|       |       |       |
+  |       |       |       |6.Notification |       |       |       |
+  |       |       |       |------>|       |       |       |       |
+┌――――――――┐
+│7.IP Up │
+└――――――――┘
