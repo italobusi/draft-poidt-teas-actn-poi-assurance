@@ -173,21 +173,21 @@ Initial set of YANG models that are potentially in the scope of this analysis:
 The coordination of both the IP and the optical layer in the cases discussed in {{optical-network}} and {{edge}}
 requires the MDSC to be aware of some network capabilities and to exchange the corresponding information with
 both the P-PNC and the O-PNC.
-To achieve maximum flexibility, a network operator may enable or disable these capabilities. 
+To achieve maximum flexibility, a network operator may enable or disable these capabilities.
 Once the network operator has configured the capabilities described in this section, the MDSC exchanges
 the relevant configuration with the PNCs present in the network before the use cases described in in {{optical-network}} and {{edge}}
 take place.
 
 The list of parameters that the MDSC may need to communicate to the PNCs includes:
 - IP service reversion: on/off
-- Optical service reversion: on/off   
+- Optical service reversion: on/off
 - Hold-off time: time in ms (0 for immediate fast re-routing)
 - Wait time before reversion: time in s
 - Recovery method used in the optical layer: protection/restoration
 
 {: #ref-network}
 
-## Reference Network  
+## Reference Network
 
 The following network topology will be considered to analyze and discuss the scenarios in in {{optical-network}} and {{edge}}.
 
@@ -199,23 +199,23 @@ artwork-name="reference-network.txt"}
 
 EDITORS NOTE: Need to translate the picture into Ascii art!!!.
 
-The network consists of three Points of Presence (POPs) geographically distributed. 
+The network consists of three Points of Presence (POPs) geographically distributed.
 It is assumed that every POP hosts a Router (R1, R2, and R3 respectively) connected to a ROADM (ROADM1, ROADM2, and ROADM3).
-All the routers connect to their co-located ROADMs with two Ethernet links (e.g. 100GE) for redundancy. 
+All the routers connect to their co-located ROADMs with two Ethernet links (e.g. 100GE) for redundancy.
 In their normal operations, the routers may employ any local policy for traffic steering. For the scope of this document,
 it is assumed that the path that R1 uses to steer the IP traffic to R2 goes from port P1 of R1 to port P1 of R2
 (thus going through port P1 of R1, ports P1 and P3 of ROADM1, ports P3 and P1 of ROADM2, port P1 of R2).
 R1 uses port P2 to steer the traffic to R3 instead.
 Two distinct paths are configured on the link between R1 and R3. The first one carries the IP services that are
 steered by R3 to any destinations with the exception of R2. The second path is a detour path chosen by R1 as a backup
-path to reach R2 if a failure occurs in the primary path (across ROADM1 and ROADM2). 
-The detour path also includes a second leg from R3 to R2. The detour path from R1 to R2, then includes: port P2 of R1, ports 
+path to reach R2 if a failure occurs in the primary path (across ROADM1 and ROADM2).
+The detour path also includes a second leg from R3 to R2. The detour path from R1 to R2, then includes: port P2 of R1, ports
 P2 and P4 or ROADM1, ports P3 and P1 of ROADM3, ports P1 and P2 of R3, ports P2 and P4 of ROADM3, ports P4 and P2 of ROADM2,
 and port P2 of R2.
-The connection between ROADM1 and ROADM2 is based on two fibers, each carrying one or more lambdas. 
+The connection between ROADM1 and ROADM2 is based on two fibers, each carrying one or more lambdas.
 For the scope of this document, it is assumed that some coordination mechanisms are employed at the optical layer so that
 when a failure happens on the upper fiber (connecting port P3 of ROADM1 to port P3 of ROADM2), an optical backup path
-is activated onto the lower fiber (P5 to P5). 
+is activated onto the lower fiber (P5 to P5).
 The mechanisms are assumed to be coordinated by O-PNC and MDSC, even if other methods may be also
 considered (e.g. G-MPLS based). Further details are given in the use cases described in sections {{optical-network}} and {{edge}}.
 
@@ -223,22 +223,22 @@ considered (e.g. G-MPLS based). Further details are given in the use cases descr
 
 ## Multi-layer hitless reversion
 
-In some cases, the mechanisms employed by the optical layer to revert to the original setup may cause disruption 
-at the IP layer, if proper coordination is not enabled. As this may cause traffic loss, if the optical reversion 
+In some cases, the mechanisms employed by the optical layer to revert to the original setup may cause disruption
+at the IP layer, if proper coordination is not enabled. As this may cause traffic loss, if the optical reversion
 is requested by the network operator, multi-layer coordination under the supervision of the MDSC is necessary.
-The effect of multi-layer coordination is to bring the whole network, i.e. both the IP and the optical layers, 
+The effect of multi-layer coordination is to bring the whole network, i.e. both the IP and the optical layers,
 back to their initial configuration after the recovery from a failure. In particular, the process described in this section
-relys on the hitless switching capability of the IP layer. 
+relys on the hitless switching capability of the IP layer.
 Depending on the specific configuration, the procedure can be enabled at the end of the use cases described in sections {{optical-network}} and {{edge}}.
-The decision whether to apply it or not has to be evaluated by the network operator considering different factors, 
-including the relative complexity of the process and the effects of its steps on the live traffic. 
+The decision whether to apply it or not has to be evaluated by the network operator considering different factors,
+including the relative complexity of the process and the effects of its steps on the live traffic.
 
 To move back to the initial network configuration the MDSC has to follow a sequence of steps:
 - Force the IP layer to switch the traffic flow(s) on another path, e.g. an alternative/backup path
-- Trigger the optical layer to coordinate the reversion to the initial setup, e.g. disable an optical backup path 
+- Trigger the optical layer to coordinate the reversion to the initial setup, e.g. disable an optical backup path
 and enable connectivity on the previously used primary path
 - Force again the IP layer to switch back to the original path.
-The actions on the IP layer are handled so that the IP traffic is switched only after the interface queues are emptied, 
+The actions on the IP layer are handled so that the IP traffic is switched only after the interface queues are emptied,
 guaranteeing a hitless switching.
 The mimics of the steps requested is shown in the next figure.
 
@@ -274,7 +274,7 @@ The steps illustrated in the previous figure are detailed here:
 
 ## Fault Detection
 
-This use case is characterized by a fault happening on the upper fiber connecting ROAMD1 and ROADM2 
+This use case is characterized by a fault happening on the upper fiber connecting ROAMD1 and ROADM2
 (port P3 to port P3 as depicted in {{fig-ref-network}}), affecting the IP traffic between R1 and R2.
 As a result, the MDSC and the domain controllers cooperate to find a backup path for the IP traffic.
 If the optical layer does not employ any mechanisms, the case is typically solved through the Fast Rerouting
@@ -322,7 +322,7 @@ is local, e.g. it depends on the configuration made by the network operator.
 Often, the IP equipment is configured to operate the reversion automatically, but there are cases where the network
 operator may prefer differently.
 
-At the end of the process, multi-layer hitless reversion may take place, again based on the configuration adopted by the 
+At the end of the process, multi-layer hitless reversion may take place, again based on the configuration adopted by the
 network operator. If multi-layer hitless reversion is adopted, then the process described in {{ref-hitless-reversion}}
 takes place.
 
