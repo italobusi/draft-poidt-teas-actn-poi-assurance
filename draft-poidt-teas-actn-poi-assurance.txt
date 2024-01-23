@@ -296,10 +296,9 @@ Table of Contents
 
    The list of parameters that the MDSC may need to communicate to the
    PNCs includes: - IP service reversion: on/off - Optical service
-   reversion: on/off
-   - Hold-off time: time in ms (0 for immediate fast re-routing) - Wait
-   time before reversion: time in s - Recovery method used in the
-   optical layer: protection/restoration
+   reversion: on/off - Hold-off time: time in ms (0 for immediate fast
+   re-routing) - Wait time before reversion: time in s - Recovery method
+   used in the optical layer: protection/restoration
 
 5.1.  Reference Network
 
