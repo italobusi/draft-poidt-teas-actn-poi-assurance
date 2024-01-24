@@ -365,7 +365,87 @@ TODO Describe the mechanisms to detect when the failure occurs on a router port 
 
 ## Router Node Failures
 
-TODO Describe the mechanisms to detect when the failure occurs on a node connected with the optical domain: see for example the fault scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 6)
+This use case is characterized by a fault happening on the upper fiber connecting ROAMD1 and ROADM2
+(port P3 to port P3 as depicted in {{fig-ref-network}}), affecting the IP traffic between R1 and R2.
+As a result, the MDSC and the domain controllers cooperate to find a backup path for the IP traffic.
+If the optical layer does not employ any mechanisms, the case is typically solved through the Fast Rerouting
+Mechanisms (FRR) enabled by the IP/MPLS control plane. With reference to figure {{fig-ref-network}}, this corresponds
+to using the combination of the two detour paths R1-R3 and R3-R2.
+For the scope of this document, the assumption is instead that the optical layer supports its own mechansims that have
+to interact with the IP layer. Two sub-cases are possible:
+1. The optical layer supports restoration
+2. The optical layer supports protection.
+
+{: #restoration}
+
+### Optical restoration
+
+As restoration typically sets an alternative path on the fly based on the availability of sufficient optical resources,
+the time taken by the process to create an optical backup tends to be longer than the time taken by the IP/MPLS FRR process.
+As a result, the interaction between the two layers follows the mimics shown in the next figure.
+
+~~~~ ascii-art
+{::include figures/restoration.txt}
+~~~~
+{: #fig-fault-restoration title="Fault detection with optical restoration"
+artwork-name="restoration.txt"}
+
+More in details:
+1a. The fault on the optical path (e.g. fiber cut, loss of signal, etc.) is detected by ROADM1 and notified to O-PNC
+2a. O-PNC notifies the fault to MDSC
+1b. R1 detects loss of end-to-end connectivity (e.g. 3 missed BFD messages) and notifies P-PNC. This step takes place almost simultaneously to 1a.
+2b. P-PNC notifies the issue to MDSC
+3.  R1 starts a fast reroute process to enable a backup path at the IP/MPLS layer, using the already established detour through R3
+4.  R1 notifies P-PNC of the IP service switch through the alternate path (R1-R3 and R3-R2)
+5.  P-PNC notifies MDSC of the switch
+6.  ROADM1 and ROADM2 enable the restoration process. Based on the mechanism adopted, there may be intecaction between them
+7.  Both ROADM1 and ROADM2 notify O-PNC of the availability of an optical backup path
+8.  O-PNC notifies MDSC of the availability of an optical backup path
+9.  R1 detects again end-to-end connectivity through the initial path R1-R2 and, if configured to do so, revert the service
+10. R1 notifies P-PNC of the switch to the initial path
+11. P-PNC notifies the switch to MDSC.
+
+As noted in step 6., the restoration process may require an exchange of messages between ROADM1 and ROADM2.
+This is not detailed in the present document as it is assumed that the relevant signaling is handled through O-PNC.
+
+In step 9., R1 detects again control traffic from R2. The decision whether to revert the service on the initial path
+is local, e.g. it depends on the configuration made by the network operator.
+Often, the IP equipment is configured to operate the reversion automatically, but there are cases where the network
+operator may prefer differently.
+
+At the end of the process, multi-layer hitless reversion may take place, again based on the configuration adopted by the
+network operator. If multi-layer hitless reversion is adopted, then the process described in {{ref-hitless-reversion}}
+takes place.
+
+{: #protection}
+
+### Optical protection
+
+Differently from the previous case, here optical protection is considered. This duration of this process is comparable
+with IP/MPLS FRR, as it is pre-computed. As a consequence, when multi-layer coordination is enabled it is preferrable
+to hold-off FRR on R1 and wait that optical protection is completed.
+The process is shown in the next figure.
+
+~~~~ ascii-art
+{::include figures/protection.txt}
+~~~~
+{: #fig-fault-protection title="Fault detection with optical protection"
+artwork-name="protection.txt"}
+
+The detailed process includes the following steps:
+1a. The fault on the optical path (e.g. fiber cut, loss of signal, etc.) is detected by ROADM1 and notified to O-PNC
+2a. O-PNC notifies the fault to MDSC
+1b. R1 detects loss of end-to-end connectivity (e.g. 3 missed BFD messages) and notifies P-PNC. This step takes place almost simultaneously to 1a.
+2b. P-PNC notifies the issue to MDSC \[Editor's note: is this step necessary?]
+3.  R1 is configured to hold the FRR process, thus it waits for the corresponding value set by the hold-off time parameter
+4.  Optical protection is started by ROADM1, potentially involving an exchange of messages with O-PNC and ROADM2
+5.  Both ROADM1 and ROADM2 notify O-PNC of the availability of an optical backup path
+6.  O-PNC notifies MDSC of the availability of an optical backup path
+7.  R1 detects again end-to-end connectivity with R2 and resumes normal IP traffic steering.
+
+As in the previous use case, when the failure is fixed the network operator may desire to bring the service back
+to the original configuration. If this is the case, multi-layer hitless reversion, as described
+in {{ref-hitless-reversion}}, takes place to move the service back to the initial network setup.
 
 {: #performance}
 
