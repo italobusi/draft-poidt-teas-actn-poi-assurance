@@ -209,18 +209,13 @@ All the routers connect to their co-located ROADMs with two Ethernet links (e.g.
 In their normal operations, the routers may employ any local policy for traffic steering. For the scope of this document,
 it is assumed that the path that R1 uses to steer the IP traffic to R2 goes from port P1 of R1 to port P1 of R2
 (thus going through port P1 of R1, ports P1 and P3 of ROADM1, ports P3 and P1 of ROADM2, port P1 of R2).
-R1 uses port P2 to steer the traffic to R3 instead.
-Two distinct paths are configured on the link between R1 and R3. The first one carries the IP services that are
-steered by R3 to any destinations with the exception of R2. The second path is a detour path chosen by R1 as a backup
-path to reach R2 if a failure occurs in the primary path (across ROADM1 and ROADM2).
-The detour path also includes a second leg from R3 to R2. The detour path from R1 to R2, then includes: port P2 of R1, ports
-P2 and P4 or ROADM1, ports P3 and P1 of ROADM3, ports P1 and P2 of R3, ports P2 and P4 of ROADM3, ports P4 and P2 of ROADM2,
-and port P2 of R2.
-The connection between ROADM1 and ROADM2 is based on two fibers, each carrying one or more lambdas.
+R1 uses port P2 to steer the traffic to R3 instead. The IP link between R1 and R3 carries the IP services that are
+directed to R3 and is used by R1 as a detour path (backup path) to reach R2 if a failure occurs in the primary path
+across ROADM1 and ROADM2. The detour path also includes a second leg from R3 to R2. The detour path from R1 to R2, then includes: port P2 of R1, ports P2 and P4 or ROADM1, ports P3 and P1 of ROADM3, ports P1 and P2 of R3, ports P2 and P4 of ROADM3, ports P4 and P2 of ROADM2, and port P2 of R2.
+The connection between all ROADMs is based on two fibers. The optical paths all cross an optical network.
 For the scope of this document, it is assumed that some coordination mechanisms are employed at the optical layer so that
-when a failure happens on the upper fiber (connecting port P3 of ROADM1 to port P3 of ROADM2), an optical backup path
-is activated onto the lower fiber (P5 to P5).
-The mechanisms are assumed to be coordinated by O-PNC and MDSC, even if other methods may be also
+when a failure happens on an optical path (for example, between ROADM1 and ROADM2), an optical backup path
+is activated. The mechanisms are assumed to be coordinated by O-PNC and MDSC, even if other methods may be also
 considered (e.g. G-MPLS based). Further details are given in the use cases described in sections {{optical-network}} and {{edge}}.
 
 {: #ref-hitless-reversion}
@@ -394,7 +389,42 @@ TODO Describe how the MDSC coordinates the protection switching mechanisms at th
 
 ## Optical Network Maintenance
 
-TODO Describe how the MDSC initiates protection switching at the IP layer (e.g., FRR) and at optical layer at the beginning of a maintenance window, including the reversion after the maintenance operations are completed: see for example the maintenance scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 4)
+Before planned maintenance operation on the optical network takes place, the IP traffic affected by the maintenance operation should be moved hitlessly to another link. The MDSC and the P-PNC have to coordinate to reroute the traffic before the event happens. In such a case the IP traffic needs to be locked to the protection route until the maintenance event is finished, unless a fault occurs on such path.
+In this example, it is supposed that the link undergoing maintenance activity is the one from ROADM1 to ROADM2, affecting the IP traffic steered from R1 to R2.
+A few minutes before the maintenance window, the MDSC starts the process that brings to the hitless re-routing of the affected IP traffic. That means the IP backup path (through R3) is available and it is used only for the time requested by the optical plane to do maintenance. The path R1-R3 should not be overloaded, unless the networ operator accepts some possible traffic losses.
+At the optical layer, the maintenance activity has no impact on traffic as a new path is configured
+upfront and the optical service does not revert to the original link until the maintenance window is finished.
+At the of maintenance, the network configuration is moved back to the initial configuration using, if the network operator has chosen so, the multi-layer hitless reversion process discussed in {{ref-hitless-reversion}}.
+
+The next figure shows the process adopted to handle the maintenance window.
+
+~~~~ ascii-art
+{::include figures/maintenance.txt}
+~~~~
+{: #fig-maintenance title="Maintenance window operation"
+artwork-name="maintenance.txt"}
+
+The steps indlude the following:
+
+1. MDSC requires P-PNC to steer the IP service to a backup path (R1-R3-R2). This is necessary to avoid loss of service before maintenance starts
+2. P-PNC signals R1 to switch IP service to the backup path
+3. R1 switches to backup path and acks to P-PNC
+4. P-PNC acks to MDSC
+5. MDSC instructs O-PNC to enable the process to create an optical backup path
+6. O-PNC instructs ROAMD1 and ROADM2 to enable a backup path
+7. ROAMD1 and ROADM2 acknowledge to O-PNC
+8. O-PNC acknowledges to MDSC
+9. MDSC instructs O-PNC to disable the primary optical path, initially used, and switch to the optical backup path
+10. O-PNC instructs ROAMD1 and ROADM2 to switch
+11. ROAMD1 and ROADM2 acknowledge to O-PNC
+12. O-PNC acknowledges to MDSC
+13. MDSC requires P-PNC to move revert the IP service back to the primary path (R1-R2)
+14. P-PNC signals R1 to switch IP service to the primary path (carried over the optical backup path)
+15. R1 switches to backup path and acknowledges to P-PNC
+16. P-PNC acknowledges to MDSC
+17. The maintenance activity follows.
+
+Once the activity is over, the network operator may wish to bring the whole configuration back to the IP and optical primary paths. In such a case, multi-layer hitless reversion may be performed, as described in {{ref-hitless-reversion}}.
 
 {: #edge-resiliency}
 
