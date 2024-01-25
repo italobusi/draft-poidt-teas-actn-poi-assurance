@@ -5,14 +5,14 @@
 TEAS WG                                                          I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 26 July 2024                                           Vodafone
+Expires: 28 July 2024                                           Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                         23 January 2024
+                                                         25 January 2024
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 July 2024.
+   This Internet-Draft will expire on 28 July 2024.
 
 Copyright Notice
 
