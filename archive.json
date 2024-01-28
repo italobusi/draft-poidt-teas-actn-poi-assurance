@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-01-25T00:41:49.045150+00:00",
+  "timestamp": "2024-01-28T00:40:59.067009+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -499,18 +499,26 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-01-23T12:08:53Z",
-      "updatedAt": "2024-01-24T11:11:02Z",
+      "updatedAt": "2024-01-26T08:34:17Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "54a3f4f15492e04b74ee805d9d2df2e6e54ebbc8",
       "headRepository": "Paolo-Volpato/draft-poidt-teas-actn-poi-assurance",
       "headRefName": "Resiliency-#1",
-      "headRefOid": "b152aa84944fe6f0a9635e1bc7bda12d12afc8ae",
+      "headRefOid": "08fc87750fb1d28bc2c0ed5baa4832a9f206f7d4",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "Looking at the proposed text, I am wondering whether it is worthwhile re-arranging a bit the ToC;\r\n\r\n```\r\n   1.  Introduction\r\n     1.1.  Reference Network\r\n   2.  Conventions and Definitions\r\n   <...>\r\n   5.  Multi-layer Fault Management\r\n   6.  Multi-layer Performance Management\r\n   7.  Multi-layer Resiliency\r\n     7.1.  Optical Network Failures\r\n       7.1.1.  Optical restoration\r\n       7.1.2.  Optical protection\r\n     7.2.  Optical Network Maintenance\r\n     7.3.  Router Port Failures\r\n     7.4.  Router Node Failures\r\n     7.5.  Multi-layer hitless reversion\r\n```\r\n",
+          "createdAt": "2024-01-26T08:34:16Z",
+          "updatedAt": "2024-01-26T08:34:16Z"
+        }
+      ],
       "reviews": []
     }
   ]
