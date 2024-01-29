@@ -19,7 +19,7 @@ The GitHub interface supports creating pull requests using the Edit (✏) button
 
 ### Weekly Calls
 
-The contributors on this draft has weekly informal conference calls every two weeks at 4:30am NA EDT, from December 5, 2023 till March 12, 2023:
+The contributors on this draft has weekly informal conference calls every two weeks at 4:30am NA EDT, from December 5, 2023 till March 12, 2024:
 - [TEAS WG Announcement](https://mailarchive.ietf.org/arch/msg/teas/fLmQq0LDI49pkhffDxVGLMvlDvA/)
 - [Add to Calendar](https://cisco.webex.com/cisco/j.php?MTID=m69e84fb53dfc212dde873693433888aa)
 - [Join Meeting](https://cisco.webex.com/cisco/j.php?MTID=m55b25ae6f8109ffc70f454a8e7500e12)
