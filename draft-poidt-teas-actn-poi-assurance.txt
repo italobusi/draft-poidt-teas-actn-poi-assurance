@@ -5,14 +5,14 @@
 TEAS WG                                                          I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 25 March 2024                                          Vodafone
+Expires: 2 August 2024                                          Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                       22 September 2023
+                                                         30 January 2024
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -51,11 +51,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 25 March 2024.
+   This Internet-Draft will expire on 2 August 2024.
 
 Copyright Notice
 
-   Copyright (c) 2023 IETF Trust and the persons identified as the
+   Copyright (c) 2024 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -73,21 +73,25 @@ Table of Contents
    2.  Conventions and Definitions
      2.1.  Terminology
    3.  Reference Network Architecture
+     3.1.  Reference Network
    4.  YANG Data Models for the MPIs
-   5.  Optical Network Failure and Performance Degradation
-     5.1.  Fault Detection
-     5.2.  Performance Monitoring
-     5.3.  Protection Switching
-     5.4.  Maintenance
-   6.  Failures between the IP and Optical edges
-     6.1.  Fault Detection
-     6.2.  Protection Switching
-   7.  Conclusions
-   8.  Security Considerations
-   9.  IANA Considerations
-   10. References
-     10.1.  Normative References
-     10.2.  Informative References
+   5.  Multi-layer Fault Management
+     5.1.  Optical Network Failures
+     5.2.  Cross-layer Link Failures
+     5.3.  Router Node Failures
+   6.  Multi-layer Performance Management
+   7.  Multi-layer Resiliency
+     7.1.  Optical Network Failures
+     7.2.  Optical Network Maintenance
+     7.3.  Cross-layer Link Failures
+     7.4.  Multi-layer hitless reversion
+     7.5.  Router Node Failures
+   8.  Conclusions
+   9.  Security Considerations
+   10. IANA Considerations
+   11. References
+     11.1.  Normative References
+     11.2.  Informative References
    Acknowledgments
    Authors' Addresses
 
@@ -98,7 +102,8 @@ Table of Contents
    Multi-layer and multi-domain service assurance scenarios, based on
    the reference network described in section 2 of
    [I-D.ietf-teas-actn-poi-applicability] and very relevant for Service
-   Providers, are described in sections Section 5 and Section 6.
+   Providers, are described in sections Section 5, Section 6 and
+   Section 7.
 
    This document is focusing on service assurance for end-to-end L2VPN
    or L3VPN connectivity services setup over underlying transport
@@ -112,7 +117,7 @@ Table of Contents
    interfaces and data models of the ACTN architecture.
 
    A summary of the gaps identified in this analysis is provided in
-   Section 7.
+   Section 8.
 
    Understanding the level of standardization and the possible gaps will
    help assess the feasibility of integration between packet and optical
@@ -265,6 +270,10 @@ Table of Contents
        the local IP port in order to establish a new connection with a
        different IP node used for protection.
 
+3.1.  Reference Network
+
+   TODO Add text from PR #10
+
 4.  YANG Data Models for the MPIs
 
    TODO YANG Data Models
@@ -277,9 +286,9 @@ Table of Contents
    *  ietf-performance-monitoring defined in
       [I-D.yu-performance-monitoring-yang]
 
-5.  Optical Network Failure and Performance Degradation
+5.  Multi-layer Fault Management
 
-5.1.  Fault Detection
+5.1.  Optical Network Failures
 
    TODO Describe fault detection performed by the O-PNC and how this
    information is reported to the MDSC: see for example the failure
@@ -287,7 +296,23 @@ Table of Contents
    assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx
    (slide 3)
 
-5.2.  Performance Monitoring
+5.2.  Cross-layer Link Failures
+
+   TODO Describe the mechanisms to detect when the failure occurs on a
+   router port connected with the optical domain: see for example the
+   fault scenarios in https://github.com/italobusi/draft-poidt-teas-
+   actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-
+   assurance.pptx (slide 5)
+
+5.3.  Router Node Failures
+
+   TODO Describe the mechanisms to detect when the failure occurs on a
+   node connected with the optical domain: see for example the fault
+   scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-
+   assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx
+   (slide 6)
+
+6.  Multi-layer Performance Management
 
    TODO Describe performance monitoring and performance degradation
    detection performed by the O-PNC and how this information is reported
@@ -295,7 +320,9 @@ Table of Contents
    https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/
    files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 7)
 
-5.3.  Protection Switching
+7.  Multi-layer Resiliency
+
+7.1.  Optical Network Failures
 
    Failures in the optical domain can be recovered by packet-based
    protection mechanisms as described in
@@ -308,7 +335,7 @@ Table of Contents
    draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-
    poidt-teas-poi-assurance.pptx (slide 3)
 
-5.4.  Maintenance
+7.2.  Optical Network Maintenance
 
    TODO Describe how the MDSC initiates protection switching at the IP
    layer (e.g., FRR) and at optical layer at the beginning of a
@@ -317,50 +344,49 @@ Table of Contents
    https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/
    files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 4)
 
-6.  Failures between the IP and Optical edges
-
-6.1.  Fault Detection
-
-   TODO Describe the mechanisms to detect when the failure occurs on a
-   router port or on the router node connected with the optical domain:
-   see for example the fault scenarios in https://github.com/italobusi/
-   draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-
-   poidt-teas-poi-assurance.pptx (slide 5 and slide 6)
-
-6.2.  Protection Switching
+7.3.  Cross-layer Link Failures
 
    TODO Describe the mechanisms to protect the traffic when the failure
-   occurs on a router port or on the router node connected with the
-   optical domain: see for example the protection scenarios in
-   https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/
-   files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5
-   and slide 6)
+   occurs on a router port connected with the optical domain: see for
+   example the protection scenarios in https://github.com/italobusi/
+   draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-
+   poidt-teas-poi-assurance.pptx (slide 5)
 
-7.  Conclusions
+7.4.  Multi-layer hitless reversion
+
+7.5.  Router Node Failures
+
+   TODO Describe the mechanisms to protect the traffic when the failure
+   occurs on a router node connected with the optical domain: see for
+   example the protection scenarios in https://github.com/italobusi/
+   draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-
+   poidt-teas-poi-assurance.pptx (slide 6)
+
+8.  Conclusions
 
    This section will provide a summary of the analysis and of the gaps
    identified in this draft once the analysis is mature.
 
-8.  Security Considerations
+9.  Security Considerations
 
    TODO Security
 
-9.  IANA Considerations
+10.  IANA Considerations
 
    This document has no IANA actions.
 
-10.  References
+11.  References
 
-10.1.  Normative References
+11.1.  Normative References
 
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-09, 7 July 2023,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              actn-poi-applicability-09>.
+              draft-ietf-teas-actn-poi-applicability-10, 19 January
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              teas-actn-poi-applicability-10>.
 
    [I-D.yu-performance-monitoring-yang]
               Yu, C., "A YANG Data Model for Optical Performance
@@ -373,7 +399,7 @@ Table of Contents
               Management", RFC 8632, DOI 10.17487/RFC8632, September
               2019, <https://www.rfc-editor.org/rfc/rfc8632>.
 
-10.2.  Informative References
+11.2.  Informative References
 
    [I-D.mix-teas-actn-poi-extension]
               Galimberti, G., Bouquier, J., Gerstel, O., Foster, B., and
