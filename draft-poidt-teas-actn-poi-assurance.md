@@ -57,7 +57,7 @@ TODO Complete the Introduction
 
    Multi-layer and multi-domain service assurance scenarios, based on the reference
    network described in section 2 of {{!I-D.ietf-teas-actn-poi-applicability}} and very relevant for Service
-   Providers, are described in sections {{optical-network}} and {{edge}}.
+   Providers, are described in sections {{fault}}, {{performance}} and {{resiliency}}.
 
 This document is focusing on service assurance for end-to-end L2VPN or L3VPN connectivity services setup over underlying transport optical paths that requires multi-layer coordination
 
@@ -152,6 +152,10 @@ a certain period of time), it alerts the MDSC so that the MDSC relates the warni
 7. MDSC distinguishes between IP and Optical failures. For example, in the case of the failure of an IP port of a router,
 the IP traffic may be switched to a stand-by port, reusing the same ROADM optical resources (lambda, optical path) and keeping the end-to-end IP connection. If a remote IP node fails, then a re-route of optical resources takes place together with a switch of the local IP port in order to establish a new connection with a different IP node used for protection.
 
+## Reference Network
+
+TODO Add text from PR #10
+
 {: #yang}
 
 # YANG Data Models for the MPIs
@@ -164,25 +168,41 @@ Initial set of YANG models that are potentially in the scope of this analysis:
 
 - ietf-performance-monitoring defined in {{!I-D.yu-performance-monitoring-yang}}
 
-{: #optical-network}
+{: #fault}
 
-# Optical Network Failure and Performance Degradation
+# Multi-layer Fault Management
 
 {: #optical-fault}
 
-## Fault Detection
+## Optical Network Failures
 
 TODO Describe fault detection performed by the O-PNC and how this information is reported to the MDSC: see for example the failure scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 3)
 
-{: #optical-degradation}
+{: #edge-fault}
 
-## Performance Monitoring
+## Cross-layer Link Failures
+
+TODO Describe the mechanisms to detect when the failure occurs on a router port connected with the optical domain: see for example the fault scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5)
+
+{: #router-fault}
+
+## Router Node Failures
+
+TODO Describe the mechanisms to detect when the failure occurs on a node connected with the optical domain: see for example the fault scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 6)
+
+{: #performance}
+
+# Multi-layer Performance Management
 
 TODO Describe performance monitoring and performance degradation detection performed by the O-PNC and how this information is reported to the MDSC: see for example the degradation scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 7)
 
-{: #optical-protection}
+{: #resiliency}
 
-## Protection Switching
+# Multi-layer Resiliency
+
+{: #optical-resiliency}
+
+## Optical Network Failures
 
 Failures in the optical domain can be recovered by packet-based protection mechanisms as described in {{!I-D.ietf-teas-actn-poi-applicability}}.
 
@@ -190,25 +210,25 @@ TODO Describe how the MDSC coordinates the protection switching mechanisms at th
 
 {: #optical-maintenance}
 
-## Maintenance
+## Optical Network Maintenance
 
 TODO Describe how the MDSC initiates protection switching at the IP layer (e.g., FRR) and at optical layer at the beginning of a maintenance window, including the reversion after the maintenance operations are completed: see for example the maintenance scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 4)
 
-{: #edge}
+{: #edge-resiliency}
 
-# Failures between the IP and Optical edges
+## Cross-layer Link Failures
 
-{: #edge-fault}
+TODO Describe the mechanisms to protect the traffic  when the failure occurs on a router port connected with the optical domain: see for example the protection scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5)
 
-## Fault Detection
+{: #ref-hitless-reversion}
 
-TODO Describe the mechanisms to detect when the failure occurs on a router port or on the router node connected with the optical domain: see for example the fault scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5 and slide 6)
+## Multi-layer hitless reversion
 
-{: #edge-protection}
+{: #router-resiliency}
 
-## Protection Switching
+## Router Node Failures
 
-TODO Describe the mechanisms to protect the traffic  when the failure occurs on a router port or on the router node connected with the optical domain: see for example the protection scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5 and slide 6)
+TODO Describe the mechanisms to protect the traffic  when the failure occurs on a router node connected with the optical domain: see for example the protection scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 6)
 
 {: #conclusions}
 
