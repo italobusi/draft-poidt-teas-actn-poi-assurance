@@ -1,0 +1,824 @@
+
+
+
+
+TEAS WG                                                          I. Busi
+Internet-Draft                                       Huawei Technologies
+Intended status: Informational                            J.-F. Bouquier
+Expires: 28 July 2024                                           Vodafone
+                                                            F. Peruzzini
+                                                                     TIM
+                                                              P. Volpato
+                                                     Huawei Technologies
+                                                                P. Manna
+                                                                   Cisco
+                                                         25 January 2024
+
+
+Applicability of Abstraction and Control of Traffic Engineered Networks
+     (ACTN) for Packet Optical Integration (POI) service assurance
+               draft-poidt-teas-actn-poi-assurance-latest
+
+Abstract
+
+   This document extends the analysis of the applicability of
+   Abstraction and Control of TE Networks (ACTN) architecture to Packet
+   Optical Integration (POI), provided in RFC YYYY, to cover multi-layer
+   service assurance scenarios, for end-to-end customer L2VPN or L3VPN
+   connectivity services setup over underlying transport optical paths,
+   with specific Service Level Agreement (SLA) requirements.
+
+   EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-
+   teas-actn-poi-applicability once it has been published.
+
+   Existing IETF protocols and data models are identified for each
+   multi-layer (packet over optical) service assurance scenario with a
+   specific focus on the MPI (Multi-Domain Service Coordinator to
+   Provisioning Network Controllers Interface) in the ACTN architecture.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 28 July 2024.
+
+Copyright Notice
+
+   Copyright (c) 2024 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+     2.1.  Terminology
+   3.  Reference Network Architecture
+   4.  YANG Data Models for the MPIs
+   5.  Pre-requirements for multi-layer coordination
+     5.1.  Reference Network
+     5.2.  Multi-layer hitless reversion
+   6.  Optical Network Failure and Performance Degradation
+     6.1.  Fault Detection
+       6.1.1.  Optical restoration
+       6.1.2.  Optical protection
+     6.2.  Performance Monitoring
+     6.3.  Protection Switching
+     6.4.  Maintenance
+   7.  Failures between the IP and Optical edges
+     7.1.  Fault Detection
+     7.2.  Protection Switching
+   8.  Conclusions
+   9.  Security Considerations
+   10. IANA Considerations
+   11. References
+     11.1.  Normative References
+     11.2.  Informative References
+   Acknowledgments
+   Authors' Addresses
+
+1.  Introduction
+
+   TODO Complete the Introduction
+
+   Multi-layer and multi-domain service assurance scenarios, based on
+   the reference network described in section 2 of
+   [I-D.ietf-teas-actn-poi-applicability] and very relevant for Service
+   Providers, are described in sections Section 6 and Section 7.
+
+   This document is focusing on service assurance for end-to-end L2VPN
+   or L3VPN connectivity services setup over underlying transport
+   optical paths that requires multi-layer coordination
+
+   For each scenario, existing IETF YANG data models, identified in
+   section Section 4, are analyzed with a particular focus on the MPI in
+   the ACTN architecture.
+
+   For each multi-layer scenario, the document analyzes how to use the
+   interfaces and data models of the ACTN architecture.
+
+   A summary of the gaps identified in this analysis is provided in
+   Section 8.
+
+   Understanding the level of standardization and the possible gaps will
+   help assess the feasibility of integration between packet and optical
+   DWDM domains (and optionally OTN layer) from an end-to-end multi-
+   vendor service assurance perspective.
+
+2.  Conventions and Definitions
+
+2.1.  Terminology
+
+   TODO Terminology
+
+3.  Reference Network Architecture
+
+   This document analyses several scenarios for service assurance in
+   Packet and Optical Integration (POI) in which ACTN hierarchy is
+   deployed to control a multi-layer and multi-domain network with two
+   optical domains and two packet domains, as shown in Figure 1 of
+   [I-D.ietf-teas-actn-poi-applicability], which is copied in Figure 1
+   below.
+
+                               +----------+
+                               |   MDSC   |
+                               +-----+----+
+                                     |
+                   +-----------+-----+------+-----------+
+                   |           |            |           |
+              +----+----+ +----+----+  +----+----+ +----+----+
+              | P-PNC 1 | | O-PNC 1 |  | O-PNC 2 | | P-PNC 2 |
+              +----+----+ +----+----+  +----+----+ +----+----+
+                   |           |            |           |
+                   |           \            /           |
+         +-------------------+  \          /  +-------------------+
+    CE1 / PE1             BR1 \  |        /  / BR2             PE2 \ CE2
+    o--/---o               o---\-|-------|--/---o               o---\--o
+       \   :               :   / |       |  \   :               :   /
+        \  : PKT domain 1  :  /  |       |   \  : PKT domain 2  :  /
+         +-:---------------:-+   |       |    +-:---------------:--+
+           :               :     |       |      :               :
+           :               :     |       |      :               :
+         +-:---------------:------+     +-------:---------------:--+
+        /  :               :       \   /        :               :   \
+       /   o...............o        \ /         o...............o    \
+       \     optical domain 1       / \       optical domain 2       /
+        \                          /   \                            /
+         +------------------------+     +--------------------------+
+
+       Figure 1: Reference Network (copy of Figure 1 of RFC YYYY)
+
+   EDITORS NOTE: Replace RFC YYYY with the RFC number of
+   [I-D.ietf-teas-actn-poi-applicability] once it has been published.
+
+   In general, service assurance involves fault detection and
+   localization; performance monitoring as well as re-routing
+   (protection).
+
+   Two cases will be considered:
+
+   1.  using grey interfaces on routers' ports, as outlined in
+       [I-D.ietf-teas-actn-poi-applicability]
+
+   2.  using colored optical interfaces on routers' ports, as outlined
+       in [I-D.mix-teas-actn-poi-extension]
+
+   NOTE: It is not fully clear how much commonalities there are in
+   service assurance for these two cases.  This draft will start
+   addressing both cases.  At a later stage it will be assessed whether
+   it is worthwhile keeping everything in a single draft or to split
+   into two drafts.
+
+   The MDSC is responsible for coordinating the whole multi-domain,
+   multi-layer (packet and optical) network.  MDSC interacts with
+   different Provisioning Network Controllers (O/P-PNCs) through the MPI
+   interface.  The MPI interface presents an abstracted topology to
+   MDSC, hiding the technology-specific aspects of the network and the
+   topology details (depending on the policy chosen regarding the level
+   of abstraction supported).
+
+   Following the assumptions of section 2.1.2 of
+   [I-D.ietf-teas-actn-poi-applicability], this document analyses
+   scenarios where the MDSC uses the partial summarization approach to
+   coordinate multi-domain/multi-layer path computation.
+
+   In this approach, the MDSC has complete visibility of the TE topology
+   of the packet network domains and an abstracted view of the TE
+   topology of the optical network domains.  That means the MDSC has the
+   capability of performing multi-domain/single-layer path computation
+   for the packet layer.  The MDSC needs to delegate the O-PNCs to
+   perform local path computation within their respective domains.  It
+   uses the information received by the O-PNCs and its TE topology view
+   of the multi-domain packet layer to perform multi-layer/multi-domain
+   path computation.
+
+   P-PNCs are responsible for setting up the TE paths between any two
+   PEs or BRs in their respective controlled domains, as requested by
+   MDSC, and providing topology information to the MDSC.
+
+   O-PNCs are responsible to provide to the MDSC an abstract TE topology
+   view of their underlying optical network resources.  They perform
+   single-domain local path computation, when requested by the MDSC.
+   They also perform optical tunnel setup, when requested by the MDSC.
+
+   No GMPLS-UNI interaction between IP and Optical equipment is
+   considered.  This is also the assumption followed in this document:
+   the MDSC performs the function of multi-layer/multi-domain path
+   computation through the same mechanisms described in
+   [I-D.ietf-teas-actn-poi-applicability].
+
+   TO DO - Complete the description of the pre-requisites of MDSC in the
+   cases discussed.
+
+   The following list summarizes the main assumptions about how MDSC can
+   handle the service assurance cases described in this document.  Most
+   of them have been already described in
+   [I-D.ietf-teas-actn-poi-applicability]
+
+   1.  MDSC has acquired all the topology and status information of both
+       the IP and optical layers.
+
+   2.  MDSC is fully aware of any multi-layer connections between the IP
+       and the optical layers.  It is also aware of the multi-domain
+       interconnection links between different IP domains.
+
+   3.  MDSC is aware of any topology or resource utilization change
+       obtained in real time through coordination with the O/P-PNCs.
+       This applies in the case of a fault or a maintenance activity
+       involving either the IP or the DWDM layer.
+
+   4.  MDSC coordinates the IP and DWDM protections and, as a result,
+       the re-routing of traffic at both the IP and DWDM layer.
+
+   5.  Before planned maintenance operation at the DWDM layer, MDSC
+       instructs the P-PNC to move the affected IP traffic to an other
+       link in an hitless way.  This is done before the event takes
+       place.  MDSC also coordinates with P-PNC to revert back the
+       traffic on the original path when the maintenance event is
+       concluded.
+
+   6.  When the O-PNC detects a degradation of optical performance (e.g.
+       BER PRE-FEC values threshold crossing over a certain period of
+       time), it alerts the MDSC so that the MDSC relates the warning to
+       an IP link.
+
+   7.  MDSC distinguishes between IP and Optical failures.  For example,
+       in the case of the failure of an IP port of a router, the IP
+       traffic may be switched to a stand-by port, reusing the same
+       ROADM optical resources (lambda, optical path) and keeping the
+       end-to-end IP connection.  If a remote IP node fails, then a re-
+       route of optical resources takes place together with a switch of
+       the local IP port in order to establish a new connection with a
+       different IP node used for protection.
+
+4.  YANG Data Models for the MPIs
+
+   TODO YANG Data Models
+
+   Initial set of YANG models that are potentially in the scope of this
+   analysis:
+
+   *  ietf-alarms defined in [RFC8632]
+
+   *  ietf-performance-monitoring defined in
+      [I-D.yu-performance-monitoring-yang]
+
+5.  Pre-requirements for multi-layer coordination
+
+   The coordination of both the IP and the optical layer in the cases
+   discussed in Section 6 and Section 7 requires the MDSC to be aware of
+   some network capabilities and to exchange the corresponding
+   information with both the P-PNC and the O-PNC.  To achieve maximum
+   flexibility, a network operator may enable or disable these
+   capabilities.  Once the network operator has configured the
+   capabilities described in this section, the MDSC exchanges the
+   relevant configuration with the PNCs present in the network before
+   the use cases described in in Section 6 and Section 7 take place.
+
+   The list of parameters that the MDSC may need to communicate to the
+   PNCs includes: - IP service reversion: on/off - Optical service
+   reversion: on/off - Hold-off time: time in ms (0 for immediate fast
+   re-routing) - Wait time before reversion: time in s - Recovery method
+   used in the optical layer: protection/restoration
+
+5.1.  Reference Network
+
+   The following network topology will be considered to analyze and
+   discuss the scenarios in in Section 6 and Section 7.
+
+   │<xxxxxxxxxxxxxxxxxxxxxxx IP Link R1-R2 xxxxxxxxxxxxxxxxxxxxxxx>│
+   ┌――――――――┐  ┌――――――――┐                     ┌――――――――┐  ┌――――――――┐
+   │      P1│--│P1    P3│\        ___        /│P3    P1│--│P1      │
+   │  R1    │  │ ROADM1 │ \  ____/   \____  / │ ROADM2 │  │   R2   │
+   │      P2│--│P2    P4│\ \/             \/ /│P4    P2│--│P2      │
+   └――――――――┘  └――――――――┘ \|    Optical    |/ └――――――――┘  └――――――――┘
+                           |    Network    |
+   │<xx IP Link R1-R3 xx    \_____________/   xx IP Link R3-R2 xxx>│
+                        x      |       |     x
+                         x     |       |    x
+                           x  ┌―――――――――┐  x
+                            x │P3     P4│ x
+                            x │ ROADM3  │ x
+                            x │P1     P2│ x
+                            x └―――――――――┘ x
+                            x  |       |  x
+                            x ┌―――――――――┐ x
+                            x │P1     P2│ x
+                            x │   R3    │ x
+                            ˅ │         │ ˅
+                            ― └―――――――――┘ ―
+
+                        Figure 2: Reference Network
+
+   EDITORS NOTE: Need to translate the picture into Ascii art!!!.
+
+   The network consists of three Points of Presence (POPs)
+   geographically distributed.  It is assumed that every POP hosts a
+   Router (R1, R2, and R3 respectively) connected to a ROADM (ROADM1,
+   ROADM2, and ROADM3).  All the routers connect to their co-located
+   ROADMs with two Ethernet links (e.g. 100GE) for redundancy.  In their
+   normal operations, the routers may employ any local policy for
+   traffic steering.  For the scope of this document, it is assumed that
+   the path that R1 uses to steer the IP traffic to R2 goes from port P1
+   of R1 to port P1 of R2 (thus going through port P1 of R1, ports P1
+   and P3 of ROADM1, ports P3 and P1 of ROADM2, port P1 of R2).  R1 uses
+   port P2 to steer the traffic to R3 instead.  The IP link between R1
+   and R3 carries the IP services that are directed to R3 and is used by
+   R1 as a detour path (backup path) to reach R2 if a failure occurs in
+   the primary path across ROADM1 and ROADM2.  The detour path also
+   includes a second leg from R3 to R2.  The detour path from R1 to R2,
+   then includes: port P2 of R1, ports P2 and P4 or ROADM1, ports P3 and
+   P1 of ROADM3, ports P1 and P2 of R3, ports P2 and P4 of ROADM3, ports
+   P4 and P2 of ROADM2, and port P2 of R2.  The connection between all
+   ROADMs is based on two fibers.  The optical paths all cross an
+   optical network.  For the scope of this document, it is assumed that
+   some coordination mechanisms are employed at the optical layer so
+   that when a failure happens on an optical path (for example, between
+   ROADM1 and ROADM2), an optical backup path is activated.  The
+   mechanisms are assumed to be coordinated by O-PNC and MDSC, even if
+   other methods may be also considered (e.g.  G-MPLS based).  Further
+   details are given in the use cases described in sections Section 6
+   and Section 7.
+
+5.2.  Multi-layer hitless reversion
+
+   In some cases, the mechanisms employed by the optical layer to revert
+   to the original setup may cause disruption at the IP layer, if proper
+   coordination is not enabled.  As this may cause traffic loss, if the
+   optical reversion is requested by the network operator, multi-layer
+   coordination under the supervision of the MDSC is necessary.  The
+   effect of multi-layer coordination is to bring the whole network,
+   i.e. both the IP and the optical layers, back to their initial
+   configuration after the recovery from a failure.  In particular, the
+   process described in this section relys on the hitless switching
+   capability of the IP layer.  Depending on the specific configuration,
+   the procedure can be enabled at the end of the use cases described in
+   sections Section 6 and Section 7.  The decision whether to apply it
+   or not has to be evaluated by the network operator considering
+   different factors, including the relative complexity of the process
+   and the effects of its steps on the live traffic.
+
+   To move back to the initial network configuration the MDSC has to
+   follow a sequence of steps: - Force the IP layer to switch the
+   traffic flow(s) on another path, e.g. an alternative/backup path -
+   Trigger the optical layer to coordinate the reversion to the initial
+   setup, e.g. disable an optical backup path and enable connectivity on
+   the previously used primary path - Force again the IP layer to switch
+   back to the original path.  The actions on the IP layer are handled
+   so that the IP traffic is switched only after the interface queues
+   are emptied, guaranteeing a hitless switching.  The mimics of the
+   steps requested is shown in the next figure.
+
+     R1    ROADM1   P-PNC   O-PNC   MDSC   ROADM2    R2    ROADM3    R3
+     |       |1.Fiber back online notification       |       |       |
+     |       |-------------->|       |       |       |       |       |
+     |       |       |       |2.Fiber back online notification       |
+     |       |       |       |------>|       |       |       |       |
+     |       |       |3.Switch to backup path|       |       |       |
+     |       |       |<--------------|       |       |       |       |
+     |4.Switch to backup path|       |       |       |       |       |
+     |<--------------|       |       |       |       |       |       |
+     |5.Service switch notification  |       |       |       |       |
+     |-------------->|       |       |       |       |       |       |
+     |       |       |6.Service switch notification  |       |       |
+     |       |       |-------------->|       |       |       |       |
+     |       |       |       |7.Revert to primary    |       |       |
+     |       |       |       |<------|       |       |       |       |
+     |       |8.Revert to primary    |       |       |       |       |
+     |       |<--------------|-------------->|       |       |       |
+     |       |9.Acknowledge  |       |       |       |       |       |
+     |       |-------------->|<--------------|       |       |       |
+     |       |       |       |10.Acknowledge |       |       |       |
+     |       |       |       |------>|       |       |       |       |
+     |       |       |11.Revert to initial path      |       |       |
+     |       |       |<--------------|       |       |       |       |
+     |12.Revert to initial path      |       |       |       |       |
+     |<--------------|       |       |       |       |       |       |
+     |13.IP service reverted |       |       |       |       |       |
+     |-------------->|       |       |       |       |       |       |
+     |       |       |14.IP service reverted |       |       |       |
+     |       |       |-------------->|       |       |       |       |
+
+                  Figure 3: hitless multi-layer reversion
+
+   Figure 5.2 Diagram for hitless multi-layer reversion
+
+   The steps illustrated in the previous figure are detailed here: 1.
+   ROADM1 detects the optical signal is up again on the previously
+   broken fiber and notifies O-PNC 2.  O-PNC notifies MDSC of the fiber
+   up event 3.  MDSC requires P-PNC to move the affected IP service(s)
+   to an alternative/backup path (this path may vary according to the
+   scenarios explained later).  Being a hitless switch, it is necessary
+   to avoid loss of service 4.  P-PNC signals R1 to switch the IP
+   service(s) to the alternative/backup path 5.  R1 switches the
+   service(s) to the alternative/backup path and notifies P-PNC 6.
+   P-PNC confirms the switch to MDSC 7.  MDSC instructs O-PNC to disable
+   the optical protection path (which may vary according to the
+   scenarios detailed later) and activate again the optical primary path
+   8.  O-PNC instructs both ROADM1 and ROADM2 to disable the optical
+   protection path and activate the primary one 9.  ROADM1 and ROADM2
+   acknowledge to O-PNC 10.  O-PNC acknowledges to MDSC 11.  MDSC
+   requires P-PNC to revert the IP service(s) back to the primary path
+   12.  P-PNC signals R1 to switch the IP service(s) to primary path 13.
+   R1 switches and acknowledges to P-PNC 14.  P-PNC acknowledges to
+   MDSC.
+
+6.  Optical Network Failure and Performance Degradation
+
+6.1.  Fault Detection
+
+   This use case is characterized by a fault happening on the upper
+   fiber connecting ROAMD1 and ROADM2 (port P3 to port P3 as depicted in
+   Figure 2), affecting the IP traffic between R1 and R2.  As a result,
+   the MDSC and the domain controllers cooperate to find a backup path
+   for the IP traffic.  If the optical layer does not employ any
+   mechanisms, the case is typically solved through the Fast Rerouting
+   Mechanisms (FRR) enabled by the IP/MPLS control plane.  With
+   reference to figure Figure 2, this corresponds to using the
+   combination of the two detour paths R1-R3 and R3-R2.  For the scope
+   of this document, the assumption is instead that the optical layer
+   supports its own mechansims that have to interact with the IP layer.
+   Two sub-cases are possible: 1.  The optical layer supports
+   restoration 2.  The optical layer supports protection.
+
+6.1.1.  Optical restoration
+
+   As restoration typically sets an alternative path on the fly based on
+   the availability of sufficient optical resources, the time taken by
+   the process to create an optical backup tends to be longer than the
+   time taken by the IP/MPLS FRR process.  As a result, the interaction
+   between the two layers follows the mimics shown in the next figure.
+
+     R1    ROADM1   P-PNC   O-PNC   MDSC   ROADM2    R2    ROADM3    R3
+     |       |1a.Fault notification  |       |       |       |       |
+     |       |-------------->|       |       |       |       |       |
+     |       |       |       |2a.Fault notification  |       |       |
+     |       |       |       |------>|       |       |       |       |
+     |1b.Fault notification  |       |       |       |       |       |
+     |-------------->|       |       |       |       |       |       |
+     |       |       |2b.Fault notification  |       |       |       |
+     |       |       |-------------->|       |       |       |       |
+   ┌――――――┐
+   │3.FRR │
+   └――――――┘
+     |4.IP service switched (backup path through R3) |       |       |
+     |-------------->|       |       |       |       |       |       |
+     |       |       |5.IP service switched  |       |       |       |
+     |       |       |-------------->|       |       |       |       |
+      ┌―――――――――――――┐                 ┌―――――――――――――┐
+      │6.Restoration│<--------------->│6.Restoration│
+      └―――――――――――――┘                 └―――――――――――――┘
+     |       |7.Path ready   |   7.Path ready|       |       |       |
+     |       |-------------->|<--------------|       |       |       |
+     |       |       |       |8.Notification |       |       |       |
+     |       |       |       |------>|       |       |       |       |
+   ┌――――――――┐
+   │9.Revert│
+   └――――――――┘
+     |10.IP service reverted |       |       |       |       |       |
+     |-------------->|       |       |       |       |       |       |
+     |       |       |11.IP service reverted |       |       |       |
+     |       |       |-------------->|       |       |       |       |
+
+             Figure 4: Fault detection with optical restoration
+
+   More in details: 1a.  The fault on the optical path (e.g. fiber cut,
+   loss of signal, etc.) is detected by ROADM1 and notified to O-PNC 2a.
+   O-PNC notifies the fault to MDSC 1b.  R1 detects loss of end-to-end
+   connectivity (e.g. 3 missed BFD messages) and notifies P-PNC.  This
+   step takes place almost simultaneously to 1a. 2b.  P-PNC notifies the
+   issue to MDSC 3.  R1 starts a fast reroute process to enable a backup
+   path at the IP/MPLS layer, using the already established detour
+   through R3 4.  R1 notifies P-PNC of the IP service switch through the
+   alternate path (R1-R3 and R3-R2) 5.  P-PNC notifies MDSC of the
+   switch 6.  ROADM1 and ROADM2 enable the restoration process.  Based
+   on the mechanism adopted, there may be intecaction between them 7.
+   Both ROADM1 and ROADM2 notify O-PNC of the availability of an optical
+   backup path 8.  O-PNC notifies MDSC of the availability of an optical
+   backup path 9.  R1 detects again end-to-end connectivity through the
+   initial path R1-R2 and, if configured to do so, revert the service
+   10.  R1 notifies P-PNC of the switch to the initial path 11.  P-PNC
+   notifies the switch to MDSC.
+
+   As noted in step 6., the restoration process may require an exchange
+   of messages between ROADM1 and ROADM2.  This is not detailed in the
+   present document as it is assumed that the relevant signaling is
+   handled through O-PNC.
+
+   In step 9., R1 detects again control traffic from R2.  The decision
+   whether to revert the service on the initial path is local, e.g. it
+   depends on the configuration made by the network operator.  Often,
+   the IP equipment is configured to operate the reversion
+   automatically, but there are cases where the network operator may
+   prefer differently.
+
+   At the end of the process, multi-layer hitless reversion may take
+   place, again based on the configuration adopted by the network
+   operator.  If multi-layer hitless reversion is adopted, then the
+   process described in Section 5.2 takes place.
+
+6.1.2.  Optical protection
+
+   Differently from the previous case, here optical protection is
+   considered.  This duration of this process is comparable with IP/MPLS
+   FRR, as it is pre-computed.  As a consequence, when multi-layer
+   coordination is enabled it is preferrable to hold-off FRR on R1 and
+   wait that optical protection is completed.  The process is shown in
+   the next figure.
+
+     R1    ROADM1   P-PNC   O-PNC   MDSC   ROADM2    R2    ROADM3    R3
+     |       |1a.Fault notification  |       |       |       |       |
+     |       |-------------->|       |       |       |       |       |
+     |       |       |       |2a.Fault notification  |       |       |
+     |       |       |       |------>|       |       |       |       |
+     |1b.Fault notification  |       |       |       |       |       |
+     |-------------->|       |       |       |       |       |       |
+     |       |       |2b.Fault notification  |       |       |       |
+     |       |       |-------------->|       |       |       |       |
+   ┌――――――┐
+   │3.Hold│
+   └――――――┘
+      ┌―――――――――――――┐
+      │4.Protection │------->|-------------->|
+      └―――――――――――――┘
+     |       |5.Path ready   |   5.Path ready|       |       |       |
+     |       |-------------->|<--------------|       |       |       |
+     |       |       |       |6.Notification |       |       |       |
+     |       |       |       |------>|       |       |       |       |
+   ┌――――――――┐
+   │7.IP Up │
+   └――――――――┘
+
+             Figure 5: Fault detection with optical protection
+
+   The detailed process includes the following steps: 1a.  The fault on
+   the optical path (e.g. fiber cut, loss of signal, etc.) is detected
+   by ROADM1 and notified to O-PNC 2a.  O-PNC notifies the fault to MDSC
+   1b.  R1 detects loss of end-to-end connectivity (e.g. 3 missed BFD
+   messages) and notifies P-PNC.  This step takes place almost
+   simultaneously to 1a. 2b.  P-PNC notifies the issue to MDSC [Editor's
+   note: is this step necessary?] 3.  R1 is configured to hold the FRR
+   process, thus it waits for the corresponding value set by the hold-
+   off time parameter 4.  Optical protection is started by ROADM1,
+   potentially involving an exchange of messages with O-PNC and ROADM2
+   5.  Both ROADM1 and ROADM2 notify O-PNC of the availability of an
+   optical backup path 6.  O-PNC notifies MDSC of the availability of an
+   optical backup path 7.  R1 detects again end-to-end connectivity with
+   R2 and resumes normal IP traffic steering.
+
+   As in the previous use case, when the failure is fixed the network
+   operator may desire to bring the service back to the original
+   configuration.  If this is the case, multi-layer hitless reversion,
+   as described in Section 5.2, takes place to move the service back to
+   the initial network setup.
+
+6.2.  Performance Monitoring
+
+   TODO Describe performance monitoring and performance degradation
+   detection performed by the O-PNC and how this information is reported
+   to the MDSC: see for example the degradation scenario in
+   https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/
+   files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 7)
+
+6.3.  Protection Switching
+
+   Failures in the optical domain can be recovered by packet-based
+   protection mechanisms as described in
+   [I-D.ietf-teas-actn-poi-applicability].
+
+   TODO Describe how the MDSC coordinates the protection switching
+   mechanisms at the IP layer (e.g., FRR) and at optical layer,
+   including the reversion when the failure is repaired: see for example
+   the protection switching scenario in https://github.com/italobusi/
+   draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-
+   poidt-teas-poi-assurance.pptx (slide 3)
+
+6.4.  Maintenance
+
+   Before planned maintenance operation on the optical network takes
+   place, the IP traffic affected by the maintenance operation should be
+   moved hitlessly to another link.  The MDSC and the P-PNC have to
+   coordinate to reroute the traffic before the event happens.  In such
+   a case the IP traffic needs to be locked to the protection route
+   until the maintenance event is finished, unless a fault occurs on
+   such path.  In this example, it is supposed that the link undergoing
+   maintenance activity is the one from ROADM1 to ROADM2, affecting the
+   IP traffic steered from R1 to R2.  A few minutes before the
+   maintenance window, the MDSC starts the process that brings to the
+   hitless re-routing of the affected IP traffic.  That means the IP
+   backup path (through R3) is available and it is used only for the
+   time requested by the optical plane to do maintenance.  The path
+   R1-R3 should not be overloaded, unless the networ operator accepts
+   some possible traffic losses.  At the optical layer, the maintenance
+   activity has no impact on traffic as a new path is configured upfront
+   and the optical service does not revert to the original link until
+   the maintenance window is finished.  At the of maintenance, the
+   network configuration is moved back to the initial configuration
+   using, if the network operator has chosen so, the multi-layer hitless
+   reversion process discussed in Section 5.2.
+
+   The next figure shows the process adopted to handle the maintenance
+   window.
+
+     R1    ROADM1   P-PNC   O-PNC   MDSC   ROADM2    R2    ROADM3    R3
+     |       |       |1.Switch to backup path|       |       |       |
+     |       |       |<--------------|       |       |       |       |
+     |2.Switch to backup path|       |       |       |       |       |
+     |<--------------|       |       |       |       |       |       |
+     |3.IP service switched  |       |       |       |       |       |
+     |-------------->|       |       |       |       |       |       |
+     |       |       |4.IP service switched  |       |       |       |
+     |       |       |-------------->|       |       |       |       |
+     |       |       |       |5.Compute optical backup       |       |
+     |       |       |       |<------|       |       |       |       |
+     |       |6.Enable optical backup|       |       |       |       |
+     |       |<--------------|-------------->|       |       |       |
+     |       |7.Acknowledge  |7.Acknowledge  |       |       |       |
+     |       |-------------->|<--------------|       |       |       |
+     |       |       |       |8.Acknowledge  |       |       |       |
+     |       |       |       |------>|       |       |       |       |
+     |       |       |       |9.Switch to optical backup     |       |
+     |       |       |       |<------|       |       |       |       |
+     |       |9.Switch to optical backup     |       |       |       |
+     |       |<--------------|-------------->|       |       |       |
+     |       |10.Acknowledge |10.Acknowledge |       |       |       |
+     |       |-------------->|<--------------|       |       |       |
+     |       |       |       |11.Acknowledge |       |       |       |
+     |       |       |       |------>|       |       |       |       |
+     |       |       |12.Revert to initial path      |       |       |
+     |       |       |<--------------|       |       |       |       |
+     |13.Revert to initial path      |       |       |       |       |
+     |<--------------|       |       |       |       |       |       |
+     |14.IP service reverted |       |       |       |       |       |
+     |-------------->|       |       |       |       |       |       |
+     |       |       |15.IP service reverted |       |       |       |
+     |       |       |-------------->|       |       |       |       |
+             ┌―――――――――――――――――――――――――――――――┐
+             │     16.Maintenance window     │
+             └―――――――――――――――――――――――――――――――┘
+
+                   Figure 6: Maintenance window operation
+
+   The steps indlude the following:
+
+   1.   MDSC requires P-PNC to steer the IP service to a backup path
+        (R1-R3-R2).  This is necessary to avoid loss of service before
+        maintenance starts
+
+   2.   P-PNC signals R1 to switch IP service to the backup path
+
+   3.   R1 switches to backup path and acks to P-PNC
+
+   4.   P-PNC acks to MDSC
+
+   5.   MDSC instructs O-PNC to enable the process to create an optical
+        backup path
+
+   6.   O-PNC instructs ROAMD1 and ROADM2 to enable a backup path
+
+   7.   ROAMD1 and ROADM2 acknowledge to O-PNC
+
+   8.   O-PNC acknowledges to MDSC
+
+   9.   MDSC instructs O-PNC to disable the primary optical path,
+        initially used, and switch to the optical backup path
+
+   10.  O-PNC instructs ROAMD1 and ROADM2 to switch
+
+   11.  ROAMD1 and ROADM2 acknowledge to O-PNC
+
+   12.  O-PNC acknowledges to MDSC
+
+   13.  MDSC requires P-PNC to move revert the IP service back to the
+        primary path (R1-R2)
+
+   14.  P-PNC signals R1 to switch IP service to the primary path
+        (carried over the optical backup path)
+
+   15.  R1 switches to backup path and acknowledges to P-PNC
+
+   16.  P-PNC acknowledges to MDSC
+
+   17.  The maintenance activity follows.
+
+   Once the activity is over, the network operator may wish to bring the
+   whole configuration back to the IP and optical primary paths.  In
+   such a case, multi-layer hitless reversion may be performed, as
+   described in Section 5.2.
+
+7.  Failures between the IP and Optical edges
+
+7.1.  Fault Detection
+
+   TODO Describe the mechanisms to detect when the failure occurs on a
+   router port or on the router node connected with the optical domain:
+   see for example the fault scenarios in https://github.com/italobusi/
+   draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-
+   poidt-teas-poi-assurance.pptx (slide 5 and slide 6)
+
+7.2.  Protection Switching
+
+   TODO Describe the mechanisms to protect the traffic when the failure
+   occurs on a router port or on the router node connected with the
+   optical domain: see for example the protection scenarios in
+   https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/
+   files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5
+   and slide 6)
+
+8.  Conclusions
+
+   This section will provide a summary of the analysis and of the gaps
+   identified in this draft once the analysis is mature.
+
+9.  Security Considerations
+
+   TODO Security
+
+10.  IANA Considerations
+
+   This document has no IANA actions.
+
+11.  References
+
+11.1.  Normative References
+
+   [I-D.ietf-teas-actn-poi-applicability]
+              Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
+              Ceccarelli, "Applicability of Abstraction and Control of
+              Traffic Engineered Networks (ACTN) to Packet Optical
+              Integration (POI)", Work in Progress, Internet-Draft,
+              draft-ietf-teas-actn-poi-applicability-10, 19 January
+              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              teas-actn-poi-applicability-10>.
+
+   [I-D.yu-performance-monitoring-yang]
+              Yu, C., "A YANG Data Model for Optical Performance
+              Monitoring", Work in Progress, Internet-Draft, draft-yu-
+              performance-monitoring-yang-00, 24 October 2022,
+              <https://datatracker.ietf.org/doc/html/draft-yu-
+              performance-monitoring-yang-00>.
+
+   [RFC8632]  Vallin, S. and M. Bjorklund, "A YANG Data Model for Alarm
+              Management", RFC 8632, DOI 10.17487/RFC8632, September
+              2019, <https://www.rfc-editor.org/rfc/rfc8632>.
+
+11.2.  Informative References
+
+   [I-D.mix-teas-actn-poi-extension]
+              Galimberti, G., Bouquier, J., Gerstel, O., Foster, B., and
+              D. Ceccarelli, "Applicability of Abstraction and Control
+              of Traffic Engineered Networks (ACTN) to Packet Optical
+              Integration (POI) extensions to support Router Optical
+              interfaces.", Work in Progress, Internet-Draft, draft-mix-
+              teas-actn-poi-extension-00, 24 October 2022,
+              <https://datatracker.ietf.org/doc/html/draft-mix-teas-
+              actn-poi-extension-00>.
+
+Acknowledgments
+
+   TODO acknowledge.
+
+Authors' Addresses
+
+   Italo Busi
+   Huawei Technologies
+   Email: italo.busi@huawei.com
+
+
+   Jean-Francois Bouquier
+   Vodafone
+   Email: jeff.bouquier@vodafone.com
+
+
+   Fabio Peruzzini
+   TIM
+   Email: fabio.peruzzini@telecomitalia.it
+
+
+   Paolo Volpato
+   Huawei Technologies
+   Email: paolo.volpato@huawei.com
+
+
+   Prasenjit Manna
+   Cisco
+   Email: prmanna@cisco.com
