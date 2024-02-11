@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-08T00:37:50.251358+00:00",
+  "timestamp": "2024-02-11T00:41:34.404080+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -499,7 +499,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-01-23T12:08:53Z",
-      "updatedAt": "2024-02-01T16:25:56Z",
+      "updatedAt": "2024-02-09T07:57:23Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "54a3f4f15492e04b74ee805d9d2df2e6e54ebbc8",
@@ -519,7 +519,21 @@
           "updatedAt": "2024-01-26T08:34:16Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJAsmzM5vkdnL",
+          "commit": {
+            "abbreviatedOid": "efab0f0"
+          },
+          "author": "prmanna",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-02-09T07:57:23Z",
+          "updatedAt": "2024-02-09T07:57:23Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
