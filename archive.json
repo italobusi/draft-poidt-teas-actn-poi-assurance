@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-13T00:38:59.768458+00:00",
+  "timestamp": "2024-02-15T00:38:41.756392+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -499,7 +499,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-01-23T12:08:53Z",
-      "updatedAt": "2024-02-09T07:57:23Z",
+      "updatedAt": "2024-02-13T09:50:40Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "54a3f4f15492e04b74ee805d9d2df2e6e54ebbc8",
@@ -532,6 +532,26 @@
           "createdAt": "2024-02-09T07:57:23Z",
           "updatedAt": "2024-02-09T07:57:23Z",
           "comments": []
+        },
+        {
+          "id": "PRR_kwDOJAsmzM5v5rLW",
+          "commit": {
+            "abbreviatedOid": "efab0f0"
+          },
+          "author": "prmanna",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-02-13T09:50:33Z",
+          "updatedAt": "2024-02-13T09:50:40Z",
+          "comments": [
+            {
+              "originalPosition": 379,
+              "body": "In case of Optical Protection (ie PSM case), there is no way stop and resume the ip traffic. In fact, no impact to IP traffic. Just O-PNC should be aware; it will be a information for it. ",
+              "createdAt": "2024-02-13T09:50:33Z",
+              "updatedAt": "2024-02-13T09:50:41Z"
+            }
+          ]
         }
       ]
     }
