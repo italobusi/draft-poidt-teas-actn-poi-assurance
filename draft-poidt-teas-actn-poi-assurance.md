@@ -164,8 +164,6 @@ The following network topology will be considered to analyze and discuss the sce
 {: #fig-ref-network title="Reference Network"
 artwork-name="reference-network.txt"}
 
-EDITORS NOTE: Need to translate the picture into Ascii art!!!.
-
 The network consists of three Points of Presence (POPs) geographically distributed.
 It is assumed that every POP hosts a Router (R1, R2, and R3 respectively) connected to a ROADM (ROADM1, ROADM2, and ROADM3).
 All the routers connect to their co-located ROADMs with two Ethernet links (e.g. 100GE) for redundancy.
@@ -375,13 +373,87 @@ Once the activity is over, the network operator may wish to bring the whole conf
 
 ## Cross-layer Link Failures
 
-TODO Describe the mechanisms to protect the traffic  when the failure occurs on a router port connected with the optical domain: see for example the protection scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 5)
+This case is characterized by having R1 configured with N ports working (say, P1-P3) and 1 spare port (PP) left as the protection of the other N.
+In case of failure, for example of port P1, PP is dynamically activated and the traffic originally directed to P1 is steered to PP. PP receives the same configuration of P1 while P1 is brought in a down state.
+Differently from ordirary LAG, the traffic is not redistributed over the surviving links. Since a backup port (PP) is enabled, the traffic keeps on flowing on N links instead of N-1.
+If on the IP layer this scenario introduces the complexity of handling an extra port both on R1 and ROADM1, on the optical layer the configuration, as depicted in figure {{fig-ref-network}}, does not change as only N optical channels (e.g. lambdas) are used, as shown in figure {{fig-N-1-port-prot-architecture}}.
+
+~~~~ ascii-art
+{::include figures/N-1-port-prot-architecture.txt}
+~~~~
+{: #fig-N-1-port-prot-architecture title="Use of N:1 protection on R1"
+artwork-name="N-1-port-prot-architecture.txt"}
+
+Two sub-cases may be considered, depending on the availability of a Muxponder or a Transponder on ROADM1.
+If a Muxponder is used, then the optical P1 and PP are hosted on the same optical complex (e.g. board) on the customer's edge of ROADM1. It is the optical complex that selects the input source of the signals and maps it on the proper lambda. If instead a Transpoder is used, then it's ROADM1's internal matrix that switches from the input source from P1 to PP, cross-connecting the signal to the output lambda. 
+It has to be noted that the mechanism to deal with the on-the-fly reconfiguration of a router's port is out of the scope of the present document and may be subject of a dedicated draft.
+
+The next figure shows the process adopted to handle N:1 port protection.
+
+~~~~ ascii-art
+{::include figures/N-1-port-prot.txt}
+~~~~
+{: #fig-N-1-port-prot title="N:1 protection operation"
+artwork-name="N-1-port-prot.txt"}
+
+The sequence of steps is detailed.
+
+1. R1 detects port P1 failure and notifies P-PNC
+2. P-PNC notifies MDSC of the failure
+3. R1 triggers FRR to protect the IP flows steering
+4. R1 informs P-PNC of the switch to the backup path
+5. P-PNC notifies MDSC of the traffic switch
+6. R1 handles the mechanism to replicate the configuration of P1 to PP
+7. R1 informs P-PNC that PP is up and ready to forward traffic
+8. P-PNC notifies MDSC that port PP is up and ready to forward traffic
+9. MDSC requires O-PNC to reconfigure ROADM1 access (both in the case of muxponder and transponder) and WDM connectivity if a transponder is used
+10. O-PNC signals ROADM1 to reconfigure access (muxponder/transponder) and WDM connectivity (transponder)
+11. ROADM1 acknowledges to O-PNC
+12. O-PNC acknowledges to MDSC
+13. MDSC requires P-PNC to revert to the initial (primary) path
+14. P-PNC notifies R1 to revert to initial (primary) path
+15. R1 notifies P-PNC of IP service switch and new port in use
+16. P-PNC notifies MDSC of service switch and new port in use
+
+As in the previous cases, when port P1 on R1 is fixed, multilayer reversion {{ref-hitless-reversion}} to the initial configuration may happen. that is dependent on the network operator's preference.
+
 
 {: #router-resiliency}
 
 ## Router Node Failures
 
-TODO Describe the mechanisms to protect the traffic  when the failure occurs on a router node connected with the optical domain: see for example the protection scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 6)
+As shown in {{fig-ref-network}}, in its normal operations R1 is dual-homed to R2 and R3. Even if highly unlikely due to the usual redundancy deployed in field, this case considers a full failure of R2 (node failure). The implications of such an event are useful to discuss the interaction between the IP and the optical layers through the MDSC coordination.
+The underlying assumption is that it is not possible to R2 to communicate to P-PNC about the event causing the failure, so it is up to R1 to detect it and to communicate instead to P-PNC. The first reation to the event is to perform a fast-rerouing action and move the traffic from the R1-R2 link to the R1-R3 link. As part of the assumption, the R1-R3 IP link has been previously dimensioned to carry a certain amount of traffic, so it is possbile that after fast re-routing takes place some traffic previously carried on the R1-R2 IP link and now shifted to R1-R3 is discarded, for example beacuse congestion occurs.
+MDSC instructs the optical layer to find available optical resources, activate a new optical path between ROADM1 and ROADM3 and finally move the traffic previously associated to R1-R2 to the newly created optical path. When this second optical path is available, MDSC triggers a new switch of the traffic so that R1 can now steers the previous R1-R2 traffic to the new optical path. The final configuration is shown in figure {{fig-node-prot-architecture}}.
+
+~~~~ ascii-art
+{::include figures/node-prot-architecture.txt}
+~~~~
+{: #fig-node-prot-architecture title="IP configuration after the creation of a second optical path"
+artwork-name="node-prot-architecture.txt"}
+
+The next figure shows the process adopted to handle the node protection case.
+
+~~~~ ascii-art
+{::include figures/node-prot.txt}
+~~~~
+{: #fig-node-prot title="Node protection operation"
+artwork-name="node-prot.txt"}
+
+1. R1 detects R2's failure and triggers IP FRR finding R3 as the next hop
+2. R1 notifies P-PNC that R2 is down and FRR has started
+3. P-PNC notifies MDSC of the events
+4. Upon moving the R1-R2 traffic (or part of it) on R1-R3 path, R1 notifies P-PNC of the service switch
+5. P-PNC notifies MDSC of th eswitch
+6. MDSC requires O-PNC to compute a new optical path between ROADM1 and ROADM3
+7. O-PNC instructs both ROADM1 and ROADM3 to configure a new optical service
+8. Both ROADM1 and ROADM3 inform O-PNC that the backup path is available
+9. O-PNC informs MDSC that the backup path is available
+10. MDSC computes a new IP path between R1 and R3, provides the relevant information to P-PNC and triggers switch
+11. P-PNC transfers the information received to R1 and triggers R1 to switch traffic
+12. R1 informs P-PNC of the service switch
+13. P-PNC informs MDSC of the service switch.
+
 
 {: #ref-hitless-reversion}
 
