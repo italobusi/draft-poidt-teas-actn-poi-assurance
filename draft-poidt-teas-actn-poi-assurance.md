@@ -385,7 +385,7 @@ If on the IP layer this scenario introduces the complexity of handling an extra 
 artwork-name="N-1-port-prot-architecture.txt"}
 
 Two sub-cases may be considered, depending on the availability of a Muxponder or a Transponder on ROADM1.
-If a Muxponder is used, then the optical P1 and PP are hosted on the same optical complex (e.g. board) on the customer's edge of ROADM1. It is the optical complex that selects the input source of the signals and maps it on the proper lambda. If instead a Transpoder is used, then it's ROADM1's internal matrix that switches from the input source from P1 to PP, cross-connecting the signal to the output lambda. 
+If a Muxponder is used, then the optical P1 and PP are hosted on the same optical complex (e.g. board) on the customer's edge of ROADM1. It is the optical complex that selects the input source of the signals and maps it on the proper lambda. If instead a Transpoder is used, then it's ROADM1's internal matrix that switches from the input source from P1 to PP, cross-connecting the signal to the output lambda.
 It has to be noted that the mechanism to deal with the on-the-fly reconfiguration of a router's port is out of the scope of the present document and may be subject of a dedicated draft.
 
 The next figure shows the process adopted to handle N:1 port protection.
