@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-02-22T00:37:53.396822+00:00",
+  "timestamp": "2024-02-25T00:41:14.839000+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -499,13 +499,13 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-01-23T12:08:53Z",
-      "updatedAt": "2024-02-13T09:50:40Z",
+      "updatedAt": "2024-02-22T11:42:30Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "54a3f4f15492e04b74ee805d9d2df2e6e54ebbc8",
       "headRepository": "Paolo-Volpato/draft-poidt-teas-actn-poi-assurance",
       "headRefName": "Resiliency-#1",
-      "headRefOid": "efab0f094c811d5457c7ebb49f473dae90d20076",
+      "headRefOid": "62cadc1bc395d5d67809bbd05ec31320749c6045",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
