@@ -1,0 +1,30 @@
+  R1    ROADM1   P-PNC   O-PNC   MDSC   ROADM2    R2    ROADM3    R3
+  |       |1a.Fault notification  |       |       |       |       |
+  |       |-------------->|       |       |       |       |       |
+  |       |       |       |2a.Fault notification  |       |       |
+  |       |       |       |------>|       |       |       |       |
+  |1b.Fault notification  |       |       |       |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |2b.Fault notification  |       |       |       |
+  |       |       |-------------->|       |       |       |       |
+┌――――――┐
+│3.FRR │
+└――――――┘
+  |4.IP service switched (backup path through R3) |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |5.IP service switched  |       |       |       |
+  |       |       |-------------->|       |       |       |       |
+   ┌―――――――――――――┐                 ┌―――――――――――――┐
+   │6.Restoration│<--------------->│6.Restoration│
+   └―――――――――――――┘                 └―――――――――――――┘
+  |       |7.Path ready   |   7.Path ready|       |       |       |
+  |       |-------------->|<--------------|       |       |       |
+  |       |       |       |8.Notification |       |       |       |
+  |       |       |       |------>|       |       |       |       |
+┌――――――――┐
+│9.Revert│
+└――――――――┘
+  |10.IP service reverted |       |       |       |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |11.IP service reverted |       |       |       |
+  |       |       |-------------->|       |       |       |       |

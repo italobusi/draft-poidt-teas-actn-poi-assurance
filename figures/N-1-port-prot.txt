@@ -1,0 +1,35 @@
+  R1    ROADM1   P-PNC   O-PNC   MDSC   ROADM2    R2    ROADM3    R3
+  |1.Port R1/P1 failure   |       |       |       |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |2.Port R1/P1 failure   |       |       |       |
+  |       |       |-------------->|       |       |       |       |
+┌―――――――┐
+│ 3.FRR │
+└―――――――┘
+  |4.IP service switched  |       |       |       |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |5.IP service switched  |       |       |       |
+  |       |       |-------------->|       |       |       |       |
+┌―――――――┐
+│6.PP Up│
+└―――――――┘
+  |7.Port R1/PP Up|       |       |       |       |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |8.Port R1/PP Up|       |       |       |       |
+  |       |       |-------------->|       |       |       |       |
+  |       |       |       |9.Reconfigure access & connect new path|
+  |       |       |       |<------|       |       |       |       |
+  |       |10.Reconfigure access & connect new path       |       |
+  |       |<--------------|       |       |       |       |       |
+  |       |11.Acknowledge |       |       |       |       |       |
+  |       |-------------->|       |       |       |       |       |
+  |       |       |       |12.Acknowledge |       |       |       |
+  |       |       |       |------>|       |       |       |       |
+  |       |       |13.Switch back to initial path |       |       |
+  |       |       |<--------------|       |       |       |       |
+  |14.Switch back to initial path |       |       |       |       |
+  |<--------------|       |       |       |       |       |       |
+  |15.IP service switched |       |       |       |       |       |
+  |-------------->|       |       |       |       |       |       |
+  |       |       |16.IP service switched |       |       |       |
+  |       |       |-------------->|       |       |       |       |
