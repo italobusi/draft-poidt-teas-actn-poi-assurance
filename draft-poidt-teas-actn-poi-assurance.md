@@ -352,7 +352,9 @@ The detailed process includes the following steps:
 
 - step 6.  O-PNC notifies MDSC of the availability of an optical backup path
 
-- step 7.  R1 detects again end-to-end connectivity with R2 and resumes normal IP traffic steering.
+- step 7.  R1 detects again end-to-end connectivity with R2.
+
+The IP traffic is recovered as soon as the optical protection is completed with no action taken by the IP routers.
 
 As in the previous use case, when the failure is fixed the network operator may desire to bring the service back
 to the original configuration. If this is the case, multi-layer hitless reversion, as described
