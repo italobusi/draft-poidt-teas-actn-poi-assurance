@@ -228,16 +228,22 @@ TODO Describe performance monitoring and performance degradation detection perfo
 The coordination of both the IP and the optical layer in the cases discussed in {{resiliency}}
 requires the MDSC to be aware of some network capabilities and to exchange the corresponding information with
 both the P-PNC and the O-PNC.
+
 To achieve maximum flexibility, a network operator may enable or disable these capabilities.
 Once the network operator has configured the capabilities described in this section, the MDSC exchanges
-the relevant configuration with the PNCs present in the network before the use cases described in in {{resiliency}}
+the relevant configuration with the PNCs present in the network before the use cases described in {{resiliency}}
 take place.
 
 The list of parameters that the MDSC may need to communicate to the PNCs includes:
+
 - IP service reversion: on/off
+
 - Optical service reversion: on/off
+
 - Hold-off time: time in ms (0 for immediate fast re-routing)
+
 - Wait time before reversion: time in s
+
 - Recovery method used in the optical layer: protection/restoration
 
 {: #optical-resiliency}
@@ -246,15 +252,17 @@ The list of parameters that the MDSC may need to communicate to the PNCs include
 
 Failures in the optical domain can be recovered by packet-based protection mechanisms as described in {{!I-D.ietf-teas-actn-poi-applicability}}.
 
-This use case is characterized by a fault happening on the upper fiber connecting ROAMD1 and ROADM2
+This use case is characterized by a fault happening on the upper fiber connecting ROADM1 and ROADM2
 (port P3 to port P3 as depicted in {{fig-ref-network}}), affecting the IP traffic between R1 and R2.
 As a result, the MDSC and the domain controllers cooperate to find a backup path for the IP traffic.
 If the optical layer does not employ any mechanisms, the case is typically solved through the Fast Rerouting
 Mechanisms (FRR) enabled by the IP/MPLS control plane. With reference to figure {{fig-ref-network}}, this corresponds
 to using the combination of the two detour paths R1-R3 and R3-R2.
-For the scope of this document, the assumption is instead that the optical layer supports its own mechansims that have
+For the scope of this document, the assumption is instead that the optical layer supports its own mechanisms that have
 to interact with the IP layer. Two sub-cases are possible:
+
 1. The optical layer supports restoration
+
 2. The optical layer supports protection.
 
 {: #restoration}
@@ -272,19 +280,32 @@ As a result, the interaction between the two layers follows the mimics shown in 
 artwork-name="restoration.txt"}
 
 More in details:
-1a. The fault on the optical path (e.g. fiber cut, loss of signal, etc.) is detected by ROADM1 and notified to O-PNC
-2a. O-PNC notifies the fault to MDSC
-1b. R1 detects loss of end-to-end connectivity (e.g. 3 missed BFD messages) and notifies P-PNC. This step takes place almost simultaneously to 1a.
-2b. P-PNC notifies the issue to MDSC
-3.  R1 starts a fast reroute process to enable a backup path at the IP/MPLS layer, using the already established detour through R3
-4.  R1 notifies P-PNC of the IP service switch through the alternate path (R1-R3 and R3-R2)
-5.  P-PNC notifies MDSC of the switch
-6.  ROADM1 and ROADM2 enable the restoration process. Based on the mechanism adopted, there may be intecaction between them
-7.  Both ROADM1 and ROADM2 notify O-PNC of the availability of an optical backup path
-8.  O-PNC notifies MDSC of the availability of an optical backup path
-9.  R1 detects again end-to-end connectivity through the initial path R1-R2 and, if configured to do so, revert the service
-10. R1 notifies P-PNC of the switch to the initial path
-11. P-PNC notifies the switch to MDSC.
+
+- step 1a. The fault on the optical path (e.g. fiber cut, loss of signal, etc.) is detected by ROADM1 and notified to O-PNC
+
+- step 2a. O-PNC notifies the fault to MDSC
+
+- step 1b. R1 detects loss of end-to-end connectivity (e.g. 3 missed BFD messages) and notifies P-PNC. This step takes place almost simultaneously to 1a.
+
+- step 2b. P-PNC notifies the issue to MDSC
+
+- step 3. R1 starts a fast reroute process to enable a backup path at the IP/MPLS layer, using the already established detour through R3
+
+- step 4. R1 notifies P-PNC of the IP service switch through the alternate path (R1-R3 and R3-R2)
+
+- step 5. P-PNC notifies MDSC of the switch
+
+- step 6. ROADM1 and ROADM2 enable the restoration process. Based on the mechanism adopted, there may be interaction between them
+
+- step 7. Both ROADM1 and ROADM2 notify O-PNC of the availability of an optical backup path
+
+- step 8. O-PNC notifies MDSC of the availability of an optical backup path
+
+- step 9. R1 detects again end-to-end connectivity through the initial path R1-R2 and, if configured to do so, revert the service
+
+- step 10. R1 notifies P-PNC of the switch to the initial path
+
+- step 11. P-PNC notifies the switch to MDSC.
 
 As noted in step 6., the restoration process may require an exchange of messages between ROADM1 and ROADM2.
 This is not detailed in the present document as it is assumed that the relevant signaling is handled through O-PNC.
@@ -303,7 +324,7 @@ takes place.
 ### Optical protection
 
 Differently from the previous case, here optical protection is considered. This duration of this process is comparable
-with IP/MPLS FRR, as it is pre-computed. As a consequence, when multi-layer coordination is enabled it is preferrable
+with IP/MPLS FRR, as it is pre-computed. As a consequence, when multi-layer coordination is enabled it is preferable
 to hold-off FRR on R1 and wait that optical protection is completed.
 The process is shown in the next figure.
 
@@ -314,15 +335,24 @@ The process is shown in the next figure.
 artwork-name="protection.txt"}
 
 The detailed process includes the following steps:
-1a. The fault on the optical path (e.g. fiber cut, loss of signal, etc.) is detected by ROADM1 and notified to O-PNC
-2a. O-PNC notifies the fault to MDSC
-1b. R1 detects loss of end-to-end connectivity (e.g. 3 missed BFD messages) and notifies P-PNC. This step takes place almost simultaneously to 1a.
-2b. P-PNC notifies the issue to MDSC \[Editor's note: is this step necessary?]
-3.  R1 is configured to hold the FRR process, thus it waits for the corresponding value set by the hold-off time parameter
-4.  Optical protection is started by ROADM1, potentially involving an exchange of messages with O-PNC and ROADM2
-5.  Both ROADM1 and ROADM2 notify O-PNC of the availability of an optical backup path
-6.  O-PNC notifies MDSC of the availability of an optical backup path
-7.  R1 detects again end-to-end connectivity with R2 and resumes normal IP traffic steering.
+
+- step 1a. The fault on the optical path (e.g. fiber cut, loss of signal, etc.) is detected by ROADM1 and notified to O-PNC
+
+- step 2a. O-PNC notifies the fault to MDSC
+
+- step 1b. R1 detects loss of end-to-end connectivity (e.g. 3 missed BFD messages) and notifies P-PNC. This step takes place almost simultaneously to 1a.
+
+- step 2b. P-PNC notifies the issue to MDSC \[Editor's note: is this step necessary?]
+
+- step 3.  R1 is configured to hold the FRR process, thus it waits for the corresponding value set by the hold-off time parameter
+
+- step 4.  Optical protection is started by ROADM1, potentially involving an exchange of messages with O-PNC and ROADM2
+
+- step 5.  Both ROADM1 and ROADM2 notify O-PNC of the availability of an optical backup path
+
+- step 6.  O-PNC notifies MDSC of the availability of an optical backup path
+
+- step 7.  R1 detects again end-to-end connectivity with R2 and resumes normal IP traffic steering.
 
 As in the previous use case, when the failure is fixed the network operator may desire to bring the service back
 to the original configuration. If this is the case, multi-layer hitless reversion, as described
@@ -334,7 +364,7 @@ in {{ref-hitless-reversion}}, takes place to move the service back to the initia
 
 Before planned maintenance operation on the optical network takes place, the IP traffic affected by the maintenance operation should be moved hitlessly to another link. The MDSC and the P-PNC have to coordinate to reroute the traffic before the event happens. In such a case the IP traffic needs to be locked to the protection route until the maintenance event is finished, unless a fault occurs on such path.
 In this example, it is supposed that the link undergoing maintenance activity is the one from ROADM1 to ROADM2, affecting the IP traffic steered from R1 to R2.
-A few minutes before the maintenance window, the MDSC starts the process that brings to the hitless re-routing of the affected IP traffic. That means the IP backup path (through R3) is available and it is used only for the time requested by the optical plane to do maintenance. The path R1-R3 should not be overloaded, unless the networ operator accepts some possible traffic losses.
+A few minutes before the maintenance window, the MDSC starts the process that brings to the hitless re-routing of the affected IP traffic. That means the IP backup path (through R3) is available and it is used only for the time requested by the optical plane to do maintenance. The path R1-R3 should not be overloaded, unless the network operator accepts some possible traffic losses.
 At the optical layer, the maintenance activity has no impact on traffic as a new path is configured
 upfront and the optical service does not revert to the original link until the maintenance window is finished.
 At the of maintenance, the network configuration is moved back to the initial configuration using, if the network operator has chosen so, the multi-layer hitless reversion process discussed in {{ref-hitless-reversion}}.
@@ -347,25 +377,41 @@ The next figure shows the process adopted to handle the maintenance window.
 {: #fig-maintenance title="Maintenance window operation"
 artwork-name="maintenance.txt"}
 
-The steps indlude the following:
+The steps include the following:
 
-1. MDSC requires P-PNC to steer the IP service to a backup path (R1-R3-R2). This is necessary to avoid loss of service before maintenance starts
-2. P-PNC signals R1 to switch IP service to the backup path
-3. R1 switches to backup path and acks to P-PNC
-4. P-PNC acks to MDSC
-5. MDSC instructs O-PNC to enable the process to create an optical backup path
-6. O-PNC instructs ROAMD1 and ROADM2 to enable a backup path
-7. ROAMD1 and ROADM2 acknowledge to O-PNC
-8. O-PNC acknowledges to MDSC
-9. MDSC instructs O-PNC to disable the primary optical path, initially used, and switch to the optical backup path
-10. O-PNC instructs ROAMD1 and ROADM2 to switch
-11. ROAMD1 and ROADM2 acknowledge to O-PNC
-12. O-PNC acknowledges to MDSC
-13. MDSC requires P-PNC to move revert the IP service back to the primary path (R1-R2)
-14. P-PNC signals R1 to switch IP service to the primary path (carried over the optical backup path)
-15. R1 switches to backup path and acknowledges to P-PNC
-16. P-PNC acknowledges to MDSC
-17. The maintenance activity follows.
+- step 1. MDSC requires P-PNC to steer the IP service to a backup path (R1-R3-R2). This is necessary to avoid loss of service before maintenance starts
+
+- step 2. P-PNC signals R1 to switch IP service to the backup path
+
+- step 3. R1 switches to backup path and acks to P-PNC
+
+- step 4. P-PNC acks to MDSC
+
+- step 5. MDSC instructs O-PNC to enable the process to create an optical backup path
+
+- step 6. O-PNC instructs ROADM1 and ROADM2 to enable a backup path
+
+- step 7. ROADM1 and ROADM2 acknowledge to O-PNC
+
+- step 8. O-PNC acknowledges to MDSC
+
+- step 9. MDSC instructs O-PNC to disable the primary optical path, initially used, and switch to the optical backup path
+
+- step 10. O-PNC instructs ROADM1 and ROADM2 to switch
+
+- step 11. ROADM1 and ROADM2 acknowledge to O-PNC
+
+- step 12. O-PNC acknowledges to MDSC
+
+- step 13. MDSC requires P-PNC to move revert the IP service back to the primary path (R1-R2)
+
+- step 14. P-PNC signals R1 to switch IP service to the primary path (carried over the optical backup path)
+
+- step 15. R1 switches to backup path and acknowledges to P-PNC
+
+- step 16. P-PNC acknowledges to MDSC
+
+- step 17. The maintenance activity follows.
 
 Once the activity is over, the network operator may wish to bring the whole configuration back to the IP and optical primary paths. In such a case, multi-layer hitless reversion may be performed, as described in {{ref-hitless-reversion}}.
 
@@ -375,7 +421,7 @@ Once the activity is over, the network operator may wish to bring the whole conf
 
 This case is characterized by having R1 configured with N ports working (say, P1-P3) and 1 spare port (PP) left as the protection of the other N.
 In case of failure, for example of port P1, PP is dynamically activated and the traffic originally directed to P1 is steered to PP. PP receives the same configuration of P1 while P1 is brought in a down state.
-Differently from ordirary LAG, the traffic is not redistributed over the surviving links. Since a backup port (PP) is enabled, the traffic keeps on flowing on N links instead of N-1.
+Differently from ordinary LAG, the traffic is not redistributed over the surviving links. Since a backup port (PP) is enabled, the traffic keeps on flowing on N links instead of N-1.
 If on the IP layer this scenario introduces the complexity of handling an extra port both on R1 and ROADM1, on the optical layer the configuration, as depicted in figure {{fig-ref-network}}, does not change as only N optical channels (e.g. lambdas) are used, as shown in figure {{fig-N-1-port-prot-architecture}}.
 
 ~~~~ ascii-art
@@ -398,22 +444,37 @@ artwork-name="N-1-port-prot.txt"}
 
 The sequence of steps is detailed.
 
-1. R1 detects port P1 failure and notifies P-PNC
-2. P-PNC notifies MDSC of the failure
-3. R1 triggers FRR to protect the IP flows steering
-4. R1 informs P-PNC of the switch to the backup path
-5. P-PNC notifies MDSC of the traffic switch
-6. R1 handles the mechanism to replicate the configuration of P1 to PP
-7. R1 informs P-PNC that PP is up and ready to forward traffic
-8. P-PNC notifies MDSC that port PP is up and ready to forward traffic
-9. MDSC requires O-PNC to reconfigure ROADM1 access (both in the case of muxponder and transponder) and WDM connectivity if a transponder is used
-10. O-PNC signals ROADM1 to reconfigure access (muxponder/transponder) and WDM connectivity (transponder)
-11. ROADM1 acknowledges to O-PNC
-12. O-PNC acknowledges to MDSC
-13. MDSC requires P-PNC to revert to the initial (primary) path
-14. P-PNC notifies R1 to revert to initial (primary) path
-15. R1 notifies P-PNC of IP service switch and new port in use
-16. P-PNC notifies MDSC of service switch and new port in use
+- step 1. R1 detects port P1 failure and notifies P-PNC
+
+- step 2. P-PNC notifies MDSC of the failure
+
+- step 3. R1 triggers FRR to protect the IP flows steering
+
+- step 4. R1 informs P-PNC of the switch to the backup path
+
+- step 5. P-PNC notifies MDSC of the traffic switch
+
+- step 6. R1 handles the mechanism to replicate the configuration of P1 to PP
+
+- step 7. R1 informs P-PNC that PP is up and ready to forward traffic
+
+- step 8. P-PNC notifies MDSC that port PP is up and ready to forward traffic
+
+- step 9. MDSC requires O-PNC to reconfigure ROADM1 access (both in the case of muxponder and transponder) and WDM connectivity if a transponder is used
+
+- step 10. O-PNC signals ROADM1 to reconfigure access (muxponder/transponder) and WDM connectivity (transponder)
+
+- step 11. ROADM1 acknowledges to O-PNC
+
+- step 12. O-PNC acknowledges to MDSC
+
+- step 13. MDSC requires P-PNC to revert to the initial (primary) path
+
+- step 14. P-PNC notifies R1 to revert to initial (primary) path
+
+- step 15. R1 notifies P-PNC of IP service switch and new port in use
+
+- step 16. P-PNC notifies MDSC of service switch and new port in use
 
 As in the previous cases, when port P1 on R1 is fixed, multilayer reversion {{ref-hitless-reversion}} to the initial configuration may happen. that is dependent on the network operator's preference.
 
@@ -423,7 +484,7 @@ As in the previous cases, when port P1 on R1 is fixed, multilayer reversion {{re
 ## Router Node Failures
 
 As shown in {{fig-ref-network}}, in its normal operations R1 is dual-homed to R2 and R3. Even if highly unlikely due to the usual redundancy deployed in field, this case considers a full failure of R2 (node failure). The implications of such an event are useful to discuss the interaction between the IP and the optical layers through the MDSC coordination.
-The underlying assumption is that it is not possible to R2 to communicate to P-PNC about the event causing the failure, so it is up to R1 to detect it and to communicate instead to P-PNC. The first reation to the event is to perform a fast-rerouing action and move the traffic from the R1-R2 link to the R1-R3 link. As part of the assumption, the R1-R3 IP link has been previously dimensioned to carry a certain amount of traffic, so it is possbile that after fast re-routing takes place some traffic previously carried on the R1-R2 IP link and now shifted to R1-R3 is discarded, for example beacuse congestion occurs.
+The underlying assumption is that it is not possible to R2 to communicate to P-PNC about the event causing the failure, so it is up to R1 to detect it and to communicate instead to P-PNC. The first reaction to the event is to perform a fast-rerouting action and move the traffic from the R1-R2 link to the R1-R3 link. As part of the assumption, the R1-R3 IP link has been previously dimensioned to carry a certain amount of traffic, so it is possible that after fast re-routing takes place some traffic previously carried on the R1-R2 IP link and now shifted to R1-R3 is discarded, for example because congestion occurs.
 MDSC instructs the optical layer to find available optical resources, activate a new optical path between ROADM1 and ROADM3 and finally move the traffic previously associated to R1-R2 to the newly created optical path. When this second optical path is available, MDSC triggers a new switch of the traffic so that R1 can now steers the previous R1-R2 traffic to the new optical path. The final configuration is shown in figure {{fig-node-prot-architecture}}.
 
 ~~~~ ascii-art
@@ -440,20 +501,31 @@ The next figure shows the process adopted to handle the node protection case.
 {: #fig-node-prot title="Node protection operation"
 artwork-name="node-prot.txt"}
 
-1. R1 detects R2's failure and triggers IP FRR finding R3 as the next hop
-2. R1 notifies P-PNC that R2 is down and FRR has started
-3. P-PNC notifies MDSC of the events
-4. Upon moving the R1-R2 traffic (or part of it) on R1-R3 path, R1 notifies P-PNC of the service switch
-5. P-PNC notifies MDSC of th eswitch
-6. MDSC requires O-PNC to compute a new optical path between ROADM1 and ROADM3
-7. O-PNC instructs both ROADM1 and ROADM3 to configure a new optical service
-8. Both ROADM1 and ROADM3 inform O-PNC that the backup path is available
-9. O-PNC informs MDSC that the backup path is available
-10. MDSC computes a new IP path between R1 and R3, provides the relevant information to P-PNC and triggers switch
-11. P-PNC transfers the information received to R1 and triggers R1 to switch traffic
-12. R1 informs P-PNC of the service switch
-13. P-PNC informs MDSC of the service switch.
+- step 1. R1 detects R2's failure and triggers IP FRR finding R3 as the next hop
 
+- step 2. R1 notifies P-PNC that R2 is down and FRR has started
+
+- step 3. P-PNC notifies MDSC of the events
+
+- step 4. Upon moving the R1-R2 traffic (or part of it) on R1-R3 path, R1 notifies P-PNC of the service switch
+
+- step 5. P-PNC notifies MDSC of th eswitch
+
+- step 6. MDSC requires O-PNC to compute a new optical path between ROADM1 and ROADM3
+
+- step 7. O-PNC instructs both ROADM1 and ROADM3 to configure a new optical service
+
+- step 8. Both ROADM1 and ROADM3 inform O-PNC that the backup path is available
+
+- step 9. O-PNC informs MDSC that the backup path is available
+
+- step 10. MDSC computes a new IP path between R1 and R3, provides the relevant information to P-PNC and triggers switch
+
+- step 11. P-PNC transfers the information received to R1 and triggers R1 to switch traffic
+
+- step 12. R1 informs P-PNC of the service switch
+
+- step 13. P-PNC informs MDSC of the service switch.
 
 {: #ref-hitless-reversion}
 
@@ -464,18 +536,22 @@ at the IP layer, if proper coordination is not enabled. As this may cause traffi
 is requested by the network operator, multi-layer coordination under the supervision of the MDSC is necessary.
 The effect of multi-layer coordination is to bring the whole network, i.e. both the IP and the optical layers,
 back to their initial configuration after the recovery from a failure. In particular, the process described in this section
-relys on the hitless switching capability of the IP layer.
+relies on the hitless switching capability of the IP layer.
 Depending on the specific configuration, the procedure can be enabled at the end of the use cases described in {{resiliency}}.
 The decision whether to apply it or not has to be evaluated by the network operator considering different factors,
 including the relative complexity of the process and the effects of its steps on the live traffic.
 
 To move back to the initial network configuration the MDSC has to follow a sequence of steps:
+
 - Force the IP layer to switch the traffic flow(s) on another path, e.g. an alternative/backup path
+
 - Trigger the optical layer to coordinate the reversion to the initial setup, e.g. disable an optical backup path
 and enable connectivity on the previously used primary path
+
 - Force again the IP layer to switch back to the original path.
 The actions on the IP layer are handled so that the IP traffic is switched only after the interface queues are emptied,
 guaranteeing a hitless switching.
+
 The mimics of the steps requested is shown in the next figure.
 
 ~~~~ ascii-art
@@ -487,20 +563,34 @@ artwork-name="hitless-multi-layer-reversion.txt"}
 Figure 5.2 Diagram for hitless multi-layer reversion
 
 The steps illustrated in the previous figure are detailed here:
-1. ROADM1 detects the optical signal is up again on the previously broken fiber and notifies O-PNC
-2. O-PNC notifies MDSC of the fiber up event
-3. MDSC requires P-PNC to move the affected IP service(s) to an alternative/backup path (this path may vary according to the scenarios explained later). Being a hitless switch, it is necessary to avoid loss of service
-4. P-PNC signals R1 to switch the IP service(s) to the alternative/backup path
-5. R1 switches the service(s) to the alternative/backup path and notifies P-PNC
-6. P-PNC confirms the switch to MDSC
-7. MDSC instructs O-PNC to disable the optical protection path (which may vary according to the scenarios detailed later) and activate again the optical primary path
-8. O-PNC instructs both ROADM1 and ROADM2 to disable the optical protection path and activate the primary one
-9. ROADM1 and ROADM2 acknowledge to O-PNC
-10. O-PNC acknowledges to MDSC
-11. MDSC requires P-PNC to revert the IP service(s) back to the primary path
-12. P-PNC signals R1 to switch the IP service(s) to primary path
-13. R1 switches and acknowledges to P-PNC
-14. P-PNC acknowledges to MDSC.
+
+- step 1. ROADM1 detects the optical signal is up again on the previously broken fiber and notifies O-PNC
+
+- step 2. O-PNC notifies MDSC of the fiber up event
+
+- step 3. MDSC requires P-PNC to move the affected IP service(s) to an alternative/backup path (this path may vary according to the scenarios explained later). Being a hitless switch, it is necessary to avoid loss of service
+
+- step 4. P-PNC signals R1 to switch the IP service(s) to the alternative/backup path
+
+- step 5. R1 switches the service(s) to the alternative/backup path and notifies P-PNC
+
+- step 6. P-PNC confirms the switch to MDSC
+
+- step 7. MDSC instructs O-PNC to disable the optical protection path (which may vary according to the scenarios detailed later) and activate again the optical primary path
+
+- step 8. O-PNC instructs both ROADM1 and ROADM2 to disable the optical protection path and activate the primary one
+
+- step 9. ROADM1 and ROADM2 acknowledge to O-PNC
+
+- step 10. O-PNC acknowledges to MDSC
+
+- step 11. MDSC requires P-PNC to revert the IP service(s) back to the primary path
+
+- step 12. P-PNC signals R1 to switch the IP service(s) to primary path
+
+- step 13. R1 switches and acknowledges to P-PNC
+
+- step 14. P-PNC acknowledges to MDSC.
 
 {: #conclusions}
 
