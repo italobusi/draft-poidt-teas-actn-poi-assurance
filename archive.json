@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-03T00:40:30.845856+00:00",
+  "timestamp": "2024-03-05T00:38:05.436936+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -281,6 +281,22 @@
           "updatedAt": "2023-09-13T20:55:15Z"
         }
       ]
+    },
+    {
+      "number": 11,
+      "id": "I_kwDOJAsmzM6BIPRA",
+      "title": "Benefits of a spare router port",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/11",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "As discussed in our call last Tuesday, cost vs benefits of this use case of having a spare port in the router and a spare transponder in the optical node just to be used in case of a router port failure is not so clear to me. Most common approach is to solve this at IP/MPLS layer (FRR, etc.). However it was agreed not to remove this use case without Fabio's agreement.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/10#discussion_r1509159236_\r\n            ",
+      "createdAt": "2024-03-04T09:51:18Z",
+      "updatedAt": "2024-03-04T09:51:18Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -492,24 +508,26 @@
       "id": "PR_kwDOJAsmzM5k1EtC",
       "title": "proposed text on resiliency and hitless reversion",
       "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/10",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "Paolo-Volpato",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-01-23T12:08:53Z",
-      "updatedAt": "2024-03-01T15:38:05Z",
+      "updatedAt": "2024-03-04T09:57:08Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
-      "baseRefOid": "54a3f4f15492e04b74ee805d9d2df2e6e54ebbc8",
+      "baseRefOid": "02dc8fcdf4a06db45679ba600362ba3086c2df19",
       "headRepository": "Paolo-Volpato/draft-poidt-teas-actn-poi-assurance",
       "headRefName": "Resiliency-#1",
-      "headRefOid": "62cadc1bc395d5d67809bbd05ec31320749c6045",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "bf3de91b1b77ec64af73aaecbddf78bf5870357d",
+      "closedAt": "2024-03-04T09:57:08Z",
+      "mergedAt": "2024-03-04T09:57:08Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "3fa6b556bbac90f4164b912852abe8108e1e2d9c"
+      },
       "comments": [
         {
           "author": "italobusi",
@@ -570,6 +588,39 @@
               "body": "As discussed in our call last Tuesday, cost vs benefits of this use case of having a spare port in the router and a spare transponder in the optical node just to be used in case of a router port failure is not so clear to me. Most common approach is to solve this at IP/MPLS layer (FRR, etc.). However it was agreed not to remove this use case without Fabio's agreement. ",
               "createdAt": "2024-03-01T15:28:09Z",
               "updatedAt": "2024-03-01T15:38:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOJAsmzM5yEkvB",
+          "commit": {
+            "abbreviatedOid": "82387bd"
+          },
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2024-03-04T09:18:09Z",
+          "updatedAt": "2024-03-04T09:18:09Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJAsmzM5yE4vH",
+          "commit": {
+            "abbreviatedOid": "efab0f0"
+          },
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2024-03-04T09:55:19Z",
+          "updatedAt": "2024-03-04T09:55:20Z",
+          "comments": [
+            {
+              "originalPosition": 379,
+              "body": "See https://github.com/Paolo-Volpato/draft-poidt-teas-actn-poi-assurance/commit/bf3de91b1b77ec64af73aaecbddf78bf5870357d",
+              "createdAt": "2024-03-04T09:55:19Z",
+              "updatedAt": "2024-03-04T09:55:20Z"
             }
           ]
         }
