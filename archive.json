@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-03-05T00:38:05.436936+00:00",
+  "timestamp": "2024-03-07T00:31:17.221017+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -294,9 +294,17 @@
       "labels": [],
       "body": "As discussed in our call last Tuesday, cost vs benefits of this use case of having a spare port in the router and a spare transponder in the optical node just to be used in case of a router port failure is not so clear to me. Most common approach is to solve this at IP/MPLS layer (FRR, etc.). However it was agreed not to remove this use case without Fabio's agreement.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/10#discussion_r1509159236_\r\n            ",
       "createdAt": "2024-03-04T09:51:18Z",
-      "updatedAt": "2024-03-04T09:51:18Z",
+      "updatedAt": "2024-03-05T19:05:35Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "I think that the answer to this question depends on what are the N ports and this depends on the resiliency architecture.\r\n\r\nLet's say that X is the number of router ports required to support unprotected IP traffic.\r\n\r\nIf the resiliency strategy is to protect only at the IP/MPLS layer, the number of router ports required is (X+1)<=Y<=2*N, depending on the percentage of IP traffic that needs to be protected.\r\n\r\nIn this case, the (N+1) router port protection would require Y+1 router ports and I would agree with you about the cost/benefit issues.\r\n\r\nAn alternative resiliency strategy can leverage the multi-layer aspects of POI and rely on optical network protection/restoration to recover most of the failure scenarios and the (N+1) router port protection to recover the failures of the links between the IP routers and the ROADMs.\r\n\r\nIn this case the (N+1) router port protection would require only X+1 router ports with clear cost benefits. If, as it happens in many cases, the probability of a failure on the links between the IP routers and the edge ROADMs is quite low compared with the probability of a failure within the optical network, the availability provided by this configuration can also be higher (at a lower cost) that a single-layer protection and also be able to recover 100% of the IP traffic\r\n\r\nMy 2 cents\r\n\r\nItalo\r\n",
+          "createdAt": "2024-03-05T19:05:33Z",
+          "updatedAt": "2024-03-05T19:05:33Z"
+        }
+      ]
     }
   ],
   "pulls": [
