@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-06T00:42:05.030440+00:00",
+  "timestamp": "2024-06-09T00:47:36.697154+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -305,6 +305,22 @@
           "updatedAt": "2024-03-05T19:05:33Z"
         }
       ]
+    },
+    {
+      "number": 12,
+      "id": "I_kwDOJAsmzM6LYBo4",
+      "title": "Failure scenarios",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/12",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "Initial set of slides analysis some failure scenarios relevant for POI assurance: [poi-failure-scenarios-00.pptx](https://github.com/user-attachments/files/15632484/poi-failure-scenarios-00.pptx)\r\n",
+      "createdAt": "2024-06-06T13:54:51Z",
+      "updatedAt": "2024-06-06T13:54:51Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
