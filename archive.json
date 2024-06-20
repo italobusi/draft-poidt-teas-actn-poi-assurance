@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-18T00:43:33.208764+00:00",
+  "timestamp": "2024-06-20T00:42:05.731584+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -318,9 +318,17 @@
       "labels": [],
       "body": "Initial set of slides analysis some failure scenarios relevant for POI assurance: [poi-failure-scenarios-00.pptx](https://github.com/user-attachments/files/15632484/poi-failure-scenarios-00.pptx)\r\n",
       "createdAt": "2024-06-06T13:54:51Z",
-      "updatedAt": "2024-06-06T13:54:51Z",
+      "updatedAt": "2024-06-18T12:22:16Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[2024-06-18 ACTN POI bi-weekly call](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-06-18)**\r\n\r\nReviewed slides in [poi-failure-scenarios-00.pptx](https://github.com/user-attachments/files/15632484/poi-failure-scenarios-00.pptx)\r\n\r\nThe scenarios are assuming grey interfaces between the routers and the optical nodes\r\n\r\n- [ ] @italobusi : add a note to the slides clarifying these are grey interfaces\r\n\r\nGabriele volounteered to provide an ASCII art version of the slides for inclusion in the draft\r\n\r\nThe issue can be cause by a failure on the router port, on the fiber between the router and the OTN node or on the OTN node port\r\n\r\nThe O-PNC and P-PNC should provide the MDSC all the information which is needeed to allow the MDSC to locate the root case of the failure on the link\r\n\r\nComment: change PE1 and PE2 to NE1 and NE2 to avoid misunderstanding that they are IP routers\r\n\r\nThe target is to reduce the amount of alarms sent by O-PNC and P-PNC to the MDSC by having some intelligent tool for root cause analysis. The challenge in this scenario is that the link is not under the control of a single PNC\r\n\r\nThis issue should be further investigated in details\r\n\r\nIn scenario 2, reporting the down status on the optical tunnel is sufficient to allow the MDSC to perform the multi-layer correlation and discover which IP links, LSPs and VPNs are affected by the failure\r\n\r\nJeff: the RCA is performed by the O-PNC and the result can be passed to the MDSC together with the information that the Optical tunnel is done. It could be useful to show on the MDSC which fiber is broken and the appoximate location of the failure on the fiber (as provided by the O-PNC)\r\n\r\n- [ ] @prmanna @manzoro check whether the LOS alarm for grey interfaces on the routers is standardized\r\n",
+          "createdAt": "2024-06-18T12:19:13Z",
+          "updatedAt": "2024-06-18T12:22:16Z"
+        }
+      ]
     }
   ],
   "pulls": [
