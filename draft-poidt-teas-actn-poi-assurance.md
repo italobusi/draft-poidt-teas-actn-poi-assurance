@@ -38,6 +38,37 @@ author:
     org: Cisco
     email: prmanna@cisco.com
 
+normative:
+  ITU-T_G.709:
+    title: Interfaces for the optical transport network
+    author:
+      org: International Telecommunication Union
+    date: March 2024
+    seriesinfo: ITU-T Recommendation G.709, Amendment 3
+    target: https://www.itu.int/rec/T-REC-G.709/
+  ITU-T_G.798:
+    title: >
+      Characteristics of optical transport network hierarchy equipment functional blocks
+    author:
+      org: International Telecommunication Union
+    date: April 2024
+    seriesinfo: ITU-T Recommendation G.798
+    target: https://www.itu.int/rec/T-REC-G.798/
+  ITU-T_G.7710:
+    title: Common equipment management function requirements
+    author:
+      org: International Telecommunication Union
+    date: November 2022
+    seriesinfo: ITU-T Recommendation G.7710, Amendment 1
+    target: https://www.itu.int/rec/T-REC-G.7710/
+  ITU-T_G.874:
+    title: Management aspects of optical transport network elements
+    author:
+      org: International Telecommunication Union
+    date: January 2024
+    seriesinfo: ITU-T Recommendation G.874, Amendment 2
+    target: https://www.itu.int/rec/T-REC-G.874/
+
 --- abstract
 
 This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover multi-layer service assurance scenarios, for end-to-end customer L2VPN or L3VPN connectivity services setup over underlying transport optical paths, with specific Service Level Agreement (SLA) requirements.
@@ -213,7 +244,7 @@ The following figure illustrates the reference scenario useful to discuss the fa
 {: #fig-failure-reference title="Reference scenario for multi-layer fault management"
 artwork-name="multi-layer-failure-reference-network.txt"}
 
-The MDSC is responsible for the correlation of the events. The notification about a failure (alarm, state change, etc.) is sent from the P-PNC (upstream arrow labelled "1" in the figure) and/or the O-PNC (upstream arrow labelled "2"), depending on the case considered. It has to be noted that only a single P-PNC is present in the network. The second box marked with the label "P-PNC" is represented only to simplify the schematics. Actually the P-PNC on the left and the P-PNC on the right are the same element. 
+The MDSC is responsible for the correlation of the events. The notification about a failure (alarm, state change, etc.) is sent from the P-PNC (upstream arrow labelled "1" in the figure) and/or the O-PNC (upstream arrow labelled "2"), depending on the case considered. It has to be noted that only a single P-PNC is present in the network. The second box marked with the label "P-PNC" is represented only to simplify the schematics. Actually the P-PNC on the left and the P-PNC on the right are the same element.
 
 In case of a failure in the IP layer, the router that detects it sends a corresponding notifiation message to the P-PNC. This is represented by the upstream arrow labbelled "a". Similarly, a failure in the optical layer can be notified through messages sent by a ROADM (upstream arrow "b") or by a node within the optical core network (upstream arrow "c"). Again, depending on the specific case multiple messages can be directed by the IP and/or optical nodes to the corresponding PNC.
 
@@ -226,9 +257,9 @@ The two connections between a router and a ROADM carry, in addition to data traf
 
 In this case, the O-PNC is fully responsible for the fault management (including failure detection, location and repair) within the optical domain.
 
-The detailed mechanisms used by the O-PNC for intra-domain fault management are outside the scope of this document. Optical data plane standards provide a comprehensive set of OAM tools, defined in [ITU-T G.709] and [ITU-T G.798], that would assist O-PNC fault management, as described in [ITU-T G.7710] and [ITU-T G.874].
+The detailed mechanisms used by the O-PNC for intra-domain fault management are outside the scope of this document. Optical data plane standards provide a comprehensive set of OAM tools, defined in {{ITU-T_G.709}} and {{ITU-T_G.798}}, that would assist O-PNC fault management, as described in {{ITU-T_G.7710}} and {{ITU-T_G.874}}.
 
-It is worth noting that the OAM tools, defined in [ITU-T G.709] and [ITU-T G.798], are fully standardized for the ODU, OTU and FlexO sub-layers but only functionally standardized for the optical medial layer (i.e., OCh and OTSiA). This is not an issue since it is assumed that the optical NEs and O-PNC within a single domain are single-vendor.
+It is worth noting that the OAM tools, defined in {{ITU-T_G.709}} and {{ITU-T_G.798}}, are fully standardized for the ODU, OTU and FlexO sub-layers but only functionally standardized for the optical medial layer (i.e., OCh and OTSiA). This is not an issue since it is assumed that the optical NEs and O-PNC within a single domain are single-vendor.
 
 However, the level of standardization of the OAM tools management requirements is sufficient to allow defining standard requirements and data model at the MPI for multi-vendor, multi-domain and multi-layer fault management.
 
@@ -236,23 +267,23 @@ Even if in this case the fault management is fully under the responsibility of t
 
 A failure within the optical network can cause secondary failure on multiple optical tunnels which can in turn cause failures on the multi-layer IP links and on the L2VPN and L3VPN services whose traffic is sent over the failed tunnels.
 
-For example, with a reference to Figure 7 of [ACTN POI], a failure within the optical network can cause a failure on the optical tunnel between NE11 and NE12. As a consequence, also the IP link between PE13 and BR11 is failed and the L2VPN/L3VPN xxx is also affected.
+For example, with a reference to Figure 7 of {{!I-D.ietf-teas-actn-poi-applicability}}, a failure within the optical network can cause a failure on the optical tunnel between NE11 and NE12. As a consequence, also the IP link between PE13 and BR11 is failed and the L2VPN/L3VPN xxx is also affected.
 
-The O-PNC can report the operational status of the optical tunnels to the MDSC to let the MDSC know that the optical tunnel is down. The MDSC can then correlate the failure of the optical tunnel (e.g., the optical tunnel between NE11 and NE12 in Figure 7 of [ACTN POI]) with the secondary failures on the L2VPN/L3VPN whose traffic has been routed through that optical tunnel.
+The O-PNC can report the operational status of the optical tunnels to the MDSC to let the MDSC know that the optical tunnel is down. The MDSC can then correlate the failure of the optical tunnel (e.g., the optical tunnel between NE11 and NE12 in Figure 7 of {{!I-D.ietf-teas-actn-poi-applicability}}) with the secondary failures on the L2VPN/L3VPN whose traffic has been routed through that optical tunnel.
 
-[Comment: Need to discuss here why reporting the operational status of the optical tunnel is not sufficient to motivate the need for a more enhanced incident management as proposed in [draft-feng-opsawg-incident-management]]
+> Comment: Need to discuss here why reporting the operational status of the optical tunnel is not sufficient to motivate the need for a more enhanced incident management as proposed in {{!I-D.feng-opsawg-incident-management}}
 
 The MDSC should also inform the OSS/orchestration layer about the failures on the affected L2VPN/L3VPN services though mechanisms which are outside the scope of this document.
 
-[Comment: Need further discussion about the behavior of P-PNC. The P-PNC can also discover that the multi-layer IP link is down (e.g., using BFD). However, I think that the fault management process in P-PNC should be different from the case where the failed IP link is a single-layer IP link under P-PNC responsibility.]
+> Comment: Need further discussion about the behavior of P-PNC. The P-PNC can also discover that the multi-layer IP link is down (e.g., using BFD). However, I think that the fault management process in P-PNC should be different from the case where the failed IP link is a single-layer IP link under P-PNC responsibility.
 
-[Comment: The assumption in this text is that there are grey interfaces between the routers and the optical NEs. More investigation is needed for the scenarios where optical pluggable interfaces are used in the router. Three scenarios for WDM networks: grey interfaces, colored interfaces option 1 and colored interfaces option 2. To consider also the case with ODU switching.]
+> Comment: The assumption in this text is that there are grey interfaces between the routers and the optical NEs. More investigation is needed for the scenarios where optical pluggable interfaces are used in the router. Three scenarios for WDM networks: grey interfaces, colored interfaces option 1 and colored interfaces option 2. To consider also the case with ODU switching.
 
 {: #edge-fault}
 
 ## Cross-layer Link Failures
 
-The failures discussed in this section occur on the connection between a router and a ROADM. 
+The failures discussed in this section occur on the connection between a router and a ROADM.
 A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({: #fig-failure-ingress-link}).
 
 ~~~~ ascii-art
