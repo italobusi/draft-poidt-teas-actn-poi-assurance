@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-06-25T00:42:56.865518+00:00",
+  "timestamp": "2024-06-27T00:43:19.046926+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -657,6 +657,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOJAsmzM5zgUQw",
+      "title": "Update draft-poidt-teas-actn-poi-assurance.md for IETF 120",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/13",
+      "state": "OPEN",
+      "author": "Paolo-Volpato",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Added text in section 5 about the multi-layer fault management",
+      "createdAt": "2024-06-25T14:09:30Z",
+      "updatedAt": "2024-06-26T13:47:09Z",
+      "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
+      "baseRefName": "main",
+      "baseRefOid": "445b1aa5cb2dc0e19b630913503275342c341144",
+      "headRepository": "Paolo-Volpato/draft-poidt-teas-actn-poi-assurance",
+      "headRefName": "IETF_120",
+      "headRefOid": "78d295c5b48da1c751f131a17340186f06fba277",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
