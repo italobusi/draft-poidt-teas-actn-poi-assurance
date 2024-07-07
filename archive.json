@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-07-04T00:43:41.453814+00:00",
+  "timestamp": "2024-07-07T00:48:46.788991+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -670,7 +670,7 @@
       "labels": [],
       "body": "Added text in section 5 about the multi-layer fault management",
       "createdAt": "2024-06-25T14:09:30Z",
-      "updatedAt": "2024-06-26T13:47:09Z",
+      "updatedAt": "2024-07-04T15:29:35Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "445b1aa5cb2dc0e19b630913503275342c341144",
@@ -682,7 +682,58 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJAsmzM6Ahzg3",
+          "commit": {
+            "abbreviatedOid": "78d295c"
+          },
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "Minor editorial changes and proposal to remove some text",
+          "createdAt": "2024-07-03T12:43:04Z",
+          "updatedAt": "2024-07-04T15:29:35Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "Would remove the word \"service\" and just let assurance as the scenarios detailed in the following sections are linked more to network failures (port, link etc.) rather than focusing on service assurance",
+              "createdAt": "2024-07-03T12:43:04Z",
+              "updatedAt": "2024-07-04T15:29:35Z"
+            },
+            {
+              "originalPosition": 62,
+              "body": "\"notifiation\" to be changed to \"notification\"",
+              "createdAt": "2024-07-03T12:44:46Z",
+              "updatedAt": "2024-07-04T15:29:35Z"
+            },
+            {
+              "originalPosition": 62,
+              "body": "Guess that by notification message you refer to a notification of the state of the topology resource concerned right? e.g. port, an OTS link or OMS link status changed etc.? Perhaps would be good to be more precised explaining what is this \"nofication message\" sent from P-PNC to MDSC or O-PNC to MDSC?",
+              "createdAt": "2024-07-03T12:47:57Z",
+              "updatedAt": "2024-07-04T15:29:35Z"
+            },
+            {
+              "originalPosition": 78,
+              "body": "I am not so sure about this, although it is a long time I didn't check the possible new drafts/RFC on this topic...Is there a mean to request TCMs from MPI client side so that then the O-PNC can returns the OPM measurements towards the MPI client? Same in the IP domain, not sure you can define MEPs/MIPs from the MPI client side and then you get the PM measurements between those MEPs (or MIPs) exposed in a standard way to the MPI client?",
+              "createdAt": "2024-07-04T12:56:09Z",
+              "updatedAt": "2024-07-04T15:29:35Z"
+            },
+            {
+              "originalPosition": 88,
+              "body": "I think we need also to be able to report an OTS/OMS status change over the MPI and not only the  OCh operational state. Else you could have OChs down/disabled with OTS/OMS still up/enabled...",
+              "createdAt": "2024-07-04T12:58:46Z",
+              "updatedAt": "2024-07-04T15:29:35Z"
+            },
+            {
+              "originalPosition": 94,
+              "body": "Would propose to remove the last part of the comment \"Three scenarios for WDM networks: grey interfaces, colored interfaces option 1 and colored interfaces option 2. To consider also the case with ODU switching\" as option 1 and option 2 is not very clear here...",
+              "createdAt": "2024-07-04T14:43:27Z",
+              "updatedAt": "2024-07-04T15:29:35Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
