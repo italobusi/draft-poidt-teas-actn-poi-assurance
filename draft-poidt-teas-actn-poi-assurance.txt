@@ -5,14 +5,14 @@
 TEAS WG                                                          I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 27 December 2024                                       Vodafone
+Expires: 9 January 2025                                         Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                            25 June 2024
+                                                             8 July 2024
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 December 2024.
+   This Internet-Draft will expire on 9 January 2025.
 
 Copyright Notice
 
@@ -76,9 +76,10 @@ Table of Contents
      3.1.  Reference Network
    4.  YANG Data Models for the MPIs
    5.  Multi-layer Fault Management
-     5.1.  Optical Network Failures
-     5.2.  Cross-layer Link Failures
-     5.3.  Router Node Failures
+     5.1.  Reference scenario for multi-layer faults
+     5.2.  Optical Network Failures
+     5.3.  Cross-layer Link Failures
+     5.4.  Router Node Failures
    6.  Multi-layer Performance Management
    7.  Multi-layer Resiliency
      7.1.  Optical Network Failures
@@ -342,29 +343,276 @@ Table of Contents
 
 5.  Multi-layer Fault Management
 
-5.1.  Optical Network Failures
+   This section deals with the actions taken by the MDSC and the PNCs at
+   the IP and optical layers to handle the occurence of a failure in a
+   multi-layer network.  This set of actions is referred to as fault
+   management and consists of steps such as fault detection, fault
+   localization, and fault recovery.  Specifically, this section
+   analyzes the detection and localization of a failure, while section
+   {: #resiliency} further details the mechanisms for fault recovery.
+   Depending on the point where a failure occurs, three use cases are
+   considered: 1.  The failure occurs in the optical layer, for example
+   a fiber cut that triggers a Loss of Signal (LOS) alarm.  This is
+   discussed in section {: #optical-fault}. 2.  The failure occurs at
+   the connection between a router and a ROADM (cross-layer link).  Such
+   a case is analyzed in section {: #edge-fault}. 3.  The failure occurs
+   in the IP layer, for example a router experiences a hardware failure
+   on a port that connects to its optical counterpart.  This case is
+   discussed in section {: #router-fault}.
 
-   TODO Describe fault detection performed by the O-PNC and how this
-   information is reported to the MDSC: see for example the failure
-   scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-
-   assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx
-   (slide 3)
+5.1.  Reference scenario for multi-layer faults
 
-5.2.  Cross-layer Link Failures
+   The following figure illustrates the reference scenario useful to
+   discuss the fault management cases.
 
-   TODO Describe the mechanisms to detect when the failure occurs on a
-   router port connected with the optical domain: see for example the
-   fault scenarios in https://github.com/italobusi/draft-poidt-teas-
-   actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-
-   assurance.pptx (slide 5)
+   ┌―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┐
+   │                             MDSC                              │
+   └―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┘
+      /\                          /\
+      || 1                        || 2
+      ||                          ||
+   ┌――――――┐      ┌―――――――――――――――――――――――――――――――――――┐      ┌――――――┐
+   │P-PNC │      │              O-PNC                │      │P-PNC │
+   └――――――┘      └―――――――――――――――――――――――――――――――――――┘      └――――――┘
+      /\             /\           /\
+      || a           || b         || c
+      ||             ||         _____
+      ||             ||   _____/     \_______
+   ┌――――――┐      ┌――――――┐/                   \┌――――――┐      ┌――――――┐
+   │  R1  │----->│ROADM1│      Optical        │ROADM2│----->│  R2  │
+   │      │<-----│      │      Network        │      │<-----│      │
+   └――――――┘      └――――――┘\___________________/└――――――┘      └――――――┘
 
-5.3.  Router Node Failures
+       Figure 3: Reference scenario for multi-layer fault management
 
-   TODO Describe the mechanisms to detect when the failure occurs on a
-   node connected with the optical domain: see for example the fault
-   scenarios in https://github.com/italobusi/draft-poidt-teas-actn-poi-
-   assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx
-   (slide 6)
+   The MDSC is responsible for the correlation of the events.  The
+   notification about a failure (alarm, state change, etc.) is sent from
+   the P-PNC (upstream arrow labelled "1" in the figure) and/or the
+   O-PNC (upstream arrow labelled "2"), depending on the case
+   considered.  It has to be noted that only a single P-PNC is present
+   in the network.  The second box marked with the label "P-PNC" is
+   represented only to simplify the schematics.  Actually the P-PNC on
+   the left and the P-PNC on the right are the same element.
+
+   In case of a failure in the IP layer, the router that detects it
+   sends a corresponding notifiation message to the P-PNC.  This is
+   represented by the upstream arrow labbelled "a".  Similarly, a
+   failure in the optical layer can be notified through messages sent by
+   a ROADM (upstream arrow "b") or by a node within the optical core
+   network (upstream arrow "c").  Again, depending on the specific case
+   multiple messages can be directed by the IP and/or optical nodes to
+   the corresponding PNC.
+
+   For simplicity, a router is connected to a ROADM via two
+   unidirectional fibers, represented by the two arrows between them.
+   ROADM 1 and ROADM 2 are considered to be the edge nodes of a larger
+   optical core that may include several other components.  The two
+   connections between a router and a ROADM carry, in addition to data
+   traffic, the signaling messages generated by the physical
+   transmission layer, for example Local Failure Indication (LFI) or
+   Remote Failure Indication (RFI).  These messages provide
+   supplementary information that an IP or an optical node may consider
+   for failure detection and for providing further details in the
+   upstream notification to a PNC.
+
+5.2.  Optical Network Failures
+
+   In this case, the O-PNC is fully responsible for the fault management
+   (including failure detection, location and repair) within the optical
+   domain.
+
+   The detailed mechanisms used by the O-PNC for intra-domain fault
+   management are outside the scope of this document.  Optical data
+   plane standards provide a comprehensive set of OAM tools, defined in
+   [ITU-T_G.709] and [ITU-T_G.798], that would assist O-PNC fault
+   management, as described in [ITU-T_G.7710] and [ITU-T_G.874].
+
+   It is worth noting that the OAM tools, defined in [ITU-T_G.709] and
+   [ITU-T_G.798], are fully standardized for the ODU, OTU and FlexO sub-
+   layers but only functionally standardized for the optical medial
+   layer (i.e., OCh and OTSiA).  This is not an issue since it is
+   assumed that the optical NEs and O-PNC within a single domain are
+   single-vendor.
+
+   However, the level of standardization of the OAM tools management
+   requirements is sufficient to allow defining standard requirements
+   and data model at the MPI for multi-vendor, multi-domain and multi-
+   layer fault management.
+
+   Even if in this case the fault management is fully under the
+   responsibility of the O-PNC, it is still needed to inform the MDSC
+   that there is a failure within the optical domain and that the O-PNC
+   is working on it.
+
+   A failure within the optical network can cause secondary failure on
+   multiple optical tunnels which can in turn cause failures on the
+   multi-layer IP links and on the L2VPN and L3VPN services whose
+   traffic is sent over the failed tunnels.
+
+   For example, with a reference to Figure 7 of
+   [I-D.ietf-teas-actn-poi-applicability], a failure within the optical
+   network can cause a failure on the optical tunnel between NE11 and
+   NE12.  As a consequence, also the IP link between PE13 and BR11 is
+   failed and the L2VPN/L3VPN xxx is also affected.
+
+   The O-PNC can report the operational status of the optical tunnels to
+   the MDSC to let the MDSC know that the optical tunnel is down.  The
+   MDSC can then correlate the failure of the optical tunnel (e.g., the
+   optical tunnel between NE11 and NE12 in Figure 7 of
+   [I-D.ietf-teas-actn-poi-applicability]) with the secondary failures
+   on the L2VPN/L3VPN whose traffic has been routed through that optical
+   tunnel.
+
+      Comment: Need to discuss here why reporting the operational status
+      of the optical tunnel is not sufficient to motivate the need for a
+      more enhanced incident management as proposed in
+      [I-D.feng-opsawg-incident-management]
+
+   The MDSC should also inform the OSS/orchestration layer about the
+   failures on the affected L2VPN/L3VPN services though mechanisms which
+   are outside the scope of this document.
+
+      Comment: Need further discussion about the behavior of P-PNC.  The
+      P-PNC can also discover that the multi-layer IP link is down
+      (e.g., using BFD).  However, I think that the fault management
+      process in P-PNC should be different from the case where the
+      failed IP link is a single-layer IP link under P-PNC
+      responsibility.
+
+      Comment: The assumption in this text is that there are grey
+      interfaces between the routers and the optical NEs.  More
+      investigation is needed for the scenarios where optical pluggable
+      interfaces are used in the router.  Three scenarios for WDM
+      networks: grey interfaces, colored interfaces option 1 and colored
+      interfaces option 2.  To consider also the case with ODU
+      switching.
+
+5.3.  Cross-layer Link Failures
+
+   The failures discussed in this section occur on the connection
+   between a router and a ROADM.  A first case concerns the Tx fiber
+   used by R1 to send traffic to ROADM1 ({: #fig-failure-ingress-link}).
+
+   ┌―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┐
+   │                             MDSC                              │
+   └―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┘
+      /\                          /\
+      || IP Link down             || R1-ROADM1 Link Down
+      ||                          ||
+   ┌――――――┐      ┌―――――――――――――――――――――――――――――――――――┐      ┌――――――┐
+   │P-PNC │      │              O-PNC                │      │P-PNC │
+   └――――――┘      └―――――――――――――――――――――――――――――――――――┘      └――――――┘
+      /\             /\                                        /\
+      || RFI status  || LOS alarm                   LFI status ||
+      || BFD Down    ||         _____                 BFD Down ||
+      ||             ||   _____/     \_______                  ||
+   ┌――――――┐  \/  ┌――――――┐/                   \┌――――――┐  LFI ┌――――――┐
+   │  R1  │--/\->│ROADM1│--------CSF--------->│ROADM2│----->│  R2  │
+   │      │<-----│      │<-------CSF----------│      │<-----│      │
+   └――――――┘  RFI └――――――┘\___________________/└――――――┘  RFI └――――――┘
+
+               Figure 4: Failure on the optical ingress link
+
+   The failure on that fiber is physically detected by ROADM1 that sends
+   a corresponding notification to O-PNC and generates a Client Signal
+   Fail (CSF) message along the optical path.  Upon receiving CSF,
+   ROADM2 sends a LFI to R2.  If R2 is instructed to decode physical
+   transmission messages, upon receiving LFI it generates a
+   corresponding message to P-PNC, also informing of the loss of IP
+   connectivity due to unreceived BFD messages.  At the physical level,
+   R2 may generate on its Tx interface an RFI indication that is
+   propagated downstream to the optical network (where a CSF is
+   generated) and to R1.  When receiving RFI on its Rx interface, R1 can
+   also send a notification to P-PNC.  When O-PNC and P-PNC get the
+   notifications sent by the network elements, they also instruct MDSC.
+   O-PNC informs MDSC of the link R1-ROADM1 down, while P-PNC informs
+   MDSC that the corresponding IP link is down due to missed BFD
+   signalling in addition to the RFI status.  It is up to the MDSC to
+   correlate the events and determine what IP services are affected
+   (VPNs, P2P links, etc.).
+
+   A second case is depicted in figure {: #fig-failure-egress-link}. The
+   failure happens on the Rx fiber used by R2 to receive traffic from
+   ROADM2.
+
+   ┌―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┐
+   │                             MDSC                              │
+   └―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┘
+      /\                          /\
+      || R2-ROADM2 Link Down      || R2-ROADM2 Link Down
+      ||                          ||
+   ┌――――――┐      ┌―――――――――――――――――――――――――――――――――――┐      ┌――――――┐
+   │P-PNC │      │              O-PNC                │      │P-PNC │
+   └――――――┘      └―――――――――――――――――――――――――――――――――――┘      └――――――┘
+      /\                                         /\           /\
+      || RFI status                   RFI status || LOS alarm ||
+      || BFD Down               _____            ||           ||
+      ||                  _____/     \_______    ||           ||
+   ┌――――――┐      ┌――――――┐/                   \┌――――――┐  \/  ┌――――――┐
+   │  R1  │----->│ROADM1│-------------------->│ROADM2│--/\->│  R2  │
+   │      │<-----│      │<-------CSF----------│      │<-----│      │
+   └――――――┘  RFI └――――――┘\___________________/└――――――┘  RFI └――――――┘
+
+                Figure 5: Failure on the optical egress link
+
+   R2 physically detects the absence of signal generating a
+   corresponding LOS alarm to P-PNC.  In turn, P-PNC signals MDSC of the
+   corresponding event affecting the link between ROADM2 and R2.  R2
+   also propagates an RFI indication on the return fiber.  Upon
+   detecting it, ROADM2 also informs O-PNC of the failure with a
+   corresponding RFI status indication.  ROADM2 also propagates a CSF
+   indication across the optical domain, translated to an RFI by ROADM1
+   towards R1.  The RFI is detected by R1 that may inform P-PNC about
+   the remote failure with an RFI status indication, if instructed to do
+   so, and with a BFD down event notification when detecting missing
+   connectivity.  As noted, MDSC correlates the events to determine the
+   affected services.
+
+   A failure may also occur when the two unidirectional fibers
+   connecting a router, e.g.  R1, to a ROADM, e.g.  ROADM2, are
+   affected, for example for a simultaneous fiber cut, as shown in
+   figure {: #fig-failure-bidir-link}.
+
+   ┌―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┐
+   │                             MDSC                              │
+   └―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┘
+      /\                          /\
+      || R1-ROADM1 Link Down      || R1-ROADM1 Link Down
+      ||                          ||
+   ┌――――――┐      ┌―――――――――――――――――――――――――――――――――――┐      ┌――――――┐
+   │P-PNC │      │              O-PNC                │      │P-PNC │
+   └――――――┘      └―――――――――――――――――――――――――――――――――――┘      └――――――┘
+      /\            /\                                        /\
+      || LOS alarm  || LOS alarm                   LFI status ||
+      ||            ||                               BFD down ||
+      ||            ||    _____/     \_______                 ||
+   ┌――――――┐      ┌――――――┐/                   \┌――――――┐  LFI ┌――――――┐
+   │  R1  │--\/->│ROADM1│--------CSF--------->│ROADM2│----->│  R2  │
+   │      │<-/\--│      │<-------CSF----------│      │<-----│      │
+   └――――――┘      └――――――┘\___________________/└――――――┘  RFI └――――――┘
+
+                    Figure 6: Failure on the access link
+
+   Both Tx and Rx fibers are affected, then R1 and ROADM1 immediately
+   detect physical LOS and inform P-PNC and O-PNC respectively.  ROADM1
+   also triggers a CSF indication towards the optical core that
+   eventually gets to ROADM2, which sends a LFI to R2.  R2 may detect
+   this signal, informning P-PNC.  From the IP connectivity standpoint,
+   after missing three BFD messages R2 also signals to P-PNC the lack of
+   end-to-end connectivity.  It then generates a RFI indication back to
+   ROADM2, which in turn sends a CSF indication on the optical return
+   path.  Both P-PNC and O-PNC inform MDSC of the event affecting the
+   link between R1 and ROADM1 for its successive correlation.
+
+5.4.  Router Node Failures
+
+   In this case it is assumed that a router port experiences a hardware
+   failure, for example R1's port connecting to ROADM1.  R1 may have
+   internal mechanisms that detect the failure and trigger the relevant
+   notification to P-PNC.  At the IP level the missing reception of the
+   BFD messages against R2 triggers a BFD down notification to P-PNC.
+   the same notification is sent by R2, confirming that the IP
+   connectivity is lost.
 
 6.  Multi-layer Performance Management
 
@@ -462,7 +710,7 @@ Table of Contents
      |       |       |11.IP service reverted |       |       |       |
      |       |       |-------------->|       |       |       |       |
 
-             Figure 3: Fault detection with optical restoration
+             Figure 7: Fault detection with optical restoration
 
    More in details:
 
@@ -551,7 +799,7 @@ Table of Contents
    │7.IP Up │
    └――――――――┘
 
-             Figure 4: Fault detection with optical protection
+             Figure 8: Fault detection with optical protection
 
    The detailed process includes the following steps:
 
@@ -654,7 +902,7 @@ Table of Contents
              │     16.Maintenance window     │
              └―――――――――――――――――――――――――――――――┘
 
-                   Figure 5: Maintenance window operation
+                   Figure 9: Maintenance window operation
 
    The steps include the following:
 
@@ -717,7 +965,7 @@ Table of Contents
    handling an extra port both on R1 and ROADM1, on the optical layer
    the configuration, as depicted in figure Figure 2, does not change as
    only N optical channels (e.g. lambdas) are used, as shown in figure
-   Figure 6.
+   Figure 10.
 
    ┌――――――――――┐   ┌――――――――――┐
    │        P1│---│P1        │
@@ -729,7 +977,7 @@ Table of Contents
    │        PP│---│PP        │
    └――――――――――┘   └――――――――――┘
 
-                   Figure 6: Use of N:1 protection on R1
+                   Figure 10: Use of N:1 protection on R1
 
    Two sub-cases may be considered, depending on the availability of a
    Muxponder or a Transponder on ROADM1.  If a Muxponder is used, then
@@ -782,7 +1030,7 @@ Table of Contents
      |       |       |16.IP service switched |       |       |       |
      |       |       |-------------->|       |       |       |       |
 
-                     Figure 7: N:1 protection operation
+                    Figure 11: N:1 protection operation
 
    The sequence of steps is detailed.
 
@@ -853,7 +1101,7 @@ Table of Contents
    to R1-R2 to the newly created optical path.  When this second optical
    path is available, MDSC triggers a new switch of the traffic so that
    R1 can now steers the previous R1-R2 traffic to the new optical path.
-   The final configuration is shown in figure Figure 8.
+   The final configuration is shown in figure Figure 12.
 
    │<xxxxxxxxxxxxxxxxxxxxxxx IP Link R1-R2 xxxxxxxxxxxxxxxxxxxxxxx>│
    ┌――――――――┐  ┌――――――――┐                     ┌――――――――┐  ┌――――――――┐
@@ -877,8 +1125,8 @@ Table of Contents
                          ˅  ˅ │         │ ˅
                          -  ― └―――――――――┘ ―
 
-     Figure 8: IP configuration after the creation of a second optical
-                                    path
+         Figure 12: IP configuration after the creation of a second
+                                optical path
 
    The next figure shows the process adopted to handle the node
    protection case.
@@ -913,7 +1161,7 @@ Table of Contents
      |       |       |13.IP service switched |       |       |       |
      |       |       |-------------->|       |       |       |       |
 
-                    Figure 9: Node protection operation
+                    Figure 13: Node protection operation
 
    *  step 1.  R1 detects R2's failure and triggers IP FRR finding R3 as
       the next hop
@@ -1013,7 +1261,7 @@ Table of Contents
      |       |       |14.IP service reverted |       |       |       |
      |       |       |-------------->|       |       |       |       |
 
-                  Figure 10: hitless multi-layer reversion
+                  Figure 14: hitless multi-layer reversion
 
    Figure 5.2 Diagram for hitless multi-layer reversion
 
@@ -1075,14 +1323,22 @@ Table of Contents
 
 11.1.  Normative References
 
+   [I-D.feng-opsawg-incident-management]
+              Feng, C., Hu, T., Contreras, L. M., Graf, T., Wu, Q., Yu,
+              C., and N. Davis, "Incident Management for Network
+              Services", Work in Progress, Internet-Draft, draft-feng-
+              opsawg-incident-management-04, 30 January 2024,
+              <https://datatracker.ietf.org/doc/html/draft-feng-opsawg-
+              incident-management-04>.
+
    [I-D.ietf-teas-actn-poi-applicability]
               Peruzzini, F., Bouquier, J., Busi, I., King, D., and D.
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-11, 22 February
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              teas-actn-poi-applicability-11>.
+              draft-ietf-teas-actn-poi-applicability-12, 5 July 2024,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
+              actn-poi-applicability-12>.
 
    [I-D.yu-performance-monitoring-yang]
               Yu, C., "A YANG Data Model for Optical Performance
@@ -1090,6 +1346,30 @@ Table of Contents
               performance-monitoring-yang-00, 24 October 2022,
               <https://datatracker.ietf.org/doc/html/draft-yu-
               performance-monitoring-yang-00>.
+
+   [ITU-T_G.709]
+              International Telecommunication Union, "Interfaces for the
+              optical transport network", ITU-T Recommendation G.709,
+              Amendment 3 , March 2024,
+              <https://www.itu.int/rec/T-REC-G.709/>.
+
+   [ITU-T_G.7710]
+              International Telecommunication Union, "Common equipment
+              management function requirements", ITU-T Recommendation
+              G.7710, Amendment 1 , November 2022,
+              <https://www.itu.int/rec/T-REC-G.7710/>.
+
+   [ITU-T_G.798]
+              International Telecommunication Union, "Characteristics of
+              optical transport network hierarchy equipment functional
+              blocks", ITU-T Recommendation G.798 , April 2024,
+              <https://www.itu.int/rec/T-REC-G.798/>.
+
+   [ITU-T_G.874]
+              International Telecommunication Union, "Management aspects
+              of optical transport network elements", ITU-T
+              Recommendation G.874, Amendment 2 , January 2024,
+              <https://www.itu.int/rec/T-REC-G.874/>.
 
    [RFC8632]  Vallin, S. and M. Bjorklund, "A YANG Data Model for Alarm
               Management", RFC 8632, DOI 10.17487/RFC8632, September
