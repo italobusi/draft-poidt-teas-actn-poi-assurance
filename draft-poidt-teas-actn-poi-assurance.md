@@ -84,28 +84,14 @@ EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-a
 
 # Introduction
 
-TODO Complete the Introduction
+Service assurance is a critical aspect of Operations, Administration and Management (OAM). It consists of activities and processes whose target is to guarantee a specified Service Level Agreement (SLA) to the customer of a telecommunication service. Service assurance includes both fault management, for correcting or fixing the service anomalies and network faults, and performance management, for monitoring of the service and network parameters and early warning of potential service-related issues.
+In the scope of this document, service assurance is discussed in the context of a multi-layer, multi-domain network. In doing so, it leverages on the Abstraction and Control of TE Networks (ACTN) framework [ACTN] and further expands the analysis of its applicability into multi-layer packet-optical integrated networks {{!I-D.ietf-teas-actn-poi-applicability}} adding considerations specific to the fault and performance management scenarios.
+As already highlighted in {{!I-D.ietf-teas-actn-poi-applicability}}, a multi-layer network is composed of an IP layer and an optical transport layer. A multi-domain network is composed of at least two different administrative domains (e.g. core and edge) under the control of the same organization (e.g. the same network operator). Service assurance applies to end-to-end L2VPN or L3VPN connectivity services configured over underlying transport optical paths that requires multi-layer coordination.
+To guarantee the SLAs associated to the VPN services, service assurance is performed through the collaboration of the different control entities part of the ACTN architecture [ACTN]: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNC) deployed both in the packet (PNC-P) and optical (PNC-O) layers.
 
-   Multi-layer and multi-domain service assurance scenarios, based on the reference
-   network described in section 2 of {{!I-D.ietf-teas-actn-poi-applicability}} and very relevant for Service
-   Providers, are described in sections {{fault}}, {{performance}} and {{resiliency}}.
-
-This document is focusing on service assurance for end-to-end L2VPN or L3VPN connectivity services setup over underlying transport optical paths that requires multi-layer coordination
-
-   For each scenario, existing IETF YANG data models,
-   identified in section {{yang}}, are analyzed with a particular
-   focus on the MPI in the ACTN architecture.
-
-   For each multi-layer scenario, the document analyzes how to use the
-   interfaces and data models of the ACTN architecture.
-
-   A summary of the gaps identified in this analysis is provided in
-   {{conclusions}}.
-
-   Understanding the level of standardization and the possible gaps will
-   help assess the feasibility of integration between packet and optical
-   DWDM domains (and optionally OTN layer) from an end-to-end multi-vendor
-   service assurance perspective.
+[NOTE: this is taken from the old version of the introduction] For each multi-layer, multi-domain scenario, the interfaces and the existing IETF YANG data models are analyzed with a particular focus on the MPI in the ACTN architecture. The understanding of the level of standardization achieved so far and the possible gaps highlighted will help assess the feasibility of integration between packet and optical DWDM domains (and optionally OTN layer) from an end-to-end multi-vendor service assurance perspective. [End of note]
+ 
+The document has the following organization: section 2 lists the conventions and definitions used in the text. Section 3 discusses the reference network in scope for the relevant service assurance cases. Section 4 identifies the YANG data models applicable to service assurance and provides a gap analysis for the modules that are still missing. Section 5 identifies the possible faults, either in the optical or in IP layer (or both), in scope for this analysis. Section 6 deals with the performance management aspects of service assurance in a packet-optical integrated network. Finally, section 7 discusses the protection mechanisms available for the most typical fault scenarios of a multi-layer, multi-domain network.
 
 # Conventions and Definitions
 
