@@ -204,7 +204,7 @@ considered (e.g. G-MPLS based). Further details are given in the use cases descr
 
 # YANG Data Models for the MPIs
 
-The set of YANG models in the scope of this analysis is the following:
+The analysis of the data models potentially of interest for this document is still on-going. The set of YANG models identified so far includes the following items:
 
 - ietf-alarms defined in {{!RFC8632}}
 
@@ -213,6 +213,8 @@ The set of YANG models in the scope of this analysis is the following:
 - A YANG Data Model for Service Assurance {{!RFC9418}}
 
 - A YANG Data Model for Network and VPN Service Performance Monitoring {{!RFC9375}}
+
+The list will be progressively updated as the document evolves.
  
 {: #fault}
 
