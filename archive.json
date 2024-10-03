@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-01T01:00:15.944136+00:00",
+  "timestamp": "2024-10-03T00:52:15.011091+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -342,9 +342,17 @@
       "labels": [],
       "body": "Define the list of candidate RFCs/I-Ds which can be relevant for this work, considering both IP and Optical networks",
       "createdAt": "2024-09-24T20:41:33Z",
-      "updatedAt": "2024-09-24T20:41:33Z",
+      "updatedAt": "2024-10-01T15:53:53Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "body": "For the IP part we identified for the moment at least the following one that should be relevant for network/service assurance in IP/MPLS networks:\r\nRFC9417 Service Assurance for Intent-Based Networking Architecture (SAIN). Informational, framework for SAIN\r\nRFC9418 A YANG Data Model for Service Assurance ( for implemention of SAIN approach)\r\nRFC9375 A YANG Data Model for Network and VPN Service Performance Monitoring",
+          "createdAt": "2024-10-01T15:53:52Z",
+          "updatedAt": "2024-10-01T15:53:52Z"
+        }
+      ]
     }
   ],
   "pulls": [
