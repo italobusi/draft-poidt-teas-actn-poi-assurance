@@ -71,9 +71,9 @@ normative:
 
 --- abstract
 
-This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture [ACTN] to Packet Optical Integration (POI) {{!I-D.ietf-teas-actn-poi-applicability}} to cover multi-layer service assurance scenarios. Specifically, the ACTN architecture enables the detection and handling of different failures that may happen either at the optical or the packet layer. As for [POI], it is assumed that the underlying transport optical network carries end-to-end IP services such as L2VPN or L3VPN connectivity services, with specific Service Level Agreement (SLA) requirements.
+This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover multi-layer service assurance scenarios. Specifically, the ACTN architecture enables the detection and handling of different failures that may happen either at the optical or the packet layer. It is assumed that the underlying transport optical network carries end-to-end IP services such as L2VPN or L3VPN connectivity services, with specific Service Level Agreement (SLA) requirements.
 
-EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published.
+> RFC Editor: Please replace YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published. Please remove this note.
 
    Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a specific focus on
@@ -85,13 +85,16 @@ EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-a
 # Introduction
 
 Service assurance is a critical aspect of Operations, Administration and Management (OAM). It consists of activities and processes whose target is to guarantee a specified Service Level Agreement (SLA) to the customer of a telecommunication service. Service assurance includes both fault management, for correcting or fixing the service anomalies and network faults, and performance management, for monitoring of the service and network parameters and early warning of potential service-related issues.
-In the scope of this document, service assurance is discussed in the context of a multi-layer, multi-domain network. In doing so, it leverages on the Abstraction and Control of TE Networks (ACTN) framework [ACTN] and further expands the analysis of its applicability into multi-layer packet-optical integrated networks {{!I-D.ietf-teas-actn-poi-applicability}} adding considerations specific to the fault and performance management scenarios.
+
+In the scope of this document, service assurance is discussed in the context of a multi-layer, multi-domain network. In doing so, it leverages on the Abstraction and Control of TE Networks (ACTN) framework {{!RFC8453}} and further expands the analysis of its applicability into multi-layer packet-optical integrated networks {{!I-D.ietf-teas-actn-poi-applicability}} adding considerations specific to the fault and performance management scenarios.
+
 As already highlighted in {{!I-D.ietf-teas-actn-poi-applicability}}, a multi-layer network is composed of an IP layer and an optical transport layer. A multi-domain network is composed of at least two different administrative domains (e.g. core and edge) under the control of the same organization (e.g. the same network operator). Service assurance applies to end-to-end L2VPN or L3VPN connectivity services configured over underlying transport optical paths that requires multi-layer coordination.
-To guarantee the SLAs associated to the VPN services, service assurance is performed through the collaboration of the different control entities part of the ACTN architecture [ACTN]: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNC) deployed both in the packet (PNC-P) and optical (PNC-O) layers.
- 
+
+To guarantee the SLAs associated to the VPN services, service assurance is performed through the collaboration of the different control entities part of the ACTN architecture {{!RFC8453}}: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNC) deployed both in the packet (PNC-P) and optical (PNC-O) layers.
+
 The document has the following organization: section 2 lists the conventions and definitions used in the text. Section 3 discusses the reference network in scope for the relevant service assurance cases. Section 4 identifies the YANG data models applicable to service assurance and provides a gap analysis for the modules that are still missing. Section 5 identifies the possible faults, either in the optical or in IP layer (or both), in scope for this analysis. Section 6 deals with the performance management aspects of service assurance in a packet-optical integrated network. Finally, section 7 discusses the protection mechanisms available for the most typical fault scenarios of a multi-layer, multi-domain network.
 
-For each multi-technology scenario, the document analyzes how to use the interfaces and the data models of the ACTN architecture. 
+For each multi-technology scenario, the document analyzes how to use the interfaces and the data models of the ACTN architecture.
 
 A summary of the gaps identified in this analysis is provided in section 8.
 
@@ -215,7 +218,7 @@ The analysis of the data models potentially of interest for this document is sti
 - A YANG Data Model for Network and VPN Service Performance Monitoring {{!RFC9375}}
 
 The list will be progressively updated as the document evolves.
- 
+
 {: #fault}
 
 # Multi-layer Fault Management
