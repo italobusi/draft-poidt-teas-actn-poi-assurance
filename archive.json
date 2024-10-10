@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-08T00:51:57.300858+00:00",
+  "timestamp": "2024-10-10T00:51:59.555402+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -786,7 +786,7 @@
       "labels": [],
       "body": "Modified abstract, intro, list of models, appendix",
       "createdAt": "2024-10-03T15:13:46Z",
-      "updatedAt": "2024-10-03T15:17:57Z",
+      "updatedAt": "2024-10-08T09:16:50Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "746144bef51ec181e4e4850bad878445692526a3",
