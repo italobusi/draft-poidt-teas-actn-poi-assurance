@@ -337,7 +337,22 @@ At the IP level the missing reception of the BFD messages against R2 triggers a 
 
 # Multi-layer Performance Management
 
-TODO Describe performance monitoring and performance degradation detection performed by the O-PNC and how this information is reported to the MDSC: see for example the degradation scenario in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx (slide 7)
+Optical devices employ mechanisms for monitoring the condition of an OTN link. Among others, pre-Forward Error Correction (pre-FEC) Bit Error Rate (BER) allows to track bit errors on the optical wire, notifying the transmitter side or a controlling agent when a specified threshold is reached or passed. The advantage of this mechanism is to get an early warning on the optical path performance: the exceeding of the specified threshold means that the receiver is no longer able to correct all the errors on the channel. As a result, the transmitter or the controlling entity (e.g. an SDN controller) may trigger counter-actions such as the switch to a different optical path. 
+
+Multi-layer performance managent is in scope of the present document. In this context it is assumed that:
+1. O-PNC is capable of monitoring the DWDM links optical performance, and alert MDSC when the pre-FEC BER value overcomes a user-specified threshold
+2. MDSC is capable of correlating the pre-FEC BEC threshold crossing alarm with a related IP link and take appropriate corrective actions, if programmed to do so.
+
+In this context, the assumption is that pre-FEC BER measurement is done on the optical path between ROADM1 and ROADM2. Some IP services (e.g. L2/L3 VPNs) are active between R1 and R2, using the optical path between ROADM1 and ROADM2 as a transport.
+The sequence of steps to handle multi-layer performance managent by the MDSC is expected to be the following:
+
+- step 1. ROADM2 detects a pre-FEC BER value at an ingress interface higher that the defined threshold. A corresponding  alarm is sent to O-PNC
+
+- step 2. O-PNC forwards the alarm to MDSC
+
+- step 3. MDSC correlates the information of the optical path subject to pre-FEC BER issues and the IP services active on it.
+
+Depending on how the MDSC in instructed to react, different choices are possible. At one extreme of the spectrum, the MDSC notes the event and simply trigger a notification to the operator. At the other extreme, the MDSC may start the multi-layer resiliency mechanisms described in the next section, including fast-reroute at the IP layer. 
 
 {: #resiliency}
 
