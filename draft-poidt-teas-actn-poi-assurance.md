@@ -337,7 +337,7 @@ At the IP level the missing reception of the BFD messages against R2 triggers a 
 
 # Multi-layer Performance Management
 
-Optical devices employ mechanisms for monitoring the condition of an OTN link. Among others, pre-Forward Error Correction (pre-FEC) Bit Error Rate (BER) allows to track bit errors on the optical wire, notifying the transmitter side or a controlling agent when a specified threshold is reached or passed. The advantage of this mechanism is to get an early warning on the optical path performance: the exceeding of the specified threshold means that the receiver is no longer able to correct all the errors on the channel. As a result, the transmitter or the controlling entity (e.g. an SDN controller) may trigger counter-actions such as the switch to a different optical path. 
+Optical devices employ mechanisms for monitoring the condition of an OTN link. Among others, pre-Forward Error Correction (pre-FEC) Bit Error Rate (BER) allows to track bit errors on the optical wire, notifying the transmitter side or a controlling agent when a specified threshold is reached or passed. The advantage of this mechanism is to get an early warning on the optical path performance: the exceeding of the specified threshold means that the receiver is no longer able to correct all the errors on the channel. As a result, the transmitter or the controlling entity (e.g. an SDN controller) may trigger counter-actions such as the switch to a different optical path.
 
 Multi-layer performance managent is in scope of the present document. In this context it is assumed that:
 1. O-PNC is capable of monitoring the DWDM links optical performance, and alert MDSC when the pre-FEC BER value overcomes a user-specified threshold
@@ -352,7 +352,7 @@ The sequence of steps to handle multi-layer performance managent by the MDSC is 
 
 - step 3. MDSC correlates the information of the optical path subject to pre-FEC BER issues and the IP services active on it.
 
-Depending on how the MDSC in instructed to react, different choices are possible. At one extreme of the spectrum, the MDSC notes the event and simply trigger a notification to the operator. At the other extreme, the MDSC may start the multi-layer resiliency mechanisms described in the next section, including fast-reroute at the IP layer. 
+Depending on how the MDSC in instructed to react, different choices are possible. At one extreme of the spectrum, the MDSC notes the event and simply trigger a notification to the operator. At the other extreme, the MDSC may start the multi-layer resiliency mechanisms described in the next section, including fast-reroute at the IP layer.
 
 {: #resiliency}
 
