@@ -11,8 +11,12 @@
 <meta content="Paolo Volpato" name="author">
 <meta content="Prasenjit Manna" name="author">
 <meta content="
-       This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture [ACTN] to Packet Optical Integration (POI)   to cover multi-layer service assurance scenarios. Specifically, the ACTN architecture enables the detection and handling of different failures that may happen either at the optical or the packet layer. As for [POI], it is assumed that the underlying transport optical network carries end-to-end IP services such as L2VPN or L3VPN connectivity services, with specific Service Level Agreement (SLA) requirements. 
-       EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published. 
+       This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover multi-layer service assurance scenarios. Specifically, the ACTN architecture enables the detection and handling of different failures that may happen either at the optical or the packet layer. It is assumed that the underlying transport optical network carries end-to-end IP services such as L2VPN or L3VPN connectivity services, with specific Service Level Agreement (SLA) requirements. 
+       
+         
+           RFC Editor: Please replace YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published. Please remove this note. 
+         
+       
        Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a specific focus on
    the MPI (Multi-Domain Service Coordinator to Provisioning Network
@@ -1083,8 +1087,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <h1 id="title">Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) for Packet Optical Integration (POI) service assurance</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture [ACTN] to Packet Optical Integration (POI) <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> to cover multi-layer service assurance scenarios. Specifically, the ACTN architecture enables the detection and handling of different failures that may happen either at the optical or the packet layer. As for [POI], it is assumed that the underlying transport optical network carries end-to-end IP services such as L2VPN or L3VPN connectivity services, with specific Service Level Agreement (SLA) requirements.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">EDITORS NOTE: Replace RFC YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI), provided in RFC YYYY, to cover multi-layer service assurance scenarios. Specifically, the ACTN architecture enables the detection and handling of different failures that may happen either at the optical or the packet layer. It is assumed that the underlying transport optical network carries end-to-end IP services such as L2VPN or L3VPN connectivity services, with specific Service Level Agreement (SLA) requirements.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-abstract-2.1">
+          <p id="section-abstract-2.1.1">RFC Editor: Please replace YYYY with the RFC number of draft-ietf-teas-actn-poi-applicability once it has been published. Please remove this note.<a href="#section-abstract-2.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 <p id="section-abstract-3">Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a specific focus on
    the MPI (Multi-Domain Service Coordinator to Provisioning Network
@@ -1243,22 +1251,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-introduction">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<p id="section-1-1">TODO Complete the Introduction<a href="#section-1-1" class="pilcrow">¶</a></p>
-<p id="section-1-2">Multi-layer and multi-domain service assurance scenarios, based on the reference
-   network described in section 2 of <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> and very relevant for Service
-   Providers, are described in sections <a href="#fault" class="auto internal xref">Section 5</a>, <a href="#performance" class="auto internal xref">Section 6</a> and <a href="#resiliency" class="auto internal xref">Section 7</a>.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">This document is focusing on service assurance for end-to-end L2VPN or L3VPN connectivity services setup over underlying transport optical paths that requires multi-layer coordination<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">For each scenario, existing IETF YANG data models,
-   identified in section <a href="#yang" class="auto internal xref">Section 4</a>, are analyzed with a particular
-   focus on the MPI in the ACTN architecture.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">For each multi-layer scenario, the document analyzes how to use the
-   interfaces and data models of the ACTN architecture.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">A summary of the gaps identified in this analysis is provided in
-   <a href="#conclusions" class="auto internal xref">Section 8</a>.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">Understanding the level of standardization and the possible gaps will
-   help assess the feasibility of integration between packet and optical
-   DWDM domains (and optionally OTN layer) from an end-to-end multi-vendor
-   service assurance perspective.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-1">Service assurance is a critical aspect of Operations, Administration and Management (OAM). It consists of activities and processes whose target is to guarantee a specified Service Level Agreement (SLA) to the customer of a telecommunication service. Service assurance includes both fault management, for correcting or fixing the service anomalies and network faults, and performance management, for monitoring of the service and network parameters and early warning of potential service-related issues.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">In the scope of this document, service assurance is discussed in the context of a multi-layer, multi-domain network. In doing so, it leverages on the Abstraction and Control of TE Networks (ACTN) framework <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> and further expands the analysis of its applicability into multi-layer packet-optical integrated networks <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> adding considerations specific to the fault and performance management scenarios.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">As already highlighted in <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span>, a multi-layer network is composed of an IP layer and an optical transport layer. A multi-domain network is composed of at least two different administrative domains (e.g. core and edge) under the control of the same organization (e.g. the same network operator). Service assurance applies to end-to-end L2VPN or L3VPN connectivity services configured over underlying transport optical paths that requires multi-layer coordination.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">To guarantee the SLAs associated to the VPN services, service assurance is performed through the collaboration of the different control entities part of the ACTN architecture <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNC) deployed both in the packet (PNC-P) and optical (PNC-O) layers.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The document has the following organization: section 2 lists the conventions and definitions used in the text. Section 3 discusses the reference network in scope for the relevant service assurance cases. Section 4 identifies the YANG data models applicable to service assurance and provides a gap analysis for the modules that are still missing. Section 5 identifies the possible faults, either in the optical or in IP layer (or both), in scope for this analysis. Section 6 deals with the performance management aspects of service assurance in a packet-optical integrated network. Finally, section 7 discusses the protection mechanisms available for the most typical fault scenarios of a multi-layer, multi-domain network.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">For each multi-technology scenario, the document analyzes how to use the interfaces and the data models of the ACTN architecture.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">A summary of the gaps identified in this analysis is provided in section 8.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">Understanding the level of standardization and the possible gaps will help assess the feasibility of integration between packet and optical DWDM domains (and optionally OTN layer) in an end-to-end multi-vendor service assurance perspective.<a href="#section-1-8" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1442,16 +1442,22 @@ considered (e.g. G-MPLS based). Further details are given in the use cases descr
       <h2 id="name-yang-data-models-for-the-mp">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-yang-data-models-for-the-mp" class="section-name selfRef">YANG Data Models for the MPIs</a>
       </h2>
-<p id="section-4-1">TODO YANG Data Models<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">Initial set of YANG models that are potentially in the scope of this analysis:<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-1">The analysis of the data models potentially of interest for this document is still on-going. The set of YANG models identified so far includes the following items:<a href="#section-4-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-4-3.1">
-          <p id="section-4-3.1.1">ietf-alarms defined in <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span><a href="#section-4-3.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-4-2.1">
+          <p id="section-4-2.1.1">ietf-alarms defined in <span>[<a href="#RFC8632" class="cite xref">RFC8632</a>]</span><a href="#section-4-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-4-3.2">
-          <p id="section-4-3.2.1">ietf-performance-monitoring defined in <span>[<a href="#I-D.yu-performance-monitoring-yang" class="cite xref">I-D.yu-performance-monitoring-yang</a>]</span><a href="#section-4-3.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-4-2.2">
+          <p id="section-4-2.2.1">ietf-performance-monitoring defined in <span>[<a href="#I-D.yu-performance-monitoring-yang" class="cite xref">I-D.yu-performance-monitoring-yang</a>]</span><a href="#section-4-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-4-2.3">
+          <p id="section-4-2.3.1">A YANG Data Model for Service Assurance <span>[<a href="#RFC9418" class="cite xref">RFC9418</a>]</span><a href="#section-4-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-4-2.4">
+          <p id="section-4-2.4.1">A YANG Data Model for Network and VPN Service Performance Monitoring <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span><a href="#section-4-2.4.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
+<p id="section-4-3">The list will be progressively updated as the document evolves.<a href="#section-4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="fault">
@@ -2473,9 +2479,21 @@ guaranteeing a hitless switching.<a href="#section-7.5-3.3.1" class="pilcrow">¶
         <dd>
 <span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Management aspects of optical transport network elements"</span>, <span class="seriesInfo">ITU-T Recommendation G.874, Amendment 2 </span>, <time datetime="2024-01" class="refDate">January 2024</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.874/">https://www.itu.int/rec/T-REC-G.874/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
+<dt id="RFC8453">[RFC8453]</dt>
+        <dd>
+<span class="refAuthor">Ceccarelli, D., Ed.</span> and <span class="refAuthor">Y. Lee, Ed.</span>, <span class="refTitle">"Framework for Abstraction and Control of TE Networks (ACTN)"</span>, <span class="seriesInfo">RFC 8453</span>, <span class="seriesInfo">DOI 10.17487/RFC8453</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8453">https://www.rfc-editor.org/rfc/rfc8453</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8632">[RFC8632]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Vallin, S.</span> and <span class="refAuthor">M. Bjorklund</span>, <span class="refTitle">"A YANG Data Model for Alarm Management"</span>, <span class="seriesInfo">RFC 8632</span>, <span class="seriesInfo">DOI 10.17487/RFC8632</span>, <time datetime="2019-09" class="refDate">September 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8632">https://www.rfc-editor.org/rfc/rfc8632</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9375">[RFC9375]</dt>
+        <dd>
+<span class="refAuthor">Wu, B., Ed.</span>, <span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Boucadair, M., Ed.</span>, <span class="refAuthor">Gonzalez de Dios, O.</span>, and <span class="refAuthor">B. Wen</span>, <span class="refTitle">"A YANG Data Model for Network and VPN Service Performance Monitoring"</span>, <span class="seriesInfo">RFC 9375</span>, <span class="seriesInfo">DOI 10.17487/RFC9375</span>, <time datetime="2023-04" class="refDate">April 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9375">https://www.rfc-editor.org/rfc/rfc9375</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9418">[RFC9418]</dt>
+      <dd>
+<span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Quilbeuf, J.</span>, <span class="refAuthor">Lucente, P.</span>, <span class="refAuthor">Fasano, P.</span>, and <span class="refAuthor">T. Arumugam</span>, <span class="refTitle">"A YANG Data Model for Service Assurance"</span>, <span class="seriesInfo">RFC 9418</span>, <span class="seriesInfo">DOI 10.17487/RFC9418</span>, <time datetime="2023-07" class="refDate">July 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9418">https://www.rfc-editor.org/rfc/rfc9418</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
