@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-10-20T00:57:08.182452+00:00",
+  "timestamp": "2024-10-22T00:53:22.305745+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -779,24 +779,26 @@
       "id": "PR_kwDOJAsmzM59g_oP",
       "title": "Updates for IETF 121",
       "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/15",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "Paolo-Volpato",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Modified abstract, intro, list of models, appendix",
       "createdAt": "2024-10-03T15:13:46Z",
-      "updatedAt": "2024-10-11T03:42:59Z",
+      "updatedAt": "2024-10-21T09:41:10Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "746144bef51ec181e4e4850bad878445692526a3",
       "headRepository": "Paolo-Volpato/draft-poidt-teas-actn-poi-assurance",
       "headRefName": "main",
       "headRefOid": "5e4fbe4d6dcbb5fed39d566ff1a1418c0ccc0a31",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2024-10-21T09:41:10Z",
+      "mergedAt": "2024-10-21T09:41:10Z",
+      "mergedBy": "Paolo-Volpato",
+      "mergeCommit": {
+        "oid": "442e4aa2b2816105953a05af3497e7092311b241"
+      },
       "comments": [],
       "reviews": [
         {
