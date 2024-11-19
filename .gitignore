@@ -1,8 +1,10 @@
 # *.html
+# *.txt
+*.html
 *.pdf
 *.redxml
 *.swp
-# *.txt
+*.txt
 *.upload
 *~
 .tags
@@ -13,13 +15,13 @@
 /.venv/
 /.vscode/
 /lib
+/lib
 /node_modules/
 /versioned/
 Gemfile.lock
 archive.json
 draft-poidt-teas-actn-poi-assurance.xml
+draft-poidt-teas-actn-poi-assurance.xml
 package-lock.json
 report.xml
 !requirements.txt
-*.txt
-*.html
