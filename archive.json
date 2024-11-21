@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-11-19T00:55:22.564688+00:00",
+  "timestamp": "2024-11-21T00:54:53.812477+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -338,11 +338,13 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "OWNER",
-      "assignees": [],
+      "assignees": [
+        "prmanna"
+      ],
       "labels": [],
       "body": "Define the list of candidate RFCs/I-Ds which can be relevant for this work, considering both IP and Optical networks",
       "createdAt": "2024-09-24T20:41:33Z",
-      "updatedAt": "2024-10-01T15:53:53Z",
+      "updatedAt": "2024-11-19T16:57:28Z",
       "closedAt": null,
       "comments": [
         {
@@ -351,6 +353,13 @@
           "body": "For the IP part we identified for the moment at least the following one that should be relevant for network/service assurance in IP/MPLS networks:\r\nRFC9417 Service Assurance for Intent-Based Networking Architecture (SAIN). Informational, framework for SAIN\r\nRFC9418 A YANG Data Model for Service Assurance ( for implemention of SAIN approach)\r\nRFC9375 A YANG Data Model for Network and VPN Service Performance Monitoring",
           "createdAt": "2024-10-01T15:53:52Z",
           "updatedAt": "2024-10-01T15:53:52Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (November 19, 2024)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-11-19)**\r\n\r\nThere are many drafts about Performance Monitoring (PM) and their relationship is not fully clear\r\n\r\nSome PM drafts discussed during the call:\r\n\r\n1) https://datatracker.ietf.org/doc/draft-yu-ccamp-optical-resource-pm-yang/\r\n\r\n2) https://datatracker.ietf.org/doc/draft-yu-ccamp-resource-pm-yang/\r\n\r\n3) https://datatracker.ietf.org/doc/draft-yoon-ccamp-pm-streaming\r\n\r\nDraft 1) is targeted to optical network resources while draft 2) is a generalization of draft 1) and replaces it\r\n\r\nDraft 3) is aimed at providing a YANG model to manage subscription to telemetry streaming. During the side meeting in Dublin, it has been agreed to split the document into:\r\n- a generic document (target OPSAWG) to support subscription and using XPath as a generic pointer any PM data\r\n- technology specific models providing technology specific PM data\r\n\r\n- [ ] @prmanna  get a list of the PM drafts/RFCs which can be in the scope of the analysis in ACTN POI assurance I-D\r\n",
+          "createdAt": "2024-11-19T11:02:17Z",
+          "updatedAt": "2024-11-19T16:57:28Z"
         }
       ]
     }
