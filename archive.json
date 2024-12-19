@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2024-12-17T00:57:49.040305+00:00",
+  "timestamp": "2024-12-19T00:55:51.677760+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -168,7 +168,7 @@
       "labels": [],
       "body": "here I think for fault/event detection in optical and IP/MPLS domain we need to have a wider scope. O/P-PNC start to implement alarm filtering capabilities joint with Root Cause Analysis and there the use of RFC8632 for exposing only the results of the RCA at P-PNC and O-PNC North Bound interfaces is not clear. In fact RFC8632 may not be the right data models for that purpose and this should be investigated. There is no real value to flood the MDSC with all Optical and IP/MPLS domains' alarms through the use of RFC8632\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/2#discussion_r1132448007_\r\n            ",
       "createdAt": "2023-03-10T21:20:33Z",
-      "updatedAt": "2023-05-25T19:48:48Z",
+      "updatedAt": "2024-12-17T15:07:39Z",
       "closedAt": null,
       "comments": [
         {
@@ -177,6 +177,13 @@
           "body": "**[2023-05-23 ACTN POI Call](https://github.com/FabioPeruzzini/actn-poi/blob/master/minutes/minutes-2023-05-23.md)**\r\n\r\nRFC8632 is a YANG data model for alarm management but peraphs it could be used to provide more filtered/aggregated information on root-cause alarm and/or the list of services affected by the failure\r\n\r\nThis needs to be investigated further\r\n\r\nThis coudl be also related with the comment on issue #8 about reporting the operational state of the optical tunnels:\r\n\r\n> **Comment**: Need to discuss here why reporting the operational status of the optical tunnel is not sufficient to motivate the need for a more enhanced incident management as proposed in [draft-feng-opsawg-incident-management]\r\n",
           "createdAt": "2023-05-25T19:48:47Z",
           "updatedAt": "2023-05-25T19:48:47Z"
+        },
+        {
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "body": "As commented in our call today (17-12-2024) the draft that might be considered to expose RCA result and list of services affected is this one [draft-ietf-nmop-network-incident-yang-02](https://datatracker.ietf.org/doc/html/draft-ietf-nmop-network-incident-yang-02)",
+          "createdAt": "2024-12-17T13:06:14Z",
+          "updatedAt": "2024-12-17T15:07:39Z"
         }
       ]
     },
@@ -263,14 +270,12 @@
       "author": "italobusi",
       "authorAssociation": "OWNER",
       "assignees": [
-        "danielkinguk",
-        "italobusi",
-        "prmanna"
+        "danielkinguk"
       ],
       "labels": [],
       "body": "Need to discuss the relationship between this draft and draft-gstk-ccamp-actn-optical-transport-mgmt",
       "createdAt": "2023-09-12T10:01:55Z",
-      "updatedAt": "2023-09-13T20:55:16Z",
+      "updatedAt": "2024-12-18T10:32:55Z",
       "closedAt": null,
       "comments": [
         {
@@ -279,6 +284,13 @@
           "body": "**[ACTN POI Assurance bi-weekly call (September 12, 2023)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/blob/main/minutes/minutes-2023-09-12.md)**\r\n\r\nQuestion from Prasenjit about the relationship with the [draft-gstk-ccamp-actn-optical-transport-mgmt](https://datatracker.ietf.org/doc/html/draft-gstk-ccamp-actn-optical-transport-mgmt)\r\n\r\nIt seems the work is complimentary with the ACTN POI assurance I-D.\r\n\r\nTo be checked with Daniel\r\n",
           "createdAt": "2023-09-12T10:10:04Z",
           "updatedAt": "2023-09-13T20:55:15Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (December 17, 2024)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-12-17)**\r\n\r\n- [ ] @danielkinguk : review the POI assurance I-D and see how and where the RDNM framework can be referenced",
+          "createdAt": "2024-12-17T14:46:03Z",
+          "updatedAt": "2024-12-18T10:32:55Z"
         }
       ]
     },
@@ -290,11 +302,13 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "OWNER",
-      "assignees": [],
+      "assignees": [
+        "danielkinguk"
+      ],
       "labels": [],
       "body": "As discussed in our call last Tuesday, cost vs benefits of this use case of having a spare port in the router and a spare transponder in the optical node just to be used in case of a router port failure is not so clear to me. Most common approach is to solve this at IP/MPLS layer (FRR, etc.). However it was agreed not to remove this use case without Fabio's agreement.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/10#discussion_r1509159236_\r\n            ",
       "createdAt": "2024-03-04T09:51:18Z",
-      "updatedAt": "2024-03-05T19:05:35Z",
+      "updatedAt": "2024-12-18T10:32:25Z",
       "closedAt": null,
       "comments": [
         {
@@ -303,6 +317,13 @@
           "body": "I think that the answer to this question depends on what are the N ports and this depends on the resiliency architecture.\r\n\r\nLet's say that X is the number of router ports required to support unprotected IP traffic.\r\n\r\nIf the resiliency strategy is to protect only at the IP/MPLS layer, the number of router ports required is (X+1)<=Y<=2*N, depending on the percentage of IP traffic that needs to be protected.\r\n\r\nIn this case, the (N+1) router port protection would require Y+1 router ports and I would agree with you about the cost/benefit issues.\r\n\r\nAn alternative resiliency strategy can leverage the multi-layer aspects of POI and rely on optical network protection/restoration to recover most of the failure scenarios and the (N+1) router port protection to recover the failures of the links between the IP routers and the ROADMs.\r\n\r\nIn this case the (N+1) router port protection would require only X+1 router ports with clear cost benefits. If, as it happens in many cases, the probability of a failure on the links between the IP routers and the edge ROADMs is quite low compared with the probability of a failure within the optical network, the availability provided by this configuration can also be higher (at a lower cost) that a single-layer protection and also be able to recover 100% of the IP traffic\r\n\r\nMy 2 cents\r\n\r\nItalo\r\n",
           "createdAt": "2024-03-05T19:05:33Z",
           "updatedAt": "2024-03-05T19:05:33Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (December 17, 2024)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-12-17)**\r\n\r\n- [ ] @danielkinguk provide some proposed text to introduce the need to support multiple types of resiliency strategies besides just 1+1 optical protection and packet-based FRR. Reference also RFC5557",
+          "createdAt": "2024-12-17T14:48:10Z",
+          "updatedAt": "2024-12-18T10:32:25Z"
         }
       ]
     },
@@ -314,11 +335,16 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "OWNER",
-      "assignees": [],
+      "assignees": [
+        "italobusi",
+        "prmanna",
+        "manzoro",
+        "Paolo-Volpato"
+      ],
       "labels": [],
       "body": "Initial set of slides analysis some failure scenarios relevant for POI assurance: [poi-failure-scenarios-00.pptx](https://github.com/user-attachments/files/15632484/poi-failure-scenarios-00.pptx)\r\n",
       "createdAt": "2024-06-06T13:54:51Z",
-      "updatedAt": "2024-06-18T12:22:16Z",
+      "updatedAt": "2024-12-18T10:32:10Z",
       "closedAt": null,
       "comments": [
         {
@@ -327,6 +353,13 @@
           "body": "**[2024-06-18 ACTN POI bi-weekly call](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-06-18)**\r\n\r\nReviewed slides in [poi-failure-scenarios-00.pptx](https://github.com/user-attachments/files/15632484/poi-failure-scenarios-00.pptx)\r\n\r\nThe scenarios are assuming grey interfaces between the routers and the optical nodes\r\n\r\n- [ ] @italobusi : add a note to the slides clarifying these are grey interfaces\r\n\r\nGabriele volounteered to provide an ASCII art version of the slides for inclusion in the draft\r\n\r\nThe issue can be cause by a failure on the router port, on the fiber between the router and the OTN node or on the OTN node port\r\n\r\nThe O-PNC and P-PNC should provide the MDSC all the information which is needeed to allow the MDSC to locate the root case of the failure on the link\r\n\r\nComment: change PE1 and PE2 to NE1 and NE2 to avoid misunderstanding that they are IP routers\r\n\r\nThe target is to reduce the amount of alarms sent by O-PNC and P-PNC to the MDSC by having some intelligent tool for root cause analysis. The challenge in this scenario is that the link is not under the control of a single PNC\r\n\r\nThis issue should be further investigated in details\r\n\r\nIn scenario 2, reporting the down status on the optical tunnel is sufficient to allow the MDSC to perform the multi-layer correlation and discover which IP links, LSPs and VPNs are affected by the failure\r\n\r\nJeff: the RCA is performed by the O-PNC and the result can be passed to the MDSC together with the information that the Optical tunnel is done. It could be useful to show on the MDSC which fiber is broken and the appoximate location of the failure on the fiber (as provided by the O-PNC)\r\n\r\n- [ ] @prmanna @manzoro check whether the LOS alarm for grey interfaces on the routers is standardized\r\n",
           "createdAt": "2024-06-18T12:19:13Z",
           "updatedAt": "2024-06-18T12:22:16Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (December 17, 2024)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-12-17)**\r\n\r\n- [ ] @italobusi @Paolo-Volpato check that the current text is align with the description from last call and in particular clarifies that RCA is performed by O-PNC",
+          "createdAt": "2024-12-17T14:50:50Z",
+          "updatedAt": "2024-12-18T10:32:10Z"
         }
       ]
     },
@@ -339,12 +372,15 @@
       "author": "italobusi",
       "authorAssociation": "OWNER",
       "assignees": [
-        "prmanna"
+        "italobusi",
+        "sergiobelotti",
+        "prmanna",
+        "Paolo-Volpato"
       ],
       "labels": [],
       "body": "Define the list of candidate RFCs/I-Ds which can be relevant for this work, considering both IP and Optical networks",
       "createdAt": "2024-09-24T20:41:33Z",
-      "updatedAt": "2024-11-19T16:57:28Z",
+      "updatedAt": "2024-12-18T10:31:54Z",
       "closedAt": null,
       "comments": [
         {
@@ -360,6 +396,13 @@
           "body": "**[ACTN POI Assurance bi-weekly call (November 19, 2024)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-11-19)**\r\n\r\nThere are many drafts about Performance Monitoring (PM) and their relationship is not fully clear\r\n\r\nSome PM drafts discussed during the call:\r\n\r\n1) https://datatracker.ietf.org/doc/draft-yu-ccamp-optical-resource-pm-yang/\r\n\r\n2) https://datatracker.ietf.org/doc/draft-yu-ccamp-resource-pm-yang/\r\n\r\n3) https://datatracker.ietf.org/doc/draft-yoon-ccamp-pm-streaming\r\n\r\nDraft 1) is targeted to optical network resources while draft 2) is a generalization of draft 1) and replaces it\r\n\r\nDraft 3) is aimed at providing a YANG model to manage subscription to telemetry streaming. During the side meeting in Dublin, it has been agreed to split the document into:\r\n- a generic document (target OPSAWG) to support subscription and using XPath as a generic pointer any PM data\r\n- technology specific models providing technology specific PM data\r\n\r\n- [ ] @prmanna  get a list of the PM drafts/RFCs which can be in the scope of the analysis in ACTN POI assurance I-D\r\n",
           "createdAt": "2024-11-19T11:02:17Z",
           "updatedAt": "2024-11-19T16:57:28Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (December 17, 2024)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-12-17)**\r\n\r\n- [ ] @italobusi @Paolo-Volpato @sergiobelotti @prmanna complete the list of references",
+          "createdAt": "2024-12-17T14:52:09Z",
+          "updatedAt": "2024-12-18T10:31:54Z"
         }
       ]
     }
