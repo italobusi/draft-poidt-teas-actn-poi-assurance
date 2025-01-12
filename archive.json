@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-09T00:53:07.437647+00:00",
+  "timestamp": "2025-01-12T00:58:32.110825+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -226,16 +226,24 @@
       "id": "I_kwDOJAsmzM5iKzeE",
       "title": "Remove duplicated text from base POI document",
       "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/7",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "OWNER",
       "assignees": [],
       "labels": [],
       "body": "As discussed with Lou during the IETF 116 TEAS WG meeting\r\n",
       "createdAt": "2023-03-30T06:32:15Z",
-      "updatedAt": "2023-03-30T06:32:26Z",
-      "closedAt": null,
-      "comments": []
+      "updatedAt": "2025-01-10T09:29:38Z",
+      "closedAt": "2025-01-10T09:29:38Z",
+      "comments": [
+        {
+          "author": "Paolo-Volpato",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Closed with draft-poidt-teas-poi-assurance-04",
+          "createdAt": "2025-01-10T09:29:38Z",
+          "updatedAt": "2025-01-10T09:29:38Z"
+        }
+      ]
     },
     {
       "number": 8,
@@ -308,7 +316,7 @@
       "labels": [],
       "body": "As discussed in our call last Tuesday, cost vs benefits of this use case of having a spare port in the router and a spare transponder in the optical node just to be used in case of a router port failure is not so clear to me. Most common approach is to solve this at IP/MPLS layer (FRR, etc.). However it was agreed not to remove this use case without Fabio's agreement.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/10#discussion_r1509159236_\r\n            ",
       "createdAt": "2024-03-04T09:51:18Z",
-      "updatedAt": "2024-12-18T10:32:25Z",
+      "updatedAt": "2025-01-09T20:20:19Z",
       "closedAt": null,
       "comments": [
         {
@@ -324,6 +332,13 @@
           "body": "**[ACTN POI Assurance bi-weekly call (December 17, 2024)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-12-17)**\r\n\r\n- [ ] @danielkinguk provide some proposed text to introduce the need to support multiple types of resiliency strategies besides just 1+1 optical protection and packet-based FRR. Reference also RFC5557",
           "createdAt": "2024-12-17T14:48:10Z",
           "updatedAt": "2024-12-18T10:32:25Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "COLLABORATOR",
+          "body": "How detailed do we want to get? I have sent some text to Italo for initial review.",
+          "createdAt": "2025-01-09T20:20:18Z",
+          "updatedAt": "2025-01-09T20:20:18Z"
         }
       ]
     },
