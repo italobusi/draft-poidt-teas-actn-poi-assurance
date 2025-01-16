@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-14T00:50:53.967220+00:00",
+  "timestamp": "2025-01-16T00:51:38.528026+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -62,7 +62,7 @@
       "labels": [],
       "body": "[2023 03 draft-poidt-teas-poi-assurance .pptx](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/10885907/2023.03.draft-poidt-teas-poi-assurance.pptx)\r\n",
       "createdAt": "2023-03-03T20:36:24Z",
-      "updatedAt": "2024-01-09T19:30:31Z",
+      "updatedAt": "2025-01-14T11:05:22Z",
       "closedAt": null,
       "comments": [
         {
@@ -113,6 +113,13 @@
           "body": "**[ACTN POI Assurance bi-weekly call (December 19, 2023)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/blob/main/minutes/minutes-2023-12-19.md)**\r\n\r\nReviewed the latest update to the slides from Fabio/Italo/Paolo:\r\n\r\n[2023.10.draft-poi-assurance-fp-ib-pv_v4.pptx](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/files/13878118/2023.10.draft-poi-assurance-fp-ib-pv_v4.pptx)\r\n\r\n#### Dual-homing and node failure scenario\r\n\r\nThe suggestion is to setup the green back-up path as disjoint from the yellow working path\r\n\r\nThis is a generic issue to be considered for all the multi-layer recovery scenarios in order to avoid that a single failure is going to affect both primary and reverse IP FRR paths\r\n\r\nA gap has been identified in this issue since there is a need to request the setup of disjoint paths that belong to different tunnels\r\n\r\nSteps 11 and 12 are optional since they depend on the IP FRR configuration: if IP FRR is revertive, R1 can switch the traffic to the dashed green path automatically as soon as the dashed green path becomes available\r\n\r\nIn the description we can mention that the dashed green path can go to R3, in case of dual-homing, or to another router (e.g., R4), in case of multi-homing.\r\n\r\n#### Alert in case of degrade of DWDM link performance\r\n\r\nThe scenario for degraded WDM link requires further discussion with Fabio. As written in the original slides, the scenario is not a recovery scenario nor a multi-layer coordination scenario since it requires the ROADM to report whether the pre-FEC BER is above a given configured threshold.\r\n\r\nOne possibility is that this alert is used to trigger IP FRR protection for preventive traffic recovery.\r\n\r\nHowever, with the new FEC algorithms, it seems hard to predict when the FEC will stop correcting errors in time to perform preventive traffic recovery. This is an issue to discuss with FEC experts to see if there other parameters to monitor for preventive traffic recovery.\r\n",
           "createdAt": "2024-01-09T19:30:30Z",
           "updatedAt": "2024-01-09T19:30:30Z"
+        },
+        {
+          "author": "Paolo-Volpato",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Since no new scenarios have ben added, the proposal is to close this issue. All the use cases defined by Fabio are now in the draft.",
+          "createdAt": "2025-01-14T11:05:20Z",
+          "updatedAt": "2025-01-14T11:05:20Z"
         }
       ]
     },
@@ -316,7 +323,7 @@
       "labels": [],
       "body": "As discussed in our call last Tuesday, cost vs benefits of this use case of having a spare port in the router and a spare transponder in the optical node just to be used in case of a router port failure is not so clear to me. Most common approach is to solve this at IP/MPLS layer (FRR, etc.). However it was agreed not to remove this use case without Fabio's agreement.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/10#discussion_r1509159236_\r\n            ",
       "createdAt": "2024-03-04T09:51:18Z",
-      "updatedAt": "2025-01-09T20:20:19Z",
+      "updatedAt": "2025-01-14T10:27:22Z",
       "closedAt": null,
       "comments": [
         {
@@ -339,6 +346,13 @@
           "body": "How detailed do we want to get? I have sent some text to Italo for initial review.",
           "createdAt": "2025-01-09T20:20:18Z",
           "updatedAt": "2025-01-09T20:20:18Z"
+        },
+        {
+          "author": "Paolo-Volpato",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Please Daniel, can you share your initial text on github?",
+          "createdAt": "2025-01-14T10:27:20Z",
+          "updatedAt": "2025-01-14T10:27:20Z"
         }
       ]
     },
@@ -359,7 +373,7 @@
       "labels": [],
       "body": "Initial set of slides analysis some failure scenarios relevant for POI assurance: [poi-failure-scenarios-00.pptx](https://github.com/user-attachments/files/15632484/poi-failure-scenarios-00.pptx)\r\n",
       "createdAt": "2024-06-06T13:54:51Z",
-      "updatedAt": "2024-12-18T10:32:10Z",
+      "updatedAt": "2025-01-14T10:24:26Z",
       "closedAt": null,
       "comments": [
         {
@@ -375,6 +389,13 @@
           "body": "**[ACTN POI Assurance bi-weekly call (December 17, 2024)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2024-12-17)**\r\n\r\n- [ ] @italobusi @Paolo-Volpato check that the current text is align with the description from last call and in particular clarifies that RCA is performed by O-PNC",
           "createdAt": "2024-12-17T14:50:50Z",
           "updatedAt": "2024-12-18T10:32:10Z"
+        },
+        {
+          "author": "Paolo-Volpato",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The check on the text was done. Actually, the term \"RCA\" is not used. \r\nWork proposal: let's change the relevant section adding 1-2 sentences to explain that the network alarm correlation is done in part by the nodes and in part by the O-PNC.",
+          "createdAt": "2025-01-14T10:24:25Z",
+          "updatedAt": "2025-01-14T10:24:25Z"
         }
       ]
     },
