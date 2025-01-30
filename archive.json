@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-28T00:51:57.367666+00:00",
+  "timestamp": "2025-01-30T00:50:55.312734+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -358,7 +358,7 @@
       "labels": [],
       "body": "As discussed in our call last Tuesday, cost vs benefits of this use case of having a spare port in the router and a spare transponder in the optical node just to be used in case of a router port failure is not so clear to me. Most common approach is to solve this at IP/MPLS layer (FRR, etc.). However it was agreed not to remove this use case without Fabio's agreement.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/10#discussion_r1509159236_\r\n            ",
       "createdAt": "2024-03-04T09:51:18Z",
-      "updatedAt": "2025-01-22T17:58:29Z",
+      "updatedAt": "2025-01-28T10:08:25Z",
       "closedAt": null,
       "comments": [
         {
@@ -395,6 +395,13 @@
           "body": "**[ACTN POI Assurance bi-weekly call (January 14, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-01-14)**\n\nAdded a comment asking Daniel to provide the text he mentioned and to share it to the team/on GitHub: https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/11#issuecomment-2589546168\n\nAdditional point discussed: SRLG is mentioned in the POI use cases. Is it worth adding a reference here?\n",
           "createdAt": "2025-01-22T17:58:17Z",
           "updatedAt": "2025-01-22T17:58:17Z"
+        },
+        {
+          "author": "danielkinguk",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Something along the lines of... \n\n>>\nIn this document, the benefits of a spare router port depend on the resiliency architecture and the number of router ports (N) required to support the network. Protection can also be achieved in the IP/MPLS layer or using a multi-layer resilience strategy by combining both the IP/MPLS and ROADM network, \n\no IP/MPLS Layer Protection: If the resiliency strategy protects only at the IP/MPLS layer, the number of router ports required ranges from (X+1) to 2*N, depending on the percentage of IP traffic that needs protection. In this case, implementing (N+1) router port protection would require Y+1 router ports, leading to potential cost-benefit concerns.\n\no Multi-Layer Resiliency Strategy: An alternative strategy leverages multi-layer POI capabilities, relying on optical network protection/restoration to handle most failure scenarios. The (N+1) router port protection can then address failures in links between IP routers and ROADMs, which are less likely.  \n\nThe latter approach reduces the router ports required for protection to X+1, offering some cost advantages. Since the number of failed links between IP routers and edge ROADMs is lower, this configuration can achieve higher availability at lower costs while recovering 100% of IP traffic. Therefore, the ACTN POI architecture, supported by the IETF-defined YANG data models, offers a robust framework for resilience in a POI network.\n<<",
+          "createdAt": "2025-01-28T10:08:24Z",
+          "updatedAt": "2025-01-28T10:08:24Z"
         }
       ]
     },
@@ -472,7 +479,7 @@
       "labels": [],
       "body": "Define the list of candidate RFCs/I-Ds which can be relevant for this work, considering both IP and Optical networks",
       "createdAt": "2024-09-24T20:41:33Z",
-      "updatedAt": "2025-01-22T17:51:15Z",
+      "updatedAt": "2025-01-28T16:26:42Z",
       "closedAt": null,
       "comments": [
         {
@@ -502,6 +509,44 @@
           "body": "**[ACTN POI Assurance bi-weekly call (January 14, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-01-14)**\n\nThe list of the fault/performance-related YANG models relevant to the draft, in particular to the IP/MPLS network, is still incomplete.\nSuggested action to the team is to add the missing references.",
           "createdAt": "2025-01-22T17:51:14Z",
           "updatedAt": "2025-01-22T17:51:14Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (January 28, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-01-28)**\n\nThere an individual proposal in [draft-yu-ccamp-resource-pm-yang](https://datatracker.ietf.org/doc/html/draft-yu-ccamp-resource-pm-yang) which originally was intended to be used only for optical networks but later expanded to be more generic and applicable also to IP networks (and presented also in OPSAWG). Operators' feedbacks would be useful to understand how to position and move forward this draft in either CCAMP WG or OPSAWG.\n\nThere is another another individual proposal in [draft-yoon-ccamp-pm-streaming](https://datatracker.ietf.org/doc/html/draft-yoon-ccamp-pm-streaming) which, based on the breakout discussion in IETF 121, is planned to be updated to become a generic model (applicable to both optical and IP networks) to complement the traditional polling of CD/HD with new streaming reporting mechanisms.\n\nIt has been clarified that the scope of this document is to identify gaps and requirements for service assurance in ACTN POI networks. If any gap is identified, work can be started in TEAS WG or other WGs to develop new YANG models addressing the identified gaps.\n",
+          "createdAt": "2025-01-28T14:31:24Z",
+          "updatedAt": "2025-01-28T14:31:24Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "The plan for updating [draft-yoon-ccamp-pm-streaming](https://datatracker.ietf.org/doc/html/draft-yoon-ccamp-pm-streaming) , as mentioned in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/14#issuecomment-2619168191, is available in the [IETF 121 CCAMP WG Presentation](https://datatracker.ietf.org/doc/slides-121-ccamp-06-a-yang-data-model-of-performance-management-streaming/)",
+          "createdAt": "2025-01-28T16:26:41Z",
+          "updatedAt": "2025-01-28T16:26:41Z"
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "I_kwDOJAsmzM6n1olV",
+      "title": "Operators' requirements for Performance Monitoring",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/16",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "PM (in terms of current data (CD) and history data (HD)) is not widely used in IP routers world but instead cumulative statistics are reported by IP routers\n\nQuestion is whether the implementation of PM CD/HD on IP interfaces is required by operators",
+      "createdAt": "2025-01-28T14:32:57Z",
+      "updatedAt": "2025-01-28T14:35:27Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (January 28, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-01-28)**\n\nPM (in terms of current data (CD) and history data (HD)) is not widely used in IP routers world but instead cumulative statistics are reported by IP routers\n\nQuestion is whether the implementation of PM CD/HD on IP interfaces is required by operators?\n\n- [ ] @jbouqui153 @ju7ien : check internally and provide feedbacks about operators' requirements\n",
+          "createdAt": "2025-01-28T14:35:27Z",
+          "updatedAt": "2025-01-28T14:35:27Z"
         }
       ]
     }
