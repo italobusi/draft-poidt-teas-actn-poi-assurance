@@ -5,14 +5,14 @@
 TEAS WG                                                          I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 23 May 2025                                            Vodafone
+Expires: 4 August 2025                                          Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                        19 November 2024
+                                                         31 January 2025
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -23,17 +23,13 @@ Abstract
 
    This document extends the analysis of the applicability of
    Abstraction and Control of TE Networks (ACTN) architecture to Packet
-   Optical Integration (POI), provided in RFC YYYY, to cover multi-layer
-   service assurance scenarios.  Specifically, the ACTN architecture
-   enables the detection and handling of different failures that may
-   happen either at the optical or the packet layer.  It is assumed that
-   the underlying transport optical network carries end-to-end IP
-   services such as L2VPN or L3VPN connectivity services, with specific
-   Service Level Agreement (SLA) requirements.
-
-      RFC Editor: Please replace YYYY with the RFC number of draft-ietf-
-      teas-actn-poi-applicability once it has been published.  Please
-      remove this note.
+   Optical Integration (POI) to cover multi-layer service assurance
+   scenarios.  Specifically, the ACTN architecture enables the detection
+   and handling of different failures that may happen either at the
+   optical or the packet layer.  It is assumed that the underlying
+   transport optical network carries end-to-end IP services such as
+   L2VPN or L3VPN connectivity services, with specific Service Level
+   Agreement (SLA) requirements.
 
    Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a
@@ -55,11 +51,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 May 2025.
+   This Internet-Draft will expire on 4 August 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1412,9 +1408,9 @@ Table of Contents
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-12, 5 July 2024,
+              draft-ietf-teas-actn-poi-applicability-13, 3 January 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              actn-poi-applicability-12>.
+              actn-poi-applicability-13>.
 
    [I-D.yu-performance-monitoring-yang]
               Yu, C., "A YANG Data Model for Optical Performance
