@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-06T00:52:56.810652+00:00",
+  "timestamp": "2025-02-09T00:55:40.823652+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -144,7 +144,7 @@
       "labels": [],
       "body": "I think the scope of the draft will be both performance monitoring for IP and OP domains. In my opinion we shouldn't restrict to Optical only.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/2#discussion_r1132439486_\r\n            ",
       "createdAt": "2023-03-10T21:17:56Z",
-      "updatedAt": "2025-01-23T12:38:40Z",
+      "updatedAt": "2025-02-07T14:33:53Z",
       "closedAt": null,
       "comments": [
         {
@@ -181,6 +181,13 @@
           "body": "AFAIK, As such for packet layer, there is no standard bucketised statistics. \nhttps://datatracker.ietf.org/wg/ippm/documents/ - IP Performance Measurement (ippm) has some standard. But these are mostly running counters.\nBased on the use-case, we can generate bucketised statistics. ",
           "createdAt": "2025-01-23T12:38:39Z",
           "updatedAt": "2025-01-23T12:38:39Z"
+        },
+        {
+          "author": "Paolo-Volpato",
+          "authorAssociation": "COLLABORATOR",
+          "body": "[New performance monitoring.txt](https://github.com/user-attachments/files/18708031/New.performance.monitoring.txt)\n\nFor the call on Tuesday 11 we may continue the discussion to refine the scope of section 6 - performance mesurement.\nEnclosed there is a proposal for the relevant text.",
+          "createdAt": "2025-02-07T14:33:52Z",
+          "updatedAt": "2025-02-07T14:33:52Z"
         }
       ]
     },
@@ -1037,7 +1044,7 @@
       "labels": [],
       "body": "Modified text to address:\r\n- Change Abstract\r\n- Changes introduction: fix #12\r\n- Modified section 7.3: fix #11",
       "createdAt": "2025-02-04T14:27:08Z",
-      "updatedAt": "2025-02-04T14:27:55Z",
+      "updatedAt": "2025-02-06T15:48:37Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "8870eeb55cd73ac11592a157693eac941ac1106b",
