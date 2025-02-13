@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-11T00:52:38.686014+00:00",
+  "timestamp": "2025-02-13T00:53:11.314379+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -541,11 +541,13 @@
       "state": "OPEN",
       "author": "italobusi",
       "authorAssociation": "OWNER",
-      "assignees": [],
+      "assignees": [
+        "jbouqui153"
+      ],
       "labels": [],
       "body": "PM (in terms of current data (CD) and history data (HD)) is not widely used in IP routers world but instead cumulative statistics are reported by IP routers\n\nQuestion is whether the implementation of PM CD/HD on IP interfaces is required by operators",
       "createdAt": "2025-01-28T14:32:57Z",
-      "updatedAt": "2025-01-28T14:35:27Z",
+      "updatedAt": "2025-02-11T11:05:49Z",
       "closedAt": null,
       "comments": [
         {
@@ -1044,7 +1046,7 @@
       "labels": [],
       "body": "Modified text to address:\r\n- Change Abstract\r\n- Changes introduction: fix #12\r\n- Modified section 7.3: fix #11",
       "createdAt": "2025-02-04T14:27:08Z",
-      "updatedAt": "2025-02-06T15:48:37Z",
+      "updatedAt": "2025-02-11T09:08:05Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "8870eeb55cd73ac11592a157693eac941ac1106b",
@@ -1056,7 +1058,21 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOJAsmzM6bdFLa",
+          "commit": {
+            "abbreviatedOid": "bd262f0"
+          },
+          "author": "prmanna",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-11T09:08:05Z",
+          "updatedAt": "2025-02-11T09:08:05Z",
+          "comments": []
+        }
+      ]
     }
   ]
 }
