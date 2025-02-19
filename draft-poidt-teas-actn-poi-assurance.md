@@ -88,8 +88,8 @@ In the scope of this document, service assurance is discussed in the context of 
 
 As already highlighted in {{!I-D.ietf-teas-actn-poi-applicability}}, a multi-layer network is composed of an IP layer and an optical transport layer. A multi-domain network is composed of at least two different administrative domains (e.g. core and edge) under the control of the same organization (e.g. the same network operator). Service assurance applies to end-to-end L2VPN or L3VPN connectivity services configured over underlying transport optical paths that requires multi-layer coordination.
 
-To guarantee the SLAs associated to the VPN services, service assurance is performed through the collaboration of the different control entities part of the ACTN architecture {{!RFC8453}}: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNC) deployed both in the packet (PNC-P) and optical (PNC-O) layers.
-This document aligns with the current field operations procedures adopted in the optical networks and assumes that the PNC-O provides the MDSC with the set of information necessary to provide the Root Cause Analysis (RCA) to correlate an event/alarm related to a failure in the optical network with the services impacted at the IP layer. The set of information shared by the PNC-O to the MDSC depends on local configuration adopted at the MDSC-PNC Interface (MPI) [RFC8453]. In general, this may include information about the optical path, tunnel, or fiber where the failure happened together with its location and its operational state (e.g., its "down" status), hiding further detailed information of the optical topology. This data is sufficent to allow the MDSC to perform the multi-layer correlation and discover which IP links, LSPs and VPNs are affected by the failure.
+To guarantee the SLAs associated to the VPN services, service assurance is performed through the collaboration of the different control entities part of the ACTN architecture {{!RFC8453}}: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNC) deployed both in the packet (P-PNC) and optical (O-PNC) layers.
+This document aligns with the current field operations procedures adopted in the optical networks and assumes that the O-PNC provides the MDSC with the set of information necessary to provide the Root Cause Analysis (RCA) to correlate an event/alarm related to a failure in the optical network with the services impacted at the IP layer. The set of information shared by the O-PNC to the MDSC depends on local configuration adopted at the MDSC-PNC Interface (MPI) [RFC8453]. In general, this may include information about the optical path, tunnel, or fiber where the failure happened together with its location and its operational state (e.g., its "down" status), hiding further detailed information of the optical topology. This data is sufficent to allow the MDSC to perform the multi-layer correlation and discover which IP links, LSPs and VPNs are affected by the failure.
 
 The analysis of the YANG data models applicable to service assurance (fault and performance) is in scope of this document. The development of new YANG models/modules to support the missing functions is instead not in scope of the present document. To this extent, this document means to act as a framework that provides a gap analysis and suggests openings to future works to be addressed in other documents. 
 
@@ -335,22 +335,58 @@ At the IP level the missing reception of the BFD messages against R2 triggers a 
 
 # Multi-layer Performance Management
 
-Optical devices employ mechanisms for monitoring the condition of an OTN link. Among others, pre-Forward Error Correction (pre-FEC) Bit Error Rate (BER) allows to track bit errors on the optical wire, notifying the transmitter side or a controlling agent when a specified threshold is reached or passed. The advantage of this mechanism is to get an early warning on the optical path performance: the exceeding of the specified threshold means that the receiver is no longer able to correct all the errors on the channel. As a result, the transmitter or the controlling entity (e.g. an SDN controller) may trigger counter-actions such as the switch to a different optical path.
+Network performance management refers to the set of operational actions
+that are taken to solve issues affecting network performance and that may degrade the quality of the services offered to the network customers.
 
-Multi-layer performance managent is in scope of the present document. In this context it is assumed that:
-1. O-PNC is capable of monitoring the DWDM links optical performance, and alert MDSC when the pre-FEC BER value overcomes a user-specified threshold
-2. MDSC is capable of correlating the pre-FEC BEC threshold crossing alarm with a related IP link and take appropriate corrective actions, if programmed to do so.
+For the scope of the present document, which focuses on multi-layer, multi-domain networks, two cases are of interest:
+1. The optical layer detects, through performance data measurement, collection and analysis, that an abnormal condition (e.g. a physical signal degradation) has arised or is going to happen in either of the optical domains considered in {{fig-ref-architecture}}. The O-PNC provides relevant information to the MDSC (e.g. the fiber where the degration was detected), which triggers correlation analysis by the MDSC to detect if any services are impacted at the IP level and, if the case, to take corrective actions, through the P-PNC (e.g. traffic rerouting).
+2. The IP layer detects, through performance data measurement, collection and analysis, that the Service Level Agreement (SLA) associated with transport of a VPN service is not conformant at least in one of the two IP domains represented in {{fig-ref-architecture}}. The P-PNC provides relevant information to the MDSC (e.g. the IP tunnel carrying the VPN service), which enables the MDSC to take reactive measures, through the support of the P-PNC (e.g. reroute the IP traffic on a different IP path). The MDSC can take further steps, such as to verify through the O-PNC if any failure or degradation has happened in the optical layer but this is out of the scope of case #2. The attention here is on the IP multi-domain, end-to-end performance management.
 
-In this context, the assumption is that pre-FEC BER measurement is done on the optical path between ROADM1 and ROADM2. Some IP services (e.g. L2/L3 VPNs) are active between R1 and R2, using the optical path between ROADM1 and ROADM2 as a transport.
-The sequence of steps to handle multi-layer performance managent by the MDSC is expected to be the following:
+The two cases are further detailed in the relevant subsections.
+      
+## Optical performance management
 
-- step 1. ROADM2 detects a pre-FEC BER value at an ingress interface higher that the defined threshold. A corresponding  alarm is sent to O-PNC
+Optical devices employ mechanisms for monitoring the condition of an
+OTN link.  Among others, pre-Forward Error Correction (pre-FEC) Bit Error Rate (BER) allows to track bit errors on the optical wire,
+notifying the transmitter side or a controlling agent when a
+specified threshold is reached or passed.  The advantage of this
+mechanism is to get an early warning on the optical path performance:
+the exceeding of the specified threshold means that the receiver is
+no longer able to correct all the errors on the channel.  As a
+result, the transmitter or the controlling entity (e.g. an SDN
+controller) may trigger counter-actions such as the switch to a
+different optical path.
 
-- step 2. O-PNC forwards the alarm to MDSC
+In the context of multi-layer performance management, it is assumed that:
+1.  The O-PNC is capable of monitoring the DWDM links optical performance, and alerting the MDSC when
+the pre-FEC BER value overcomes a user-specified threshold 
+2.  The MDSC is capable of correlating the pre-FEC BEC threshold crossing alarm with a related IP link and take appropriate corrective actions, if programmed to do so.
 
-- step 3. MDSC correlates the information of the optical path subject to pre-FEC BER issues and the IP services active on it.
+In this context, the assumption is that pre-FEC BER measurement is
+done on the optical path between ROADM1 and ROADM2 of {{fig-ref-network}}.  Some IP services
+(e.g.  L2/L3 VPNs) are active between R1 and R2, using the optical
+path between ROADM1 and ROADM2 as a transport.  The sequence of steps
+to handle the exception detected by the optical performance managent is expected to
+be the following:
 
-Depending on how the MDSC in instructed to react, different choices are possible. At one extreme of the spectrum, the MDSC notes the event and simply trigger a notification to the operator. At the other extreme, the MDSC may start the multi-layer resiliency mechanisms described in the next section, including fast-reroute at the IP layer.
+- step 1.  ROADM2 detects a pre-FEC BER value at an ingress interface higher that the defined threshold.  A corresponding   alarm is sent to O-PNC
+
+- step 2.  O-PNC forwards the alarm to MDSC
+
+- step 3.  MDSC correlates the information of the optical path subject to pre-FEC BER issues and the IP services active on it.
+
+Depending on how the MDSC in instructed to react, different choices
+are possible.  At one extreme of the spectrum, the MDSC notes the
+event and simply trigger a notification to the operator.  At the
+other extreme, the MDSC may start the multi-layer resiliency
+mechanisms described in {{optical-fault}}, as the case is equivalent to the handling of an optical failure.
+
+## End-to-end IP performance management
+
+Performance measurement at the IP layer may be based on a multiplicity of methods, including interface counters, passive and active mechanisms {{RFC7799}}. While the utilization of those mechanisms is not constrained by network topology, for example by the number of IP domains crossed by a measurement flow, in practice they are often enabled in limited environments (controlled domains) {{RFC8799}}.
+
+As a result, the applicability of such methods is often limited to a single IP domain due to the necessity of avoiding the exchange and disclosure of sensitive data across multiple administrative organizations.
+With reference to {{fig-ref-architecture}}, it is then assumed that both IP domains, namely Packet domain 1 and 2, run separate performance measurement. It is responsibility of each P-PNC to inform the MDSC in the case of service SLA degradation so that the MDSC enables a corrective action. 
 
 {: #resiliency}
 
