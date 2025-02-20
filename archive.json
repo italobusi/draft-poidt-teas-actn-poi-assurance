@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-18T00:52:39.681046+00:00",
+  "timestamp": "2025-02-20T00:53:29.795539+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -144,7 +144,7 @@
       "labels": [],
       "body": "I think the scope of the draft will be both performance monitoring for IP and OP domains. In my opinion we shouldn't restrict to Optical only.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/2#discussion_r1132439486_\r\n            ",
       "createdAt": "2023-03-10T21:17:56Z",
-      "updatedAt": "2025-02-07T14:33:53Z",
+      "updatedAt": "2025-02-19T13:24:11Z",
       "closedAt": null,
       "comments": [
         {
@@ -188,6 +188,13 @@
           "body": "[New performance monitoring.txt](https://github.com/user-attachments/files/18708031/New.performance.monitoring.txt)\n\nFor the call on Tuesday 11 we may continue the discussion to refine the scope of section 6 - performance mesurement.\nEnclosed there is a proposal for the relevant text.",
           "createdAt": "2025-02-07T14:33:52Z",
           "updatedAt": "2025-02-07T14:33:52Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (February 11, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-02-11)**\n\n-\tJeff, Gabriele and Prasenjit propose to stay general on the description of the case\n-\tIf there is an issue in one of the two IP domains, the MDSC starts actions to do localized measurement. No need to deep dive into the end-to-end mechanisms.\n",
+          "createdAt": "2025-02-19T12:59:19Z",
+          "updatedAt": "2025-02-19T13:24:11Z"
         }
       ]
     },
@@ -547,7 +554,7 @@
       "labels": [],
       "body": "PM (in terms of current data (CD) and history data (HD)) is not widely used in IP routers world but instead cumulative statistics are reported by IP routers\n\nQuestion is whether the implementation of PM CD/HD on IP interfaces is required by operators",
       "createdAt": "2025-01-28T14:32:57Z",
-      "updatedAt": "2025-02-11T11:05:49Z",
+      "updatedAt": "2025-02-19T12:59:12Z",
       "closedAt": null,
       "comments": [
         {
@@ -1037,27 +1044,35 @@
     {
       "number": 17,
       "id": "PR_kwDOJAsmzM6KAbKp",
-      "title": "Ietf 122 - ",
+      "title": "Preparation for IETF 122",
       "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/17",
       "state": "OPEN",
       "author": "Paolo-Volpato",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Modified text to address:\r\n- Change Abstract\r\n- Changes introduction: fix #12\r\n- Modified section 7.3: fix #11",
+      "body": "Modified text to address:\r\n- Change Abstract\r\n- Changes introduction: fix #12\r\n- Modified section 7.3: fix #11\r\n- Modified section 6: fix #3 ",
       "createdAt": "2025-02-04T14:27:08Z",
-      "updatedAt": "2025-02-11T09:08:05Z",
+      "updatedAt": "2025-02-19T13:28:57Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "8870eeb55cd73ac11592a157693eac941ac1106b",
       "headRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "headRefName": "ietf-122",
-      "headRefOid": "bd262f0d978d254c7cf3d2ee435b0a009772663e",
+      "headRefOid": "eb6ca150e427f954b408fa1c6cc4e7db901b7a14",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI Assurance bi-weekly call (February 11, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-02-11)**\r\n\r\nJeff suggests to correct the use of PNC-O and replace it with O-PNC (to be found also in other parts of the draft)\r\n\r\n- [x] @Paolo-Volpato : replace PNC-O with O-PNC\r\n\r\nDaniel is fine with the text introduced in section 7.3 on the use of a spare port \r\n\r\nIt is agreed to provide comments by the next call on Tuesday 25, so that all comments/change can be incorporated and the new version of the draft can be uploaded for IETF 122.",
+          "createdAt": "2025-02-19T12:57:30Z",
+          "updatedAt": "2025-02-19T13:28:57Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOJAsmzM6bdFLa",
