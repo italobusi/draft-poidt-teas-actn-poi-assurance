@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-20T00:53:29.795539+00:00",
+  "timestamp": "2025-02-23T00:57:29.810001+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -1053,7 +1053,7 @@
       "labels": [],
       "body": "Modified text to address:\r\n- Change Abstract\r\n- Changes introduction: fix #12\r\n- Modified section 7.3: fix #11\r\n- Modified section 6: fix #3 ",
       "createdAt": "2025-02-04T14:27:08Z",
-      "updatedAt": "2025-02-19T13:28:57Z",
+      "updatedAt": "2025-02-21T17:17:23Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "8870eeb55cd73ac11592a157693eac941ac1106b",
@@ -1085,6 +1085,19 @@
           "body": "",
           "createdAt": "2025-02-11T09:08:05Z",
           "updatedAt": "2025-02-11T09:08:05Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOJAsmzM6c-9BO",
+          "commit": {
+            "abbreviatedOid": "eb6ca15"
+          },
+          "author": "prmanna",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-21T17:17:23Z",
+          "updatedAt": "2025-02-21T17:17:23Z",
           "comments": []
         }
       ]
