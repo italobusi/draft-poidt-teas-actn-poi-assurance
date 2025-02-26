@@ -224,11 +224,11 @@ The list will be progressively updated as the document evolves.
 
 # Multi-layer Fault Management
 
-This section deals with the actions taken by the MDSC and the PNCs at the IP and optical layers to handle the occurence of a failure in a multi-layer network. This set of actions is referred to as fault management and consists of steps such as fault detection, fault localization, and fault recovery. Specifically, this section analyzes the detection and localization of a failure, while section {:#resiliency} further details the mechanisms for fault recovery.
+This section deals with the actions taken by the MDSC and the PNCs at the IP and optical layers to handle the occurence of a failure in a multi-layer network. This set of actions is referred to as fault management and consists of steps such as fault detection, fault localization, and fault recovery. Specifically, this section analyzes the detection and localization of a failure, while section {{resiliency}} further details the mechanisms for fault recovery.
 Depending on the point where a failure occurs, three use cases are considered:
-1. The failure occurs in the optical layer, for example a fiber cut that triggers a Loss of Signal (LOS) alarm. This is discussed in section {:#optical-fault}.
-2. The failure occurs at the connection between a router and a ROADM (cross-layer link). Such a case is analyzed in section {:#edge-fault}.
-3. The failure occurs in the IP layer, for example a router experiences a hardware failure on a port that connects to its optical counterpart. This case is discussed in section {:#router-fault}.
+1. The failure occurs in the optical layer, for example a fiber cut that triggers a Loss of Signal (LOS) alarm. This is discussed in section {{optical-fault}}.
+2. The failure occurs at the connection between a router and a ROADM (cross-layer link). Such a case is analyzed in section {{edge-fault}}.
+3. The failure occurs in the IP layer, for example a router experiences a hardware failure on a port that connects to its optical counterpart. This case is discussed in section {{router-fault}}.
 
 {:#fault-reference-scenario}
 
@@ -282,7 +282,7 @@ The MDSC should also inform the OSS/orchestration layer about the failures on th
 ## Cross-layer Link Failures
 
 The failures discussed in this section occur on the connection between a router and a ROADM.
-A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({:#fig-failure-ingress-link}).
+A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({{fig-failure-ingress-link}}).
 
 ~~~~ ascii-art
 {::include figures/multi-layer-failure-ingress-link.txt}
@@ -295,7 +295,7 @@ At the physical level, R2 may generate on its Tx interface an RFI indication tha
 When O-PNC and P-PNC get the notifications sent by the network elements, they also instruct MDSC. O-PNC informs MDSC of the link R1-ROADM1 down, while P-PNC informs MDSC that the corresponding IP link is down due to missed BFD signalling in addition to the RFI status.
 It is up to the MDSC to correlate the events and determine what IP services are affected (VPNs, P2P links, etc.).
 
-A second case is depicted in figure {:#fig-failure-egress-link}. The failure happens on the Rx fiber used by R2 to receive traffic from ROADM2.
+A second case is depicted in figure {{fig-failure-egress-link}}. The failure happens on the Rx fiber used by R2 to receive traffic from ROADM2.
 
 ~~~~ ascii-art
 {::include figures/multi-layer-failure-egress-link.txt}
@@ -310,7 +310,7 @@ ROADM2 also propagates a CSF indication across the optical domain, translated to
 The RFI is detected by R1 that may inform P-PNC about the remote failure with an RFI status indication, if instructed to do so, and with a BFD down event notification when detecting missing connectivity.
 As noted, MDSC correlates the events to determine the affected services.
 
-A failure may also occur when the two unidirectional fibers connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected, for example for a simultaneous fiber cut, as shown in figure {:#fig-failure-bidir-link}.
+A failure may also occur when the two unidirectional fibers connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected, for example for a simultaneous fiber cut, as shown in figure {{fig-failure-bidir-link}}.
 
 ~~~~ ascii-art
 {::include figures/multi-layer-failure-bidir-link.txt}
