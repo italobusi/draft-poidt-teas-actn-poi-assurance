@@ -5,14 +5,14 @@
 TEAS WG                                                          I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 4 August 2025                                          Vodafone
+Expires: 30 August 2025                                         Vodafone
                                                             F. Peruzzini
                                                                      TIM
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                         31 January 2025
+                                                        26 February 2025
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 August 2025.
+   This Internet-Draft will expire on 30 August 2025.
 
 Copyright Notice
 
@@ -81,6 +81,8 @@ Table of Contents
      5.3.  Cross-layer Link Failures
      5.4.  Router Node Failures
    6.  Multi-layer Performance Management
+     6.1.  Optical performance management
+     6.2.  End-to-end IP performance management
    7.  Multi-layer Resiliency
      7.1.  Optical Network Failures
        7.1.1.  Optical restoration
@@ -131,7 +133,28 @@ Table of Contents
    control entities part of the ACTN architecture [RFC8453]: the Multi-
    Domain Service Coordinator (MDSC), acting as the top-level
    controller, and the Provisioning Network Controllers (PNC) deployed
-   both in the packet (PNC-P) and optical (PNC-O) layers.
+   both in the packet (P-PNC) and optical (O-PNC) layers.  This document
+   aligns with the current field operations procedures adopted in the
+   optical networks and assumes that the O-PNC provides the MDSC with
+   the set of information necessary to provide the Root Cause Analysis
+   (RCA) to correlate an event/alarm related to a failure in the optical
+   network with the services impacted at the IP layer.  The set of
+   information shared by the O-PNC to the MDSC depends on local
+   configuration adopted at the MDSC-PNC Interface (MPI) [RFC8453].  In
+   general, this may include information about the optical path, tunnel,
+   or fiber where the failure happened together with its location and
+   its operational state (e.g., its "down" status), hiding further
+   detailed information of the optical topology.  This data is sufficent
+   to allow the MDSC to perform the multi-layer correlation and discover
+   which IP links, LSPs and VPNs are affected by the failure.
+
+   The analysis of the YANG data models applicable to service assurance
+   (fault and performance) is in scope of this document.  The
+   development of new YANG models/modules to support the missing
+   functions is instead not in scope of the present document.  To this
+   extent, this document means to act as a framework that provides a gap
+   analysis and suggests openings to future works to be addressed in
+   other documents.
 
    The document has the following organization: section 2 lists the
    conventions and definitions used in the text.  Section 3 discusses
@@ -258,8 +281,8 @@ Table of Contents
    computation through the same mechanisms described in
    [I-D.ietf-teas-actn-poi-applicability].
 
-   TO DO - Complete the description of the pre-requisites of MDSC in the
-   cases discussed.
+      TO DO: Complete the description of the pre-requisites of MDSC in
+      the cases discussed.
 
    The following list summarizes the main assumptions about how MDSC can
    handle the service assurance cases described in this document.  Most
@@ -355,7 +378,7 @@ Table of Contents
    that when a failure happens on an optical path (for example, between
    ROADM1 and ROADM2), an optical backup path is activated.  The
    mechanisms are assumed to be coordinated by O-PNC and MDSC, even if
-   other methods may be also considered (e.g.  G-MPLS based).  Further
+   other methods may be also considered (e.g. G-MPLS based).  Further
    details are given in the use cases described in Section 7.
 
 4.  YANG Data Models for the MPIs
@@ -384,16 +407,16 @@ Table of Contents
    management and consists of steps such as fault detection, fault
    localization, and fault recovery.  Specifically, this section
    analyzes the detection and localization of a failure, while section
-   {: #resiliency} further details the mechanisms for fault recovery.
+   {:#resiliency} further details the mechanisms for fault recovery.
    Depending on the point where a failure occurs, three use cases are
    considered: 1.  The failure occurs in the optical layer, for example
    a fiber cut that triggers a Loss of Signal (LOS) alarm.  This is
-   discussed in section {: #optical-fault}. 2.  The failure occurs at
-   the connection between a router and a ROADM (cross-layer link).  Such
-   a case is analyzed in section {: #edge-fault}. 3.  The failure occurs
-   in the IP layer, for example a router experiences a hardware failure
-   on a port that connects to its optical counterpart.  This case is
-   discussed in section {: #router-fault}.
+   discussed in section {:#optical-fault}. 2.  The failure occurs at the
+   connection between a router and a ROADM (cross-layer link).  Such a
+   case is analyzed in section {:#edge-fault}. 3.  The failure occurs in
+   the IP layer, for example a router experiences a hardware failure on
+   a port that connects to its optical counterpart.  This case is
+   discussed in section {:#router-fault}.
 
 5.1.  Reference scenario for multi-layer faults
 
@@ -526,7 +549,7 @@ Table of Contents
 
    The failures discussed in this section occur on the connection
    between a router and a ROADM.  A first case concerns the Tx fiber
-   used by R1 to send traffic to ROADM1 ({: #fig-failure-ingress-link}).
+   used by R1 to send traffic to ROADM1 ({:#fig-failure-ingress-link}).
 
    ┌―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┐
    │                             MDSC                              │
@@ -566,7 +589,7 @@ Table of Contents
    correlate the events and determine what IP services are affected
    (VPNs, P2P links, etc.).
 
-   A second case is depicted in figure {: #fig-failure-egress-link}. The
+   A second case is depicted in figure {:#fig-failure-egress-link}. The
    failure happens on the Rx fiber used by R2 to receive traffic from
    ROADM2.
 
@@ -604,9 +627,9 @@ Table of Contents
    affected services.
 
    A failure may also occur when the two unidirectional fibers
-   connecting a router, e.g.  R1, to a ROADM, e.g.  ROADM2, are
-   affected, for example for a simultaneous fiber cut, as shown in
-   figure {: #fig-failure-bidir-link}.
+   connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected,
+   for example for a simultaneous fiber cut, as shown in figure {:#fig-
+   failure-bidir-link}.
 
    ┌―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┐
    │                             MDSC                              │
@@ -651,6 +674,38 @@ Table of Contents
 
 6.  Multi-layer Performance Management
 
+   Network performance management refers to the set of operational
+   actions that are taken to solve issues affecting network performance
+   and that may degrade the quality of the services offered to the
+   network customers.
+
+   For the scope of the present document, which focuses on multi-layer,
+   multi-domain networks, two cases are of interest: 1.  The optical
+   layer detects, through performance data measurement, collection and
+   analysis, that an abnormal condition (e.g. a physical signal
+   degradation) has arised or is going to happen in either of the
+   optical domains considered in Figure 1.  The O-PNC provides relevant
+   information to the MDSC (e.g. the fiber where the degration was
+   detected), which triggers correlation analysis by the MDSC to detect
+   if any services are impacted at the IP level and, if the case, to
+   take corrective actions, through the P-PNC (e.g. traffic rerouting).
+   2.  The IP layer detects, through performance data measurement,
+   collection and analysis, that the Service Level Agreement (SLA)
+   associated with transport of a VPN service is not conformant at least
+   in one of the two IP domains represented in Figure 1.  The P-PNC
+   provides relevant information to the MDSC (e.g. the IP tunnel
+   carrying the VPN service), which enables the MDSC to take reactive
+   measures, through the support of the P-PNC (e.g. reroute the IP
+   traffic on a different IP path).  The MDSC can take further steps,
+   such as to verify through the O-PNC if any failure or degradation has
+   happened in the optical layer but this is out of the scope of case
+   #2.  The attention here is on the IP multi-domain, end-to-end
+   performance management.
+
+   The two cases are further detailed in the relevant subsections.
+
+6.1.  Optical performance management
+
    Optical devices employ mechanisms for monitoring the condition of an
    OTN link.  Among others, pre-Forward Error Correction (pre-FEC) Bit
    Error Rate (BER) allows to track bit errors on the optical wire,
@@ -663,20 +718,20 @@ Table of Contents
    controller) may trigger counter-actions such as the switch to a
    different optical path.
 
-   Multi-layer performance managent is in scope of the present document.
-   In this context it is assumed that: 1.  O-PNC is capable of
-   monitoring the DWDM links optical performance, and alert MDSC when
-   the pre-FEC BER value overcomes a user-specified threshold 2.  MDSC
-   is capable of correlating the pre-FEC BEC threshold crossing alarm
-   with a related IP link and take appropriate corrective actions, if
-   programmed to do so.
+   In the context of multi-layer performance management, it is assumed
+   that: 1.  The O-PNC is capable of monitoring the DWDM links optical
+   performance, and alerting the MDSC when the pre-FEC BER value
+   overcomes a user-specified threshold 2.  The MDSC is capable of
+   correlating the pre-FEC BEC threshold crossing alarm with a related
+   IP link and take appropriate corrective actions, if programmed to do
+   so.
 
    In this context, the assumption is that pre-FEC BER measurement is
-   done on the optical path between ROADM1 and ROADM2.  Some IP services
-   (e.g.  L2/L3 VPNs) are active between R1 and R2, using the optical
-   path between ROADM1 and ROADM2 as a transport.  The sequence of steps
-   to handle multi-layer performance managent by the MDSC is expected to
-   be the following:
+   done on the optical path between ROADM1 and ROADM2 of Figure 2.  Some
+   IP services (e.g.  L2/L3 VPNs) are active between R1 and R2, using
+   the optical path between ROADM1 and ROADM2 as a transport.  The
+   sequence of steps to handle the exception detected by the optical
+   performance managent is expected to be the following:
 
    *  step 1.  ROADM2 detects a pre-FEC BER value at an ingress
       interface higher that the defined threshold.  A corresponding
@@ -691,8 +746,27 @@ Table of Contents
    are possible.  At one extreme of the spectrum, the MDSC notes the
    event and simply trigger a notification to the operator.  At the
    other extreme, the MDSC may start the multi-layer resiliency
-   mechanisms described in the next section, including fast-reroute at
-   the IP layer.
+   mechanisms described in Section 5.2, as the case is equivalent to the
+   handling of an optical failure.
+
+6.2.  End-to-end IP performance management
+
+   Performance measurement at the IP layer may be based on a
+   multiplicity of methods, including interface counters, passive and
+   active mechanisms [RFC7799].  While the utilization of those
+   mechanisms is not constrained by network topology, for example by the
+   number of IP domains crossed by a measurement flow, in practice they
+   are often enabled in limited environments (controlled domains)
+   [RFC8799].
+
+   As a result, the applicability of such methods is often limited to a
+   single IP domain due to the necessity of avoiding the exchange and
+   disclosure of sensitive data across multiple administrative
+   organizations.  With reference to Figure 1, it is then assumed that
+   both IP domains, namely Packet domain 1 and 2, run separate
+   performance measurement.  It is responsibility of each P-PNC to
+   inform the MDSC in the case of service SLA degradation so that the
+   MDSC enables a corrective action.
 
 7.  Multi-layer Resiliency
 
@@ -1025,19 +1099,32 @@ Table of Contents
 
 7.3.  Cross-layer Link Failures
 
-   This case is characterized by having R1 configured with N ports
-   working (say, P1-P3) and 1 spare port (PP) left as the protection of
-   the other N.  In case of failure, for example of port P1, PP is
-   dynamically activated and the traffic originally directed to P1 is
-   steered to PP.  PP receives the same configuration of P1 while P1 is
-   brought in a down state.  Differently from ordinary LAG, the traffic
-   is not redistributed over the surviving links.  Since a backup port
-   (PP) is enabled, the traffic keeps on flowing on N links instead of
-   N-1.  If on the IP layer this scenario introduces the complexity of
-   handling an extra port both on R1 and ROADM1, on the optical layer
-   the configuration, as depicted in figure Figure 2, does not change as
-   only N optical channels (e.g. lambdas) are used, as shown in figure
-   Figure 10.
+   The approach described here leverages the multi-layer POI
+   capabilities to address failures in links between IP routers and
+   ROADMs, relying on optical network protection/restoration to handle
+   most failure scenarios.  The connectivity between a router and an
+   edge ROADM is characterized by having N working ports and one spare
+   port (N+1) to handle protection.  Depending on the specific network
+   configuration and protection scheme adopted, this approach may offer
+   some cost advantages because it reduces the overall resources
+   required for protection in the optical network.  Since the number of
+   failed links between IP routers and edge ROADMs is lower, this
+   configuration can achieve higher availability at lower costs while
+   recovering 100% of IP traffic.
+
+   Following the previous examples, this case is characterized by having
+   R1 configured with N ports working (say, P1-P3) and 1 spare port (PP)
+   left as the protection of the other N.  In case of failure, for
+   example of port P1, PP is dynamically activated and the traffic
+   originally directed to P1 is steered to PP.  PP receives the same
+   configuration of P1 while P1 is brought in a down state.  Differently
+   from ordinary LAG, the traffic is not redistributed over the
+   surviving links.  Since a backup port (PP) is enabled, the traffic
+   keeps on flowing on N links instead of N-1.  If on the IP layer this
+   scenario introduces the complexity of handling an extra port both on
+   R1 and ROADM1, on the optical layer the configuration, as depicted in
+   figure Figure 2, does not change as only N optical channels (e.g.
+   lambdas) are used, as shown in figure Figure 10.
 
    ┌――――――――――┐   ┌――――――――――┐
    │        P1│---│P1        │
@@ -1408,9 +1495,9 @@ Table of Contents
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-13, 3 January 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              actn-poi-applicability-13>.
+              draft-ietf-teas-actn-poi-applicability-14, 25 February
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              teas-actn-poi-applicability-14>.
 
    [I-D.yu-performance-monitoring-yang]
               Yu, C., "A YANG Data Model for Optical Performance
@@ -1474,6 +1561,14 @@ Table of Contents
               teas-actn-poi-extension-00, 24 October 2022,
               <https://datatracker.ietf.org/doc/html/draft-mix-teas-
               actn-poi-extension-00>.
+
+   [RFC7799]  Morton, A., "Active and Passive Metrics and Methods (with
+              Hybrid Types In-Between)", RFC 7799, DOI 10.17487/RFC7799,
+              May 2016, <https://www.rfc-editor.org/rfc/rfc7799>.
+
+   [RFC8799]  Carpenter, B. and B. Liu, "Limited Domains and Internet
+              Protocols", RFC 8799, DOI 10.17487/RFC8799, July 2020,
+              <https://www.rfc-editor.org/rfc/rfc8799>.
 
 Acknowledgments
 

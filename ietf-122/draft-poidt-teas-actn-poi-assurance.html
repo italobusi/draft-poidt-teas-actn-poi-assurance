@@ -17,11 +17,11 @@
    the MPI (Multi-Domain Service Coordinator to Provisioning Network
    Controllers Interface) in the ACTN architecture. 
     " name="description">
-<meta content="xml2rfc 3.25.0" name="generator">
+<meta content="xml2rfc 3.27.0" name="generator">
 <meta content="draft-poidt-teas-actn-poi-assurance-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.25.0
-    Python 3.12.8
+  xml2rfc 3.27.0
+    Python 3.12.9
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
     intervaltree 3.1.0
@@ -442,7 +442,7 @@ dl {
     margin-bottom: 0;
   }
 }
-dl > dt {
+dl:not(.dlNewline) > dt {
   float: left;
   margin-right: 2ch;
   min-width: 8ch;
@@ -1051,11 +1051,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ACTN POI Assurance</td>
-<td class="right">January 2025</td>
+<td class="right">February 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Busi, et al.</td>
-<td class="center">Expires 4 August 2025</td>
+<td class="center">Expires 30 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-poidt-teas-actn-poi-assurance-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-01-31" class="published">31 January 2025</time>
+<time datetime="2025-02-26" class="published">26 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-08-04">4 August 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-30">30 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1127,7 +1127,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 30 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1197,6 +1197,14 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-multi-layer-performance-man" class="internal xref">Multi-layer Performance Management</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-optical-performance-managem" class="internal xref">Optical performance management</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-end-to-end-ip-performance-m" class="internal xref">End-to-end IP performance management</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-multi-layer-resiliency" class="internal xref">Multi-layer Resiliency</a></p>
@@ -1264,11 +1272,13 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <p id="section-1-1">Service assurance is a critical aspect of Operations, Administration and Management (OAM). It consists of activities and processes whose target is to guarantee a specified Service Level Agreement (SLA) to the customer of a telecommunication service. Service assurance includes both fault management, for correcting or fixing the service anomalies and network faults, and performance management, for monitoring of the service and network parameters and early warning of potential service-related issues.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">In the scope of this document, service assurance is discussed in the context of a multi-layer, multi-domain network. In doing so, it leverages on the Abstraction and Control of TE Networks (ACTN) framework <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span> and further expands the analysis of its applicability into multi-layer packet-optical integrated networks <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span> adding considerations specific to the fault and performance management scenarios.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">As already highlighted in <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span>, a multi-layer network is composed of an IP layer and an optical transport layer. A multi-domain network is composed of at least two different administrative domains (e.g. core and edge) under the control of the same organization (e.g. the same network operator). Service assurance applies to end-to-end L2VPN or L3VPN connectivity services configured over underlying transport optical paths that requires multi-layer coordination.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">To guarantee the SLAs associated to the VPN services, service assurance is performed through the collaboration of the different control entities part of the ACTN architecture <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNC) deployed both in the packet (PNC-P) and optical (PNC-O) layers.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">The document has the following organization: section 2 lists the conventions and definitions used in the text. Section 3 discusses the reference network in scope for the relevant service assurance cases. Section 4 identifies the YANG data models applicable to service assurance and provides a gap analysis for the modules that are still missing. Section 5 identifies the possible faults, either in the optical or in IP layer (or both), in scope for this analysis. Section 6 deals with the performance management aspects of service assurance in a packet-optical integrated network. Finally, section 7 discusses the protection mechanisms available for the most typical fault scenarios of a multi-layer, multi-domain network.<a href="#section-1-5" class="pilcrow">¶</a></p>
-<p id="section-1-6">For each multi-technology scenario, the document analyzes how to use the interfaces and the data models of the ACTN architecture.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">A summary of the gaps identified in this analysis is provided in section 8.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">Understanding the level of standardization and the possible gaps will help assess the feasibility of integration between packet and optical DWDM domains (and optionally OTN layer) in an end-to-end multi-vendor service assurance perspective.<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-4">To guarantee the SLAs associated to the VPN services, service assurance is performed through the collaboration of the different control entities part of the ACTN architecture <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNC) deployed both in the packet (P-PNC) and optical (O-PNC) layers.
+This document aligns with the current field operations procedures adopted in the optical networks and assumes that the O-PNC provides the MDSC with the set of information necessary to provide the Root Cause Analysis (RCA) to correlate an event/alarm related to a failure in the optical network with the services impacted at the IP layer. The set of information shared by the O-PNC to the MDSC depends on local configuration adopted at the MDSC-PNC Interface (MPI) <span>[<a href="#RFC8453" class="cite xref">RFC8453</a>]</span>. In general, this may include information about the optical path, tunnel, or fiber where the failure happened together with its location and its operational state (e.g., its "down" status), hiding further detailed information of the optical topology. This data is sufficent to allow the MDSC to perform the multi-layer correlation and discover which IP links, LSPs and VPNs are affected by the failure.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-5">The analysis of the YANG data models applicable to service assurance (fault and performance) is in scope of this document. The development of new YANG models/modules to support the missing functions is instead not in scope of the present document. To this extent, this document means to act as a framework that provides a gap analysis and suggests openings to future works to be addressed in other documents.<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-6">The document has the following organization: section 2 lists the conventions and definitions used in the text. Section 3 discusses the reference network in scope for the relevant service assurance cases. Section 4 identifies the YANG data models applicable to service assurance and provides a gap analysis for the modules that are still missing. Section 5 identifies the possible faults, either in the optical or in IP layer (or both), in scope for this analysis. Section 6 deals with the performance management aspects of service assurance in a packet-optical integrated network. Finally, section 7 discusses the protection mechanisms available for the most typical fault scenarios of a multi-layer, multi-domain network.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">For each multi-technology scenario, the document analyzes how to use the interfaces and the data models of the ACTN architecture.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-8">A summary of the gaps identified in this analysis is provided in section 8.<a href="#section-1-8" class="pilcrow">¶</a></p>
+<p id="section-1-9">Understanding the level of standardization and the possible gaps will help assess the feasibility of integration between packet and optical DWDM domains (and optionally OTN layer) in an end-to-end multi-vendor service assurance perspective.<a href="#section-1-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1357,7 +1367,11 @@ They perform single-domain local path computation, when requested by the MDSC. T
 <p id="section-3-13">No GMPLS-UNI interaction between IP and Optical equipment is considered.
 This is also the assumption followed in this document: the MDSC performs the function of multi-layer/multi-domain path computation
 through the same mechanisms described in <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span>.<a href="#section-3-13" class="pilcrow">¶</a></p>
-<p id="section-3-14">TO DO - Complete the description of the pre-requisites of MDSC in the cases discussed.<a href="#section-3-14" class="pilcrow">¶</a></p>
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-3-14.1">
+          <p id="section-3-14.1.1">TO DO: Complete the description of the pre-requisites of MDSC in the cases discussed.<a href="#section-3-14.1.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
 <p id="section-3-15">The following list summarizes the main assumptions about how MDSC can handle the service assurance cases described in this document. Most of them have been already described in <span>[<a href="#I-D.ietf-teas-actn-poi-applicability" class="cite xref">I-D.ietf-teas-actn-poi-applicability</a>]</span><a href="#section-3-15" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-16">
 <li id="section-3-16.1">
@@ -1475,11 +1489,11 @@ considered (e.g. G-MPLS based). Further details are given in the use cases descr
       <h2 id="name-multi-layer-fault-managemen">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-multi-layer-fault-managemen" class="section-name selfRef">Multi-layer Fault Management</a>
       </h2>
-<p id="section-5-1">This section deals with the actions taken by the MDSC and the PNCs at the IP and optical layers to handle the occurence of a failure in a multi-layer network. This set of actions is referred to as fault management and consists of steps such as fault detection, fault localization, and fault recovery. Specifically, this section analyzes the detection and localization of a failure, while section {: #resiliency} further details the mechanisms for fault recovery.
+<p id="section-5-1">This section deals with the actions taken by the MDSC and the PNCs at the IP and optical layers to handle the occurence of a failure in a multi-layer network. This set of actions is referred to as fault management and consists of steps such as fault detection, fault localization, and fault recovery. Specifically, this section analyzes the detection and localization of a failure, while section {:#resiliency} further details the mechanisms for fault recovery.
 Depending on the point where a failure occurs, three use cases are considered:
-1. The failure occurs in the optical layer, for example a fiber cut that triggers a Loss of Signal (LOS) alarm. This is discussed in section {: #optical-fault}.
-2. The failure occurs at the connection between a router and a ROADM (cross-layer link). Such a case is analyzed in section {: #edge-fault}.
-3. The failure occurs in the IP layer, for example a router experiences a hardware failure on a port that connects to its optical counterpart. This case is discussed in section {: #router-fault}.<a href="#section-5-1" class="pilcrow">¶</a></p>
+1. The failure occurs in the optical layer, for example a fiber cut that triggers a Loss of Signal (LOS) alarm. This is discussed in section {:#optical-fault}.
+2. The failure occurs at the connection between a router and a ROADM (cross-layer link). Such a case is analyzed in section {:#edge-fault}.
+3. The failure occurs in the IP layer, for example a router experiences a hardware failure on a port that connects to its optical counterpart. This case is discussed in section {:#router-fault}.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div id="fault-reference-scenario">
 <section id="section-5.1">
         <h3 id="name-reference-scenario-for-mult">
@@ -1556,7 +1570,7 @@ The two connections between a router and a ROADM carry, in addition to data traf
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-cross-layer-link-failures" class="section-name selfRef">Cross-layer Link Failures</a>
         </h3>
 <p id="section-5.3-1">The failures discussed in this section occur on the connection between a router and a ROADM.
-A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({: #fig-failure-ingress-link}).<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({:#fig-failure-ingress-link}).<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <span id="name-failure-on-the-optical-ingr"></span><div id="fig-failure-ingress-link">
 <figure id="figure-4">
           <div class="alignLeft art-ascii-art art-text artwork" id="section-5.3-2.1">
@@ -1588,7 +1602,7 @@ A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({: #fig
 At the physical level, R2 may generate on its Tx interface an RFI indication that is propagated downstream to the optical network (where a CSF is generated) and to R1. When receiving RFI on its Rx interface, R1 can also send a notification to P-PNC.
 When O-PNC and P-PNC get the notifications sent by the network elements, they also instruct MDSC. O-PNC informs MDSC of the link R1-ROADM1 down, while P-PNC informs MDSC that the corresponding IP link is down due to missed BFD signalling in addition to the RFI status.
 It is up to the MDSC to correlate the events and determine what IP services are affected (VPNs, P2P links, etc.).<a href="#section-5.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.3-4">A second case is depicted in figure {: #fig-failure-egress-link}. The failure happens on the Rx fiber used by R2 to receive traffic from ROADM2.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.3-4">A second case is depicted in figure {:#fig-failure-egress-link}. The failure happens on the Rx fiber used by R2 to receive traffic from ROADM2.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
 <span id="name-failure-on-the-optical-egre"></span><div id="fig-failure-egress-link">
 <figure id="figure-5">
           <div class="alignLeft art-ascii-art art-text artwork" id="section-5.3-5.1">
@@ -1622,7 +1636,7 @@ Upon detecting it, ROADM2 also informs O-PNC of the failure with a corresponding
 ROADM2 also propagates a CSF indication across the optical domain, translated to an RFI by ROADM1 towards R1.
 The RFI is detected by R1 that may inform P-PNC about the remote failure with an RFI status indication, if instructed to do so, and with a BFD down event notification when detecting missing connectivity.
 As noted, MDSC correlates the events to determine the affected services.<a href="#section-5.3-6" class="pilcrow">¶</a></p>
-<p id="section-5.3-7">A failure may also occur when the two unidirectional fibers connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected, for example for a simultaneous fiber cut, as shown in figure {: #fig-failure-bidir-link}.<a href="#section-5.3-7" class="pilcrow">¶</a></p>
+<p id="section-5.3-7">A failure may also occur when the two unidirectional fibers connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected, for example for a simultaneous fiber cut, as shown in figure {:#fig-failure-bidir-link}.<a href="#section-5.3-7" class="pilcrow">¶</a></p>
 <span id="name-failure-on-the-access-link"></span><div id="fig-failure-bidir-link">
 <figure id="figure-6">
           <div class="alignLeft art-ascii-art art-text artwork" id="section-5.3-8.1">
@@ -1673,24 +1687,66 @@ At the IP level the missing reception of the BFD messages against R2 triggers a 
       <h2 id="name-multi-layer-performance-man">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-multi-layer-performance-man" class="section-name selfRef">Multi-layer Performance Management</a>
       </h2>
-<p id="section-6-1">Optical devices employ mechanisms for monitoring the condition of an OTN link. Among others, pre-Forward Error Correction (pre-FEC) Bit Error Rate (BER) allows to track bit errors on the optical wire, notifying the transmitter side or a controlling agent when a specified threshold is reached or passed. The advantage of this mechanism is to get an early warning on the optical path performance: the exceeding of the specified threshold means that the receiver is no longer able to correct all the errors on the channel. As a result, the transmitter or the controlling entity (e.g. an SDN controller) may trigger counter-actions such as the switch to a different optical path.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">Multi-layer performance managent is in scope of the present document. In this context it is assumed that:
-1. O-PNC is capable of monitoring the DWDM links optical performance, and alert MDSC when the pre-FEC BER value overcomes a user-specified threshold
-2. MDSC is capable of correlating the pre-FEC BEC threshold crossing alarm with a related IP link and take appropriate corrective actions, if programmed to do so.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">In this context, the assumption is that pre-FEC BER measurement is done on the optical path between ROADM1 and ROADM2. Some IP services (e.g. L2/L3 VPNs) are active between R1 and R2, using the optical path between ROADM1 and ROADM2 as a transport.
-The sequence of steps to handle multi-layer performance managent by the MDSC is expected to be the following:<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-1">Network performance management refers to the set of operational actions
+that are taken to solve issues affecting network performance and that may degrade the quality of the services offered to the network customers.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">For the scope of the present document, which focuses on multi-layer, multi-domain networks, two cases are of interest:
+1. The optical layer detects, through performance data measurement, collection and analysis, that an abnormal condition (e.g. a physical signal degradation) has arised or is going to happen in either of the optical domains considered in <a href="#fig-ref-architecture" class="auto internal xref">Figure 1</a>. The O-PNC provides relevant information to the MDSC (e.g. the fiber where the degration was detected), which triggers correlation analysis by the MDSC to detect if any services are impacted at the IP level and, if the case, to take corrective actions, through the P-PNC (e.g. traffic rerouting).
+2. The IP layer detects, through performance data measurement, collection and analysis, that the Service Level Agreement (SLA) associated with transport of a VPN service is not conformant at least in one of the two IP domains represented in <a href="#fig-ref-architecture" class="auto internal xref">Figure 1</a>. The P-PNC provides relevant information to the MDSC (e.g. the IP tunnel carrying the VPN service), which enables the MDSC to take reactive measures, through the support of the P-PNC (e.g. reroute the IP traffic on a different IP path). The MDSC can take further steps, such as to verify through the O-PNC if any failure or degradation has happened in the optical layer but this is out of the scope of case #2. The attention here is on the IP multi-domain, end-to-end performance management.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">The two cases are further detailed in the relevant subsections.<a href="#section-6-3" class="pilcrow">¶</a></p>
+<div id="optical-performance-management">
+<section id="section-6.1">
+        <h3 id="name-optical-performance-managem">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-optical-performance-managem" class="section-name selfRef">Optical performance management</a>
+        </h3>
+<p id="section-6.1-1">Optical devices employ mechanisms for monitoring the condition of an
+OTN link.  Among others, pre-Forward Error Correction (pre-FEC) Bit Error Rate (BER) allows to track bit errors on the optical wire,
+notifying the transmitter side or a controlling agent when a
+specified threshold is reached or passed.  The advantage of this
+mechanism is to get an early warning on the optical path performance:
+the exceeding of the specified threshold means that the receiver is
+no longer able to correct all the errors on the channel.  As a
+result, the transmitter or the controlling entity (e.g. an SDN
+controller) may trigger counter-actions such as the switch to a
+different optical path.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1-2">In the context of multi-layer performance management, it is assumed that:
+1.  The O-PNC is capable of monitoring the DWDM links optical performance, and alerting the MDSC when
+the pre-FEC BER value overcomes a user-specified threshold
+2.  The MDSC is capable of correlating the pre-FEC BEC threshold crossing alarm with a related IP link and take appropriate corrective actions, if programmed to do so.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1-3">In this context, the assumption is that pre-FEC BER measurement is
+done on the optical path between ROADM1 and ROADM2 of <a href="#fig-ref-network" class="auto internal xref">Figure 2</a>.  Some IP services
+(e.g.  L2/L3 VPNs) are active between R1 and R2, using the optical
+path between ROADM1 and ROADM2 as a transport.  The sequence of steps
+to handle the exception detected by the optical performance managent is expected to
+be the following:<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6-4.1">
-          <p id="section-6-4.1.1">step 1. ROADM2 detects a pre-FEC BER value at an ingress interface higher that the defined threshold. A corresponding  alarm is sent to O-PNC<a href="#section-6-4.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.1-4.1">
+            <p id="section-6.1-4.1.1">step 1.  ROADM2 detects a pre-FEC BER value at an ingress interface higher that the defined threshold.  A corresponding   alarm is sent to O-PNC<a href="#section-6.1-4.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-6-4.2">
-          <p id="section-6-4.2.1">step 2. O-PNC forwards the alarm to MDSC<a href="#section-6-4.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-6.1-4.2">
+            <p id="section-6.1-4.2.1">step 2.  O-PNC forwards the alarm to MDSC<a href="#section-6.1-4.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-6-4.3">
-          <p id="section-6-4.3.1">step 3. MDSC correlates the information of the optical path subject to pre-FEC BER issues and the IP services active on it.<a href="#section-6-4.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-6.1-4.3">
+            <p id="section-6.1-4.3.1">step 3.  MDSC correlates the information of the optical path subject to pre-FEC BER issues and the IP services active on it.<a href="#section-6.1-4.3.1" class="pilcrow">¶</a></p>
 </li>
-      </ul>
-<p id="section-6-5">Depending on how the MDSC in instructed to react, different choices are possible. At one extreme of the spectrum, the MDSC notes the event and simply trigger a notification to the operator. At the other extreme, the MDSC may start the multi-layer resiliency mechanisms described in the next section, including fast-reroute at the IP layer.<a href="#section-6-5" class="pilcrow">¶</a></p>
+        </ul>
+<p id="section-6.1-5">Depending on how the MDSC in instructed to react, different choices
+are possible.  At one extreme of the spectrum, the MDSC notes the
+event and simply trigger a notification to the operator.  At the
+other extreme, the MDSC may start the multi-layer resiliency
+mechanisms described in <a href="#optical-fault" class="auto internal xref">Section 5.2</a>, as the case is equivalent to the handling of an optical failure.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="end-to-end-ip-performance-management">
+<section id="section-6.2">
+        <h3 id="name-end-to-end-ip-performance-m">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-end-to-end-ip-performance-m" class="section-name selfRef">End-to-end IP performance management</a>
+        </h3>
+<p id="section-6.2-1">Performance measurement at the IP layer may be based on a multiplicity of methods, including interface counters, passive and active mechanisms <span>[<a href="#RFC7799" class="cite xref">RFC7799</a>]</span>. While the utilization of those mechanisms is not constrained by network topology, for example by the number of IP domains crossed by a measurement flow, in practice they are often enabled in limited environments (controlled domains) <span>[<a href="#RFC8799" class="cite xref">RFC8799</a>]</span>.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2-2">As a result, the applicability of such methods is often limited to a single IP domain due to the necessity of avoiding the exchange and disclosure of sensitive data across multiple administrative organizations.
+With reference to <a href="#fig-ref-architecture" class="auto internal xref">Figure 1</a>, it is then assumed that both IP domains, namely Packet domain 1 and 2, run separate performance measurement.
+It is responsibility of each P-PNC to inform the MDSC in the case of service SLA degradation so that the MDSC enables a corrective action.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="resiliency">
@@ -2045,13 +2101,14 @@ At the of maintenance, the network configuration is moved back to the initial co
         <h3 id="name-cross-layer-link-failures-2">
 <a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-cross-layer-link-failures-2" class="section-name selfRef">Cross-layer Link Failures</a>
         </h3>
-<p id="section-7.3-1">This case is characterized by having R1 configured with N ports working (say, P1-P3) and 1 spare port (PP) left as the protection of the other N.
+<p id="section-7.3-1">The approach described here leverages the multi-layer POI capabilities to address failures in links between IP routers and ROADMs, relying on optical network protection/restoration to handle most failure scenarios. The connectivity between a router and an edge ROADM is characterized by having N working ports and one spare port (N+1) to handle protection. Depending on the specific network configuration and protection scheme adopted, this approach may offer some cost advantages because it reduces the overall resources required for protection in the optical network. Since the number of failed links between IP routers and edge ROADMs is lower, this configuration can achieve higher availability at lower costs while recovering 100% of IP traffic.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+<p id="section-7.3-2">Following the previous examples, this case is characterized by having R1 configured with N ports working (say, P1-P3) and 1 spare port (PP) left as the protection of the other N.
 In case of failure, for example of port P1, PP is dynamically activated and the traffic originally directed to P1 is steered to PP. PP receives the same configuration of P1 while P1 is brought in a down state.
 Differently from ordinary LAG, the traffic is not redistributed over the surviving links. Since a backup port (PP) is enabled, the traffic keeps on flowing on N links instead of N-1.
-If on the IP layer this scenario introduces the complexity of handling an extra port both on R1 and ROADM1, on the optical layer the configuration, as depicted in figure <a href="#fig-ref-network" class="auto internal xref">Figure 2</a>, does not change as only N optical channels (e.g. lambdas) are used, as shown in figure <a href="#fig-N-1-port-prot-architecture" class="auto internal xref">Figure 10</a>.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+If on the IP layer this scenario introduces the complexity of handling an extra port both on R1 and ROADM1, on the optical layer the configuration, as depicted in figure <a href="#fig-ref-network" class="auto internal xref">Figure 2</a>, does not change as only N optical channels (e.g. lambdas) are used, as shown in figure <a href="#fig-N-1-port-prot-architecture" class="auto internal xref">Figure 10</a>.<a href="#section-7.3-2" class="pilcrow">¶</a></p>
 <span id="name-use-of-n1-protection-on-r1"></span><div id="fig-N-1-port-prot-architecture">
 <figure id="figure-10">
-          <div class="alignLeft art-ascii-art art-text artwork" id="section-7.3-2.1">
+          <div class="alignLeft art-ascii-art art-text artwork" id="section-7.3-3.1">
 <pre>
 
 
@@ -2076,13 +2133,13 @@ If on the IP layer this scenario introduces the complexity of handling an extra 
 <a href="#name-use-of-n1-protection-on-r1" class="selfRef">Use of N:1 protection on R1</a>
           </figcaption></figure>
 </div>
-<p id="section-7.3-3">Two sub-cases may be considered, depending on the availability of a Muxponder or a Transponder on ROADM1.
+<p id="section-7.3-4">Two sub-cases may be considered, depending on the availability of a Muxponder or a Transponder on ROADM1.
 If a Muxponder is used, then the optical P1 and PP are hosted on the same optical complex (e.g. board) on the customer's edge of ROADM1. It is the optical complex that selects the input source of the signals and maps it on the proper lambda. If instead a Transpoder is used, then it's ROADM1's internal matrix that switches from the input source from P1 to PP, cross-connecting the signal to the output lambda.
-It has to be noted that the mechanism to deal with the on-the-fly reconfiguration of a router's port is out of the scope of the present document and may be subject of a dedicated draft.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
-<p id="section-7.3-4">The next figure shows the process adopted to handle N:1 port protection.<a href="#section-7.3-4" class="pilcrow">¶</a></p>
+It has to be noted that the mechanism to deal with the on-the-fly reconfiguration of a router's port is out of the scope of the present document and may be subject of a dedicated draft.<a href="#section-7.3-4" class="pilcrow">¶</a></p>
+<p id="section-7.3-5">The next figure shows the process adopted to handle N:1 port protection.<a href="#section-7.3-5" class="pilcrow">¶</a></p>
 <span id="name-n1-protection-operation"></span><div id="fig-N-1-port-prot">
 <figure id="figure-11">
-          <div class="alignLeft art-ascii-art art-text artwork" id="section-7.3-5.1">
+          <div class="alignLeft art-ascii-art art-text artwork" id="section-7.3-6.1">
 <pre>
   R1    ROADM1   P-PNC   O-PNC   MDSC   ROADM2    R2    ROADM3    R3
   |1.Port R1/P1 failure   |       |       |       |       |       |
@@ -2125,58 +2182,58 @@ It has to be noted that the mechanism to deal with the on-the-fly reconfiguratio
 <a href="#name-n1-protection-operation" class="selfRef">N:1 protection operation</a>
           </figcaption></figure>
 </div>
-<p id="section-7.3-6">The sequence of steps is detailed.<a href="#section-7.3-6" class="pilcrow">¶</a></p>
+<p id="section-7.3-7">The sequence of steps is detailed.<a href="#section-7.3-7" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-7.3-7.1">
-            <p id="section-7.3-7.1.1">step 1. R1 detects port P1 failure and notifies P-PNC<a href="#section-7.3-7.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3-8.1">
+            <p id="section-7.3-8.1.1">step 1. R1 detects port P1 failure and notifies P-PNC<a href="#section-7.3-8.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.2">
-            <p id="section-7.3-7.2.1">step 2. P-PNC notifies MDSC of the failure<a href="#section-7.3-7.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.2">
+            <p id="section-7.3-8.2.1">step 2. P-PNC notifies MDSC of the failure<a href="#section-7.3-8.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.3">
-            <p id="section-7.3-7.3.1">step 3. R1 triggers FRR to protect the IP flows steering<a href="#section-7.3-7.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.3">
+            <p id="section-7.3-8.3.1">step 3. R1 triggers FRR to protect the IP flows steering<a href="#section-7.3-8.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.4">
-            <p id="section-7.3-7.4.1">step 4. R1 informs P-PNC of the switch to the backup path<a href="#section-7.3-7.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.4">
+            <p id="section-7.3-8.4.1">step 4. R1 informs P-PNC of the switch to the backup path<a href="#section-7.3-8.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.5">
-            <p id="section-7.3-7.5.1">step 5. P-PNC notifies MDSC of the traffic switch<a href="#section-7.3-7.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.5">
+            <p id="section-7.3-8.5.1">step 5. P-PNC notifies MDSC of the traffic switch<a href="#section-7.3-8.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.6">
-            <p id="section-7.3-7.6.1">step 6. R1 handles the mechanism to replicate the configuration of P1 to PP<a href="#section-7.3-7.6.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.6">
+            <p id="section-7.3-8.6.1">step 6. R1 handles the mechanism to replicate the configuration of P1 to PP<a href="#section-7.3-8.6.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.7">
-            <p id="section-7.3-7.7.1">step 7. R1 informs P-PNC that PP is up and ready to forward traffic<a href="#section-7.3-7.7.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.7">
+            <p id="section-7.3-8.7.1">step 7. R1 informs P-PNC that PP is up and ready to forward traffic<a href="#section-7.3-8.7.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.8">
-            <p id="section-7.3-7.8.1">step 8. P-PNC notifies MDSC that port PP is up and ready to forward traffic<a href="#section-7.3-7.8.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.8">
+            <p id="section-7.3-8.8.1">step 8. P-PNC notifies MDSC that port PP is up and ready to forward traffic<a href="#section-7.3-8.8.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.9">
-            <p id="section-7.3-7.9.1">step 9. MDSC requires O-PNC to reconfigure ROADM1 access (both in the case of muxponder and transponder) and WDM connectivity if a transponder is used<a href="#section-7.3-7.9.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.9">
+            <p id="section-7.3-8.9.1">step 9. MDSC requires O-PNC to reconfigure ROADM1 access (both in the case of muxponder and transponder) and WDM connectivity if a transponder is used<a href="#section-7.3-8.9.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.10">
-            <p id="section-7.3-7.10.1">step 10. O-PNC signals ROADM1 to reconfigure access (muxponder/transponder) and WDM connectivity (transponder)<a href="#section-7.3-7.10.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.10">
+            <p id="section-7.3-8.10.1">step 10. O-PNC signals ROADM1 to reconfigure access (muxponder/transponder) and WDM connectivity (transponder)<a href="#section-7.3-8.10.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.11">
-            <p id="section-7.3-7.11.1">step 11. ROADM1 acknowledges to O-PNC<a href="#section-7.3-7.11.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.11">
+            <p id="section-7.3-8.11.1">step 11. ROADM1 acknowledges to O-PNC<a href="#section-7.3-8.11.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.12">
-            <p id="section-7.3-7.12.1">step 12. O-PNC acknowledges to MDSC<a href="#section-7.3-7.12.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.12">
+            <p id="section-7.3-8.12.1">step 12. O-PNC acknowledges to MDSC<a href="#section-7.3-8.12.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.13">
-            <p id="section-7.3-7.13.1">step 13. MDSC requires P-PNC to revert to the initial (primary) path<a href="#section-7.3-7.13.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.13">
+            <p id="section-7.3-8.13.1">step 13. MDSC requires P-PNC to revert to the initial (primary) path<a href="#section-7.3-8.13.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.14">
-            <p id="section-7.3-7.14.1">step 14. P-PNC notifies R1 to revert to initial (primary) path<a href="#section-7.3-7.14.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.14">
+            <p id="section-7.3-8.14.1">step 14. P-PNC notifies R1 to revert to initial (primary) path<a href="#section-7.3-8.14.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.15">
-            <p id="section-7.3-7.15.1">step 15. R1 notifies P-PNC of IP service switch and new port in use<a href="#section-7.3-7.15.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.15">
+            <p id="section-7.3-8.15.1">step 15. R1 notifies P-PNC of IP service switch and new port in use<a href="#section-7.3-8.15.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-7.3-7.16">
-            <p id="section-7.3-7.16.1">step 16. P-PNC notifies MDSC of service switch and new port in use<a href="#section-7.3-7.16.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-7.3-8.16">
+            <p id="section-7.3-8.16.1">step 16. P-PNC notifies MDSC of service switch and new port in use<a href="#section-7.3-8.16.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-7.3-8">As in the previous cases, when port P1 on R1 is fixed, multilayer reversion <a href="#ref-hitless-reversion" class="auto internal xref">Section 7.5</a> to the initial configuration may happen. that is dependent on the network operator's preference.<a href="#section-7.3-8" class="pilcrow">¶</a></p>
+<p id="section-7.3-9">As in the previous cases, when port P1 on R1 is fixed, multilayer reversion <a href="#ref-hitless-reversion" class="auto internal xref">Section 7.5</a> to the initial configuration may happen. that is dependent on the network operator's preference.<a href="#section-7.3-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="router-resiliency">
@@ -2467,7 +2524,7 @@ guaranteeing a hitless switching.<a href="#section-7.5-3.3.1" class="pilcrow">¶
 <dd class="break"></dd>
 <dt id="I-D.ietf-teas-actn-poi-applicability">[I-D.ietf-teas-actn-poi-applicability]</dt>
         <dd>
-<span class="refAuthor">Peruzzini, F.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">King, D.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-actn-poi-applicability-13</span>, <time datetime="2025-01-03" class="refDate">3 January 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-13">https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-13</a>&gt;</span>. </dd>
+<span class="refAuthor">Peruzzini, F.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Busi, I.</span>, <span class="refAuthor">King, D.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-teas-actn-poi-applicability-14</span>, <time datetime="2025-02-25" class="refDate">25 February 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-14">https://datatracker.ietf.org/doc/html/draft-ietf-teas-actn-poi-applicability-14</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.yu-performance-monitoring-yang">[I-D.yu-performance-monitoring-yang]</dt>
         <dd>
@@ -2515,8 +2572,16 @@ guaranteeing a hitless switching.<a href="#section-7.5-3.3.1" class="pilcrow">¶
         </h3>
 <dl class="references">
 <dt id="I-D.mix-teas-actn-poi-extension">[I-D.mix-teas-actn-poi-extension]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Galimberti, G.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Gerstel, O.</span>, <span class="refAuthor">Foster, B.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI) extensions to support Router Optical interfaces."</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-mix-teas-actn-poi-extension-00</span>, <time datetime="2022-10-24" class="refDate">24 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-mix-teas-actn-poi-extension-00">https://datatracker.ietf.org/doc/html/draft-mix-teas-actn-poi-extension-00</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC7799">[RFC7799]</dt>
+        <dd>
+<span class="refAuthor">Morton, A.</span>, <span class="refTitle">"Active and Passive Metrics and Methods (with Hybrid Types In-Between)"</span>, <span class="seriesInfo">RFC 7799</span>, <span class="seriesInfo">DOI 10.17487/RFC7799</span>, <time datetime="2016-05" class="refDate">May 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7799">https://www.rfc-editor.org/rfc/rfc7799</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8799">[RFC8799]</dt>
+      <dd>
+<span class="refAuthor">Carpenter, B.</span> and <span class="refAuthor">B. Liu</span>, <span class="refTitle">"Limited Domains and Internet Protocols"</span>, <span class="seriesInfo">RFC 8799</span>, <span class="seriesInfo">DOI 10.17487/RFC8799</span>, <time datetime="2020-07" class="refDate">July 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8799">https://www.rfc-editor.org/rfc/rfc8799</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
