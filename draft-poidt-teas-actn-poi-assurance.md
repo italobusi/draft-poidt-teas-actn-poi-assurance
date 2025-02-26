@@ -91,7 +91,7 @@ As already highlighted in {{!I-D.ietf-teas-actn-poi-applicability}}, a multi-lay
 To guarantee the SLAs associated to the VPN services, service assurance is performed through the collaboration of the different control entities part of the ACTN architecture {{!RFC8453}}: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNC) deployed both in the packet (P-PNC) and optical (O-PNC) layers.
 This document aligns with the current field operations procedures adopted in the optical networks and assumes that the O-PNC provides the MDSC with the set of information necessary to provide the Root Cause Analysis (RCA) to correlate an event/alarm related to a failure in the optical network with the services impacted at the IP layer. The set of information shared by the O-PNC to the MDSC depends on local configuration adopted at the MDSC-PNC Interface (MPI) [RFC8453]. In general, this may include information about the optical path, tunnel, or fiber where the failure happened together with its location and its operational state (e.g., its "down" status), hiding further detailed information of the optical topology. This data is sufficent to allow the MDSC to perform the multi-layer correlation and discover which IP links, LSPs and VPNs are affected by the failure.
 
-The analysis of the YANG data models applicable to service assurance (fault and performance) is in scope of this document. The development of new YANG models/modules to support the missing functions is instead not in scope of the present document. To this extent, this document means to act as a framework that provides a gap analysis and suggests openings to future works to be addressed in other documents. 
+The analysis of the YANG data models applicable to service assurance (fault and performance) is in scope of this document. The development of new YANG models/modules to support the missing functions is instead not in scope of the present document. To this extent, this document means to act as a framework that provides a gap analysis and suggests openings to future works to be addressed in other documents.
 
 The document has the following organization: section 2 lists the conventions and definitions used in the text. Section 3 discusses the reference network in scope for the relevant service assurance cases. Section 4 identifies the YANG data models applicable to service assurance and provides a gap analysis for the modules that are still missing. Section 5 identifies the possible faults, either in the optical or in IP layer (or both), in scope for this analysis. Section 6 deals with the performance management aspects of service assurance in a packet-optical integrated network. Finally, section 7 discusses the protection mechanisms available for the most typical fault scenarios of a multi-layer, multi-domain network.
 
@@ -107,7 +107,7 @@ Understanding the level of standardization and the possible gaps will help asses
 
 TODO Terminology
 
-{: #ref-architecture}
+{:#ref-architecture}
 
 # Reference Network Architecture
 
@@ -119,7 +119,7 @@ domains and two packet domains, as shown in Figure 1 of {{!I-D.ietf-teas-actn-po
 ~~~~ ascii-art
 {::include figures/reference-architecture.txt}
 ~~~~
-{: #fig-ref-architecture title="Reference Network (copy of Figure 1 of RFC YYYY)"
+{:#fig-ref-architecture title="Reference Network (copy of Figure 1 of RFC YYYY)"
 artwork-name="reference-architecture.txt"}
 
 EDITORS NOTE: Replace RFC YYYY with the RFC number of {{!I-D.ietf-teas-actn-poi-applicability}} once it has been published.
@@ -155,7 +155,7 @@ No GMPLS-UNI interaction between IP and Optical equipment is considered.
 This is also the assumption followed in this document: the MDSC performs the function of multi-layer/multi-domain path computation
 through the same mechanisms described in {{!I-D.ietf-teas-actn-poi-applicability}}.
 
-TO DO - Complete the description of the pre-requisites of MDSC in the cases discussed.
+> TO DO: Complete the description of the pre-requisites of MDSC in the cases discussed.
 
 The following list summarizes the main assumptions about how MDSC can handle the service assurance cases described in this document. Most of them have been already described in {{!I-D.ietf-teas-actn-poi-applicability}}
 
@@ -177,7 +177,7 @@ a certain period of time), it alerts the MDSC so that the MDSC relates the warni
 7. MDSC distinguishes between IP and Optical failures. For example, in the case of the failure of an IP port of a router,
 the IP traffic may be switched to a stand-by port, reusing the same ROADM optical resources (lambda, optical path) and keeping the end-to-end IP connection. If a remote IP node fails, then a re-route of optical resources takes place together with a switch of the local IP port in order to establish a new connection with a different IP node used for protection.
 
-{: #ref-network}
+{:#ref-network}
 
 ## Reference Network
 
@@ -186,7 +186,7 @@ The following network topology will be considered to analyze and discuss the sce
 ~~~~ ascii-art
 {::include figures/reference-network.txt}
 ~~~~
-{: #fig-ref-network title="Reference Network"
+{:#fig-ref-network title="Reference Network"
 artwork-name="reference-network.txt"}
 
 The network consists of three Points of Presence (POPs) geographically distributed.
@@ -204,7 +204,7 @@ when a failure happens on an optical path (for example, between ROADM1 and ROADM
 is activated. The mechanisms are assumed to be coordinated by O-PNC and MDSC, even if other methods may be also
 considered (e.g. G-MPLS based). Further details are given in the use cases described in {{resiliency}}.
 
-{: #yang}
+{:#yang}
 
 # YANG Data Models for the MPIs
 
@@ -220,17 +220,17 @@ The analysis of the data models potentially of interest for this document is sti
 
 The list will be progressively updated as the document evolves.
 
-{: #fault}
+{:#fault}
 
 # Multi-layer Fault Management
 
-This section deals with the actions taken by the MDSC and the PNCs at the IP and optical layers to handle the occurence of a failure in a multi-layer network. This set of actions is referred to as fault management and consists of steps such as fault detection, fault localization, and fault recovery. Specifically, this section analyzes the detection and localization of a failure, while section {: #resiliency} further details the mechanisms for fault recovery.
+This section deals with the actions taken by the MDSC and the PNCs at the IP and optical layers to handle the occurence of a failure in a multi-layer network. This set of actions is referred to as fault management and consists of steps such as fault detection, fault localization, and fault recovery. Specifically, this section analyzes the detection and localization of a failure, while section {:#resiliency} further details the mechanisms for fault recovery.
 Depending on the point where a failure occurs, three use cases are considered:
-1. The failure occurs in the optical layer, for example a fiber cut that triggers a Loss of Signal (LOS) alarm. This is discussed in section {: #optical-fault}.
-2. The failure occurs at the connection between a router and a ROADM (cross-layer link). Such a case is analyzed in section {: #edge-fault}.
-3. The failure occurs in the IP layer, for example a router experiences a hardware failure on a port that connects to its optical counterpart. This case is discussed in section {: #router-fault}.
+1. The failure occurs in the optical layer, for example a fiber cut that triggers a Loss of Signal (LOS) alarm. This is discussed in section {:#optical-fault}.
+2. The failure occurs at the connection between a router and a ROADM (cross-layer link). Such a case is analyzed in section {:#edge-fault}.
+3. The failure occurs in the IP layer, for example a router experiences a hardware failure on a port that connects to its optical counterpart. This case is discussed in section {:#router-fault}.
 
-{: #fault-reference-scenario}
+{:#fault-reference-scenario}
 
 ## Reference scenario for multi-layer faults
 
@@ -239,7 +239,7 @@ The following figure illustrates the reference scenario useful to discuss the fa
 ~~~~ ascii-art
 {::include figures/multi-layer-failure-reference-network.txt}
 ~~~~
-{: #fig-failure-reference title="Reference scenario for multi-layer fault management"
+{:#fig-failure-reference title="Reference scenario for multi-layer fault management"
 artwork-name="multi-layer-failure-reference-network.txt"}
 
 The MDSC is responsible for the correlation of the events. The notification about a failure (alarm, state change, etc.) is sent from the P-PNC (upstream arrow labelled "1" in the figure) and/or the O-PNC (upstream arrow labelled "2"), depending on the case considered. It has to be noted that only a single P-PNC is present in the network. The second box marked with the label "P-PNC" is represented only to simplify the schematics. Actually the P-PNC on the left and the P-PNC on the right are the same element.
@@ -249,7 +249,7 @@ In case of a failure in the IP layer, the router that detects it sends a corresp
 For simplicity, a router is connected to a ROADM via two unidirectional fibers, represented by the two arrows between them. ROADM 1 and ROADM 2 are considered to be the edge nodes of a larger optical core that may include several other components.
 The two connections between a router and a ROADM carry, in addition to data traffic, the signaling messages generated by the physical transmission layer, for example Local Failure Indication (LFI) or Remote Failure Indication (RFI). These messages provide supplementary information that an IP or an optical node may consider for failure detection and for providing further details in the upstream notification to a PNC.
 
-{: #optical-fault}
+{:#optical-fault}
 
 ## Optical Network Failures
 
@@ -277,17 +277,17 @@ The MDSC should also inform the OSS/orchestration layer about the failures on th
 
 > Comment: The assumption in this text is that there are grey interfaces between the routers and the optical NEs. More investigation is needed for the scenarios where optical pluggable interfaces are used in the router. Three scenarios for WDM networks: grey interfaces, colored interfaces option 1 and colored interfaces option 2. To consider also the case with ODU switching.
 
-{: #edge-fault}
+{:#edge-fault}
 
 ## Cross-layer Link Failures
 
 The failures discussed in this section occur on the connection between a router and a ROADM.
-A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({: #fig-failure-ingress-link}).
+A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({:#fig-failure-ingress-link}).
 
 ~~~~ ascii-art
 {::include figures/multi-layer-failure-ingress-link.txt}
 ~~~~
-{: #fig-failure-ingress-link title="Failure on the optical ingress link"
+{:#fig-failure-ingress-link title="Failure on the optical ingress link"
 artwork-name="multi-layer-failure-ingress-link.txt"}
 
 The failure on that fiber is physically detected by ROADM1 that sends a corresponding notification to O-PNC and generates a Client Signal Fail (CSF) message along the optical path. Upon receiving CSF, ROADM2 sends a LFI to R2. If R2 is instructed to decode physical transmission messages, upon receiving LFI it generates a corresponding message to P-PNC, also informing of the loss of IP connectivity due to unreceived BFD messages.
@@ -295,12 +295,12 @@ At the physical level, R2 may generate on its Tx interface an RFI indication tha
 When O-PNC and P-PNC get the notifications sent by the network elements, they also instruct MDSC. O-PNC informs MDSC of the link R1-ROADM1 down, while P-PNC informs MDSC that the corresponding IP link is down due to missed BFD signalling in addition to the RFI status.
 It is up to the MDSC to correlate the events and determine what IP services are affected (VPNs, P2P links, etc.).
 
-A second case is depicted in figure {: #fig-failure-egress-link}. The failure happens on the Rx fiber used by R2 to receive traffic from ROADM2.
+A second case is depicted in figure {:#fig-failure-egress-link}. The failure happens on the Rx fiber used by R2 to receive traffic from ROADM2.
 
 ~~~~ ascii-art
 {::include figures/multi-layer-failure-egress-link.txt}
 ~~~~
-{: #fig-failure-egress-link title="Failure on the optical egress link"
+{:#fig-failure-egress-link title="Failure on the optical egress link"
 artwork-name="multi-layer-failure-egress-link.txt"}
 
 R2 physically detects the absence of signal generating a corresponding LOS alarm to P-PNC. In turn, P-PNC signals MDSC of the corresponding event affecting the link between ROADM2 and R2.
@@ -310,12 +310,12 @@ ROADM2 also propagates a CSF indication across the optical domain, translated to
 The RFI is detected by R1 that may inform P-PNC about the remote failure with an RFI status indication, if instructed to do so, and with a BFD down event notification when detecting missing connectivity.
 As noted, MDSC correlates the events to determine the affected services.
 
-A failure may also occur when the two unidirectional fibers connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected, for example for a simultaneous fiber cut, as shown in figure {: #fig-failure-bidir-link}.
+A failure may also occur when the two unidirectional fibers connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected, for example for a simultaneous fiber cut, as shown in figure {:#fig-failure-bidir-link}.
 
 ~~~~ ascii-art
 {::include figures/multi-layer-failure-bidir-link.txt}
 ~~~~
-{: #fig-failure-bidir-link title="Failure on the access link"
+{:#fig-failure-bidir-link title="Failure on the access link"
 artwork-name="multi-layer-failure-bidir-link.txt"}
 
 Both Tx and Rx fibers are affected, then R1 and ROADM1 immediately detect physical LOS and inform P-PNC and O-PNC respectively.
@@ -323,7 +323,7 @@ ROADM1 also triggers a CSF indication towards the optical core that eventually g
 R2 may detect this signal, informning P-PNC. From the IP connectivity standpoint, after missing three BFD messages R2 also signals to P-PNC the lack of end-to-end connectivity. It then generates a RFI indication back to ROADM2, which in turn sends a CSF indication on the optical return path.
 Both P-PNC and O-PNC inform MDSC of the event affecting the link between R1 and ROADM1 for its successive correlation.
 
-{: #router-fault}
+{:#router-fault}
 
 ## Router Node Failures
 
@@ -331,7 +331,7 @@ In this case it is assumed that a router port experiences a hardware failure, fo
 R1 may have internal mechanisms that detect the failure and trigger the relevant notification to P-PNC.
 At the IP level the missing reception of the BFD messages against R2 triggers a BFD down notification to P-PNC. the same notification is sent by R2, confirming that the IP connectivity is lost.
 
-{: #performance}
+{:#performance}
 
 # Multi-layer Performance Management
 
@@ -343,7 +343,7 @@ For the scope of the present document, which focuses on multi-layer, multi-domai
 2. The IP layer detects, through performance data measurement, collection and analysis, that the Service Level Agreement (SLA) associated with transport of a VPN service is not conformant at least in one of the two IP domains represented in {{fig-ref-architecture}}. The P-PNC provides relevant information to the MDSC (e.g. the IP tunnel carrying the VPN service), which enables the MDSC to take reactive measures, through the support of the P-PNC (e.g. reroute the IP traffic on a different IP path). The MDSC can take further steps, such as to verify through the O-PNC if any failure or degradation has happened in the optical layer but this is out of the scope of case #2. The attention here is on the IP multi-domain, end-to-end performance management.
 
 The two cases are further detailed in the relevant subsections.
-      
+
 ## Optical performance management
 
 Optical devices employ mechanisms for monitoring the condition of an
@@ -359,7 +359,7 @@ different optical path.
 
 In the context of multi-layer performance management, it is assumed that:
 1.  The O-PNC is capable of monitoring the DWDM links optical performance, and alerting the MDSC when
-the pre-FEC BER value overcomes a user-specified threshold 
+the pre-FEC BER value overcomes a user-specified threshold
 2.  The MDSC is capable of correlating the pre-FEC BEC threshold crossing alarm with a related IP link and take appropriate corrective actions, if programmed to do so.
 
 In this context, the assumption is that pre-FEC BER measurement is
@@ -383,16 +383,15 @@ mechanisms described in {{optical-fault}}, as the case is equivalent to the hand
 
 ## End-to-end IP performance management
 
-Performance measurement at the IP layer may be based on a multiplicity of methods, including interface counters, passive and active mechanisms {{RFC7799}}. While the utilization of those mechanisms is not constrained by network topology, for example by the number of IP domains crossed by a measurement flow, in practice they are often enabled in limited environments (controlled domains) {{RFC8799}}.
+Performance measurement at the IP layer may be based on a multiplicity of methods, including interface counters, passive and active mechanisms {{?RFC7799}}. While the utilization of those mechanisms is not constrained by network topology, for example by the number of IP domains crossed by a measurement flow, in practice they are often enabled in limited environments (controlled domains) {{?RFC8799}}.
 
 As a result, the applicability of such methods is often limited to a single IP domain due to the necessity of avoiding the exchange and disclosure of sensitive data across multiple administrative organizations.
-With reference to {{fig-ref-architecture}}, it is then assumed that both IP domains, namely Packet domain 1 and 2, run separate performance measurement. It is responsibility of each P-PNC to inform the MDSC in the case of service SLA degradation so that the MDSC enables a corrective action. 
+With reference to {{fig-ref-architecture}}, it is then assumed that both IP domains, namely Packet domain 1 and 2, run separate performance measurement.
+It is responsibility of each P-PNC to inform the MDSC in the case of service SLA degradation so that the MDSC enables a corrective action.
 
-{: #resiliency}
+{:#resiliency}
 
 # Multi-layer Resiliency
-
-<!-- (Comment by Paolo - The following is a new section) -->
 
 The coordination of both the IP and the optical layer in the cases discussed in {{resiliency}}
 requires the MDSC to be aware of some network capabilities and to exchange the corresponding information with
@@ -415,7 +414,7 @@ The list of parameters that the MDSC may need to communicate to the PNCs include
 
 - Recovery method used in the optical layer: protection/restoration
 
-{: #optical-resiliency}
+{:#optical-resiliency}
 
 ## Optical Network Failures
 
@@ -434,7 +433,7 @@ to interact with the IP layer. Two sub-cases are possible:
 
 2. The optical layer supports protection.
 
-{: #restoration}
+{:#restoration}
 
 ### Optical restoration
 
@@ -445,7 +444,7 @@ As a result, the interaction between the two layers follows the mimics shown in 
 ~~~~ ascii-art
 {::include figures/restoration.txt}
 ~~~~
-{: #fig-fault-restoration title="Fault detection with optical restoration"
+{:#fig-fault-restoration title="Fault detection with optical restoration"
 artwork-name="restoration.txt"}
 
 More in details:
@@ -488,7 +487,7 @@ At the end of the process, multi-layer hitless reversion may take place, again b
 network operator. If multi-layer hitless reversion is adopted, then the process described in {{ref-hitless-reversion}}
 takes place.
 
-{: #protection}
+{:#protection}
 
 ### Optical protection
 
@@ -500,7 +499,7 @@ The process is shown in the next figure.
 ~~~~ ascii-art
 {::include figures/protection.txt}
 ~~~~
-{: #fig-fault-protection title="Fault detection with optical protection"
+{:#fig-fault-protection title="Fault detection with optical protection"
 artwork-name="protection.txt"}
 
 The detailed process includes the following steps:
@@ -529,7 +528,7 @@ As in the previous use case, when the failure is fixed the network operator may 
 to the original configuration. If this is the case, multi-layer hitless reversion, as described
 in {{ref-hitless-reversion}}, takes place to move the service back to the initial network setup.
 
-{: #optical-maintenance}
+{:#optical-maintenance}
 
 ## Optical Network Maintenance
 
@@ -545,7 +544,7 @@ The next figure shows the process adopted to handle the maintenance window.
 ~~~~ ascii-art
 {::include figures/maintenance.txt}
 ~~~~
-{: #fig-maintenance title="Maintenance window operation"
+{:#fig-maintenance title="Maintenance window operation"
 artwork-name="maintenance.txt"}
 
 The steps include the following:
@@ -586,11 +585,11 @@ The steps include the following:
 
 Once the activity is over, the network operator may wish to bring the whole configuration back to the IP and optical primary paths. In such a case, multi-layer hitless reversion may be performed, as described in {{ref-hitless-reversion}}.
 
-{: #edge-resiliency}
+{:#edge-resiliency}
 
 ## Cross-layer Link Failures
 
-The approach described here leverages the multi-layer POI capabilities to address failures in links between IP routers and ROADMs, relying on optical network protection/restoration to handle most failure scenarios. The connectivity between a router and an edge ROADM is characterized by having N working ports and one spare port (N+1) to handle protection. Depending on the specific network configuration and protection scheme adopted, this approach may offer some cost advantages because it reduces the overall resources required for protection in the optical network. Since the number of failed links between IP routers and edge ROADMs is lower, this configuration can achieve higher availability at lower costs while recovering 100% of IP traffic. 
+The approach described here leverages the multi-layer POI capabilities to address failures in links between IP routers and ROADMs, relying on optical network protection/restoration to handle most failure scenarios. The connectivity between a router and an edge ROADM is characterized by having N working ports and one spare port (N+1) to handle protection. Depending on the specific network configuration and protection scheme adopted, this approach may offer some cost advantages because it reduces the overall resources required for protection in the optical network. Since the number of failed links between IP routers and edge ROADMs is lower, this configuration can achieve higher availability at lower costs while recovering 100% of IP traffic.
 
 Following the previous examples, this case is characterized by having R1 configured with N ports working (say, P1-P3) and 1 spare port (PP) left as the protection of the other N.
 In case of failure, for example of port P1, PP is dynamically activated and the traffic originally directed to P1 is steered to PP. PP receives the same configuration of P1 while P1 is brought in a down state.
@@ -600,7 +599,7 @@ If on the IP layer this scenario introduces the complexity of handling an extra 
 ~~~~ ascii-art
 {::include figures/N-1-port-prot-architecture.txt}
 ~~~~
-{: #fig-N-1-port-prot-architecture title="Use of N:1 protection on R1"
+{:#fig-N-1-port-prot-architecture title="Use of N:1 protection on R1"
 artwork-name="N-1-port-prot-architecture.txt"}
 
 Two sub-cases may be considered, depending on the availability of a Muxponder or a Transponder on ROADM1.
@@ -612,7 +611,7 @@ The next figure shows the process adopted to handle N:1 port protection.
 ~~~~ ascii-art
 {::include figures/N-1-port-prot.txt}
 ~~~~
-{: #fig-N-1-port-prot title="N:1 protection operation"
+{:#fig-N-1-port-prot title="N:1 protection operation"
 artwork-name="N-1-port-prot.txt"}
 
 The sequence of steps is detailed.
@@ -652,7 +651,7 @@ The sequence of steps is detailed.
 As in the previous cases, when port P1 on R1 is fixed, multilayer reversion {{ref-hitless-reversion}} to the initial configuration may happen. that is dependent on the network operator's preference.
 
 
-{: #router-resiliency}
+{:#router-resiliency}
 
 ## Router Node Failures
 
@@ -663,7 +662,7 @@ MDSC instructs the optical layer to find available optical resources, activate a
 ~~~~ ascii-art
 {::include figures/node-prot-architecture.txt}
 ~~~~
-{: #fig-node-prot-architecture title="IP configuration after the creation of a second optical path"
+{:#fig-node-prot-architecture title="IP configuration after the creation of a second optical path"
 artwork-name="node-prot-architecture.txt"}
 
 The next figure shows the process adopted to handle the node protection case.
@@ -671,7 +670,7 @@ The next figure shows the process adopted to handle the node protection case.
 ~~~~ ascii-art
 {::include figures/node-prot.txt}
 ~~~~
-{: #fig-node-prot title="Node protection operation"
+{:#fig-node-prot title="Node protection operation"
 artwork-name="node-prot.txt"}
 
 - step 1. R1 detects R2's failure and triggers IP FRR finding R3 as the next hop
@@ -700,7 +699,7 @@ artwork-name="node-prot.txt"}
 
 - step 13. P-PNC informs MDSC of the service switch.
 
-{: #ref-hitless-reversion}
+{:#ref-hitless-reversion}
 
 ## Multi-layer hitless reversion
 
@@ -730,7 +729,7 @@ The mimics of the steps requested is shown in the next figure.
 ~~~~ ascii-art
 {::include figures/hitless-multi-layer-reversion.txt}
 ~~~~
-{: #fig-hitless-reversion title="hitless multi-layer reversion"
+{:#fig-hitless-reversion title="hitless multi-layer reversion"
 artwork-name="hitless-multi-layer-reversion.txt"}
 
 Figure 5.2 Diagram for hitless multi-layer reversion
@@ -765,7 +764,7 @@ The steps illustrated in the previous figure are detailed here:
 
 - step 14. P-PNC acknowledges to MDSC.
 
-{: #conclusions}
+{:#conclusions}
 
 # Conclusions
 
