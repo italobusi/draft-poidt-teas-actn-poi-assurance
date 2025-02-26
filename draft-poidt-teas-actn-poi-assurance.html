@@ -1822,21 +1822,21 @@ As a result, the interaction between the two layers follows the mimics shown in 
   |--------------&gt;|       |       |       |       |       |       |
   |       |       |2b.Fault notification  |       |       |       |
   |       |       |--------------&gt;|       |       |       |       |
-┌――――――┐
+┌――――――┐
 │3.FRR │
 └――――――┘
   |4.IP service switched (backup path through R3) |       |       |
   |--------------&gt;|       |       |       |       |       |       |
   |       |       |5.IP service switched  |       |       |       |
   |       |       |--------------&gt;|       |       |       |       |
-   ┌―――――――――――――┐                 ┌―――――――――――――┐
+   ┌―――――――――――――┐                 ┌―――――――――――――┐
    │6.Restoration│&lt;---------------&gt;│6.Restoration│
    └―――――――――――――┘                 └―――――――――――――┘
   |       |7.Path ready   |   7.Path ready|       |       |       |
   |       |--------------&gt;|&lt;--------------|       |       |       |
   |       |       |       |8.Notification |       |       |       |
   |       |       |       |------&gt;|       |       |       |       |
-┌――――――――┐
+┌――――――――┐
 │9.Revert│
 └――――――――┘
   |10.IP service reverted |       |       |       |       |       |
