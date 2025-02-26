@@ -1489,11 +1489,11 @@ considered (e.g. G-MPLS based). Further details are given in the use cases descr
       <h2 id="name-multi-layer-fault-managemen">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-multi-layer-fault-managemen" class="section-name selfRef">Multi-layer Fault Management</a>
       </h2>
-<p id="section-5-1">This section deals with the actions taken by the MDSC and the PNCs at the IP and optical layers to handle the occurence of a failure in a multi-layer network. This set of actions is referred to as fault management and consists of steps such as fault detection, fault localization, and fault recovery. Specifically, this section analyzes the detection and localization of a failure, while section {:#resiliency} further details the mechanisms for fault recovery.
+<p id="section-5-1">This section deals with the actions taken by the MDSC and the PNCs at the IP and optical layers to handle the occurence of a failure in a multi-layer network. This set of actions is referred to as fault management and consists of steps such as fault detection, fault localization, and fault recovery. Specifically, this section analyzes the detection and localization of a failure, while section <a href="#resiliency" class="auto internal xref">Section 7</a> further details the mechanisms for fault recovery.
 Depending on the point where a failure occurs, three use cases are considered:
-1. The failure occurs in the optical layer, for example a fiber cut that triggers a Loss of Signal (LOS) alarm. This is discussed in section {:#optical-fault}.
-2. The failure occurs at the connection between a router and a ROADM (cross-layer link). Such a case is analyzed in section {:#edge-fault}.
-3. The failure occurs in the IP layer, for example a router experiences a hardware failure on a port that connects to its optical counterpart. This case is discussed in section {:#router-fault}.<a href="#section-5-1" class="pilcrow">¶</a></p>
+1. The failure occurs in the optical layer, for example a fiber cut that triggers a Loss of Signal (LOS) alarm. This is discussed in section <a href="#optical-fault" class="auto internal xref">Section 5.2</a>.
+2. The failure occurs at the connection between a router and a ROADM (cross-layer link). Such a case is analyzed in section <a href="#edge-fault" class="auto internal xref">Section 5.3</a>.
+3. The failure occurs in the IP layer, for example a router experiences a hardware failure on a port that connects to its optical counterpart. This case is discussed in section <a href="#router-fault" class="auto internal xref">Section 5.4</a>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div id="fault-reference-scenario">
 <section id="section-5.1">
         <h3 id="name-reference-scenario-for-mult">
@@ -1570,7 +1570,7 @@ The two connections between a router and a ROADM carry, in addition to data traf
 <a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-cross-layer-link-failures" class="section-name selfRef">Cross-layer Link Failures</a>
         </h3>
 <p id="section-5.3-1">The failures discussed in this section occur on the connection between a router and a ROADM.
-A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({:#fig-failure-ingress-link}).<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 (<a href="#fig-failure-ingress-link" class="auto internal xref">Figure 4</a>).<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 <span id="name-failure-on-the-optical-ingr"></span><div id="fig-failure-ingress-link">
 <figure id="figure-4">
           <div class="alignLeft art-ascii-art art-text artwork" id="section-5.3-2.1">
@@ -1602,7 +1602,7 @@ A first case concerns the Tx fiber used by R1 to send traffic to ROADM1 ({:#fig-
 At the physical level, R2 may generate on its Tx interface an RFI indication that is propagated downstream to the optical network (where a CSF is generated) and to R1. When receiving RFI on its Rx interface, R1 can also send a notification to P-PNC.
 When O-PNC and P-PNC get the notifications sent by the network elements, they also instruct MDSC. O-PNC informs MDSC of the link R1-ROADM1 down, while P-PNC informs MDSC that the corresponding IP link is down due to missed BFD signalling in addition to the RFI status.
 It is up to the MDSC to correlate the events and determine what IP services are affected (VPNs, P2P links, etc.).<a href="#section-5.3-3" class="pilcrow">¶</a></p>
-<p id="section-5.3-4">A second case is depicted in figure {:#fig-failure-egress-link}. The failure happens on the Rx fiber used by R2 to receive traffic from ROADM2.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
+<p id="section-5.3-4">A second case is depicted in figure <a href="#fig-failure-egress-link" class="auto internal xref">Figure 5</a>. The failure happens on the Rx fiber used by R2 to receive traffic from ROADM2.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
 <span id="name-failure-on-the-optical-egre"></span><div id="fig-failure-egress-link">
 <figure id="figure-5">
           <div class="alignLeft art-ascii-art art-text artwork" id="section-5.3-5.1">
@@ -1636,7 +1636,7 @@ Upon detecting it, ROADM2 also informs O-PNC of the failure with a corresponding
 ROADM2 also propagates a CSF indication across the optical domain, translated to an RFI by ROADM1 towards R1.
 The RFI is detected by R1 that may inform P-PNC about the remote failure with an RFI status indication, if instructed to do so, and with a BFD down event notification when detecting missing connectivity.
 As noted, MDSC correlates the events to determine the affected services.<a href="#section-5.3-6" class="pilcrow">¶</a></p>
-<p id="section-5.3-7">A failure may also occur when the two unidirectional fibers connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected, for example for a simultaneous fiber cut, as shown in figure {:#fig-failure-bidir-link}.<a href="#section-5.3-7" class="pilcrow">¶</a></p>
+<p id="section-5.3-7">A failure may also occur when the two unidirectional fibers connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected, for example for a simultaneous fiber cut, as shown in figure <a href="#fig-failure-bidir-link" class="auto internal xref">Figure 6</a>.<a href="#section-5.3-7" class="pilcrow">¶</a></p>
 <span id="name-failure-on-the-access-link"></span><div id="fig-failure-bidir-link">
 <figure id="figure-6">
           <div class="alignLeft art-ascii-art art-text artwork" id="section-5.3-8.1">

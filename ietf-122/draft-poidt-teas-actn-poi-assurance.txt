@@ -407,16 +407,16 @@ Table of Contents
    management and consists of steps such as fault detection, fault
    localization, and fault recovery.  Specifically, this section
    analyzes the detection and localization of a failure, while section
-   {:#resiliency} further details the mechanisms for fault recovery.
+   Section 7 further details the mechanisms for fault recovery.
    Depending on the point where a failure occurs, three use cases are
    considered: 1.  The failure occurs in the optical layer, for example
    a fiber cut that triggers a Loss of Signal (LOS) alarm.  This is
-   discussed in section {:#optical-fault}. 2.  The failure occurs at the
+   discussed in section Section 5.2. 2.  The failure occurs at the
    connection between a router and a ROADM (cross-layer link).  Such a
-   case is analyzed in section {:#edge-fault}. 3.  The failure occurs in
+   case is analyzed in section Section 5.3. 3.  The failure occurs in
    the IP layer, for example a router experiences a hardware failure on
    a port that connects to its optical counterpart.  This case is
-   discussed in section {:#router-fault}.
+   discussed in section Section 5.4.
 
 5.1.  Reference scenario for multi-layer faults
 
@@ -549,7 +549,7 @@ Table of Contents
 
    The failures discussed in this section occur on the connection
    between a router and a ROADM.  A first case concerns the Tx fiber
-   used by R1 to send traffic to ROADM1 ({:#fig-failure-ingress-link}).
+   used by R1 to send traffic to ROADM1 (Figure 4).
 
    ┌―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┐
    │                             MDSC                              │
@@ -589,9 +589,8 @@ Table of Contents
    correlate the events and determine what IP services are affected
    (VPNs, P2P links, etc.).
 
-   A second case is depicted in figure {:#fig-failure-egress-link}. The
-   failure happens on the Rx fiber used by R2 to receive traffic from
-   ROADM2.
+   A second case is depicted in figure Figure 5.  The failure happens on
+   the Rx fiber used by R2 to receive traffic from ROADM2.
 
    ┌―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┐
    │                             MDSC                              │
@@ -628,8 +627,8 @@ Table of Contents
 
    A failure may also occur when the two unidirectional fibers
    connecting a router, e.g. R1, to a ROADM, e.g. ROADM2, are affected,
-   for example for a simultaneous fiber cut, as shown in figure {:#fig-
-   failure-bidir-link}.
+   for example for a simultaneous fiber cut, as shown in figure
+   Figure 6.
 
    ┌―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――┐
    │                             MDSC                              │
