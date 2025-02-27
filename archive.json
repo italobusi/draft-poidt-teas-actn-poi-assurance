@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-25T00:54:45.220929+00:00",
+  "timestamp": "2025-02-27T00:54:22.814669+00:00",
   "repo": "italobusi/draft-poidt-teas-actn-poi-assurance",
   "labels": [
     {
@@ -47,6 +47,11 @@
       "name": "wontfix",
       "description": "This will not be worked on",
       "color": "ffffff"
+    },
+    {
+      "name": "admin",
+      "description": "",
+      "color": "1D76DB"
     }
   ],
   "issues": [
@@ -135,7 +140,7 @@
       "id": "I_kwDOJAsmzM5gia9f",
       "title": "Performance monitoring for IP domains",
       "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/3",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -144,8 +149,8 @@
       "labels": [],
       "body": "I think the scope of the draft will be both performance monitoring for IP and OP domains. In my opinion we shouldn't restrict to Optical only.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/2#discussion_r1132439486_\r\n            ",
       "createdAt": "2023-03-10T21:17:56Z",
-      "updatedAt": "2025-02-19T13:24:11Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-26T10:06:59Z",
+      "closedAt": "2025-02-26T10:06:59Z",
       "comments": [
         {
           "author": "italobusi",
@@ -363,7 +368,7 @@
       "id": "I_kwDOJAsmzM6BIPRA",
       "title": "Benefits of a spare router port",
       "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/11",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -372,8 +377,8 @@
       "labels": [],
       "body": "As discussed in our call last Tuesday, cost vs benefits of this use case of having a spare port in the router and a spare transponder in the optical node just to be used in case of a router port failure is not so clear to me. Most common approach is to solve this at IP/MPLS layer (FRR, etc.). However it was agreed not to remove this use case without Fabio's agreement.\r\n\r\n_Originally posted by @jbouqui153 in https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/10#discussion_r1509159236_\r\n            ",
       "createdAt": "2024-03-04T09:51:18Z",
-      "updatedAt": "2025-01-28T10:08:25Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-26T10:06:59Z",
+      "closedAt": "2025-02-26T10:06:59Z",
       "comments": [
         {
           "author": "italobusi",
@@ -424,7 +429,7 @@
       "id": "I_kwDOJAsmzM6LYBo4",
       "title": "Failure scenarios",
       "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/12",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "italobusi",
       "authorAssociation": "OWNER",
       "assignees": [
@@ -436,8 +441,8 @@
       "labels": [],
       "body": "Initial set of slides analysis some failure scenarios relevant for POI assurance: [poi-failure-scenarios-00.pptx](https://github.com/user-attachments/files/15632484/poi-failure-scenarios-00.pptx)\r\n",
       "createdAt": "2024-06-06T13:54:51Z",
-      "updatedAt": "2025-01-22T17:57:18Z",
-      "closedAt": null,
+      "updatedAt": "2025-02-26T10:06:58Z",
+      "closedAt": "2025-02-26T10:06:58Z",
       "comments": [
         {
           "author": "italobusi",
@@ -549,12 +554,13 @@
       "author": "italobusi",
       "authorAssociation": "OWNER",
       "assignees": [
+        "ju7ien",
         "jbouqui153"
       ],
       "labels": [],
       "body": "PM (in terms of current data (CD) and history data (HD)) is not widely used in IP routers world but instead cumulative statistics are reported by IP routers\n\nQuestion is whether the implementation of PM CD/HD on IP interfaces is required by operators",
       "createdAt": "2025-01-28T14:32:57Z",
-      "updatedAt": "2025-02-19T12:59:12Z",
+      "updatedAt": "2025-02-25T11:13:38Z",
       "closedAt": null,
       "comments": [
         {
@@ -563,8 +569,55 @@
           "body": "**[ACTN POI Assurance bi-weekly call (January 28, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-01-28)**\n\nPM (in terms of current data (CD) and history data (HD)) is not widely used in IP routers world but instead cumulative statistics are reported by IP routers\n\nQuestion is whether the implementation of PM CD/HD on IP interfaces is required by operators?\n\n- [ ] @jbouqui153 @ju7ien : check internally and provide feedbacks about operators' requirements\n",
           "createdAt": "2025-01-28T14:35:27Z",
           "updatedAt": "2025-01-28T14:35:27Z"
+        },
+        {
+          "author": "jbouqui153",
+          "authorAssociation": "COLLABORATOR",
+          "body": "In IP domain, it is correct that routers in the past were mainly reporting cumulative stats on a configurable periodical basis but, in the last years, operators are requesting routers to support gNMI with Protobuf encoding with Openconfig data models for PM reporting. This approach is enabling to get instantaneous and historical data from the routers (instant/min/max/avg) as defined in those Openconfig data models (e.g. openconfig-platform or openconfig-interfaces or openconfig-if-ethernet etc.). This new approach is the preferred one for the future as it allows to implement streaming telemetry of key PM counters from the routers and the operators can flexibly configure /subscribe to the relevant component groups they are interested in, as well as the granularity required for this reporting (e.g. typically 10s and above). Any further feedback from other operators is welcome!",
+          "createdAt": "2025-02-25T11:13:36Z",
+          "updatedAt": "2025-02-25T11:13:36Z"
         }
       ]
+    },
+    {
+      "number": 18,
+      "id": "I_kwDOJAsmzM6rjGNT",
+      "title": "Presentation at IETF 122",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/18",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "Paolo-Volpato"
+      ],
+      "labels": [
+        "admin"
+      ],
+      "body": "**[ACTN POI bi-weekly call (February 25, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-02-25)**\n\nRequest a presentation slot and present the draft at IETF 122",
+      "createdAt": "2025-02-25T11:37:48Z",
+      "updatedAt": "2025-02-25T11:42:44Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 19,
+      "id": "I_kwDOJAsmzM6rjIGh",
+      "title": "Bi-weekly calls after IETF 122",
+      "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/issues/19",
+      "state": "OPEN",
+      "author": "italobusi",
+      "authorAssociation": "OWNER",
+      "assignees": [
+        "prmanna"
+      ],
+      "labels": [
+        "admin"
+      ],
+      "body": "**[ACTN POI bi-weekly call (February 25, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-02-25)**\n\nSetup the new bi-weekly calls and share the invitation to the TEAS WG mailing list\n\n> Restart the weekly calls after IETF 122 from:\n> - March 25 at 3:30pm IST (11am CET, 6pm CST, 6am NA EDT)\n> - April 8 at 2:30pm IST (11am CEST, 5pm CST, 5am NA EDT)\n",
+      "createdAt": "2025-02-25T11:40:19Z",
+      "updatedAt": "2025-02-25T11:42:57Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -1046,24 +1099,26 @@
       "id": "PR_kwDOJAsmzM6KAbKp",
       "title": "Preparation for IETF 122",
       "url": "https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/pull/17",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "Paolo-Volpato",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "Modified text to address:\r\n- Change Abstract\r\n- Changes introduction: fix #12\r\n- Modified section 7.3: fix #11\r\n- Modified section 6: fix #3 ",
       "createdAt": "2025-02-04T14:27:08Z",
-      "updatedAt": "2025-02-21T17:17:23Z",
+      "updatedAt": "2025-02-26T10:06:57Z",
       "baseRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "baseRefName": "main",
       "baseRefOid": "8870eeb55cd73ac11592a157693eac941ac1106b",
       "headRepository": "italobusi/draft-poidt-teas-actn-poi-assurance",
       "headRefName": "ietf-122",
-      "headRefOid": "eb6ca150e427f954b408fa1c6cc4e7db901b7a14",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "d20ddd10df748cd946f3b862f1973655735e29fc",
+      "closedAt": "2025-02-26T10:06:57Z",
+      "mergedAt": "2025-02-26T10:06:57Z",
+      "mergedBy": "italobusi",
+      "mergeCommit": {
+        "oid": "1f5a467d0628616814ac2ad52137efce7d99ecf4"
+      },
       "comments": [
         {
           "author": "italobusi",
@@ -1071,6 +1126,20 @@
           "body": "**[ACTN POI Assurance bi-weekly call (February 11, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-02-11)**\r\n\r\nJeff suggests to correct the use of PNC-O and replace it with O-PNC (to be found also in other parts of the draft)\r\n\r\n- [x] @Paolo-Volpato : replace PNC-O with O-PNC\r\n\r\nDaniel is fine with the text introduced in section 7.3 on the use of a spare port \r\n\r\nIt is agreed to provide comments by the next call on Tuesday 25, so that all comments/change can be incorporated and the new version of the draft can be uploaded for IETF 122.",
           "createdAt": "2025-02-19T12:57:30Z",
           "updatedAt": "2025-02-19T13:28:57Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "**[ACTN POI bi-weekly call (February 25, 2025)](https://github.com/italobusi/draft-poidt-teas-actn-poi-assurance/wiki/minutes-2025-02-25)**\r\n\r\nAgreed to merge this PR\r\n\r\n- [x] @Paolo-Volpato @italobusi fix kramdown syntax issues before merging",
+          "createdAt": "2025-02-25T11:36:03Z",
+          "updatedAt": "2025-02-26T10:06:10Z"
+        },
+        {
+          "author": "italobusi",
+          "authorAssociation": "OWNER",
+          "body": "> * [x]  @Paolo-Volpato @italobusi fix kramdown syntax issues before merging\r\n\r\nDone",
+          "createdAt": "2025-02-26T10:06:28Z",
+          "updatedAt": "2025-02-26T10:06:28Z"
         }
       ],
       "reviews": [
