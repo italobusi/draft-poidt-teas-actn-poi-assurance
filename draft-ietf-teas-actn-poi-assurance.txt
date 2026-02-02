@@ -5,14 +5,14 @@
 TEAS Working Group                                               I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 30 January 2026                                        Vodafone
+Expires: 6 August 2026                                          Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                            29 July 2025
+                                                         2 February 2026
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -69,11 +69,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 30 January 2026.
+   This Internet-Draft will expire on 6 August 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1512,9 +1512,9 @@ Table of Contents
               Ceccarelli, "Applicability of Abstraction and Control of
               Traffic Engineered Networks (ACTN) to Packet Optical
               Integration (POI)", Work in Progress, Internet-Draft,
-              draft-ietf-teas-actn-poi-applicability-15, 4 July 2025,
-              <https://datatracker.ietf.org/doc/html/draft-ietf-teas-
-              actn-poi-applicability-15>.
+              draft-ietf-teas-actn-poi-applicability-17, 22 December
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              teas-actn-poi-applicability-17>.
 
    [I-D.yu-performance-monitoring-yang]
               Yu, C., "A YANG Data Model for Optical Performance
