@@ -20,6 +20,7 @@
 /versioned/
 Gemfile.lock
 archive.json
+draft-ietf-teas-actn-poi-assurance.xml
 draft-poidt-teas-actn-poi-assurance.xml
 draft-poidt-teas-actn-poi-assurance.xml
 package-lock.json
