@@ -97,7 +97,7 @@ This document extends the analysis of the applicability of Abstraction and Contr
 
 # Introduction
 
-Service assurance is a critical aspect of Operations, Administration and Management (OAM). It consists of activities and processes whose target is to guarantee a specified Service Level Agreement (SLA) to the customer of a telecommunication service. Service assurance includes both fault management, for correcting or fixing the service anomalies and network faults, and performance management, for monitoring of the service and network parameters and early warning of potential service-related issues.
+Service assurance is a critical aspect of Operations, Administration and Management (OAM). It consists of activities and processes intended to guarantee a specified Service Level Agreement (SLA) to the customer of a telecommunication service. Service assurance includes both fault management, for correcting or fixing the service anomalies and network faults, and performance management, for monitoring of the service and network parameters and early warning of potential service-related issues.
 
 In the scope of this document, service assurance is discussed in the context of a multi-layer, multi-domain network. In doing so, it leverages on the Abstraction and Control of TE Networks (ACTN) framework {{!RFC8453}} and further expands the analysis of its applicability into multi-layer packet-optical integrated networks {{!I-D.ietf-teas-actn-poi-applicability}} adding considerations specific to the fault and performance management scenarios.
 
