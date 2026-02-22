@@ -244,11 +244,7 @@ The analysis of the data models potentially of interest for this document is sti
 
 - YANG Data Model for L3VPN Service Delivery (L3SM) {{!RFC8299}}
 
-- A YANG Network Model for Layer 3 VPNs (L3NM) {{!RFC9182}}
-
 - A YANG Data Model for Layer-2 VPN Service Delivery (L2SM) {{!RFC8466}}
-
-- A YANG Network Model for Layer 2 VPNs (L2NM) {{!RFC9291}}
 
 The list will be progressively updated as the document evolves.
 
@@ -482,7 +478,7 @@ monitoring scenarios:
 5. Cross-domain BFD session between border routers (Br1 and Br2) traversing the optical core, enabling end-to-end continuity checks at the packet layer.
 6. P-PNC reporting of performance counters, port operational status, and notifications to the MDSC, enabling multi-layer correlation and SLA monitoring.
 
-The operational state and performance data of VPN services are gathered and exchanged using standardized YANG data models. For L3VPN services, the L3VPN Service Model (L3SM) defined in {{!RFC8299}} provides a service-layer abstraction that can be used at the Orchestrator level. The L3VPN Network Model (L3NM) defined in {{!RFC9182}} provides network-level operational state at the P-PNC level, including the `oper-status` leaf (values: up, down, testing, or unknown) and `last-change` timestamp per VPN network access, which are useful for detecting and timestamping connectivity changes in multi-domain deployments. Equivalent models are available for L2VPN services: the L2SM defined in {{!RFC8466}} at the service layer and the L2NM defined in {{!RFC9291}} at the network layer.
+The operational state and performance data of VPN services are gathered and exchanged using standardized YANG data models. For L2VPN and L3VPN services, and provides a service-layer abstraction that can be used at the Orchestrator level. 
 
 At the performance monitoring level, the YANG data model defined in {{!RFC9375}} augments topology and service models with PM metrics such as packet loss, delay, and throughput for both underlay network paths and overlay VPN services. Together, these models provide a standardized basis for VPN performance and state data exchanged over the MPI between the P-PNCs and the MDSC, and between the MDSC and the Orchestrator layer.
 
