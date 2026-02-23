@@ -242,9 +242,9 @@ The analysis of the data models potentially of interest for this document is sti
 
 - A YANG Data Model for Network and VPN Service Performance Monitoring {{!RFC9375}}
 
-- YANG Data Model for L3VPN Service Delivery (L3SM) {{!RFC8299}}
+- YANG Data Model for Layer-2 Network Model (L2NM) {{!RFC9291}}
 
-- A YANG Data Model for Layer-2 VPN Service Delivery (L2SM) {{!RFC8466}}
+- A YANG Data Model for Layer-3 Network Model (L3NM) {{!RFC9182}}
 
 The list will be progressively updated as the document evolves.
 
@@ -429,97 +429,6 @@ are possible. At one extreme of the spectrum, the MDSC notes the
 event and simply triggers a notification to the operator. At the
 other extreme, the MDSC may start the multi-layer resiliency
 mechanisms described in {{optical-fault}}, as the case is equivalent to the handling of an optical failure.
-
-## End-to-end IP performance management
-
-Performance measurement at the IP layer may be based on a multiplicity of methods, including interface counters, passive and active mechanisms {{?RFC7799}}. While the utilization of those mechanisms is not constrained by network topology, for example by the number of IP domains crossed by a measurement flow, in practice they are often enabled in limited environments (controlled domains) {{?RFC8799}}.
-
-As a result, the applicability of such methods is often limited to a single IP domain due to the necessity of avoiding the exchange and disclosure of sensitive data across multiple administrative organizations.
-With reference to {{fig-ref-architecture}}, it is then assumed that both IP domains, namely Packet domain 1 and 2, run separate performance measurements.
-It is the responsibility of each P-PNC to inform the MDSC in the case of service SLA degradation so that the MDSC enables a corrective action.
-
-In addition to per-domain monitoring, end-to-end performance monitoring of VPN services is typically performed from CE to CE, spanning both IP domains. Such end-to-end service monitoring is generally performed at the Orchestrator layer, which has complete visibility of the VPN service from the customer's perspective. When performance issues are detected at this end-to-end service level, the MDSC is involved in the diagnostic process to correlate the observed SLA degradation with conditions in the underlying IP and optical layers.
-
-In support of this diagnostic function, the P-PNC is responsible for reporting the operational status of the PE ports connected to CEs to the MDSC. This allows the MDSC to determine whether a detected performance issue originates at an access interface (i.e., the PE-CE link) or within the core network, and to coordinate the appropriate corrective action.
-
-The following figure illustrates the key VPN performance monitoring scenarios
-across the packet and optical domains, highlighting the roles of the
-Orchestrator, MDSC, and P-PNC in end-to-end service assurance.
-
-~~~ ascii-art
-       1. VPN monitoring (VRF-to-VRF)
-   <----------------------------------------->
-3.[*]                                       2.
-PE-CE                                   PE-CE
-  |                                         |
-+---+ +----+ +---+ +----+  +----+ +---+ +----+ +---+
-|CE1|-|PE1 |-|P1 |-|Br1 |--|Br2 |-|P2 |-|PE2 |-|CE2|
-+---+ +----+ +---+ +-+--+  +-+--+ +---+ +----+ +---+
-                     |  5.   |
-                     |<-BFD->|
-PKT domain 1         |optical|     PKT domain 2
-opt.dom.1(O-PNC)     | core  |     opt.dom.2(O-PNC)
-
-[P-PNC1]                               [P-PNC2]
-  |  6. counters, status, notif.           |
-  +-----------> [MDSC] <------------------+
-
-[*] Item 3 (PE1-to-CE1) is out of scope of this document.
-~~~
-{:#fig-vpn-pm-scenarios title="VPN Performance Monitoring Scenarios"}
-
-The numbered items in the figure correspond to the following
-monitoring scenarios:
-
-1. VRF-to-VRF monitoring across both IP domains, providing end-to-end VPN service visibility.
-2. PE-to-CE link monitoring on the egress side (PE2-CE2), covering the access interface status and performance.
-3. PE-to-CE link monitoring on the ingress side (PE1-CE1); this scenario is out of scope for this document.
-4. Intra-domain performance measurements (for example, BFD {{?RFC5880}}, TWAMP {{?RFC5357}}, or STAMP {{?RFC8762}}) within each packet domain, used for fault detection and path verification.
-5. Cross-domain BFD session between border routers (Br1 and Br2) traversing the optical core, enabling end-to-end continuity checks at the packet layer.
-6. P-PNC reporting of performance counters, port operational status, and notifications to the MDSC, enabling multi-layer correlation and SLA monitoring.
-
-The operational state and performance data of VPN services are gathered and exchanged using standardized YANG data models. For L2VPN and L3VPN services, and provides a service-layer abstraction that can be used at the Orchestrator level. 
-
-At the performance monitoring level, the YANG data model defined in {{!RFC9375}} augments topology and service models with PM metrics such as packet loss, delay, and throughput for both underlay network paths and overlay VPN services. Together, these models provide a standardized basis for VPN performance and state data exchanged over the MPI between the P-PNCs and the MDSC, and between the MDSC and the Orchestrator layer.
-
-Traditionally, routers have reported performance counters to the P-PNC on a configurable periodic basis, providing cumulative statistics accumulated over the reporting interval. While straightforward to implement, this approach limits the granularity and timeliness of the performance data available to the P-PNC and MDSC for SLA monitoring.
-
-In recent years, network operators have increasingly deployed streaming telemetry approaches, such as gNMI with Protocol Buffers encoding and OpenConfig data models, for reporting performance data from routers. Depending on implementation and data model support, this approach can provide current values and interval-based summaries over configurable collection periods (for example, values derived over 10-second or longer windows). Compared to periodic counter polling, streaming telemetry can improve timeliness and control of the reported performance data.
-
-The following figure illustrates both approaches and how the performance data flows from the router to the P-PNC and ultimately to the MDSC.
-
-~~~ ascii-art
-     +--------+                        +-------+         +------+
-     | Router |                        | P-PNC |         | MDSC |
-     +--------+                        +-------+         +------+
-          |                                |                 |
-          |   <-- Legacy approach -->      |                 |
-          |                                |                 |
-          |    periodic push               |                 |
-          |   (cumulative counters,        |                 |
-          |    configurable interval)      |                 |
-          |------------------------------->|                 |
-          |                                |--- PM event --->|
-          |                                |    (MPI)        |
-          |                                |                 |
-          |   <-- New approach (gNMI) -->  |                 |
-          |                                |                 |
-          |        SubscribeRequest        |                 |
-          |  (OpenConfig paths, interval)  |                 |
-          |<-------------------------------|                 |
-          |        SubscribeResponse       |                 |
-          |  (instant/min/max/avg,         |                 |
-          |   >= 10s granularity)          |                 |
-          |------------------------------->|                 |
-          |                                |--- PM event --->|
-          |                                |    (MPI)        |
-          |                                |                 |
-~~~
-{:#fig-ip-pm-reporting title="IP Performance Management: Legacy Periodic Reporting vs. gNMI Streaming Telemetry"}
-
-In the gNMI approach, the P-PNC acts as the client, sending a subscription request to the router (gNMI target) with the paths of interest (e.g., interfaces, platform components) and the desired reporting interval. The router then streams update messages containing the current values and, where supported, interval-derived values. This can enable the P-PNC to detect SLA degradation in near real-time and report the relevant events to the MDSC via the MPI.
-
-TCAs play a key role in triggering the escalation of performance events across management layers. At the IP layer, the P-PNC is responsible for evaluating incoming performance data from routers (whether received via periodic polling or gNMI streaming telemetry) against pre-configured thresholds. When a threshold is crossed, the P-PNC generates a TCA and reports it to the MDSC via the MPI. Similarly, the MDSC aggregates performance data and TCA information received from both P-PNCs and O-PNCs and evaluates it against service-level thresholds. When a service-level SLA threshold is crossed, the MDSC generates a TCA toward the Orchestrator layer. This two-level TCA propagation from PNC to MDSC and from MDSC to Orchestrator ensures that service degradation is visible at the appropriate management layer and enables timely corrective action.
 
 {:#resiliency}
 
