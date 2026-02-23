@@ -5,14 +5,14 @@
 TEAS Working Group                                               I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 26 August 2026                                         Vodafone
+Expires: 27 August 2026                                         Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                        22 February 2026
+                                                        23 February 2026
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -69,7 +69,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 August 2026.
+   This Internet-Draft will expire on 27 August 2026.
 
 Copyright Notice
 
@@ -102,7 +102,6 @@ Table of Contents
        5.5.1.  Remedial Action and Resolution
    6.  Multi-layer Performance Management
      6.1.  Optical performance management
-     6.2.  End-to-end IP performance management
    7.  Multi-layer Resiliency
      7.1.  Optical Network Failures
        7.1.1.  Optical restoration
@@ -450,14 +449,9 @@ Table of Contents
    *  A YANG Data Model for Network and VPN Service Performance
       Monitoring [RFC9375]
 
-   *  YANG Data Model for L3VPN Service Delivery (L3SM) [RFC8299]
+   *  YANG Data Model for Layer-2 Network Model (L2NM) [RFC9291]
 
-   *  A YANG Network Model for Layer 3 VPNs (L3NM) [RFC9182]
-
-   *  A YANG Data Model for Layer-2 VPN Service Delivery (L2SM)
-      [RFC8466]
-
-   *  A YANG Network Model for Layer 2 VPNs (L2NM) [RFC9291]
+   *  A YANG Data Model for Layer-3 Network Model (L3NM) [RFC9182]
 
    The list will be progressively updated as the document evolves.
 
@@ -854,185 +848,6 @@ Table of Contents
    mechanisms described in Section 5.2, as the case is equivalent to the
    handling of an optical failure.
 
-6.2.  End-to-end IP performance management
-
-   Performance measurement at the IP layer may be based on a
-   multiplicity of methods, including interface counters, passive and
-   active mechanisms [RFC7799].  While the utilization of those
-   mechanisms is not constrained by network topology, for example by the
-   number of IP domains crossed by a measurement flow, in practice they
-   are often enabled in limited environments (controlled domains)
-   [RFC8799].
-
-   As a result, the applicability of such methods is often limited to a
-   single IP domain due to the necessity of avoiding the exchange and
-   disclosure of sensitive data across multiple administrative
-   organizations.  With reference to Figure 1, it is then assumed that
-   both IP domains, namely Packet domain 1 and 2, run separate
-   performance measurements.  It is the responsibility of each P-PNC to
-   inform the MDSC in the case of service SLA degradation so that the
-   MDSC enables a corrective action.
-
-   In addition to per-domain monitoring, end-to-end performance
-   monitoring of VPN services is typically performed from CE to CE,
-   spanning both IP domains.  Such end-to-end service monitoring is
-   generally performed at the Orchestrator layer, which has complete
-   visibility of the VPN service from the customer's perspective.  When
-   performance issues are detected at this end-to-end service level, the
-   MDSC is involved in the diagnostic process to correlate the observed
-   SLA degradation with conditions in the underlying IP and optical
-   layers.
-
-   In support of this diagnostic function, the P-PNC is responsible for
-   reporting the operational status of the PE ports connected to CEs to
-   the MDSC.  This allows the MDSC to determine whether a detected
-   performance issue originates at an access interface (i.e., the PE-CE
-   link) or within the core network, and to coordinate the appropriate
-   corrective action.
-
-   The following figure illustrates the key VPN performance monitoring
-   scenarios across the packet and optical domains, highlighting the
-   roles of the Orchestrator, MDSC, and P-PNC in end-to-end service
-   assurance.
-
-          1. VPN monitoring (VRF-to-VRF)
-      <----------------------------------------->
-   3.[*]                                       2.
-   PE-CE                                   PE-CE
-     |                                         |
-   +---+ +----+ +---+ +----+  +----+ +---+ +----+ +---+
-   |CE1|-|PE1 |-|P1 |-|Br1 |--|Br2 |-|P2 |-|PE2 |-|CE2|
-   +---+ +----+ +---+ +-+--+  +-+--+ +---+ +----+ +---+
-                        |  5.   |
-                        |<-BFD->|
-   PKT domain 1         |optical|     PKT domain 2
-   opt.dom.1(O-PNC)     | core  |     opt.dom.2(O-PNC)
-
-   [P-PNC1]                               [P-PNC2]
-     |  6. counters, status, notif.           |
-     +-----------> [MDSC] <------------------+
-
-   [*] Item 3 (PE1-to-CE1) is out of scope of this document.
-
-               Figure 7: VPN Performance Monitoring Scenarios
-
-   The numbered items in the figure correspond to the following
-   monitoring scenarios:
-
-   1.  VRF-to-VRF monitoring across both IP domains, providing end-to-
-       end VPN service visibility.
-
-   2.  PE-to-CE link monitoring on the egress side (PE2-CE2), covering
-       the access interface status and performance.
-
-   3.  PE-to-CE link monitoring on the ingress side (PE1-CE1); this
-       scenario is out of scope for this document.
-
-   4.  Intra-domain performance measurements (for example, BFD
-       [RFC5880], TWAMP [RFC5357], or STAMP [RFC8762]) within each
-       packet domain, used for fault detection and path verification.
-
-   5.  Cross-domain BFD session between border routers (Br1 and Br2)
-       traversing the optical core, enabling end-to-end continuity
-       checks at the packet layer.
-
-   6.  P-PNC reporting of performance counters, port operational status,
-       and notifications to the MDSC, enabling multi-layer correlation
-       and SLA monitoring.
-
-   The operational state and performance data of VPN services are
-   gathered and exchanged using standardized YANG data models.  For
-   L3VPN services, the L3VPN Service Model (L3SM) defined in [RFC8299]
-   provides a service-layer abstraction that can be used at the
-   Orchestrator level.  The L3VPN Network Model (L3NM) defined in
-   [RFC9182] provides network-level operational state at the P-PNC
-   level, including the oper-status leaf (values: up, down, testing, or
-   unknown) and last-change timestamp per VPN network access, which are
-   useful for detecting and timestamping connectivity changes in multi-
-   domain deployments.  Equivalent models are available for L2VPN
-   services: the L2SM defined in [RFC8466] at the service layer and the
-   L2NM defined in [RFC9291] at the network layer.
-
-   At the performance monitoring level, the YANG data model defined in
-   [RFC9375] augments topology and service models with PM metrics such
-   as packet loss, delay, and throughput for both underlay network paths
-   and overlay VPN services.  Together, these models provide a
-   standardized basis for VPN performance and state data exchanged over
-   the MPI between the P-PNCs and the MDSC, and between the MDSC and the
-   Orchestrator layer.
-
-   Traditionally, routers have reported performance counters to the
-   P-PNC on a configurable periodic basis, providing cumulative
-   statistics accumulated over the reporting interval.  While
-   straightforward to implement, this approach limits the granularity
-   and timeliness of the performance data available to the P-PNC and
-   MDSC for SLA monitoring.
-
-   In recent years, network operators have increasingly deployed
-   streaming telemetry approaches, such as gNMI with Protocol Buffers
-   encoding and OpenConfig data models, for reporting performance data
-   from routers.  Depending on implementation and data model support,
-   this approach can provide current values and interval-based summaries
-   over configurable collection periods (for example, values derived
-   over 10-second or longer windows).  Compared to periodic counter
-   polling, streaming telemetry can improve timeliness and control of
-   the reported performance data.
-
-   The following figure illustrates both approaches and how the
-   performance data flows from the router to the P-PNC and ultimately to
-   the MDSC.
-
-        +--------+                        +-------+         +------+
-        | Router |                        | P-PNC |         | MDSC |
-        +--------+                        +-------+         +------+
-             |                                |                 |
-             |   <-- Legacy approach -->      |                 |
-             |                                |                 |
-             |    periodic push               |                 |
-             |   (cumulative counters,        |                 |
-             |    configurable interval)      |                 |
-             |------------------------------->|                 |
-             |                                |--- PM event --->|
-             |                                |    (MPI)        |
-             |                                |                 |
-             |   <-- New approach (gNMI) -->  |                 |
-             |                                |                 |
-             |        SubscribeRequest        |                 |
-             |  (OpenConfig paths, interval)  |                 |
-             |<-------------------------------|                 |
-             |        SubscribeResponse       |                 |
-             |  (instant/min/max/avg,         |                 |
-             |   >= 10s granularity)          |                 |
-             |------------------------------->|                 |
-             |                                |--- PM event --->|
-             |                                |    (MPI)        |
-             |                                |                 |
-
-       Figure 8: IP Performance Management: Legacy Periodic Reporting
-                        vs. gNMI Streaming Telemetry
-
-   In the gNMI approach, the P-PNC acts as the client, sending a
-   subscription request to the router (gNMI target) with the paths of
-   interest (e.g., interfaces, platform components) and the desired
-   reporting interval.  The router then streams update messages
-   containing the current values and, where supported, interval-derived
-   values.  This can enable the P-PNC to detect SLA degradation in near
-   real-time and report the relevant events to the MDSC via the MPI.
-
-   TCAs play a key role in triggering the escalation of performance
-   events across management layers.  At the IP layer, the P-PNC is
-   responsible for evaluating incoming performance data from routers
-   (whether received via periodic polling or gNMI streaming telemetry)
-   against pre-configured thresholds.  When a threshold is crossed, the
-   P-PNC generates a TCA and reports it to the MDSC via the MPI.
-   Similarly, the MDSC aggregates performance data and TCA information
-   received from both P-PNCs and O-PNCs and evaluates it against
-   service-level thresholds.  When a service-level SLA threshold is
-   crossed, the MDSC generates a TCA toward the Orchestrator layer.
-   This two-level TCA propagation from PNC to MDSC and from MDSC to
-   Orchestrator ensures that service degradation is visible at the
-   appropriate management layer and enables timely corrective action.
-
 7.  Multi-layer Resiliency
 
    The coordination of both the IP and the optical layer in the cases
@@ -1121,7 +936,7 @@ Table of Contents
      |       |       |11.IP service reverted |       |       |       |
      |       |       |-------------->|       |       |       |       |
 
-             Figure 9: Fault detection with optical restoration
+             Figure 7: Fault detection with optical restoration
 
    More in details:
 
@@ -1210,7 +1025,7 @@ Table of Contents
    |7.IP Up |
    +--------+
 
-             Figure 10: Fault detection with optical protection
+             Figure 8: Fault detection with optical protection
 
    The detailed process includes the following steps:
 
@@ -1313,7 +1128,7 @@ Table of Contents
              |     16.Maintenance window     |
              +-------------------------------+
 
-                  Figure 11: Maintenance window operation
+                   Figure 9: Maintenance window operation
 
    The steps include the following:
 
@@ -1390,7 +1205,7 @@ Table of Contents
    complexity by requiring an extra port on both R1 and ROADM1, the
    optical-layer configuration shown in figure Figure 2 does not change,
    because only N optical channels (e.g. lambdas) are used, as shown in
-   figure Figure 12.
+   figure Figure 10.
 
    +----------+   +----------+
    |        P1|---|P1        |
@@ -1402,7 +1217,7 @@ Table of Contents
    |        PP|---|PP        |
    +----------+   +----------+
 
-                   Figure 12: Use of N:1 protection on R1
+                   Figure 10: Use of N:1 protection on R1
 
    Two sub-cases may be considered, depending on the availability of a
    Muxponder or a Transponder on ROADM1.  If a Muxponder is used, then
@@ -1455,7 +1270,7 @@ Table of Contents
      |       |       |16.IP service switched |       |       |       |
      |       |       |-------------->|       |       |       |       |
 
-                    Figure 13: N:1 protection operation
+                    Figure 11: N:1 protection operation
 
    The sequence of steps is detailed.
 
@@ -1526,7 +1341,7 @@ Table of Contents
    to R1-R2 to the newly created optical path.  When this second optical
    path is available, MDSC triggers a new switch of the traffic so that
    R1 can now steers the previous R1-R2 traffic to the new optical path.
-   The final configuration is shown in figure Figure 14.
+   The final configuration is shown in figure Figure 12.
 
    |<xxxxxxxxxxxxxxxxxxxxxxx IP Link R1-R2 xxxxxxxxxxxxxxxxxxxxxxx>|
    +--------+  +--------+                     +--------+  +--------+
@@ -1550,7 +1365,7 @@ Table of Contents
                          V  V |         | V
                          -  - +---------+ -
 
-         Figure 14: IP configuration after the creation of a second
+         Figure 12: IP configuration after the creation of a second
                                 optical path
 
    The next figure shows the process adopted to handle the node
@@ -1586,7 +1401,7 @@ Table of Contents
      |       |       |13.IP service switched |       |       |       |
      |       |       |-------------->|       |       |       |       |
 
-                    Figure 15: Node protection operation
+                    Figure 13: Node protection operation
 
    *  step 1.  R1 detects R2's failure and triggers IP FRR finding R3 as
       the next hop
@@ -1686,7 +1501,7 @@ Table of Contents
      |       |       |14.IP service reverted |       |       |       |
      |       |       |-------------->|       |       |       |       |
 
-                  Figure 16: hitless multi-layer reversion
+                  Figure 14: hitless multi-layer reversion
 
    The steps illustrated in the previous figure are detailed here:
 
@@ -1810,20 +1625,10 @@ Table of Contents
               Recommendation G.874, Amendment 2 , January 2024,
               <https://www.itu.int/rec/T-REC-G.874/>.
 
-   [RFC8299]  Wu, Q., Ed., Litkowski, S., Tomotaki, L., and K. Ogaki,
-              "YANG Data Model for L3VPN Service Delivery", RFC 8299,
-              DOI 10.17487/RFC8299, January 2018,
-              <https://www.rfc-editor.org/rfc/rfc8299>.
-
    [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
               Abstraction and Control of TE Networks (ACTN)", RFC 8453,
               DOI 10.17487/RFC8453, August 2018,
               <https://www.rfc-editor.org/rfc/rfc8453>.
-
-   [RFC8466]  Wen, B., Fioccola, G., Ed., Xie, C., and L. Jalil, "A YANG
-              Data Model for Layer 2 Virtual Private Network (L2VPN)
-              Service Delivery", RFC 8466, DOI 10.17487/RFC8466, October
-              2018, <https://www.rfc-editor.org/rfc/rfc8466>.
 
    [RFC8632]  Vallin, S. and M. Bjorklund, "A YANG Data Model for Alarm
               Management", RFC 8632, DOI 10.17487/RFC8632, September
@@ -1871,27 +1676,9 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-mix-teas-
               actn-poi-extension-00>.
 
-   [RFC5357]  Hedayat, K., Krzanowski, R., Morton, A., Yum, K., and J.
-              Babiarz, "A Two-Way Active Measurement Protocol (TWAMP)",
-              RFC 5357, DOI 10.17487/RFC5357, October 2008,
-              <https://www.rfc-editor.org/rfc/rfc5357>.
-
    [RFC5880]  Katz, D. and D. Ward, "Bidirectional Forwarding Detection
               (BFD)", RFC 5880, DOI 10.17487/RFC5880, June 2010,
               <https://www.rfc-editor.org/rfc/rfc5880>.
-
-   [RFC7799]  Morton, A., "Active and Passive Metrics and Methods (with
-              Hybrid Types In-Between)", RFC 7799, DOI 10.17487/RFC7799,
-              May 2016, <https://www.rfc-editor.org/rfc/rfc7799>.
-
-   [RFC8762]  Mirsky, G., Jun, G., Nydell, H., and R. Foote, "Simple
-              Two-Way Active Measurement Protocol", RFC 8762,
-              DOI 10.17487/RFC8762, March 2020,
-              <https://www.rfc-editor.org/rfc/rfc8762>.
-
-   [RFC8799]  Carpenter, B. and B. Liu, "Limited Domains and Internet
-              Protocols", RFC 8799, DOI 10.17487/RFC8799, July 2020,
-              <https://www.rfc-editor.org/rfc/rfc8799>.
 
 Acknowledgments
 

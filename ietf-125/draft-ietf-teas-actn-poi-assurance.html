@@ -1059,7 +1059,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Busi, et al.</td>
-<td class="center">Expires 26 August 2026</td>
+<td class="center">Expires 27 August 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1072,12 +1072,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-teas-actn-poi-assurance-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-02-22" class="published">22 February 2026</time>
+<time datetime="2026-02-23" class="published">23 February 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-08-26">26 August 2026</time></dd>
+<dd class="expires"><time datetime="2026-08-27">27 August 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1147,7 +1147,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 26 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1228,9 +1228,6 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
                 <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-optical-performance-managem" class="internal xref">Optical performance management</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-end-to-end-ip-performance-m" class="internal xref">End-to-end IP performance management</a></p>
 </li>
             </ul>
 </li>
@@ -1726,16 +1723,10 @@ considered (e.g. Generalized MPLS (G-MPLS) based). Further details are given in 
           <p id="section-4-2.4.1">A YANG Data Model for Network and VPN Service Performance Monitoring <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span><a href="#section-4-2.4.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-2.5">
-          <p id="section-4-2.5.1">YANG Data Model for L3VPN Service Delivery (L3SM) <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span><a href="#section-4-2.5.1" class="pilcrow">¶</a></p>
+          <p id="section-4-2.5.1">YANG Data Model for Layer-2 Network Model (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span><a href="#section-4-2.5.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-2.6">
-          <p id="section-4-2.6.1">A YANG Network Model for Layer 3 VPNs (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span><a href="#section-4-2.6.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-2.7">
-          <p id="section-4-2.7.1">A YANG Data Model for Layer-2 VPN Service Delivery (L2SM) <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span><a href="#section-4-2.7.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-4-2.8">
-          <p id="section-4-2.8.1">A YANG Network Model for Layer 2 VPNs (L2NM) <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span><a href="#section-4-2.8.1" class="pilcrow">¶</a></p>
+          <p id="section-4-2.6.1">A YANG Data Model for Layer-3 Network Model (L3NM) <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span><a href="#section-4-2.6.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-4-3">The list will be progressively updated as the document evolves.<a href="#section-4-3" class="pilcrow">¶</a></p>
@@ -2345,114 +2336,6 @@ other extreme, the MDSC may start the multi-layer resiliency
 mechanisms described in <a href="#optical-fault" class="auto internal xref">Section 5.2</a>, as the case is equivalent to the handling of an optical failure.<a href="#section-6.1-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="end-to-end-ip-performance-management">
-<section id="section-6.2">
-        <h3 id="name-end-to-end-ip-performance-m">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-end-to-end-ip-performance-m" class="section-name selfRef">End-to-end IP performance management</a>
-        </h3>
-<p id="section-6.2-1">Performance measurement at the IP layer may be based on a multiplicity of methods, including interface counters, passive and active mechanisms <span>[<a href="#RFC7799" class="cite xref">RFC7799</a>]</span>. While the utilization of those mechanisms is not constrained by network topology, for example by the number of IP domains crossed by a measurement flow, in practice they are often enabled in limited environments (controlled domains) <span>[<a href="#RFC8799" class="cite xref">RFC8799</a>]</span>.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.2-2">As a result, the applicability of such methods is often limited to a single IP domain due to the necessity of avoiding the exchange and disclosure of sensitive data across multiple administrative organizations.
-With reference to <a href="#fig-ref-architecture" class="auto internal xref">Figure 1</a>, it is then assumed that both IP domains, namely Packet domain 1 and 2, run separate performance measurements.
-It is the responsibility of each P-PNC to inform the MDSC in the case of service SLA degradation so that the MDSC enables a corrective action.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
-<p id="section-6.2-3">In addition to per-domain monitoring, end-to-end performance monitoring of VPN services is typically performed from CE to CE, spanning both IP domains. Such end-to-end service monitoring is generally performed at the Orchestrator layer, which has complete visibility of the VPN service from the customer's perspective. When performance issues are detected at this end-to-end service level, the MDSC is involved in the diagnostic process to correlate the observed SLA degradation with conditions in the underlying IP and optical layers.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
-<p id="section-6.2-4">In support of this diagnostic function, the P-PNC is responsible for reporting the operational status of the PE ports connected to CEs to the MDSC. This allows the MDSC to determine whether a detected performance issue originates at an access interface (i.e., the PE-CE link) or within the core network, and to coordinate the appropriate corrective action.<a href="#section-6.2-4" class="pilcrow">¶</a></p>
-<p id="section-6.2-5">The following figure illustrates the key VPN performance monitoring scenarios
-across the packet and optical domains, highlighting the roles of the
-Orchestrator, MDSC, and P-PNC in end-to-end service assurance.<a href="#section-6.2-5" class="pilcrow">¶</a></p>
-<span id="name-vpn-performance-monitoring-"></span><div id="fig-vpn-pm-scenarios">
-<figure id="figure-7">
-          <div class="alignLeft art-ascii-art art-text artwork" id="section-6.2-6.1">
-<pre>
-       1. VPN monitoring (VRF-to-VRF)
-   &lt;-----------------------------------------&gt;
-3.[*]                                       2.
-PE-CE                                   PE-CE
-  |                                         |
-+---+ +----+ +---+ +----+  +----+ +---+ +----+ +---+
-|CE1|-|PE1 |-|P1 |-|Br1 |--|Br2 |-|P2 |-|PE2 |-|CE2|
-+---+ +----+ +---+ +-+--+  +-+--+ +---+ +----+ +---+
-                     |  5.   |
-                     |&lt;-BFD-&gt;|
-PKT domain 1         |optical|     PKT domain 2
-opt.dom.1(O-PNC)     | core  |     opt.dom.2(O-PNC)
-
-[P-PNC1]                               [P-PNC2]
-  |  6. counters, status, notif.           |
-  +-----------&gt; [MDSC] &lt;------------------+
-
-[*] Item 3 (PE1-to-CE1) is out of scope of this document.
-</pre>
-</div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
-<a href="#name-vpn-performance-monitoring-" class="selfRef">VPN Performance Monitoring Scenarios</a>
-          </figcaption></figure>
-</div>
-<p id="section-6.2-7">The numbered items in the figure correspond to the following
-monitoring scenarios:<a href="#section-6.2-7" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="section-6.2-8">
-<li id="section-6.2-8.1">
-            <p id="section-6.2-8.1.1">VRF-to-VRF monitoring across both IP domains, providing end-to-end VPN service visibility.<a href="#section-6.2-8.1.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-6.2-8.2">
-            <p id="section-6.2-8.2.1">PE-to-CE link monitoring on the egress side (PE2-CE2), covering the access interface status and performance.<a href="#section-6.2-8.2.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-6.2-8.3">
-            <p id="section-6.2-8.3.1">PE-to-CE link monitoring on the ingress side (PE1-CE1); this scenario is out of scope for this document.<a href="#section-6.2-8.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-6.2-8.4">
-            <p id="section-6.2-8.4.1">Intra-domain performance measurements (for example, BFD <span>[<a href="#RFC5880" class="cite xref">RFC5880</a>]</span>, TWAMP <span>[<a href="#RFC5357" class="cite xref">RFC5357</a>]</span>, or STAMP <span>[<a href="#RFC8762" class="cite xref">RFC8762</a>]</span>) within each packet domain, used for fault detection and path verification.<a href="#section-6.2-8.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-6.2-8.5">
-            <p id="section-6.2-8.5.1">Cross-domain BFD session between border routers (Br1 and Br2) traversing the optical core, enabling end-to-end continuity checks at the packet layer.<a href="#section-6.2-8.5.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-6.2-8.6">
-            <p id="section-6.2-8.6.1">P-PNC reporting of performance counters, port operational status, and notifications to the MDSC, enabling multi-layer correlation and SLA monitoring.<a href="#section-6.2-8.6.1" class="pilcrow">¶</a></p>
-</li>
-        </ol>
-<p id="section-6.2-9">The operational state and performance data of VPN services are gathered and exchanged using standardized YANG data models. For L3VPN services, the L3VPN Service Model (L3SM) defined in <span>[<a href="#RFC8299" class="cite xref">RFC8299</a>]</span> provides a service-layer abstraction that can be used at the Orchestrator level. The L3VPN Network Model (L3NM) defined in <span>[<a href="#RFC9182" class="cite xref">RFC9182</a>]</span> provides network-level operational state at the P-PNC level, including the <code>oper-status</code> leaf (values: up, down, testing, or unknown) and <code>last-change</code> timestamp per VPN network access, which are useful for detecting and timestamping connectivity changes in multi-domain deployments. Equivalent models are available for L2VPN services: the L2SM defined in <span>[<a href="#RFC8466" class="cite xref">RFC8466</a>]</span> at the service layer and the L2NM defined in <span>[<a href="#RFC9291" class="cite xref">RFC9291</a>]</span> at the network layer.<a href="#section-6.2-9" class="pilcrow">¶</a></p>
-<p id="section-6.2-10">At the performance monitoring level, the YANG data model defined in <span>[<a href="#RFC9375" class="cite xref">RFC9375</a>]</span> augments topology and service models with PM metrics such as packet loss, delay, and throughput for both underlay network paths and overlay VPN services. Together, these models provide a standardized basis for VPN performance and state data exchanged over the MPI between the P-PNCs and the MDSC, and between the MDSC and the Orchestrator layer.<a href="#section-6.2-10" class="pilcrow">¶</a></p>
-<p id="section-6.2-11">Traditionally, routers have reported performance counters to the P-PNC on a configurable periodic basis, providing cumulative statistics accumulated over the reporting interval. While straightforward to implement, this approach limits the granularity and timeliness of the performance data available to the P-PNC and MDSC for SLA monitoring.<a href="#section-6.2-11" class="pilcrow">¶</a></p>
-<p id="section-6.2-12">In recent years, network operators have increasingly deployed streaming telemetry approaches, such as gNMI with Protocol Buffers encoding and OpenConfig data models, for reporting performance data from routers. Depending on implementation and data model support, this approach can provide current values and interval-based summaries over configurable collection periods (for example, values derived over 10-second or longer windows). Compared to periodic counter polling, streaming telemetry can improve timeliness and control of the reported performance data.<a href="#section-6.2-12" class="pilcrow">¶</a></p>
-<p id="section-6.2-13">The following figure illustrates both approaches and how the performance data flows from the router to the P-PNC and ultimately to the MDSC.<a href="#section-6.2-13" class="pilcrow">¶</a></p>
-<span id="name-ip-performance-management-l"></span><div id="fig-ip-pm-reporting">
-<figure id="figure-8">
-          <div class="alignLeft art-ascii-art art-text artwork" id="section-6.2-14.1">
-<pre>
-     +--------+                        +-------+         +------+
-     | Router |                        | P-PNC |         | MDSC |
-     +--------+                        +-------+         +------+
-          |                                |                 |
-          |   &lt;-- Legacy approach --&gt;      |                 |
-          |                                |                 |
-          |    periodic push               |                 |
-          |   (cumulative counters,        |                 |
-          |    configurable interval)      |                 |
-          |-------------------------------&gt;|                 |
-          |                                |--- PM event ---&gt;|
-          |                                |    (MPI)        |
-          |                                |                 |
-          |   &lt;-- New approach (gNMI) --&gt;  |                 |
-          |                                |                 |
-          |        SubscribeRequest        |                 |
-          |  (OpenConfig paths, interval)  |                 |
-          |&lt;-------------------------------|                 |
-          |        SubscribeResponse       |                 |
-          |  (instant/min/max/avg,         |                 |
-          |   &gt;= 10s granularity)          |                 |
-          |-------------------------------&gt;|                 |
-          |                                |--- PM event ---&gt;|
-          |                                |    (MPI)        |
-          |                                |                 |
-</pre>
-</div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
-<a href="#name-ip-performance-management-l" class="selfRef">IP Performance Management: Legacy Periodic Reporting vs. gNMI Streaming Telemetry</a>
-          </figcaption></figure>
-</div>
-<p id="section-6.2-15">In the gNMI approach, the P-PNC acts as the client, sending a subscription request to the router (gNMI target) with the paths of interest (e.g., interfaces, platform components) and the desired reporting interval. The router then streams update messages containing the current values and, where supported, interval-derived values. This can enable the P-PNC to detect SLA degradation in near real-time and report the relevant events to the MDSC via the MPI.<a href="#section-6.2-15" class="pilcrow">¶</a></p>
-<p id="section-6.2-16">TCAs play a key role in triggering the escalation of performance events across management layers. At the IP layer, the P-PNC is responsible for evaluating incoming performance data from routers (whether received via periodic polling or gNMI streaming telemetry) against pre-configured thresholds. When a threshold is crossed, the P-PNC generates a TCA and reports it to the MDSC via the MPI. Similarly, the MDSC aggregates performance data and TCA information received from both P-PNCs and O-PNCs and evaluates it against service-level thresholds. When a service-level SLA threshold is crossed, the MDSC generates a TCA toward the Orchestrator layer. This two-level TCA propagation from PNC to MDSC and from MDSC to Orchestrator ensures that service degradation is visible at the appropriate management layer and enables timely corrective action.<a href="#section-6.2-16" class="pilcrow">¶</a></p>
-</section>
-</div>
 </section>
 </div>
 <div id="resiliency">
@@ -2516,7 +2399,7 @@ to interact with the IP layer. Two sub-cases are possible:<a href="#section-7.1-
 the time taken by the process to create an optical backup tends to be longer than the time taken by the IP/MPLS FRR process.
 As a result, the interaction between the two layers follows the mimics shown in the next figure.<a href="#section-7.1.1-1" class="pilcrow">¶</a></p>
 <span id="name-fault-detection-with-optica"></span><div id="fig-fault-restoration">
-<figure id="figure-9">
+<figure id="figure-7">
             <div id="section-7.1.1-2.1">
               <div class="alignLeft art-svg artwork" id="section-7.1.1-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="512" width="552" viewBox="0 0 552 512" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -2657,7 +2540,7 @@ As a result, the interaction between the two layers follows the mimics shown in 
                 </svg><a href="#section-7.1.1-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-fault-detection-with-optica" class="selfRef">Fault detection with optical restoration</a>
             </figcaption></figure>
 </div>
@@ -2724,7 +2607,7 @@ with IP/MPLS FRR, as it is pre-computed. As a consequence, when multi-layer coor
 to hold-off FRR on R1 and wait that optical protection is completed.
 The process is shown in the next figure.<a href="#section-7.1.2-1" class="pilcrow">¶</a></p>
 <span id="name-fault-detection-with-optical"></span><div id="fig-fault-protection">
-<figure id="figure-10">
+<figure id="figure-8">
             <div id="section-7.1.2-2.1">
               <div class="alignLeft art-svg artwork" id="section-7.1.2-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="384" width="552" viewBox="0 0 552 384" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -2816,7 +2699,7 @@ The process is shown in the next figure.<a href="#section-7.1.2-1" class="pilcro
                 </svg><a href="#section-7.1.2-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-fault-detection-with-optical" class="selfRef">Fault detection with optical protection</a>
             </figcaption></figure>
 </div>
@@ -2869,7 +2752,7 @@ A few minutes before the maintenance window, the MDSC starts the process that br
 At the optical layer, maintenance has no traffic impact because a new path is configured in advance, and the optical service does not revert to the original link until the maintenance window is finished. At the end of maintenance, the network configuration is moved back to the initial setup, using the multi-layer hitless reversion process discussed in <a href="#ref-hitless-reversion" class="auto internal xref">Section 7.5</a> if the network operator has enabled it.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 <p id="section-7.2-2">The next figure shows the process adopted to handle the maintenance window.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
 <span id="name-maintenance-window-operatio"></span><div id="fig-maintenance">
-<figure id="figure-11">
+<figure id="figure-9">
           <div id="section-7.2-3.1">
             <div class="alignLeft art-svg artwork" id="section-7.2-3.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="624" width="536" viewBox="0 0 536 624" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -3012,7 +2895,7 @@ At the optical layer, maintenance has no traffic impact because a new path is co
               </svg><a href="#section-7.2-3.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-maintenance-window-operatio" class="selfRef">Maintenance window operation</a>
           </figcaption></figure>
 </div>
@@ -3082,9 +2965,9 @@ At the optical layer, maintenance has no traffic impact because a new path is co
 <p id="section-7.3-2">Depending on the specific network configuration and protection scheme adopted, this approach may offer cost advantages because it reduces the overall resources required for protection in the optical network. Since the number of failed links between IP routers and edge ROADMs is lower, this configuration can achieve higher availability at lower cost while recovering 100% of IP traffic.<a href="#section-7.3-2" class="pilcrow">¶</a></p>
 <p id="section-7.3-3">Following the previous examples, this case is characterized by R1 being configured with N working ports (say, P1-P3) and one spare port (PP) as protection for the other N ports.
 In case of failure, for example on port P1, PP is dynamically activated and traffic originally directed to P1 is steered to PP. PP receives the same configuration as P1, while P1 is brought to a down state.
-Unlike ordinary LAG, traffic is not redistributed over the surviving links. Since a backup port (PP) is enabled, traffic continues to flow on N links instead of N-1. Although this introduces additional IP-layer complexity by requiring an extra port on both R1 and ROADM1, the optical-layer configuration shown in figure <a href="#fig-ref-network" class="auto internal xref">Figure 2</a> does not change, because only N optical channels (e.g. lambdas) are used, as shown in figure <a href="#fig-N-1-port-prot-architecture" class="auto internal xref">Figure 12</a>.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
+Unlike ordinary LAG, traffic is not redistributed over the surviving links. Since a backup port (PP) is enabled, traffic continues to flow on N links instead of N-1. Although this introduces additional IP-layer complexity by requiring an extra port on both R1 and ROADM1, the optical-layer configuration shown in figure <a href="#fig-ref-network" class="auto internal xref">Figure 2</a> does not change, because only N optical channels (e.g. lambdas) are used, as shown in figure <a href="#fig-N-1-port-prot-architecture" class="auto internal xref">Figure 10</a>.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
 <span id="name-use-of-n1-protection-on-r1"></span><div id="fig-N-1-port-prot-architecture">
-<figure id="figure-12">
+<figure id="figure-10">
           <div id="section-7.3-4.1">
             <div class="alignLeft art-svg artwork" id="section-7.3-4.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="304" width="224" viewBox="0 0 224 304" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -3117,7 +3000,7 @@ Unlike ordinary LAG, traffic is not redistributed over the surviving links. Sinc
               </svg><a href="#section-7.3-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-use-of-n1-protection-on-r1" class="selfRef">Use of N:1 protection on R1</a>
           </figcaption></figure>
 </div>
@@ -3126,7 +3009,7 @@ If a Muxponder is used, then the optical P1 and PP are hosted on the same optica
 It has to be noted that the mechanism to deal with the on-the-fly reconfiguration of a router's port is out of the scope of the present document and may be subject of a dedicated draft.<a href="#section-7.3-5" class="pilcrow">¶</a></p>
 <p id="section-7.3-6">The next figure shows the process adopted to handle N:1 port protection.<a href="#section-7.3-6" class="pilcrow">¶</a></p>
 <span id="name-n1-protection-operation"></span><div id="fig-N-1-port-prot">
-<figure id="figure-13">
+<figure id="figure-11">
           <div id="section-7.3-7.1">
             <div class="alignLeft art-svg artwork" id="section-7.3-7.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="592" width="552" viewBox="0 0 552 592" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -3278,7 +3161,7 @@ It has to be noted that the mechanism to deal with the on-the-fly reconfiguratio
               </svg><a href="#section-7.3-7.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-n1-protection-operation" class="selfRef">N:1 protection operation</a>
           </figcaption></figure>
 </div>
@@ -3343,9 +3226,9 @@ It has to be noted that the mechanism to deal with the on-the-fly reconfiguratio
         </h3>
 <p id="section-7.4-1">As shown in <a href="#fig-ref-network" class="auto internal xref">Figure 2</a>, in its normal operations R1 is dual-homed to R2 and R3. Even if highly unlikely due to the usual redundancy deployed in field, this case considers a full failure of R2 (node failure). The implications of such an event are useful to discuss the interaction between the IP and the optical layers through the MDSC coordination.
 The underlying assumption is that it is not possible to R2 to communicate to P-PNC about the event causing the failure, so it is up to R1 to detect it and to communicate instead to P-PNC. The first reaction to the event is to perform a fast-rerouting action and move the traffic from the R1-R2 link to the R1-R3 link. As part of the assumption, the R1-R3 IP link has been previously dimensioned to carry a certain amount of traffic, so it is possible that after fast re-routing takes place some traffic previously carried on the R1-R2 IP link and now shifted to R1-R3 is discarded, for example because congestion occurs.
-MDSC instructs the optical layer to find available optical resources, activate a new optical path between ROADM1 and ROADM3 and finally move the traffic previously associated to R1-R2 to the newly created optical path. When this second optical path is available, MDSC triggers a new switch of the traffic so that R1 can now steers the previous R1-R2 traffic to the new optical path. The final configuration is shown in figure <a href="#fig-node-prot-architecture" class="auto internal xref">Figure 14</a>.<a href="#section-7.4-1" class="pilcrow">¶</a></p>
+MDSC instructs the optical layer to find available optical resources, activate a new optical path between ROADM1 and ROADM3 and finally move the traffic previously associated to R1-R2 to the newly created optical path. When this second optical path is available, MDSC triggers a new switch of the traffic so that R1 can now steers the previous R1-R2 traffic to the new optical path. The final configuration is shown in figure <a href="#fig-node-prot-architecture" class="auto internal xref">Figure 12</a>.<a href="#section-7.4-1" class="pilcrow">¶</a></p>
 <span id="name-ip-configuration-after-the-"></span><div id="fig-node-prot-architecture">
-<figure id="figure-14">
+<figure id="figure-12">
           <div id="section-7.4-2.1">
             <div class="alignLeft art-svg artwork" id="section-7.4-2.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="464" width="528" viewBox="0 0 528 464" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -3484,13 +3367,13 @@ MDSC instructs the optical layer to find available optical resources, activate a
               </svg><a href="#section-7.4-2.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
+<figcaption><a href="#figure-12" class="selfRef">Figure 12</a>:
 <a href="#name-ip-configuration-after-the-" class="selfRef">IP configuration after the creation of a second optical path</a>
           </figcaption></figure>
 </div>
 <p id="section-7.4-3">The next figure shows the process adopted to handle the node protection case.<a href="#section-7.4-3" class="pilcrow">¶</a></p>
 <span id="name-node-protection-operation"></span><div id="fig-node-prot">
-<figure id="figure-15">
+<figure id="figure-13">
           <div id="section-7.4-4.1">
             <div class="alignLeft art-svg artwork" id="section-7.4-4.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="496" width="552" viewBox="0 0 552 496" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -3621,7 +3504,7 @@ MDSC instructs the optical layer to find available optical resources, activate a
               </svg><a href="#section-7.4-4.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-15" class="selfRef">Figure 15</a>:
+<figcaption><a href="#figure-13" class="selfRef">Figure 13</a>:
 <a href="#name-node-protection-operation" class="selfRef">Node protection operation</a>
           </figcaption></figure>
 </div>
@@ -3699,7 +3582,7 @@ guaranteeing a hitless switching.<a href="#section-7.5-3.3.1" class="pilcrow">¶
         </ul>
 <p id="section-7.5-4">The mimics of the steps requested is shown in the next figure.<a href="#section-7.5-4" class="pilcrow">¶</a></p>
 <span id="name-hitless-multi-layer-reversi"></span><div id="fig-hitless-reversion">
-<figure id="figure-16">
+<figure id="figure-14">
           <div id="section-7.5-5.1">
             <div class="alignLeft art-svg artwork" id="section-7.5-5.1.1">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="512" width="536" viewBox="0 0 536 512" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
@@ -3828,7 +3711,7 @@ guaranteeing a hitless switching.<a href="#section-7.5-3.3.1" class="pilcrow">¶
               </svg><a href="#section-7.5-5.1.1" class="pilcrow">¶</a>
 </div>
 </div>
-<figcaption><a href="#figure-16" class="selfRef">Figure 16</a>:
+<figcaption><a href="#figure-14" class="selfRef">Figure 14</a>:
 <a href="#name-hitless-multi-layer-reversi" class="selfRef">hitless multi-layer reversion</a>
           </figcaption></figure>
 </div>
@@ -3946,17 +3829,9 @@ guaranteeing a hitless switching.<a href="#section-7.5-3.3.1" class="pilcrow">¶
         <dd>
 <span class="refAuthor">International Telecommunication Union</span>, <span class="refTitle">"Management aspects of optical transport network elements"</span>, <span class="seriesInfo">ITU-T Recommendation G.874, Amendment 2 </span>, <time datetime="2024-01" class="refDate">January 2024</time>, <span>&lt;<a href="https://www.itu.int/rec/T-REC-G.874/">https://www.itu.int/rec/T-REC-G.874/</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC8299">[RFC8299]</dt>
-        <dd>
-<span class="refAuthor">Wu, Q., Ed.</span>, <span class="refAuthor">Litkowski, S.</span>, <span class="refAuthor">Tomotaki, L.</span>, and <span class="refAuthor">K. Ogaki</span>, <span class="refTitle">"YANG Data Model for L3VPN Service Delivery"</span>, <span class="seriesInfo">RFC 8299</span>, <span class="seriesInfo">DOI 10.17487/RFC8299</span>, <time datetime="2018-01" class="refDate">January 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8299">https://www.rfc-editor.org/rfc/rfc8299</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC8453">[RFC8453]</dt>
         <dd>
 <span class="refAuthor">Ceccarelli, D., Ed.</span> and <span class="refAuthor">Y. Lee, Ed.</span>, <span class="refTitle">"Framework for Abstraction and Control of TE Networks (ACTN)"</span>, <span class="seriesInfo">RFC 8453</span>, <span class="seriesInfo">DOI 10.17487/RFC8453</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8453">https://www.rfc-editor.org/rfc/rfc8453</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8466">[RFC8466]</dt>
-        <dd>
-<span class="refAuthor">Wen, B.</span>, <span class="refAuthor">Fioccola, G., Ed.</span>, <span class="refAuthor">Xie, C.</span>, and <span class="refAuthor">L. Jalil</span>, <span class="refTitle">"A YANG Data Model for Layer 2 Virtual Private Network (L2VPN) Service Delivery"</span>, <span class="seriesInfo">RFC 8466</span>, <span class="seriesInfo">DOI 10.17487/RFC8466</span>, <time datetime="2018-10" class="refDate">October 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8466">https://www.rfc-editor.org/rfc/rfc8466</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8632">[RFC8632]</dt>
         <dd>
@@ -3995,25 +3870,9 @@ guaranteeing a hitless switching.<a href="#section-7.5-3.3.1" class="pilcrow">¶
         <dd>
 <span class="refAuthor">Galimberti, G.</span>, <span class="refAuthor">Bouquier, J.</span>, <span class="refAuthor">Gerstel, O.</span>, <span class="refAuthor">Foster, B.</span>, and <span class="refAuthor">D. Ceccarelli</span>, <span class="refTitle">"Applicability of Abstraction and Control of Traffic Engineered Networks (ACTN) to Packet Optical Integration (POI) extensions to support Router Optical interfaces."</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-mix-teas-actn-poi-extension-00</span>, <time datetime="2022-10-24" class="refDate">24 October 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-mix-teas-actn-poi-extension-00">https://datatracker.ietf.org/doc/html/draft-mix-teas-actn-poi-extension-00</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC5357">[RFC5357]</dt>
-        <dd>
-<span class="refAuthor">Hedayat, K.</span>, <span class="refAuthor">Krzanowski, R.</span>, <span class="refAuthor">Morton, A.</span>, <span class="refAuthor">Yum, K.</span>, and <span class="refAuthor">J. Babiarz</span>, <span class="refTitle">"A Two-Way Active Measurement Protocol (TWAMP)"</span>, <span class="seriesInfo">RFC 5357</span>, <span class="seriesInfo">DOI 10.17487/RFC5357</span>, <time datetime="2008-10" class="refDate">October 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5357">https://www.rfc-editor.org/rfc/rfc5357</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC5880">[RFC5880]</dt>
-        <dd>
-<span class="refAuthor">Katz, D.</span> and <span class="refAuthor">D. Ward</span>, <span class="refTitle">"Bidirectional Forwarding Detection (BFD)"</span>, <span class="seriesInfo">RFC 5880</span>, <span class="seriesInfo">DOI 10.17487/RFC5880</span>, <time datetime="2010-06" class="refDate">June 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5880">https://www.rfc-editor.org/rfc/rfc5880</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC7799">[RFC7799]</dt>
-        <dd>
-<span class="refAuthor">Morton, A.</span>, <span class="refTitle">"Active and Passive Metrics and Methods (with Hybrid Types In-Between)"</span>, <span class="seriesInfo">RFC 7799</span>, <span class="seriesInfo">DOI 10.17487/RFC7799</span>, <time datetime="2016-05" class="refDate">May 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7799">https://www.rfc-editor.org/rfc/rfc7799</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8762">[RFC8762]</dt>
-        <dd>
-<span class="refAuthor">Mirsky, G.</span>, <span class="refAuthor">Jun, G.</span>, <span class="refAuthor">Nydell, H.</span>, and <span class="refAuthor">R. Foote</span>, <span class="refTitle">"Simple Two-Way Active Measurement Protocol"</span>, <span class="seriesInfo">RFC 8762</span>, <span class="seriesInfo">DOI 10.17487/RFC8762</span>, <time datetime="2020-03" class="refDate">March 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8762">https://www.rfc-editor.org/rfc/rfc8762</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC8799">[RFC8799]</dt>
       <dd>
-<span class="refAuthor">Carpenter, B.</span> and <span class="refAuthor">B. Liu</span>, <span class="refTitle">"Limited Domains and Internet Protocols"</span>, <span class="seriesInfo">RFC 8799</span>, <span class="seriesInfo">DOI 10.17487/RFC8799</span>, <time datetime="2020-07" class="refDate">July 2020</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8799">https://www.rfc-editor.org/rfc/rfc8799</a>&gt;</span>. </dd>
+<span class="refAuthor">Katz, D.</span> and <span class="refAuthor">D. Ward</span>, <span class="refTitle">"Bidirectional Forwarding Detection (BFD)"</span>, <span class="seriesInfo">RFC 5880</span>, <span class="seriesInfo">DOI 10.17487/RFC5880</span>, <time datetime="2010-06" class="refDate">June 2010</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc5880">https://www.rfc-editor.org/rfc/rfc5880</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
