@@ -5,14 +5,14 @@
 TEAS Working Group                                               I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 27 August 2026                                         Vodafone
+Expires: 28 August 2026                                         Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                        23 February 2026
+                                                        24 February 2026
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -69,7 +69,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 August 2026.
+   This Internet-Draft will expire on 28 August 2026.
 
 Copyright Notice
 
@@ -102,6 +102,7 @@ Table of Contents
        5.5.1.  Remedial Action and Resolution
    6.  Multi-layer Performance Management
      6.1.  Optical performance management
+     6.2.  End-to-end IP performance management
    7.  Multi-layer Resiliency
      7.1.  Optical Network Failures
        7.1.1.  Optical restoration
@@ -847,6 +848,25 @@ Table of Contents
    other extreme, the MDSC may start the multi-layer resiliency
    mechanisms described in Section 5.2, as the case is equivalent to the
    handling of an optical failure.
+
+6.2.  End-to-end IP performance management
+
+   Performance measurement at the IP layer may be based on a
+   multiplicity of methods, including interface counters, passive and
+   active mechanisms [RFC7799].  While the utilization of those
+   mechanisms is not constrained by network topology, for example by the
+   number of IP domains crossed by a measurement flow, in practice they
+   are often enabled in limited environments (controlled domains)
+   [RFC8799].
+
+   As a result, the applicability of such methods is often limited to a
+   single IP domain due to the necessity of avoiding the exchange and
+   disclosure of sensitive data across multiple administrative
+   organizations.  With reference to Figure 1, it is then assumed that
+   both IP domains, namely Packet domain 1 and 2, run separate
+   performance measurements.  It is the responsibility of each P-PNC to
+   inform the MDSC in the case of service SLA degradation so that the
+   MDSC enables a corrective action.
 
 7.  Multi-layer Resiliency
 
@@ -1679,6 +1699,14 @@ Table of Contents
    [RFC5880]  Katz, D. and D. Ward, "Bidirectional Forwarding Detection
               (BFD)", RFC 5880, DOI 10.17487/RFC5880, June 2010,
               <https://www.rfc-editor.org/rfc/rfc5880>.
+
+   [RFC7799]  Morton, A., "Active and Passive Metrics and Methods (with
+              Hybrid Types In-Between)", RFC 7799, DOI 10.17487/RFC7799,
+              May 2016, <https://www.rfc-editor.org/rfc/rfc7799>.
+
+   [RFC8799]  Carpenter, B. and B. Liu, "Limited Domains and Internet
+              Protocols", RFC 8799, DOI 10.17487/RFC8799, July 2020,
+              <https://www.rfc-editor.org/rfc/rfc8799>.
 
 Acknowledgments
 
