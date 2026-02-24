@@ -53,6 +53,12 @@ author:
     org: Cisco
     email: prmanna@cisco.com
 
+contributor:
+  -
+    name: Daniel King
+    org: Old Dog Consulting
+    email: daniel@olddog.co.uk
+
 normative:
   ITU-T_G.709:
     title: Interfaces for the optical transport network
