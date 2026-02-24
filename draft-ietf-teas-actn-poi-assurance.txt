@@ -118,6 +118,7 @@ Table of Contents
      11.1.  Normative References
      11.2.  Informative References
    Acknowledgments
+   Contributors
    Authors' Addresses
 
 1.  Introduction
@@ -1711,6 +1712,13 @@ Table of Contents
 Acknowledgments
 
    TODO acknowledge.
+
+Contributors
+
+   Daniel King
+   Old Dog Consulting
+   Email: daniel@olddog.co.uk
+
 
 Authors' Addresses
 
