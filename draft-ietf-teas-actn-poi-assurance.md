@@ -430,6 +430,14 @@ event and simply triggers a notification to the operator. At the
 other extreme, the MDSC may start the multi-layer resiliency
 mechanisms described in {{optical-fault}}, as the case is equivalent to the handling of an optical failure.
 
+## End-to-end IP performance management
+
+Performance measurement at the IP layer may be based on a multiplicity of methods, including interface counters, passive and active mechanisms {{?RFC7799}}. While the utilization of those mechanisms is not constrained by network topology, for example by the number of IP domains crossed by a measurement flow, in practice they are often enabled in limited environments (controlled domains) {{?RFC8799}}.
+
+As a result, the applicability of such methods is often limited to a single IP domain due to the necessity of avoiding the exchange and disclosure of sensitive data across multiple administrative organizations.
+With reference to {{fig-ref-architecture}}, it is then assumed that both IP domains, namely Packet domain 1 and 2, run separate performance measurements.
+It is the responsibility of each P-PNC to inform the MDSC in the case of service SLA degradation so that the MDSC enables a corrective action.
+
 {:#resiliency}
 
 # Multi-layer Resiliency
