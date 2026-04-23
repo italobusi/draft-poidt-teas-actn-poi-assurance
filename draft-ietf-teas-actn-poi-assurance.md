@@ -92,12 +92,20 @@ normative:
 
 --- abstract
 
-This document extends the analysis of the applicability of Abstraction and Control of TE Networks (ACTN) architecture to Packet Optical Integration (POI) to cover multi-layer service assurance scenarios. Specifically, the ACTN architecture enables the detection and handling of different failures that may happen either at the optical or the packet layer. It is assumed that the underlying transport optical network carries end-to-end IP services such as L2VPN or L3VPN connectivity services, with specific Service Level Agreement (SLA) requirements.
+This document extends the analysis of the applicability of 
+Abstraction and Control of TE Networks (ACTN) architecture to Packet
+Optical Integration (POI) to cover multi-layer service assurance
+scenarios. Specifically, the ACTN architecture enables the detection
+and handling of different failures that may happen either at the
+optical or the packet layer. It is assumed that the underlying
+transport optical network carries end-to-end IP services such as
+L2VPN or L3VPN connectivity services, with specific Service Level
+Agreement (SLA) requirements.
 
-   Existing IETF protocols and data models are identified for each
-   multi-layer (packet over optical) service assurance scenario with a specific focus on
-   the MPI (Multi-Domain Service Coordinator to Provisioning Network
-   Controllers Interface) in the ACTN architecture.
+Existing IETF protocols and data models are identified for each
+multi-layer (packet over optical) service assurance scenario with a specific focus on
+the MPI (Multi-Domain Service Coordinator to Provisioning Network
+Controllers Interface) in the ACTN architecture.
 
 --- middle
 
@@ -107,13 +115,13 @@ Service assurance is a critical aspect of Operations, Administration and Managem
 
 Within the scope of this document, service assurance is discussed in the context of a multi-layer, multi-domain network. This document leverages the Abstraction and Control of TE Networks (ACTN) framework {{!RFC8453}} and further expands the analysis of its applicability to multi-layer packet-optical integrated networks {{!I-D.ietf-teas-actn-poi-applicability}}, adding considerations specific to fault and performance management scenarios.
 
-As already highlighted in {{!I-D.ietf-teas-actn-poi-applicability}}, a multi-layer network is composed of an IP layer and an optical transport layer. A multi-domain network is composed of at least two different administrative domains (e.g. core and edge) under the control of the same organization (e.g. the same network operator). Service assurance applies to end-to-end L2VPN or L3VPN connectivity services configured over underlying transport optical paths that require multi-layer coordination.
+As already highlighted in {{!I-D.ietf-teas-actn-poi-applicability}}, a multi-layer network is composed of an IP layer and an optical transport layer. A multi-domain network is composed of at least two different administrative domains (e.g., core and edge) under the control of the same organization (e.g. the same network operator). Service assurance applies to end-to-end L2VPN or L3VPN connectivity services configured over IP and underlying transport optical paths that require multi-layer coordination.
 
 To guarantee the SLAs associated with VPN services, service assurance is performed through collaboration among the ACTN control entities {{!RFC8453}}: the Multi-Domain Service Coordinator (MDSC), acting as the top-level controller, and the Provisioning Network Controllers (PNCs) deployed in both the packet (P-PNC) and optical (O-PNC) layers.
 
-This document aligns with current field operational procedures in optical networks and assumes that the O-PNC provides the MDSC with enough information for Root Cause Analysis (RCA), correlating an event/alarm related to an optical-network failure with impacted services at the IP layer.
+This document aligns with current field operational procedures and {{!I-D.ietf-teas-actn-poi-applicability}}, which assume both the P-PNC and the O-PNC provide the MDSC with enough information for Root Cause Analysis (RCA), correlating an event/alarm related to either a packet or an optical network failure with the impacted services at the IP layer.
 
-The set of information shared by the O-PNC to the MDSC depends on local configuration adopted at the MDSC-PNC Interface (MPI) {{RFC8453}}. In general, this may include information about the optical path, tunnel, or fiber where the failure happened, together with its location and operational state (e.g., "down"), while hiding further topology details. This data is sufficient for the MDSC to perform multi-layer correlation and discover which IP links, Label Switched Paths (LSPs), and VPNs are affected.
+In particular for the optical network, the set of information shared by the O-PNC to the MDSC depends on local configuration adopted at the MDSC-PNC Interface (MPI) {{RFC8453}}. In general, this may include information about the optical path, tunnel, or fiber where the failure happened, together with its location and operational state (e.g., "down"), while hiding further topology details. This data is sufficient for the MDSC to perform multi-layer correlation and discover which IP links, Label Switched Paths (LSPs), and VPNs are affected.
 
 The analysis of the YANG data models applicable to service assurance (fault and performance) is in scope of this document. The development of new YANG models/modules to support the missing functions is instead not in scope of the present document. To this extent, this document acts as a framework that provides a gap analysis and identifies topics for future work to be addressed in other documents.
 
@@ -132,6 +140,9 @@ Understanding the degree of standardization and the identified gaps will help as
 # Conventions and Definitions
 
 ## Terminology
+This document uses the ACTN terminology defined in [RFC8453] {{RFC8453}} and in {{!I-D.ietf-teas-actn-poi-applicability}}.
+
+In addition, this document uses the following terminology.
 
 TCA (Threshold Crossing Alert)
 : A notification generated by a network element or controller when a monitored performance parameter crosses a pre-configured threshold value. TCAs are used to signal potential SLA violations or network degradation conditions to higher-layer management systems. In the context of this document, TCAs are generated at the router or PNC level and propagated upward through the MDSC to the Orchestrator layer.
@@ -155,26 +166,20 @@ EDITORS NOTE: Replace RFC YYYY with the RFC number of {{!I-D.ietf-teas-actn-poi-
 
 In general, service assurance involves fault detection and localization; performance monitoring as well as re-routing (protection).
 
-Two cases will be considered:
+The use of grey interfaces on routers' ports, as outlined in {{!I-D.ietf-teas-actn-poi-applicability}}, is the only case considered in this document. The use of colored optical interfaces on routers' ports is instead out of the scope and may be analyzed in a separate document.
 
-1. using grey interfaces on routers' ports, as outlined in {{!I-D.ietf-teas-actn-poi-applicability}}
-
-2. using colored optical interfaces on routers' ports, as outlined in {{?I-D.mix-teas-actn-poi-extension}}
-
-NOTE: It is not fully clear how many commonalities there are in service assurance for these two cases. This draft will start addressing both cases. At a later stage it will be assessed whether it is worthwhile keeping everything in a single draft or to split into two drafts.
-
-The MDSC is responsible for coordinating the whole multi-domain, multi-layer (packet and optical) network. MDSC interacts with different Provisioning Network Controllers (O/P-PNCs) through the MPI interface.
+The MDSC is responsible for coordinating the whole multi-domain, multi-layer (packet and optical) network. MDSC interacts with the different Provisioning Network Controllers (O/P-PNCs) through the MPI interface.
 The MPI interface presents an abstracted topology to MDSC, hiding the technology-specific aspects of the network and the topology details (depending on the policy chosen regarding the level of abstraction supported).
 
-Following the assumptions of section 2.1.2 of {{I-D.ietf-teas-actn-poi-applicability}}, this document analyses scenarios where
-the MDSC uses the partial summarization approach to coordinate multi-domain/multi-layer path computation.
+Following the assumptions of section 2.1.2 of {{I-D.ietf-teas-actn-poi-applicability}}, this document analyses
+scenarios where the MDSC uses the partial summarization approach to coordinate multi-domain/multi-layer path 
+computation. As a consequence, the MDSC has an abstracted view of the TE topology of both the IP and optical 
+network domains. When the MDSC is instructed for example by an Orchestrator or Operations Support System (OSS) 
+to set up a VPN service, it performs path compution across the multi-layer/multi-domain network based on its 
+abstracted topology and then delegates both the P- and O-PNCs to perform local path computation within their
+respective domains.
 
 This document assumes that the basic configuration of the L2/L3 VPN services, and in particular of the multi-domain TE path in the packet layer, is the same as described in section 5 of {{!I-D.ietf-teas-actn-poi-applicability}}. The only exception is that section {{resiliency}} defines additional multi-layer mechanisms besides the local protection in the packet layer described in section 5.2.3 of {{!I-D.ietf-teas-actn-poi-applicability}}.
-
-In this approach, the MDSC has complete visibility of the TE topology of the packet network domains and an abstracted
-view of the TE topology of the optical network domains.
-That means the MDSC has the capability of performing multi-domain/single-layer path computation for the packet layer. The MDSC needs to delegate the O-PNCs to perform local path computation within their respective domains.
-It uses the information received by the O-PNCs and its TE topology view of the multi-domain packet layer to perform multi-layer/multi-domain path computation.
 
 P-PNCs are responsible for setting up the TE paths between any two PEs or BRs in their respective controlled domains,
 as requested by MDSC, and providing topology information to the MDSC.
@@ -190,22 +195,22 @@ through the same mechanisms described in {{!I-D.ietf-teas-actn-poi-applicability
 
 The following list summarizes the main assumptions about how MDSC can handle the service assurance cases described in this document. Most of them have already been described in {{!I-D.ietf-teas-actn-poi-applicability}}.
 
-1. MDSC has acquired all the topology and status information of both the IP and optical layers.
+1. MDSC has acquired abstracted topology and status information from both the IP and optical layers.
 
-2. MDSC is fully aware of any multi-layer connections between the IP and the optical layers. It is also
-aware of the multi-domain interconnection links between different IP domains.
+2. MDSC is aware of the multi-domain interconnection links between different IP domains (Inter-domain Ethernet links). The
+MDSC is also aware of the multi-layer connections between the IP and the optical layers as exposed by the P-PNC and the O-PNC (for example, between a PE router and a corresponding optical node). 
 
 3. MDSC is aware of any topology or resource utilization change obtained in real time through coordination with the O/P-PNCs. This applies in the case of a fault or a maintenance activity involving either the IP or the DWDM layer.
 
-4. MDSC coordinates the IP and DWDM protections and, as a result, the re-routing of traffic at both the IP and DWDM layer.
+4. MDSC triggers the IP and/or DWDM fault management when is detects an SLA degradation or receives indication of a failure. As a result, the P-PNC and/or the O-PNC start re-routing mechanims at their relative layer.
 
-5. Before planned maintenance operation at the DWDM layer, MDSC instructs the P-PNC to move the affected IP traffic to another link in a hitless way. This is done before the event takes place. MDSC also coordinates with P-PNC to revert
+5. Before planned maintenance operation at the DWDM layer, MDSC instructs the P-PNC to move the affected IP traffic to another link. This is done before the event takes place. MDSC also coordinates with P-PNC to revert
 back the traffic on the original path when the maintenance event is concluded.
 
 6. When the O-PNC detects a degradation of optical performance (e.g. a Threshold Crossing Alert (TCA) on PRE-FEC BER values sustained over a certain period of time), it alerts the MDSC so that the MDSC relates the warning to an IP link.
 
 7. MDSC distinguishes between IP and Optical failures. For example, in the case of the failure of an IP port of a router,
-the IP traffic may be switched to a stand-by port, reusing the same Reconfigurable Optical Add-Drop Multiplexer (ROADM) optical resources (lambda, optical path) and keeping the end-to-end IP connection. If a remote IP node fails, then a re-route of optical resources takes place together with a switch of the local IP port in order to establish a new connection with a different IP node used for protection.
+the IP traffic may be switched to a stand-by port, reusing the same Reconfigurable Optical Add-Drop Multiplexer (ROADM) optical resources (lambda, optical path) and keeping the end-to-end IP connection. If a remote IP node fails, then a re-route of optical resources takes place together with a switch of the local IP port in order to establish a new connection with a different IP node used for protection. In both cases, the P-PNC passes the related notifications to the MDSC.
 
 {:#ref-network}
 
