@@ -92,7 +92,7 @@ normative:
 
 --- abstract
 
-This document extends the analysis of the applicability of 
+This document extends the analysis of the applicability of
 Abstraction and Control of TE Networks (ACTN) architecture to Packet
 Optical Integration (POI) to cover multi-layer service assurance
 scenarios. Specifically, the ACTN architecture enables the detection
@@ -172,10 +172,10 @@ The MDSC is responsible for coordinating the whole multi-domain, multi-layer (pa
 The MPI interface presents an abstracted topology to MDSC, hiding the technology-specific aspects of the network and the topology details (depending on the policy chosen regarding the level of abstraction supported).
 
 Following the assumptions of section 2.1.2 of {{I-D.ietf-teas-actn-poi-applicability}}, this document analyses
-scenarios where the MDSC uses the partial summarization approach to coordinate multi-domain/multi-layer path 
-computation. As a consequence, the MDSC has an abstracted view of the TE topology of both the IP and optical 
-network domains. When the MDSC is instructed for example by an Orchestrator or Operations Support System (OSS) 
-to set up a VPN service, it performs path compution across the multi-layer/multi-domain network based on its 
+scenarios where the MDSC uses the partial summarization approach to coordinate multi-domain/multi-layer path
+computation. As a consequence, the MDSC has an abstracted view of the TE topology of both the IP and optical
+network domains. When the MDSC is instructed for example by an Orchestrator or Operations Support System (OSS)
+to set up a VPN service, it performs path compution across the multi-layer/multi-domain network based on its
 abstracted topology and then delegates both the P- and O-PNCs to perform local path computation within their
 respective domains.
 
@@ -198,7 +198,7 @@ The following list summarizes the main assumptions about how MDSC can handle the
 1. MDSC has acquired abstracted topology and status information from both the IP and optical layers.
 
 2. MDSC is aware of the multi-domain interconnection links between different IP domains (Inter-domain Ethernet links). The
-MDSC is also aware of the multi-layer connections between the IP and the optical layers as exposed by the P-PNC and the O-PNC (for example, between a PE router and a corresponding optical node). 
+MDSC is also aware of the multi-layer connections between the IP and the optical layers as exposed by the P-PNC and the O-PNC (for example, between a PE router and a corresponding optical node).
 
 3. MDSC is aware of any topology or resource utilization change obtained in real time through coordination with the O/P-PNCs. This applies in the case of a fault or a maintenance activity involving either the IP or the DWDM layer.
 
