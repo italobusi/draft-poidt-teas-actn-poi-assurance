@@ -5,14 +5,14 @@
 TEAS Working Group                                               I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 21 December 2026                                       Vodafone
+Expires: 26 December 2026                                       Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                            19 June 2026
+                                                            24 June 2026
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -24,12 +24,17 @@ Abstract
    This document extends the analysis of the applicability of
    Abstraction and Control of TE Networks (ACTN) architecture to Packet
    Optical Integration (POI) to cover multi-layer service assurance
-   scenarios.  Specifically, the ACTN architecture enables the detection
-   and handling of different failures that may happen either at the
-   optical or the packet layer.  It is assumed that the underlying
-   transport optical network carries end-to-end IP services such as
-   L2VPN or L3VPN connectivity services, with specific Service Level
-   Agreement (SLA) requirements.
+   scenarios.  Specifically, the ACTN architecture supports service
+   assurance through the detection and correlation of failures across
+   the optical and packet layers, with failure handling performed
+   through the relevant PNC.  The MDSC can also request health checks
+   for IP services across multi-domain paths for SLA conformance
+   assessment.  The PNCs may also be configured with thresholds so that
+   alerts are reported when relevant service or network conditions
+   exceed defined limits.  It is assumed that the underlying transport
+   optical network carries end-to-end IP services such as L2VPN or L3VPN
+   connectivity services, with specific Service Level Agreement (SLA)
+   requirements.
 
    Existing IETF protocols and data models are identified for each
    multi-layer (packet over optical) service assurance scenario with a
@@ -69,7 +74,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 December 2026.
+   This Internet-Draft will expire on 26 December 2026.
 
 Copyright Notice
 
@@ -157,10 +162,10 @@ Table of Contents
 
    This document aligns with current field operational procedures and
    [I-D.ietf-teas-actn-poi-applicability], which assume both the P-PNC
-   and the O-PNC provide the MDSC with enough information for Root Cause
-   Analysis (RCA), correlating an event/alarm related to either a packet
-   or an optical network failure with the impacted services at the IP
-   layer.
+   and the O-PNC provide the MDSC with enough information for performing
+   Root Cause Analysis (RCA), correlating for example an event or an
+   alarm related to either a packet or an optical network failure with
+   the impacted services at the IP layer.
 
    In particular for the optical network, the set of information shared
    by the O-PNC to the MDSC depends on local configuration adopted at
@@ -337,8 +342,9 @@ Table of Contents
    of them have already been described in
    [I-D.ietf-teas-actn-poi-applicability].
 
-   1.  MDSC has acquired abstracted topology and status information from
-       both the IP and optical layers.
+   1.  he MDSC has acquired an abstract view of the multi-layer topology
+       as described in section 2 of
+       [I-D.ietf-teas-actn-poi-applicability].
 
    2.  MDSC is aware of the multi-domain interconnection links between
        different IP domains (Inter-domain Ethernet links).  The MDSC is
@@ -346,21 +352,23 @@ Table of Contents
        optical layers as exposed by the P-PNC and the O-PNC (for
        example, between a PE router and a corresponding optical node).
 
-   3.  MDSC is aware of any topology or resource utilization change
-       obtained in real time through coordination with the O/P-PNCs.
-       This applies in the case of a fault or a maintenance activity
-       involving either the IP or the DWDM layer.
+   3.  MDSC is aware of any topology or service change in near real-time
+       through coordination with the O/P-PNCs.  This applies in the case
+       of a fault or a maintenance activity involving either the IP or
+       the DWDM layer.
 
-   4.  MDSC triggers the IP and/or DWDM fault management when is detects
-       an SLA degradation or receives indication of a failure.  As a
-       result, the P-PNC and/or the O-PNC start re-routing mechanims at
-       their relative layer.
+   4.  MDSC may coordinate, if configured to do so, with the O/P-PNC to
+       perform fault management actions when a network failure in the IP
+       or optical network is detected, as referenced in section 7 on
+       Multi-layer Resiliency.
 
-   5.  Before planned maintenance operation at the DWDM layer, MDSC
-       instructs the P-PNC to move the affected IP traffic to another
-       link.  This is done before the event takes place.  MDSC also
-       coordinates with P-PNC to revert back the traffic on the original
-       path when the maintenance event is concluded.
+   5.  Before a planned maintenance window in the optical layer, MDSC
+       can request the underlying P-PNC to move a given set of LSPs or
+       SR-TE paths to avoid a particular link that will become under
+       maintenance status.  This is performed before the start of the
+       maintenance window.  Based on operator decision, MDSC could
+       request to P-PNC to revert the set of LSPs or SR-TE paths through
+       the initial link once maintenance activities have finalised.
 
    6.  When the O-PNC detects a degradation of optical performance (e.g.
        a Threshold Crossing Alert (TCA) on PRE-FEC BER values sustained
@@ -368,8 +376,8 @@ Table of Contents
        MDSC relates the warning to an IP link.
 
    7.  MDSC distinguishes between IP and Optical failures.  For example,
-       in the case of the failure of an IP port of a router, the IP
-       traffic may be switched to a stand-by port, reusing the same
+       in the case of the failure of an IP port of a router, the TE path
+       may be switched to a stand-by port, reusing the same
        Reconfigurable Optical Add-Drop Multiplexer (ROADM) optical
        resources (lambda, optical path) and keeping the end-to-end IP
        connection.  If a remote IP node fails, then a re-route of
