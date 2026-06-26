@@ -5,14 +5,14 @@
 TEAS Working Group                                               I. Busi
 Internet-Draft                                       Huawei Technologies
 Intended status: Informational                            J.-F. Bouquier
-Expires: 26 December 2026                                       Vodafone
+Expires: 28 December 2026                                       Vodafone
                                                             F. Peruzzini
                                                                 FiberCop
                                                               P. Volpato
                                                      Huawei Technologies
                                                                 P. Manna
                                                                    Cisco
-                                                            24 June 2026
+                                                            26 June 2026
 
 
 Applicability of Abstraction and Control of Traffic Engineered Networks
@@ -74,7 +74,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 December 2026.
+   This Internet-Draft will expire on 28 December 2026.
 
 Copyright Notice
 
@@ -342,9 +342,8 @@ Table of Contents
    of them have already been described in
    [I-D.ietf-teas-actn-poi-applicability].
 
-   1.  he MDSC has acquired an abstract view of the multi-layer topology
-       as described in section 2 of
-       [I-D.ietf-teas-actn-poi-applicability].
+   1.  The MDSC has acquired the topology of the multi-layer topology as
+       described in section 2 of [I-D.ietf-teas-actn-poi-applicability].
 
    2.  MDSC is aware of the multi-domain interconnection links between
        different IP domains (Inter-domain Ethernet links).  The MDSC is
