@@ -201,7 +201,7 @@ through the same mechanisms described in {{!I-D.ietf-teas-actn-poi-applicability
 
 The following list summarizes the main assumptions about how MDSC can handle the service assurance cases described in this document. Most of them have already been described in {{!I-D.ietf-teas-actn-poi-applicability}}.
 
-1. he MDSC has acquired an abstract view of the multi-layer topology as described in section 2 of {{!I-D.ietf-teas-actn-poi-applicability}}.
+1. The MDSC has acquired the topology of the multi-layer topology as described in section 2 of {{!I-D.ietf-teas-actn-poi-applicability}}.
 
 2. MDSC is aware of the multi-domain interconnection links between different IP domains (Inter-domain Ethernet links). The
 MDSC is also aware of the multi-layer connections between the IP and the optical layers as exposed by the P-PNC and the O-PNC (for example, between a PE router and a corresponding optical node).
